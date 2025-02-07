@@ -24,7 +24,6 @@ void	init(void)
 int eval_input(const char* input)
 {
 	int status;
-
 	status = system(input);
 	//system関数の戻り値は正しくないことがあるので調整しているだけ
 	if (status == SIGINT)
