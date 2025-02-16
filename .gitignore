@@ -1,4 +1,5 @@
 minishell
-*.o
-*.swp
+bin
+**/*.swp
+/mfunakos
 /tkondo
