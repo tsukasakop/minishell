@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:24:19 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/16 20:17:07 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/17 04:41:19 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	iterate_pipefd(bool is_first, bool is_last, int (*stdio)[2],
 {
 	int	pp_fd[2];
 
-	if (is_first)
+	if (is_first && !is_last)
 	{
 		if (pipe(pp_fd))
 			return (false);
@@ -41,14 +41,12 @@ bool	iterate_pipefd(bool is_first, bool is_last, int (*stdio)[2],
 	{
 		close_fds_safely(*stdio, 2);
 		ft_memcpy(stdio, (int [2]){*next_in, STDOUT_FILENO}, sizeof(int [2]));
+		*next_in = STDIN_FILENO;
 		return (true);
 	}
-	close_fds_safely(*stdio, 2);
 	if (pipe(pp_fd))
-	{
-		close_fds_safely(next_in, 1);
 		return (false);
-	}
+	close_fds_safely(*stdio, 2);
 	ft_memcpy(stdio, (int [2]){*next_in, pp_fd[1]}, sizeof(int [2]));
 	*next_in = pp_fd[0];
 	return (true);

@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:30:10 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/16 20:17:01 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/17 04:30:20 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	execute_simple_cmd(const t_simple_cmd scmd, int stdio_fd[2],
 		free_words(words);
 		return (chpid != -1);
 	}
-	close(next_in_fd);
+	close_fds_safely(&next_in_fd, 1);
 	resolve_redirects(stdio_fd, reds);
 	path = get_path(words[0]);
 	// TODO: replace execvp to execve
