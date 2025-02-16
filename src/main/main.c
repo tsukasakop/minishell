@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:04:20 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/16 20:17:04 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/16 21:03:16 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,12 @@ int	main(int argc, char **argv, char **envp)
 	init();
 	while (true)
 	{
-		// input = get_input_with_prompt(PROMPT);
-		input = argv[1];
-		if (input == NULL)
-			eval_text("exit", envp);
+		input = get_input();
 		last_status = eval_text(input, envp);
+		if (last_status == SIGINT + EXIT_OFFSET_SIGNAL)
+			printf("\n");
 		set_exit_status(last_status);
-		// free(input);
-		break ;
+		free(input);
 	}
 	return (0);
 }
