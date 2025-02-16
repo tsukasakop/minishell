@@ -1,5 +1,12 @@
-minishell
-*.o
+# System files
+.DS_Store
 *.swp
+
+# Binary files
+minishell
+*.a
+*.o
+
+# Work directories
 /tkondo
 /mfunakos
