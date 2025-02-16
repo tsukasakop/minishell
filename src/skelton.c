@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   skelton.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:16:28 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/16 15:48:47 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/16 20:31:11 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_redirect		t_redirect;
 struct							s_redirect
 {
 	bool						is_open;
+	// todo < > << >>があるかないか
 	int							fd_redirect_to;
 	int							fd_redirect_from;
 	const char					*path;
