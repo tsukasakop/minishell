@@ -6,7 +6,7 @@
 #    By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/02/16 20:28:43 by tkondo           ###   ########.fr        #
+#    Updated: 2025/02/17 03:30:39 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,8 +64,8 @@ $(NAME): $(OBJS)
 	$(CC) $(OBJS) -o $@ $(LIB_DIR) $(LFLAGS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	mkdir -p $(OBJ_DIR)
-	mkdir -p $(OBJ_DIRS)
+	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIRS)
 	$(CC) $(CFLAGS) $< -o $@ $(INCLUDE_DIR)
 
 libft:
