@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   at_sigint.c                                        :+:      :+:    :+:   */
+/*   set_handlers_for_process.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 20:45:42 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/19 15:51:34 by tkondo           ###   ########.fr       */
+/*   Created: 2025/02/19 14:27:06 by tkondo            #+#    #+#             */
+/*   Updated: 2025/02/19 15:55:33 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 /*
  * Function:
  * ----------------------------
- *  do when catch sigint on prompt
+ *  during system processing, catch signal and record it
  */
-void	at_sigint(int signal)
+void	set_handlers_for_process(void)
 {
-	(void)signal;
-	flush_prompt();
+	signal(SIGINT, set_signal);
+	signal(SIGQUIT, set_signal);
 }

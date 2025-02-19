@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   at_sigint.c                                        :+:      :+:    :+:   */
+/*   set_signal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 20:45:42 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/19 15:51:34 by tkondo           ###   ########.fr       */
+/*   Created: 2025/02/18 16:27:46 by tkondo            #+#    #+#             */
+/*   Updated: 2025/02/19 15:56:44 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@
 /*
  * Function:
  * ----------------------------
- *  do when catch sigint on prompt
+ *  set_signal on global
  */
-void	at_sigint(int signal)
+void	set_signal(int signal)
 {
-	(void)signal;
-	flush_prompt();
+	g_signal = signal;
 }

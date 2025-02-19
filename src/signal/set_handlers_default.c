@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   at_sigint.c                                        :+:      :+:    :+:   */
+/*   set_handlers_default.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 20:45:42 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/19 15:51:34 by tkondo           ###   ########.fr       */
+/*   Created: 2025/02/19 14:27:06 by tkondo            #+#    #+#             */
+/*   Updated: 2025/02/19 15:54:35 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 /*
  * Function:
  * ----------------------------
- *  do when catch sigint on prompt
+ *  unset signal handlers, typically use for init childprocess
  */
-void	at_sigint(int signal)
+void	set_handlers_default(void)
 {
-	(void)signal;
-	flush_prompt();
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 }

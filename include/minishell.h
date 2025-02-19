@@ -6,20 +6,23 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/16 21:09:07 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/19 15:48:49 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <readline/history.h>
-#include <readline/readline.h>
-#define PROMPT "minishell$ "
-#define EXIT_OFFSET_SIGNAL 128
+#ifndef MINISHELL_H
+# define MINISHELL_H
+# include <libft.h>
+# include <readline/history.h>
+# include <readline/readline.h>
+# include <signal.h>
+# include <stdbool.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
+# define PROMPT "minishell$ "
+# define EXIT_OFFSET_SIGNAL 128
 
 typedef char					*t_simple_cmd;
 typedef struct s_redirect		t_redirect;
@@ -61,3 +64,8 @@ void							flush_prompt(void);
 void							at_sigint(int signum);
 char							*get_input(void);
 void							at_sigint(int signum);
+void							set_handlers_default(void);
+void							set_handlers_for_process(void);
+void							set_handlers_for_prompt(void);
+void							set_signal(int signal);
+#endif
