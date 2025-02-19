@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:27:02 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/16 20:27:04 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/19 15:44:29 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@
  */
 bool	init(void)
 {
-	// TODO: set signal handler
+	set_handlers_for_process();
 	return (true);
 }

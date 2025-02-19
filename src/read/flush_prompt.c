@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wait_status.c                                      :+:      :+:    :+:   */
+/*   flush_prompt.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 19:32:09 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/18 14:32:56 by tkondo           ###   ########.fr       */
+/*   Created: 2025/02/16 20:43:26 by tkondo            #+#    #+#             */
+/*   Updated: 2025/02/19 16:26:57 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,12 @@
 /*
  * Function:
  * ----------------------------
- * wait for finshing child processes, and get exit status
+ *  delete written input and reflesh prompt
  */
-unsigned char	wait_status(void)
+void	flush_prompt(void)
 {
-	int	status;
-
-	while (wait(&status) != -1)
-		;
-	//TODO: update g_signal when child processes catch signal
-	if (WIFSIGNALED(status))
-		g_signal = WTERMSIG(status);
-	return (status);
+	printf("\n");
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
 }

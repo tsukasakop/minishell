@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wait_status.c                                      :+:      :+:    :+:   */
+/*   set_handlers_for_process.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 19:32:09 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/18 14:32:56 by tkondo           ###   ########.fr       */
+/*   Created: 2025/02/19 14:27:06 by tkondo            #+#    #+#             */
+/*   Updated: 2025/02/19 15:55:33 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,10 @@
 /*
  * Function:
  * ----------------------------
- * wait for finshing child processes, and get exit status
+ *  during system processing, catch signal and record it
  */
-unsigned char	wait_status(void)
+void	set_handlers_for_process(void)
 {
-	int	status;
-
-	while (wait(&status) != -1)
-		;
-	//TODO: update g_signal when child processes catch signal
-	if (WIFSIGNALED(status))
-		g_signal = WTERMSIG(status);
-	return (status);
+	signal(SIGINT, set_signal);
+	signal(SIGQUIT, set_signal);
 }

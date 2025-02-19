@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wait_status.c                                      :+:      :+:    :+:   */
+/*   at_sigint.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 19:32:09 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/18 14:32:56 by tkondo           ###   ########.fr       */
+/*   Created: 2025/02/16 20:45:42 by tkondo            #+#    #+#             */
+/*   Updated: 2025/02/19 15:51:34 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,10 @@
 /*
  * Function:
  * ----------------------------
- * wait for finshing child processes, and get exit status
+ *  do when catch sigint on prompt
  */
-unsigned char	wait_status(void)
+void	at_sigint(int signal)
 {
-	int	status;
-
-	while (wait(&status) != -1)
-		;
-	//TODO: update g_signal when child processes catch signal
-	if (WIFSIGNALED(status))
-		g_signal = WTERMSIG(status);
-	return (status);
+	(void)signal;
+	flush_prompt();
 }

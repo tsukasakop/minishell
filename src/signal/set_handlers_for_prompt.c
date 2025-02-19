@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wait_status.c                                      :+:      :+:    :+:   */
+/*   set_handlers_for_prompt.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 19:32:09 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/18 14:32:56 by tkondo           ###   ########.fr       */
+/*   Created: 2025/02/19 14:27:06 by tkondo            #+#    #+#             */
+/*   Updated: 2025/02/19 15:56:15 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,10 @@
 /*
  * Function:
  * ----------------------------
- * wait for finshing child processes, and get exit status
+ *  during waiting user input, reflesh prompt on SIGINT
  */
-unsigned char	wait_status(void)
+void	set_handlers_for_prompt(void)
 {
-	int	status;
-
-	while (wait(&status) != -1)
-		;
-	//TODO: update g_signal when child processes catch signal
-	if (WIFSIGNALED(status))
-		g_signal = WTERMSIG(status);
-	return (status);
+	signal(SIGINT, at_sigint);
+	signal(SIGQUIT, SIG_IGN);
 }

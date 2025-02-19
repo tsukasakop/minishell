@@ -6,7 +6,7 @@
 #    By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/02/17 03:30:39 by tkondo           ###   ########.fr        #
+#    Updated: 2025/02/19 14:46:49 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,8 +50,15 @@ TARGET =\
 	main/init\
 	pipe/iterate_pipefd\
 	pipe/wait_status\
+	read/flush_prompt\
+	read/get_input\
 	redirect/resolve_redirects\
+	signal/at_sigint\
 	utils/close_fd_safely\
+	signal/set_handlers_for_prompt\
+	signal/set_handlers_default\
+	signal/set_handlers_for_process\
+	signal/set_signal\
 
 OBJS = $(addprefix $(OBJ_DIR)/,$(addsuffix .o,$(TARGET)))
 
