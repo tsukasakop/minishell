@@ -6,12 +6,22 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:49:32 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/19 15:40:46 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/19 16:29:35 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
+/*
+ * Function:
+ * ----------------------------
+ *  Get input via prompt, and returns input
+ *
+ *  TODO:
+ *   - check syntax, heredoc, lastpipe
+ *   - get more input on heredoc, empty pipe
+ *   - do exit command on ctrl + D
+ */
 char	*get_input(void)
 {
 	char	*input;

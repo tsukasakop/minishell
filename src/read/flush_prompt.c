@@ -6,12 +6,17 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:43:26 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/16 20:43:36 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/19 16:26:57 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
+/*
+ * Function:
+ * ----------------------------
+ *  delete written input and reflesh prompt
+ */
 void	flush_prompt(void)
 {
 	printf("\n");
