@@ -6,11 +6,11 @@
 #    By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/02/19 14:46:49 by tkondo           ###   ########.fr        #
+#    Updated: 2025/02/19 17:30:17 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-RL_DIR = /usr/local/Cellar/readline/8.2.13
+RL_DIR = $(shell brew --prefix readline)
 
 NAME = minishell
 CC = cc
