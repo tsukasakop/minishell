@@ -6,34 +6,28 @@
 #    By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/02/19 14:46:49 by tkondo           ###   ########.fr        #
+#    Updated: 2025/02/19 17:45:02 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-RL_DIR = /usr/local/Cellar/readline/8.2.13
 
 NAME = minishell
+
+RL_DIR = $(shell brew --prefix readline)
 CC = cc
-INCLUDE_DIR = -Iinclude -Ilibft/include -I$(RL_DIR)/include
-CFLAGS = -c -Wall -Wextra -Werror
+CFLAGS = \
+	-c -Wall -Wextra -Werror\
+	-Iinclude\
+	-Ilibft/include\
+	-I$(RL_DIR)/include\
+
+AR = ar
+LFLAGS = \
+	-Llibft -lft\
+	-L$(RL_DIR)/lib -lreadline\
+
 SRC_DIR = src
 OBJ_DIR = bin
-SUBDIRS = \
-	command\
-	data\
-	expand\
-	main\
-	parse\
-	pipe\
-	read\
-	redirect\
-	signal\
-	utils\
-
-OBJ_DIRS = $(addprefix $(OBJ_DIR)/,$(TARGET))
-LIB_DIR = -Llibft -L$(RL_DIR)/lib
-LFLAGS = -lft -lreadline
-
 TARGET =\
 	command/get_path\
 	data/free_redirects\
@@ -62,28 +56,37 @@ TARGET =\
 
 OBJS = $(addprefix $(OBJ_DIR)/,$(addsuffix .o,$(TARGET)))
 
-all: libft $(NAME)
 
+# Build only
+all: $(NAME)
+
+# Run after build
 run: all
 	./$(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(OBJS) -o $@ $(LIB_DIR) $(LFLAGS)
+# Build only
+$(NAME): libft $(OBJS)
+	$(CC) $(OBJS) -o $@ $(LFLAGS)
 
+# Compile single object file
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(OBJ_DIR)
-	@mkdir -p $(OBJ_DIRS)
-	$(CC) $(CFLAGS) $< -o $@ $(INCLUDE_DIR)
+	@mkdir -p $(dir $@)
+	$(CC) $< -o $@ $(CFLAGS)
 
+# Build libft
 libft:
 	make -C libft
 
+# Clean except ./minishell
 clean:
 	rm -f $(OBJS)
+	make -C libft fclean
 
+# Clean all binary
 fclean: clean
 	rm -f $(NAME)
 
+# Rebuild
 re: fclean all
 
-.PHONY: libft all clean fclean re
+.PHONY: all run libft clean fclean re
