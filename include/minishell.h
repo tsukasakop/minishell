@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/19 15:48:49 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/19 16:15:51 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include <string.h>
 # include <unistd.h>
 # define PROMPT "minishell$ "
-# define EXIT_OFFSET_SIGNAL 128
 
 typedef char					*t_simple_cmd;
 typedef struct s_redirect		t_redirect;
