@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/17 04:48:22 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/20 14:32:50 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ unsigned char	eval_pipe(const char *text, char **envp)
 		{
 			// TODO: consider about pipe failure case
 			free_simple_cmds((t_simple_cmd *)cmds);
-			close_fds_safely(stdio_fd, 2);
-			close_fds_safely(&next_in_fd, 1);
+			close_fds_no_stdio(stdio_fd, 2);
+			close_fds_no_stdio(&next_in_fd, 1);
 		}
 		execute_simple_cmd(cmds[i], stdio_fd, next_in_fd, envp);
 		i++;
 	}
 	free_simple_cmds((t_simple_cmd *)cmds);
-	close_fds_safely((int [3]){stdio_fd[0], stdio_fd[1], next_in_fd}, 3);
+	close_fds_no_stdio((int [3]){stdio_fd[0], stdio_fd[1], next_in_fd}, 3);
 	return (wait_status());
 }
