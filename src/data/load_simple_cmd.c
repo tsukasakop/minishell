@@ -6,11 +6,12 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/19 18:47:03 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/20 13:23:21 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
 // struct							s_redirect
 // {
 // 	//リダイレクトの種類(<,>,<<,>>)
@@ -18,6 +19,27 @@
 // 	//リダイレクトの左 n>	int型？
 // 	t_redirect					*next;
 // };
+
+//
+
+struct							s_redirect
+{
+	int							type;
+	const char					*in_path;
+	int							out_fd;
+	t_redirect					*next;
+};
+
+
+struct							s_redirect
+{
+	int							fd_redirect_from;//←リダイレクトの左 n>	int型？
+	int							redirect_type;//←enumでやってみる。ヒアドクでも<でやる
+	const char					*path;//←リダイレクトの右 >word
+	t_redirect					*next;
+};
+
+ヒアドク用の構造体作る
 
 bool	has_redirect(char *word)
 {
@@ -56,7 +78,7 @@ void	load_simple_cmd(const t_simple_cmd cmd, t_redirect **reds,
 	i = 0;
 	while ((*words)[i])
 	{
-		if (has_redirect((*words)[i]) == true)
+		if (has_redirect((*words)[i]))
 			printf("red:words[%zu] = %s\n", i, (*words)[i]);
 		else
 			printf("words:words[%zu] = %s\n", i, (*words)[i]);
