@@ -6,7 +6,7 @@
 #    By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/02/19 17:45:02 by tkondo           ###   ########.fr        #
+#    Updated: 2025/02/20 14:34:25 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ TARGET =\
 	read/get_input\
 	redirect/resolve_redirects\
 	signal/at_sigint\
-	utils/close_fd_safely\
+	utils/close_fds_no_stdio\
 	signal/set_handlers_for_prompt\
 	signal/set_handlers_default\
 	signal/set_handlers_for_process\
