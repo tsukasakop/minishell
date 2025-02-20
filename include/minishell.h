@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/19 17:20:33 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/20 14:33:53 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ struct							s_redirect
 extern volatile unsigned char	g_signal;
 
 bool							init(void);
-void							close_fds_safely(int *fds, size_t size);
+void							close_fds_no_stdio(int *fds, size_t size);
 t_simple_cmd					*pipe2simple_cmds(const char *pipe);
 bool							iterate_pipefd(bool is_first, bool is_last,
 									int (*stdio)[2], int *next_in);
