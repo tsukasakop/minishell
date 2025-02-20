@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_simple_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/20 13:23:21 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/20 15:49:07 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,44 @@
 
 //
 
-struct							s_redirect
+// struct							s_redirect
+// {
+// 	int							type;
+// 	const char					*in_path;
+// 	int							out_fd;
+// 	t_redirect					*next;
+// };
+
+
+// struct							s_redirect
+// {
+// 	int							fd_redirect_from;//←リダイレクトの左 n>	int型？
+// 	int							redirect_type;//←enumでやってみる。ヒアドクでも<でやる
+// 	const char					*path;//←リダイレクトの右 >word
+// 	t_redirect					*next;
+// };
+
+//todo:ヒアドク用の構造体作る
+
+
+void	stderror_msg(char *msg)
 {
-	int							type;
-	const char					*in_path;
-	int							out_fd;
-	t_redirect					*next;
-};
+	write(2, msg, ft_strlen(msg));
+	exit(1);
+}
 
+// void	redirect(char *word)
+// {
+// 	int	i;
 
-struct							s_redirect
-{
-	int							fd_redirect_from;//←リダイレクトの左 n>	int型？
-	int							redirect_type;//←enumでやってみる。ヒアドクでも<でやる
-	const char					*path;//←リダイレクトの右 >word
-	t_redirect					*next;
-};
+// 	i = 0;
+// 	while (word[i] != NULL && word[i] != '>' && word[i] != NULL && word[i] != NULL)
+// 	{
+// 		if ()
 
-ヒアドク用の構造体作る
+// 	}
+// }
+
 
 bool	has_redirect(char *word)
 {
@@ -48,11 +68,11 @@ bool	has_redirect(char *word)
 	len = ft_strlen(word);
 	if (ft_strnstr(word, "<<", len))
 		return (true);
+	if (ft_strnstr(word, ">>", len))
+		return (true);
 	if (ft_strnstr(word, "<", len))
 		return (true);
 	if (ft_strnstr(word, ">", len))
-		return (true);
-	if (ft_strnstr(word, ">>", len))
 		return (true);
 	return (false);
 }
@@ -72,6 +92,7 @@ void	load_simple_cmd(const t_simple_cmd cmd, t_redirect **reds,
 		char ***words)
 {
 	size_t				i;
+	(void)reds;
 	// TODO: extract redirects into reds
 	// TODO: split correctly
 	*words = ft_split(cmd, ' ');
@@ -79,12 +100,35 @@ void	load_simple_cmd(const t_simple_cmd cmd, t_redirect **reds,
 	while ((*words)[i])
 	{
 		if (has_redirect((*words)[i]))
+		{
 			printf("red:words[%zu] = %s\n", i, (*words)[i]);
+			if ((*words)[i + 1] != NULL)
+			{
+				printf("red:path[%zu] = %s\n", i + 1, (*words)[i + 1]);
+				// t_redirect *new_red = malloc(sizeof(t_redirect));
+				// if (!new_red)
+				// 	return;
+				// new_red->path = strdup((*words)[i + 1]);
+				// new_red->next = NULL;
+
+				// // `reds` に追加
+				// if (*reds == NULL)
+				// 	*reds = new_red;
+				// else
+				// {
+				// 	t_redirect *tmp = *reds;
+				// 	while (tmp->next)
+				// 		tmp = tmp->next;
+				// 	tmp->next = new_red;
+				// }
+			}
+			else
+				stderror_msg("syntax error");
+		}
 		else
 			printf("words:words[%zu] = %s\n", i, (*words)[i]);
 		i++;
 	}
-	(void)reds;
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -99,7 +143,8 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	(void)envp;
 
-	text = "< infile cat | grep 42 > outfile";
+	text = "< infile cat | grep 42 > outfile | ls >out";
+	// text = "echo 45 >out>outfile";
 	cmds = pipe2simple_cmds(text);
 	i = 0;
 	printf("cmds[%d] = %s\n", i, cmds[i]);
