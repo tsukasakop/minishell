@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/19 17:20:33 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/20 13:54:36 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include <unistd.h>
 # include <readline/history.h>
 # include <readline/readline.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+
 # define PROMPT "minishell$ "
 
 typedef char					*t_simple_cmd;
