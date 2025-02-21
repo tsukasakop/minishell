@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/21 17:42:55 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/21 18:05:24 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,16 +142,16 @@
 //  * ない場合はfalseになる
 //  * ToDO:これ間違ってるかも
 //  */
-// bool	has_redirect(char *word)
-// {
-// 	size_t	len;
+bool	has_redirect(char *word)
+{
+	size_t	len;
 
-// 	len = ft_strlen(word);
-// 	if (ft_strnstr(word, "<<", len) || ft_strnstr(word, "<", len) || \
-// 		ft_strnstr(word, ">", len) || ft_strnstr(word, ">>", len))
-// 		return (true);
-// 	return (false);
-// }
+	len = ft_strlen(word);
+	if (ft_strnstr(word, "<<", len) || ft_strnstr(word, "<", len) || \
+		ft_strnstr(word, ">", len) || ft_strnstr(word, ">>", len))
+		return (true);
+	return (false);
+}
 
 
 // /*
@@ -160,26 +160,31 @@
 //  * wordsを埋める関数を作る
 //  * wc分mallocして、has_redirectでfalseの文字列を格納する
 //  */
-// char	**fill_words(char **src, int wc)
-// {
-// 	char	**dst;
-// 	int		i;
-// 	int		j;
+char	**fill_words(char **src, int wc)
+{
+	char	**dst;
+	int		i;
+	int		j;
 
-// 	i = 0;
-// 	j = 0;
-// 	dst = (char **)malloc(sizeof(char *) * (wc + 1));
-// 	while (src[i])
-// 	{
-// 		if (!has_redirect(src[i]))
-// 		{
-// 			dst[j] = src[i];
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	return (dst);
-// }
+	i = 0;
+	j = 0;
+	dst = (char **)malloc(sizeof(char *) * (wc + 1));
+	if (!dst)
+		return (NULL);
+	while (src[i])
+	{
+		if (has_redirect(src[i]) == true && src[i + 1])
+			i++;
+		else
+		{
+			dst[j] = ft_strdup(src[i]);
+			j++;
+		}
+		i++;
+	}
+	dst[j] = NULL;
+	return (dst);
+}
 
 /*
  * Function:
@@ -191,49 +196,48 @@
  * char ***wirds: pointer to store command and its arguments
  *
  */
-void	load_simple_cmd(t_simple_cmd *cmd, t_redirect **reds,
-		t_heredoc **here, char *cmds_text)
+void	load_simple_cmd(t_simple_cmd *cmd, t_redirect **reds, \
+		t_heredoc **here, char **cmds_text)
 {
 	(void)cmd;
 	(void)reds;
 	(void)here;
-	(void)cmds_text;
-	// size_t				i;
-	// size_t				wc;
-	// // TODO: extract redirects into reds
-	// // TODO: split correctly
-	// // *words = ft_split(cmds_text, ' ');
-	// i = 0;
-	// wc = 0;
-	// while (cmds_text[i])
-	// {
-	// 	if (has_redirect(cmds_text[i]) == true && cmds_text[i + 1])
-	// 	{
-	// 		// printf("red:words[%zu] = %s\n", i, cmds_text[i]);
-	// 		fill_struct_redirect(reds, here, cmds_text[i], cmds_text[i + 1]);
-	// 		i++;
-	// 	}
-	// 	else
-	// 	{
-	// 		// printf("words:words[%zu] = %s\n", i, cmds_text[i]);
-	// 		wc++;
-	// 	}
-	// 	i++;
-	// }
-	// cmd->words = fill_words(cmds_text, wc);
+	size_t				i;
+	size_t				wc;
+	// TODO: extract redirects into reds
+	// TODO: split correctly
+	// *words = ft_split(cmds_text, ' ');
+	i = 0;
+	wc = 0;
+	while (cmds_text[i])
+	{
+		if (has_redirect(cmds_text[i]) == true && cmds_text[i + 1])
+		{
+			printf("red:words[%zu] = %s\n", i, cmds_text[i]);
+			printf("red:path[%zu] = %s\n", i, cmds_text[i + 1]);
+			// fill_struct_redirect(reds, here, cmds_text[i], cmds_text[i + 1]);
+			i++;
+		}
+		else
+		{
+			// printf("words:words[%zu] = %s\n", i, cmds_text[i]);
+			wc++;
+		}
+		i++;
+	}
+	cmd->words = fill_words(cmds_text, wc);
 }
 
 
 int	main(int argc, char **argv, char **envp)
 {
-	// t_redirect			*reds;
+	t_redirect			*reds;
 	// // char				**words;
-	// t_simple_cmd	cmds[3];
-	// t_heredoc	*here;
+	t_simple_cmd	cmds[3];
+	t_heredoc	*here;
 	char			*text;
 	char		**cmds_text;
 	int					i;
-	// int					j;
 	(void)argc;
 	(void)argv;
 	(void)envp;
@@ -245,16 +249,24 @@ int	main(int argc, char **argv, char **envp)
 	while (cmds_text[i])
 	{
 		printf("cmds_text[%d] = %s\n", i, cmds_text[i]);
-		// reds = NULL;
-		// load_simple_cmd(&cmds[i], &reds, &here, ft_split(cmds_text[i], ' '));
-		// while (reds)
-		// {
-		// 	// printf("%d = redirect_type:%s, path: %s\n", i, reds->redirect_type, reds->path);
-		// 	reds = reds->next;
-		// }
+		reds = NULL;
+		load_simple_cmd(&cmds[i], &reds, &here, ft_split(cmds_text[i], ' '));
+		while (reds)
+		{
+			printf("%d = redirect_type:%u, path: %s\n", i, reds->redirect_type, reds->path);
+			reds = reds->next;
+		}
+		int	j = 0;
+		while (cmds[i].words[j] != NULL)
+		{
+			printf("%d = words[%d]:%s\n", i, j, cmds[i].words[j]);
+			free(cmds[i].words[j]);
+			j++;
+		}
+		free(cmds[i].words);
 		i++;
 	}
-
+	free(cmds_text);
 	return (0);
 }
 

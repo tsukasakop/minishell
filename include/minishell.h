@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/21 17:43:13 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/21 17:54:40 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void							resolve_redirects(int stdio[2],
 // void							load_simple_cmd(const t_simple_cmd cmd,
 // 									t_redirect **reds, char ***words);
 void							load_simple_cmd(t_simple_cmd *cmd, t_redirect **reds,
-									t_heredoc **here, char *cmd_text);
+									t_heredoc **here, char **cmd_text);
 
 void							expand_words(char ***words);
 const char						*get_path(const char *word);
