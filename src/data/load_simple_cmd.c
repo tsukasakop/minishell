@@ -6,35 +6,13 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/22 01:17:33 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/22 01:30:36 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 //open関数のために追加
 #include <fcntl.h>
-// typedef struct			s_simple_cmd
-// {
-// 	t_redirect		*reds;
-// 	char			**words;
-// 	t_simple_cmd	*next;
-// }				t_simple_cmd;
-
-// struct					s_redirect
-// {
-// 	enum	{ REDIR_IN, REDIR_OUT, REDIR_APPEND } redirect_type;
-// 	int							fd_redirect_from;//←リダイレクトの左 n>	int型？
-// 	const char					*path;//←リダイレクトの右 >word
-// 	t_redirect					*next;
-// }			t_redirect;
-
-
-// struct					s_heredoc
-// {
-// 	char			*eof;
-// 	char			*path;
-// 	t_heredoc		*next;
-// }				t_heredoc;
 
 // void	stderror_msg(char *msg)
 // {
@@ -304,9 +282,10 @@ void	print_commands(t_simple_cmd *cmds)
 
 	while (cmds)
 	{
-		printf("Command[%d]: ", i++);
+		printf("Command[%d]:\n", i++);
+		printf("  words:");
 		for (int j = 0; cmds->words[j]; j++)
-			printf("%s ", cmds->words[j]);
+			printf(" %s,", cmds->words[j]);
 		printf("\n");
 		t_redirect *red = cmds->reds;
 		while (red)
@@ -340,7 +319,7 @@ int	main(int argc, char **argv, char **envp)
 		printf("\n");
 		i++;
 	}
-	system("leaks minishell");
+	// system("leaks minishell");
 	return (0);
 }
 
