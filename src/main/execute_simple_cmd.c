@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_simple_cmd.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:30:10 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/19 15:45:31 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/21 17:44:48 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ bool	execute_simple_cmd(const t_simple_cmd scmd, int stdio_fd[2],
 	int			chpid;
 
 	reds = NULL;
-	load_simple_cmd(scmd, &reds, &words);
+	//テストよ用にコメントアウト
+	(void)scmd;
+	// load_simple_cmd(scmd, &reds, &words);
 	expand_words(&words);
 	chpid = fork();
 	if (chpid)

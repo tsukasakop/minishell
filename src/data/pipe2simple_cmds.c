@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe2simple_cmds.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:23:38 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/16 20:16:45 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/21 17:36:43 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,12 @@
  *
  * const char *pipe: string on pipeline
  */
-t_simple_cmd	*pipe2simple_cmds(const char *pipe)
+// t_simple_cmd	*pipe2simple_cmds(const char *pipe)
+// {
+// 	return (ft_split(pipe, '|'));
+// }
+
+char	**pipe2simple_cmds(const char *pipe)
 {
 	return (ft_split(pipe, '|'));
 }
