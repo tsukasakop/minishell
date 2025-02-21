@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/21 18:05:24 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/21 18:44:27 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,18 @@
 // 	exit(1);
 // }
 
-// void	free_new_redirects(t_redirect *reds)
-// {
-// 	t_redirect	*tmp;
+void	free_new_redirects(t_redirect *reds)
+{
+	t_redirect	*tmp;
 
-// 	while (reds != NULL)
-// 	{
-// 		free((char *)reds->path);
-// 		tmp = reds;
-// 		reds = reds->next;
-// 		free(tmp);
-// 	}
-// }
+	while (reds != NULL)
+	{
+		free((char *)reds->path);
+		tmp = reds;
+		reds = reds->next;
+		free(tmp);
+	}
+}
 
 
 // /*
@@ -86,53 +86,53 @@
 // }
 
 
+void	add_struct_redirect(t_redirect **reds, int type, char *path)
+{
+	t_redirect	*new_red;
+	t_redirect	*tmp;
 
-// void	add_struct_redirect(t_redirect **reds, int type, char *path)
-// {
-// 	t_redirect	*new_red;
-// 	t_redirect	*tmp;
-
-// 	new_red = malloc(sizeof(t_redirect));
-// 	if (!new_red)
-// 		return ;
-// 	new_red->path = ft_strdup(path);
-// 	new_red->redirect_type = type;
-// 	new_red->next = NULL;
-// 	if (*reds == NULL)
-// 		*reds = new_red;
-// 	else
-// 	{
-// 		tmp = *reds;
-// 		while (tmp->next)
-// 			tmp = tmp->next;
-// 		tmp->next = new_red;
-// 	}
-// }
+	new_red = malloc(sizeof(t_redirect));
+	if (!new_red)
+		return ;
+	new_red->path = ft_strdup(path);
+	new_red->redirect_type = type;
+	new_red->next = NULL;
+	if (*reds == NULL)
+		*reds = new_red;
+	else
+	{
+		tmp = *reds;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new_red;
+	}
+}
 
 // /*
 //  * Function:fill_struct_redirect
 //  * ----------------------------
 //  * リダイレクトの記号ごとに、構造体redirect&構造体heredocにデータを格納する関数
 //  */
-// void	fill_struct_redirect(t_redirect **reds, t_heredoc **here, char *word, char *path)
-// {
-// 	size_t	len;
+void	fill_struct_redirect(t_redirect **reds, t_heredoc **here, char *word, char *path)
+{
+	size_t	len;
+	(void)here;
 
-// 	len = ft_strlen(word);
-// 	if ((ft_strnstr(word, "<<", len)))
-// 	{
-// 		if (open("/tmp/test", O_WRONLY | O_TRUNC | O_CREAT, 0644) == -1)
-// 			perror(NULL);
-// 		add_struct_heredoc(here, path, "/tmp/test");
-// 		add_struct_redirect(reds, REDIR_IN, path);
-// 	}
-// 	else if ((ft_strnstr(word, "<", len)))
-// 		add_struct_redirect(reds, REDIR_IN, path);
-// 	else if ((ft_strnstr(word, ">", len)))
-// 		add_struct_redirect(reds, REDIR_OUT, path);
-// 	else if ((ft_strnstr(word, ">>", len)))
-// 		add_struct_redirect(reds, REDIR_APPEND, path);
-// }
+	len = ft_strlen(word);
+	if ((ft_strnstr(word, "<<", len)))
+	{
+		if (open("/tmp/test", O_WRONLY | O_TRUNC | O_CREAT, 0644) == -1)
+			perror(NULL);
+		// add_struct_heredoc(here, path, "/tmp/test");
+		add_struct_redirect(reds, REDIR_IN, path);
+	}
+	else if ((ft_strnstr(word, ">>", len)))
+		add_struct_redirect(reds, REDIR_APPEND, path);
+	else if ((ft_strnstr(word, "<", len)))
+		add_struct_redirect(reds, REDIR_IN, path);
+	else if ((ft_strnstr(word, ">", len)))
+		add_struct_redirect(reds, REDIR_OUT, path);
+}
 
 
 // /*
@@ -199,9 +199,6 @@ char	**fill_words(char **src, int wc)
 void	load_simple_cmd(t_simple_cmd *cmd, t_redirect **reds, \
 		t_heredoc **here, char **cmds_text)
 {
-	(void)cmd;
-	(void)reds;
-	(void)here;
 	size_t				i;
 	size_t				wc;
 	// TODO: extract redirects into reds
@@ -213,16 +210,11 @@ void	load_simple_cmd(t_simple_cmd *cmd, t_redirect **reds, \
 	{
 		if (has_redirect(cmds_text[i]) == true && cmds_text[i + 1])
 		{
-			printf("red:words[%zu] = %s\n", i, cmds_text[i]);
-			printf("red:path[%zu] = %s\n", i, cmds_text[i + 1]);
-			// fill_struct_redirect(reds, here, cmds_text[i], cmds_text[i + 1]);
+			fill_struct_redirect(reds, here, cmds_text[i], cmds_text[i + 1]);
 			i++;
 		}
 		else
-		{
-			// printf("words:words[%zu] = %s\n", i, cmds_text[i]);
 			wc++;
-		}
 		i++;
 	}
 	cmd->words = fill_words(cmds_text, wc);
@@ -242,31 +234,45 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	(void)envp;
 
-	text = "< infile cat | grep 42 > outfile | < IN cat > OUT ";
 	// text = "echo 45 >out>outfile | ls >out";
-	cmds_text = pipe2simple_cmds(text);
-	i = 0;
-	while (cmds_text[i])
+	int	m = 0;
+	while(m < 3)
 	{
-		printf("cmds_text[%d] = %s\n", i, cmds_text[i]);
-		reds = NULL;
-		load_simple_cmd(&cmds[i], &reds, &here, ft_split(cmds_text[i], ' '));
-		while (reds)
+		if (m == 0)
+		text = "< infile cat | grep 42 > outfile | < IN cat > OUT ";
+		if (m == 1)
+		text = "echo 42";
+		if (m == 2)
+		text = "ls | wc -c >> outfile ";
+		printf("text = %s\n", text);
+		cmds_text = pipe2simple_cmds(text);
+		i = 0;
+		while (cmds_text[i])
 		{
-			printf("%d = redirect_type:%u, path: %s\n", i, reds->redirect_type, reds->path);
-			reds = reds->next;
+			printf("---- cmds_text[%d] = %s ----\n", i, cmds_text[i]);
+			reds = NULL;
+			load_simple_cmd(&cmds[i], &reds, &here, ft_split(cmds_text[i], ' '));
+			int	c = 0;
+			while (reds)
+			{
+				printf("%d...redirect_type:%u, path: %s\n", c++, reds->redirect_type, reds->path);
+				reds = reds->next;
+			}
+			int	j = 0;
+			while (cmds[i].words[j] != NULL)
+			{
+				printf("words[%d]:%s\n", j, cmds[i].words[j]);
+				free(cmds[i].words[j]);
+				j++;
+			}
+			free(cmds[i].words);
+			free_new_redirects(reds);
+			i++;
 		}
-		int	j = 0;
-		while (cmds[i].words[j] != NULL)
-		{
-			printf("%d = words[%d]:%s\n", i, j, cmds[i].words[j]);
-			free(cmds[i].words[j]);
-			j++;
-		}
-		free(cmds[i].words);
-		i++;
+		free(cmds_text);
+		printf("\n");
+		m++;
 	}
-	free(cmds_text);
 	return (0);
 }
 
