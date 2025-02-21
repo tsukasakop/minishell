@@ -6,7 +6,7 @@
 /*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/20 13:54:36 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/02/20 16:13:26 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@
 typedef char					*t_simple_cmd;
 typedef struct s_redirect		t_redirect;
 
-struct							s_redirect
-{
-	bool						is_open;
-	int							fd_redirect_to;
-	int							fd_redirect_from;
-	const char					*path;
-	t_redirect					*next;
-};
+// struct							s_redirect
+// {
+// 	bool						is_open;
+// 	int							fd_redirect_to;
+// 	int							fd_redirect_from;
+// 	const char					*path;
+// 	t_redirect					*next;
+// };
 
 extern volatile unsigned char	g_signal;
 
