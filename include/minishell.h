@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/22 22:49:58 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/22 23:24:59 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,15 @@ void							resolve_redirects(int stdio[2],
 t_simple_cmd					*load_simple_cmd(char **cmds_text);
 t_simple_cmd					*fill_struct_simple_cmd(const char *text);
 void							expand_words(char **words);
+char							**fill_words(char **src, int wc);
+void							add_struct_heredoc(t_heredoc **here, \
+								char *eof, char *path);
+void							free_heredocs(t_heredoc *here);
+void							add_struct_redirect(t_redirect **reds, \
+								int type, char *path);
+bool							has_redirect(char *word);
+void							parse_redirects(t_redirect **reds, \
+								t_heredoc **here, char *word, char *path);
 const char						*get_path(const char *word);
 bool							execute_simple_cmd(const t_simple_cmd *scmd,
 									int stdio_fd[2], int next_in_fd,

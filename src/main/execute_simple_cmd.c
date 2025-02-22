@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:30:10 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/22 20:12:30 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/22 22:57:54 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,9 @@
 bool	execute_simple_cmd(const t_simple_cmd *scmd, int stdio_fd[2],
 		int next_in_fd, char **envp)
 {
-	// t_redirect	*reds;
-	// char		**words;
 	const char	*path;
 	int			chpid;
 
-	// reds = NULL;
-	// load_simple_cmd(scmd, &reds, &words);
 	expand_words(scmd->words);
 	chpid = fork();
 	if (chpid)
