@@ -49,4 +49,4 @@ jobs:
           make
 
       - name: Run tests in debug directory
-        run: ./debug/test.sh
+        run: bash ./debug/test.sh
