@@ -12,15 +12,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Verify Bash version
-        run: bash --version
+      - name: Install clang-12
+        run: |
+          sudo apt-get update
+          # Add LLVM repository for clang-12 on Ubuntu 22.04 (Jammy)
+          sudo bash -c 'echo "deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-12 main" > /etc/apt/sources.list.d/llvm-12.list'
+          wget -qO - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
+          sudo apt-get update
+          sudo apt-get install -y clang-12
 
-      - name: Verify cc version
-        run: cc --version
+      - name: Set clang-12 as default compiler
+        run: |
+          sudo update-alternatives --install /usr/bin/cc cc /usr/bin/clang-12 100
+          sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++-12 100
+          echo "Using cc version:"
+          cc -v
 
-      - name: Run make command
+      - name: Build with clang-12
+        env:
+          CC: clang-12
         run: make
 
       - name: Run tests in debug directory
         run: ./debug/test.sh
-
