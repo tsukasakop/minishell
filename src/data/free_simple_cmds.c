@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:32:33 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/21 17:39:41 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/22 01:57:00 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,17 @@
 // 		scmds++;
 // 	}
 // }
+void	free_simple_cmds(t_simple_cmd *scmds)
+{
+	t_simple_cmd	*tmp;
 
+	while (scmds)
+	{
+		tmp = scmds;
+		free_words(scmds->words);
+		free(scmds->words);
+		free_redirects(scmds->reds);
+		scmds = scmds->next;
+		free(tmp);
+	}
+}

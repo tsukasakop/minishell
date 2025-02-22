@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/22 01:26:59 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/22 02:19:37 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,15 @@ void							resolve_redirects(int stdio[2],
 									t_redirect *red);
 // void							load_simple_cmd(const t_simple_cmd cmd,
 // 									t_redirect **reds, char ***words);
-
-void							expand_words(char ***words);
+t_simple_cmd					*fill_struct_simple_cmd(const char *text);
+void							expand_words(char **words);
 const char						*get_path(const char *word);
-bool							execute_simple_cmd(const t_simple_cmd scmd,
+bool							execute_simple_cmd(const t_simple_cmd *scmd,
 									int stdio_fd[2], int next_in_fd,
 									char **envp);
 unsigned char					wait_status(void);
 /*t_simple_cmd構造体を利用していたため一旦コメントアウト*/
-// void							free_simple_cmds(t_simple_cmd *scmds);
+void							free_simple_cmds(t_simple_cmd *scmds);
 unsigned char					eval_pipe(const char *text, char **envp);
 unsigned char					eval_text(const char *text, char **envp);
 void							set_exit_status(unsigned char st);

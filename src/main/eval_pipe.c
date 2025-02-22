@@ -6,13 +6,33 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/21 17:41:10 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/22 02:28:08 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 #include <stdio.h>
+void	print_commands(const t_simple_cmd *cmds)
+{
+	int i = 0;
+
+	while (cmds)
+	{
+		printf("Command[%d]:\n", i++);
+		printf("  words:");
+		for (int j = 0; cmds->words[j]; j++)
+			printf(" %s,", cmds->words[j]);
+		printf("\n");
+		t_redirect *red = cmds->reds;
+		while (red)
+		{
+			printf("  Redirect: type=%d, path=%s\n", red->redirect_type, red->path);
+			red = red->next;
+		}
+		cmds = cmds->next;
+	}
+}
 /*
  * Function:
  * ----------------------------
@@ -25,30 +45,32 @@ unsigned char	eval_pipe(const char *text, char **envp)
 {
 	(void)text;
 	(void)envp;
-	// const t_simple_cmd	*cmds;
-	// int					stdio_fd[2];
-	// int					next_in_fd;
-	// size_t				i;
+	const t_simple_cmd	*scmd_list;
+	int					stdio_fd[2];
+	int					next_in_fd;
+	size_t				i;
 
-	// cmds = pipe2simple_cmds(text);
-	// stdio_fd[0] = STDIN_FILENO;
-	// stdio_fd[1] = STDOUT_FILENO;
-	// next_in_fd = STDIN_FILENO;
-	// i = 0;
-	// while (cmds[i])
-	// {
-	// 	if (!iterate_pipefd(i == 0, cmds[i + 1] == NULL, &stdio_fd,
-	// 			&next_in_fd))
-	// 	{
-	// 		// TODO: consider about pipe failure case
-	// 		free_simple_cmds((t_simple_cmd *)cmds);
-	// 		close_fds_safely(stdio_fd, 2);
-	// 		close_fds_safely(&next_in_fd, 1);
-	// 	}
-	// 	execute_simple_cmd(cmds[i], stdio_fd, next_in_fd, envp);
-	// 	i++;
-	// }
-	// free_simple_cmds((t_simple_cmd *)cmds);
-	// close_fds_safely((int [3]){stdio_fd[0], stdio_fd[1], next_in_fd}, 3);
+	scmd_list = fill_struct_simple_cmd(text);
+	print_commands(scmd_list);
+	stdio_fd[0] = STDIN_FILENO;
+	stdio_fd[1] = STDOUT_FILENO;
+	next_in_fd = STDIN_FILENO;
+	i = 0;
+	while (scmd_list)
+	{
+		if (!iterate_pipefd(i == 0, scmd_list->next == NULL, &stdio_fd,
+				&next_in_fd))
+		{
+			// TODO: consider about pipe failure case
+			free_simple_cmds((t_simple_cmd *)scmd_list);
+			close_fds_safely(stdio_fd, 2);
+			close_fds_safely(&next_in_fd, 1);
+		}
+		execute_simple_cmd(scmd_list, stdio_fd, next_in_fd, envp);
+		scmd_list = scmd_list->next;
+	}
+	// free_simple_cmds((t_simple_cmd *)scmd_list);
+	free_simple_cmds((t_simple_cmd *)scmd_list);
+	close_fds_safely((int [3]){stdio_fd[0], stdio_fd[1], next_in_fd}, 3);
 	return (wait_status());
 }
