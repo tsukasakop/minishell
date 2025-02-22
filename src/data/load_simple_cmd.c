@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/22 20:38:54 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/22 21:07:50 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ void	add_struct_redirect(t_redirect **reds, int type, char *path)
  * ----------------------------
  * parse the data to be filled in the structure for each redirection symbol.
  */
-
 void	parse_redirects(t_redirect **reds, t_heredoc **here, \
 						char *word, char *path)
 {
@@ -176,7 +175,8 @@ char	**fill_words(char **src, int wc)
  * Function:
  * ----------------------------
  *
- *  Parses a simple command and returns a t_simple_cmd containing redirections and words.
+ * Parses a simple command and returns a t_simple_cmd
+ * containing redirections and words.
  *
  */
 t_simple_cmd	*load_simple_cmd(char **cmds_text)
@@ -189,7 +189,10 @@ t_simple_cmd	*load_simple_cmd(char **cmds_text)
 	here = NULL;
 	scmd = malloc(sizeof(t_simple_cmd));
 	if (!scmd)
+	{
+		free(cmds_text);
 		return (NULL);
+	}
 	scmd->reds = NULL;
 	scmd->next = NULL;
 	i = 0;
@@ -206,6 +209,11 @@ t_simple_cmd	*load_simple_cmd(char **cmds_text)
 		i++;
 	}
 	scmd->words = fill_words(cmds_text, wc);
+	if (!scmd->words)
+	{
+		free(cmds_text);
+		return (NULL);
+	}
 	free(cmds_text);
 	return (scmd);
 }

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/22 20:40:37 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/22 21:09:06 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ unsigned char	eval_pipe(const char *text, char **envp)
 	cur = (t_simple_cmd *)scmd_list;
 	while (cur)
 	{
-		if (!iterate_pipefd(cur == scmd_list, cur->next == NULL, &stdio_fd,
+		if (!iterate_pipefd(cur == scmd_list, cur->next == NULL, &stdio_fd, \
 			&next_in_fd))
 		{
 			// TODO: consider about pipe failure case
