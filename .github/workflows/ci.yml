@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Verify Bash version
+        run: bash --version
+
+      - name: Verify cc version
+        run: cc --version
+
+      - name: Run make command
+        run: make
+
+      - name: Run tests in debug directory
+        run: ./debug/test.sh
+
