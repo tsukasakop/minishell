@@ -1,0 +1,2 @@
+ls . | wc -l
+cat | cat | ls
