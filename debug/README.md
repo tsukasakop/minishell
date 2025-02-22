@@ -1,24 +1,24 @@
 # minishell/debug
 
-# Usage
+## Usage
 
-- `make all`: debug用ビルドでコンパイルを行う。
+- `make all`: debug用ビルドでコンパイルを行い`minishell.debug.o`を作成する。（`./minishell.debug.o`で実行）
 
-- `make run`: `make all` ののちminishellを実行する。
+- `make run [infile]`: `make all` ののちminishellを実行する。
 
-- `make lldb [arg]`: `make all` ののちテストを実行する。以下の引数を設定することができる。
+  - `infile`: minishell起動時にinfileのコマンドを実行する。
 
-  - `引数なし`: `test-cases`ディレクトリ内のすべてのファイルについてテストを行う。ファイルに対するテストでは、ファイル内のすべての行をminishell/bashで実行したのち標準出力・標準エラー・シェル終了ステータスのそれぞれが一致するかチェックされる。
+- `make bash [infile]`: minishellに似せたbashを実行する。
 
-  - `ファイルパス`: 指定されたファイルが存在する場合、そのファイル単体を対象にテストが行われる。
+  - `infile`: bash起動時にinfileのコマンドを実行する。
 
-  - `それ以外の文字列`: 単体のコマンド（パイプ含む）としてminishell/bashで実行したのち標準出力・標準エラー・シェル終了ステータスのそれぞれが一致するかチェックされる。
+- `make test [arg]`: `make all` ののちテストを実行する。テストの詳細についてはTestの項を参照。
 
 - `make lldb [infile]`: `make all` ののちlldbを起動する。以下の引数を設定することができる。
 
-  - `infile`: 実行時に手入力でコマンドを入力する代わりとなるファイル。
+  - `infile`: minishell起動時にinfileのコマンドを実行する。
 
-# Example
+## Example
 
 `cat | cat | ls`をテストする
 
@@ -26,9 +26,43 @@
 make test "cat | cat | ls"
 ```
 
-`make test ./test-cases/pipe.txt`で発生したエラーをデバッグするためにlldbを起動する
+`make test ./test-cases/pipe.txt`でエラーが発生したので同じコマンドの入力を確認する
 
 ```sh
-make lldb ./test-cases/pipe.txt ```
+make test ./test-cases/pipe.txt
+```
+
+同様に同じコマンドをlldb上で試す
+
+```sh
+make lldb ./test-cases/pipe.txt
+```
+
+## Test
+
+### Usage
+
+`./test.sh [arg]` または `make test [arg]`
+
+環境変数`MISH`にパスを指定することで任意の実行ファイルをテスト対象として指定することができる。（規定値はrepositoryルートディレクトリのminishell）
+
+`make test`実行時はdebug用の`minishell.debug.o`から変更不可
+
+`arg`によりテストケースを指定することができる。
+
+  - `引数なし`: `test-cases`ディレクトリ内のすべてのファイルについてテストを行う。
+
+  - `ファイルパス`: 指定されたファイルが存在する場合、そのファイルの中身のコマンドを対象にテストが行われる。
+
+  - `それ以外の文字列`: 入力した文字列をコマンドとしてテストを行う。
 
 
+### テスト項目
+
+テストケースはminishell/bashそれぞれで実行されたのち、以下の各項目が一致するかチェックされる。
+
+- 標準出力
+
+- 標準エラー
+
+- シェルの終了ステータス（各コマンドの終了ステータスではない点に留意）

@@ -6,7 +6,7 @@
 #    By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/02/22 16:56:43 by tkondo           ###   ########.fr        #
+#    Updated: 2025/02/22 18:57:59 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,10 +36,18 @@ libft:
 
 run: #Build target and immediately run it
 	@make -s all
+ifeq ($(strip $(ARG)),)
 	@./$(NAME)
+else
+	@./$(NAME) <$(ARG)
+endif
 
 bash: #Run bash like minishell
-	@PS1="minishell $$" bash --norc --noprofile -i
+ifeq ($(strip $(ARG)),)
+	@PS1="minishell$$ " bash --norc --noprofile -i
+else
+	@PS1="minishell$$ " bash --norc --noprofile -i <$(ARG)
+endif
 
 lldb: #Build target and immediately run it via lldb
 	@make -s all
