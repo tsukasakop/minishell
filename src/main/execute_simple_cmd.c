@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:30:10 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/22 19:10:48 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/22 20:12:30 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ bool	execute_simple_cmd(const t_simple_cmd *scmd, int stdio_fd[2],
 		return (chpid != -1);
 	}
 	set_handlers_default();
-	close_fds_safely(&next_in_fd, 1);
+	close_fds_no_stdio(&next_in_fd, 1);
 	resolve_redirects(stdio_fd, scmd->reds);
 	path = get_path(scmd->words[0]);
 	// TODO: replace execvp to execve

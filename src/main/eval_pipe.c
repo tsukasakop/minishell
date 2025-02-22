@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/22 19:10:33 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/22 20:40:37 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,32 +22,30 @@
  */
 unsigned char	eval_pipe(const char *text, char **envp)
 {
-	(void)text;
-	(void)envp;
 	const t_simple_cmd	*scmd_list;
+	t_simple_cmd		*cur;
 	int					stdio_fd[2];
 	int					next_in_fd;
-	size_t				i;
 
 	scmd_list = fill_struct_simple_cmd(text);
 	stdio_fd[0] = STDIN_FILENO;
 	stdio_fd[1] = STDOUT_FILENO;
 	next_in_fd = STDIN_FILENO;
-	i = 0;
-	while (scmd_list)
+	cur = (t_simple_cmd *)scmd_list;
+	while (cur)
 	{
-		if (!iterate_pipefd(i == 0, scmd_list->next == NULL, &stdio_fd,
-				&next_in_fd))
+		if (!iterate_pipefd(cur == scmd_list, cur->next == NULL, &stdio_fd,
+			&next_in_fd))
 		{
 			// TODO: consider about pipe failure case
 			free_simple_cmds((t_simple_cmd *)scmd_list);
-			close_fds_safely(stdio_fd, 2);
-			close_fds_safely(&next_in_fd, 1);
+			close_fds_no_stdio(stdio_fd, 2);
+			close_fds_no_stdio(&next_in_fd, 1);
 		}
-		execute_simple_cmd(scmd_list, stdio_fd, next_in_fd, envp);
-		scmd_list = scmd_list->next;
+		execute_simple_cmd(cur, stdio_fd, next_in_fd, envp);
+		cur = cur->next;
 	}
-	free_simple_cmds((t_simple_cmd *)scmd_list);
-	close_fds_safely((int [3]){stdio_fd[0], stdio_fd[1], next_in_fd}, 3);
+	free_simple_cmds((t_simple_cmd *)cur);
+	close_fds_no_stdio((int [3]){stdio_fd[0], stdio_fd[1], next_in_fd}, 3);
 	return (wait_status());
 }

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/22 19:10:02 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/22 20:45:49 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ struct				s_heredoc
 extern volatile unsigned char	g_signal;
 
 bool							init(void);
-void							close_fds_safely(int *fds, size_t size);
+void							close_fds_no_stdio(int *fds, size_t size);
 char							**pipe2simple_cmds(const char *pipe);
 bool							iterate_pipefd(bool is_first, bool is_last,
 									int (*stdio)[2], int *next_in);
