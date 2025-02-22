@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:27:40 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/16 20:17:17 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/20 14:33:17 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	resolve_redirects(int stdio[2], t_redirect *red)
 {
 	dup2(stdio[0], STDIN_FILENO);
 	dup2(stdio[1], STDOUT_FILENO);
-	close_fds_safely(stdio, 2);
+	close_fds_no_stdio(stdio, 2);
 	// TODO: do redirect on red
 	free_redirects(red);
 }
