@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:40:13 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/16 20:16:51 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/21 18:33:42 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
  */
 void	set_exit_status(unsigned char st)
 {
-	// TODO: set as exit status
-	(void)st;
+	unsigned char	*st_ptr;
+
+	st_ptr = get_exit_status_p();
+	*st_ptr = st;
 }

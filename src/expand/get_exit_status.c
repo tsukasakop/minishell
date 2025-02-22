@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_words.c                                     :+:      :+:    :+:   */
+/*   get_exit_status.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 19:29:00 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/21 18:33:58 by tkondo           ###   ########.fr       */
+/*   Created: 2025/02/16 19:40:13 by tkondo            #+#    #+#             */
+/*   Updated: 2025/02/21 18:34:04 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,12 @@
 /*
  * Function:
  * ----------------------------
- * Expand words and replace them
- *
- * char ***words: pointer to words to be expand and replaced
+ * Get exit status
  */
-void	expand_words(char ***words)
+unsigned char	get_exit_status(void)
 {
-	// TODO: expand environment variables
-	// TODO: remove quotes
-	(void)words;
+	unsigned char	*st_ptr;
+
+	st_ptr = get_exit_status_p();
+	return (*st_ptr);
 }

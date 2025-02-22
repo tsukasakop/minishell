@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_words.c                                     :+:      :+:    :+:   */
+/*   builtin_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 19:29:00 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/21 18:33:58 by tkondo           ###   ########.fr       */
+/*   Created: 2025/02/21 18:33:01 by tkondo            #+#    #+#             */
+/*   Updated: 2025/02/22 15:11:54 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-/*
- * Function:
- * ----------------------------
- * Expand words and replace them
- *
- * char ***words: pointer to words to be expand and replaced
- */
-void	expand_words(char ***words)
+int	builtin_exit(char **args)
 {
-	// TODO: expand environment variables
-	// TODO: remove quotes
-	(void)words;
+	int	status;
+
+	if (args == NULL || args[0] == NULL || args[1] == NULL)
+		status = (int)get_exit_status();
+	else
+		status = ft_atoi(args[0]);
+	ft_fprintf(ft_stderr(), "exit\n");
+	exit(status);
 }

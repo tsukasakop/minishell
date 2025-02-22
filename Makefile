@@ -6,7 +6,7 @@
 #    By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/02/20 14:34:25 by tkondo           ###   ########.fr        #
+#    Updated: 2025/02/21 18:35:37 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,9 @@ TARGET =\
 	signal/set_handlers_default\
 	signal/set_handlers_for_process\
 	signal/set_signal\
+	builtin/builtin_exit\
+	expand/get_exit_status\
+	expand/get_exit_status_p\
 
 OBJS = $(addprefix $(OBJ_DIR)/,$(addsuffix .o,$(TARGET)))
 

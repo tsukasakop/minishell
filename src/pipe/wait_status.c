@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:32:09 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/18 14:32:56 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/22 15:08:42 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ unsigned char	wait_status(void)
 
 	while (wait(&status) != -1)
 		;
-	//TODO: update g_signal when child processes catch signal
+	// TODO: update g_signal when child processes catch signal
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
 	if (WIFSIGNALED(status))
 		g_signal = WTERMSIG(status);
-	return (status);
+	return (1);
 }
