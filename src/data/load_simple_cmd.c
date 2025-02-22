@@ -6,11 +6,17 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/22 02:36:49 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/22 18:41:11 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+/*
+ * Function:add_struct_heredoc
+ * ----------------------------
+ * free memory of t_heredoc
+ */
 
 void	free_heredocs(t_heredoc *here)
 {
@@ -29,30 +35,35 @@ void	free_heredocs(t_heredoc *here)
 /*
  * Function:add_struct_heredoc
  * ----------------------------
- * ヒアドクの構造体にデータを格納する関数
+ * Fill t_heredoc with data
  */
-// void	add_struct_heredoc(t_heredoc **here, char *eof, char *path)
-// {
-// 	t_heredoc	*new;
-// 	t_heredoc	*tmp;
+void	add_struct_heredoc(t_heredoc **here, char *eof, char *path)
+{
+	t_heredoc	*new;
+	t_heredoc	*tmp;
 
-// 	new = malloc(sizeof(t_heredoc));
-// 	if (!new)
-// 		return ;
-// 	new->eof = ft_strdup(eof);
-// 	new->path = ft_strdup(path);
-// 	new->next = NULL;
-// 	if (*here == NULL)
-// 		*here = new;
-// 	else
-// 	{
-// 		tmp = *here;
-// 		while (tmp->next)
-// 			tmp = tmp->next;
-// 		tmp->next = new;
-// 	}
-// }
+	new = malloc(sizeof(t_heredoc));
+	if (!new)
+		return ;
+	new->eof = ft_strdup(eof);
+	new->path = ft_strdup(path);
+	new->next = NULL;
+	if (*here == NULL)
+		*here = new;
+	else
+	{
+		tmp = *here;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
+	}
+}
 
+/*
+ * Function:add_struct_redirect
+ * ----------------------------
+ * Fill t_redirect with data
+ */
 void	add_struct_redirect(t_redirect **reds, int type, char *path)
 {
 	t_redirect	*new;
@@ -62,7 +73,7 @@ void	add_struct_redirect(t_redirect **reds, int type, char *path)
 	if (!new)
 		return ;
 	new->path = ft_strdup(path);
-	new->redirect_type = type;
+	new->red_type = type;
 	new->next = NULL;
 	if (*reds == NULL)
 		*reds = new;
@@ -79,9 +90,12 @@ void	add_struct_redirect(t_redirect **reds, int type, char *path)
  * Function:parse_redirects
  * ----------------------------
  * リダイレクトの記号ごとに、構造体redirect&構造体heredocにデータを格納する関数
+ * ToDo:ヒアドクがあった場合、ファイルを作成し、add_struct_heredoc関数を処理する機能が必要
+ * 		open関数のために#include <fcntl.h>が必要
  */
-#include <fcntl.h>
-void	parse_redirects(t_redirect **reds, t_heredoc **here, char *word, char *path)
+
+void	parse_redirects(t_redirect **reds, t_heredoc **here, \
+						char *word, char *path)
 {
 	size_t	len;
 	(void)here;
@@ -89,8 +103,8 @@ void	parse_redirects(t_redirect **reds, t_heredoc **here, char *word, char *path
 	len = ft_strlen(word);
 	if ((ft_strnstr(word, "<<", len)))
 	{
-		if (open("/tmp/test", O_WRONLY | O_TRUNC | O_CREAT, 0644) == -1)
-			perror(NULL);
+		// if (open("/tmp/test", O_WRONLY | O_TRUNC | O_CREAT, 0644) == -1)
+		// 	perror(NULL);
 		// add_struct_heredoc(here, path, "/tmp/test");
 		add_struct_redirect(reds, REDIR_IN, path);
 	}
@@ -101,7 +115,6 @@ void	parse_redirects(t_redirect **reds, t_heredoc **here, char *word, char *path
 	else if ((ft_strnstr(word, ">", len)))
 		add_struct_redirect(reds, REDIR_OUT, path);
 }
-
 
 /*
  * Function:has_redirect
@@ -121,12 +134,12 @@ bool	has_redirect(char *word)
 	return (false);
 }
 
-
 /*
  * Function:fill_words
  * ----------------------------
  * wordsを埋める関数を作る
  * wc分mallocして、has_redirectでfalseの文字列を格納する
+ * ToDO:norminetteエラー
  */
 char	**fill_words(char **src, int wc)
 {
@@ -162,11 +175,8 @@ char	**fill_words(char **src, int wc)
 /*
  * Function:
  * ----------------------------
- * Read simple command and divide tokens to redirect and the others
  *
- * const t_simple_cmd cmd: object to split
- * t_redirect **reds: pointer to store redirects info
- * char ***wirds: pointer to store command and its arguments
+ * char **cmds_text:'|'で区切った文字列を、さらに' '空白で区切った二次元配列
  *
  */
 t_simple_cmd	*load_simple_cmd(char **cmds_text)
@@ -200,7 +210,12 @@ t_simple_cmd	*load_simple_cmd(char **cmds_text)
 	return (scmd);
 }
 
-
+/*
+ * Function:fill_struct_simple_cmd
+ * ----------------------------
+ * シェルから与えられた文字列をparseして、simple_cmd構造体に入れる関数
+ * ToDO:norminetteエラー
+ */
 t_simple_cmd	*fill_struct_simple_cmd(const char *text)
 {
 	char			**cmds_text;
