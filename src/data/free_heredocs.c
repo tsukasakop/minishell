@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_redirects.c                                   :+:      :+:    :+:   */
+/*   free_heredocs.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 19:27:06 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/22 22:39:10 by miyuu            ###   ########.fr       */
+/*   Created: 2025/02/22 22:34:30 by miyuu             #+#    #+#             */
+/*   Updated: 2025/02/22 22:34:40 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:
+ * Function:add_struct_heredoc
  * ----------------------------
- * free memory of redirects
+ * free memory of t_heredoc
  */
-void	free_redirects(t_redirect *reds)
+void	free_heredocs(t_heredoc *here)
 {
-	t_redirect	*tmp;
+	t_heredoc	*tmp;
 
-	while (reds != NULL)
+	while (here)
 	{
-		free((char *)reds->path);
-		tmp = reds;
-		reds = reds->next;
+		tmp = here;
+		free(here->eof);
+		free(here->path);
+		here = here->next;
 		free(tmp);
 	}
 }

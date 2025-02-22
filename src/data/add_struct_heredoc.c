@@ -1,31 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_redirects.c                                   :+:      :+:    :+:   */
+/*   add_struct_heredoc.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 19:27:06 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/22 22:39:10 by miyuu            ###   ########.fr       */
+/*   Created: 2025/02/22 22:34:48 by miyuu             #+#    #+#             */
+/*   Updated: 2025/02/22 22:39:35 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:
+ * Function:add_struct_heredoc
  * ----------------------------
- * free memory of redirects
+ * Fill t_heredoc with data
  */
-void	free_redirects(t_redirect *reds)
+void	add_struct_heredoc(t_heredoc **here, char *eof, char *path)
 {
-	t_redirect	*tmp;
+	t_heredoc	*new;
+	t_heredoc	*tmp;
 
-	while (reds != NULL)
+	new = malloc(sizeof(t_heredoc));
+	if (!new)
+		return ;
+	new->eof = ft_strdup(eof);
+	new->path = ft_strdup(path);
+	new->next = NULL;
+	if (*here == NULL)
+		*here = new;
+	else
 	{
-		free((char *)reds->path);
-		tmp = reds;
-		reds = reds->next;
-		free(tmp);
+		tmp = *here;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
 	}
 }

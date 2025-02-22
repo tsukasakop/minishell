@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/22 20:45:49 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/22 22:49:58 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ struct				s_heredoc
 	char			*path;
 	t_heredoc		*next;
 };
-
 
 extern volatile unsigned char	g_signal;
 

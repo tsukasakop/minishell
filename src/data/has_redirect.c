@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_redirects.c                                   :+:      :+:    :+:   */
+/*   has_redirect.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 19:27:06 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/22 22:39:10 by miyuu            ###   ########.fr       */
+/*   Created: 2025/02/22 22:35:46 by miyuu             #+#    #+#             */
+/*   Updated: 2025/02/22 22:35:50 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:
+ * Function:has_redirect
  * ----------------------------
- * free memory of redirects
+ * Returns true if there is a redirect, false if there is not.
  */
-void	free_redirects(t_redirect *reds)
+bool	has_redirect(char *word)
 {
-	t_redirect	*tmp;
+	size_t	len;
 
-	while (reds != NULL)
-	{
-		free((char *)reds->path);
-		tmp = reds;
-		reds = reds->next;
-		free(tmp);
-	}
+	len = ft_strlen(word);
+	if (ft_strnstr(word, "<<", len) || ft_strnstr(word, "<", len) || \
+		ft_strnstr(word, ">", len) || ft_strnstr(word, ">>", len))
+		return (true);
+	return (false);
 }
