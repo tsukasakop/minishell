@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/22 18:41:11 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/22 18:58:22 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,10 @@ void	add_struct_heredoc(t_heredoc **here, char *eof, char *path)
 /*
  * Function:add_struct_redirect
  * ----------------------------
- * Fill t_redirect with data
+ * Fill t_redirect with data.
+ *
+ * char *path = File path.
+ * int type = The type of redirect (input, output, append).
  */
 void	add_struct_redirect(t_redirect **reds, int type, char *path)
 {
@@ -89,9 +92,7 @@ void	add_struct_redirect(t_redirect **reds, int type, char *path)
 /*
  * Function:parse_redirects
  * ----------------------------
- * リダイレクトの記号ごとに、構造体redirect&構造体heredocにデータを格納する関数
- * ToDo:ヒアドクがあった場合、ファイルを作成し、add_struct_heredoc関数を処理する機能が必要
- * 		open関数のために#include <fcntl.h>が必要
+ * parse the data to be filled in the structure for each redirection symbol.
  */
 
 void	parse_redirects(t_redirect **reds, t_heredoc **here, \
@@ -103,6 +104,8 @@ void	parse_redirects(t_redirect **reds, t_heredoc **here, \
 	len = ft_strlen(word);
 	if ((ft_strnstr(word, "<<", len)))
 	{
+		// ToDo:ヒアドクがあった場合、ファイルを作成し、add_struct_heredoc関数を処理する機能が必要
+		// open関数のために#include <fcntl.h>が必要
 		// if (open("/tmp/test", O_WRONLY | O_TRUNC | O_CREAT, 0644) == -1)
 		// 	perror(NULL);
 		// add_struct_heredoc(here, path, "/tmp/test");
@@ -119,9 +122,7 @@ void	parse_redirects(t_redirect **reds, t_heredoc **here, \
 /*
  * Function:has_redirect
  * ----------------------------
- * リダイレクトの記号がある場合はture
- * ない場合はfalseになる
- * ToDO:これ間違ってるかも
+ * Returns true if there is a redirect, false if there is not.
  */
 bool	has_redirect(char *word)
 {
@@ -137,8 +138,7 @@ bool	has_redirect(char *word)
 /*
  * Function:fill_words
  * ----------------------------
- * wordsを埋める関数を作る
- * wc分mallocして、has_redirectでfalseの文字列を格納する
+ * Returns an array only strings without redirects.
  * ToDO:norminetteエラー
  */
 char	**fill_words(char **src, int wc)
@@ -176,7 +176,7 @@ char	**fill_words(char **src, int wc)
  * Function:
  * ----------------------------
  *
- * char **cmds_text:'|'で区切った文字列を、さらに' '空白で区切った二次元配列
+ *  Parses a simple command and returns a t_simple_cmd containing redirections and words.
  *
  */
 t_simple_cmd	*load_simple_cmd(char **cmds_text)
@@ -213,7 +213,8 @@ t_simple_cmd	*load_simple_cmd(char **cmds_text)
 /*
  * Function:fill_struct_simple_cmd
  * ----------------------------
- * シェルから与えられた文字列をparseして、simple_cmd構造体に入れる関数
+ * Parses const char *text and returns the head of the simple_cmd list.
+ *
  * ToDO:norminetteエラー
  */
 t_simple_cmd	*fill_struct_simple_cmd(const char *text)
