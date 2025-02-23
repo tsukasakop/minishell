@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_simple_cmds.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:32:33 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/16 20:16:35 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/22 18:19:55 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,15 @@
  */
 void	free_simple_cmds(t_simple_cmd *scmds)
 {
-	if (scmds == NULL)
-		return ;
-	while (*scmds)
+	t_simple_cmd	*tmp;
+
+	while (scmds)
 	{
-		free(*scmds);
-		scmds++;
+		tmp = scmds;
+		free_words(scmds->words);
+		free(scmds->words);
+		free_redirects(scmds->reds);
+		scmds = scmds->next;
+		free(tmp);
 	}
 }

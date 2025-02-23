@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_words.c                                     :+:      :+:    :+:   */
+/*   free_heredocs.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 19:29:00 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/22 02:19:41 by miyuu            ###   ########.fr       */
+/*   Created: 2025/02/22 22:34:30 by miyuu             #+#    #+#             */
+/*   Updated: 2025/02/22 22:34:40 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:
+ * Function:add_struct_heredoc
  * ----------------------------
- * Expand words and replace them
- *
- * char ***words: pointer to words to be expand and replaced
+ * free memory of t_heredoc
  */
-void	expand_words(char **words)
+void	free_heredocs(t_heredoc *here)
 {
-	// TODO: expand environment variables
-	// TODO: remove quotes
-	(void)words;
+	t_heredoc	*tmp;
+
+	while (here)
+	{
+		tmp = here;
+		free(here->eof);
+		free(here->path);
+		here = here->next;
+		free(tmp);
+	}
 }

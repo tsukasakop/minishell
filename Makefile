@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+         #
+#    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/02/21 18:35:37 by tkondo           ###   ########.fr        #
+#    Updated: 2025/02/23 15:57:21 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,13 +29,23 @@ LFLAGS = \
 SRC_DIR = src
 OBJ_DIR = bin
 TARGET =\
+	builtin/builtin_exit\
 	command/get_path\
 	data/free_redirects\
 	data/free_simple_cmds\
+	data/add_struct_heredoc\
+	data/free_heredocs\
 	data/free_words\
+	data/has_redirect\
+	data/fill_words\
+	data/add_struct_redirect\
+	data/parse_redirects\
+	data/fill_struct_simple_cmd\
 	data/load_simple_cmd\
 	data/pipe2simple_cmds\
 	expand/expand_words\
+	expand/get_exit_status\
+	expand/get_exit_status_p\
 	expand/set_exit_status\
 	main/eval_pipe\
 	main/eval_text\
@@ -53,9 +63,6 @@ TARGET =\
 	signal/set_handlers_default\
 	signal/set_handlers_for_process\
 	signal/set_signal\
-	builtin/builtin_exit\
-	expand/get_exit_status\
-	expand/get_exit_status_p\
 
 OBJS = $(addprefix $(OBJ_DIR)/,$(addsuffix .o,$(TARGET)))
 
