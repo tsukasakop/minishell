@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:49:32 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/21 17:09:25 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/23 16:38:11 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*get_input(void)
 	char	*input;
 
 	if (g_signal == SIGINT)
-		ft_fprintf(ft_stdout(), "\n");
+		ft_fprintf(ft_stderr(), "\n");
 	set_signal(0);
 	set_handlers_for_prompt();
 	input = readline(PROMPT);
