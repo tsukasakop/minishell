@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/02/22 23:25:55 by miyuu            ###   ########.fr        #
+#    Updated: 2025/02/23 15:57:21 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ LFLAGS = \
 SRC_DIR = src
 OBJ_DIR = bin
 TARGET =\
+	builtin/builtin_exit\
 	command/get_path\
 	data/free_redirects\
 	data/free_simple_cmds\
@@ -43,6 +44,8 @@ TARGET =\
 	data/load_simple_cmd\
 	data/pipe2simple_cmds\
 	expand/expand_words\
+	expand/get_exit_status\
+	expand/get_exit_status_p\
 	expand/set_exit_status\
 	main/eval_pipe\
 	main/eval_text\
