@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_exit_status.c                                  :+:      :+:    :+:   */
+/*   builtin_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 19:40:13 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/21 18:33:42 by tkondo           ###   ########.fr       */
+/*   Created: 2025/02/21 18:33:01 by tkondo            #+#    #+#             */
+/*   Updated: 2025/02/23 17:12:49 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,19 @@
 /*
  * Function:
  * ----------------------------
- * Set exit status use as $?
+ *  reproduce exit function on bash.
+ *  exit by argv[0] if it is provided, otherwise return last command status
  *
- * unsigned char st: exit status
+ *  TODO: handle errors
  */
-void	set_exit_status(unsigned char st)
+int	builtin_exit(char **argv)
 {
-	unsigned char	*st_ptr;
+	int	status;
 
-	st_ptr = get_exit_status_p();
-	*st_ptr = st;
+	if (argv == NULL || argv[0] == NULL || argv[1] == NULL)
+		status = (int)get_exit_status();
+	else
+		status = ft_atoi(argv[0]);
+	ft_fprintf(ft_stderr(), "exit\n");
+	exit(status);
 }

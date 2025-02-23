@@ -6,12 +6,13 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/22 23:24:59 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/23 15:46:18 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+# include <ft_stdio.h>
 # include <libft.h>
 # include <signal.h>
 # include <stdbool.h>
@@ -99,4 +100,7 @@ void							set_handlers_default(void);
 void							set_handlers_for_process(void);
 void							set_handlers_for_prompt(void);
 void							set_signal(int signal);
+int								builtin_exit(char **args);
+unsigned char					get_exit_status(void);
+unsigned char					*get_exit_status_p(void);
 #endif
