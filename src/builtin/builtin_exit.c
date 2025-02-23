@@ -6,12 +6,20 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 18:33:01 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/23 16:58:07 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/23 17:12:49 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
+/*
+ * Function:
+ * ----------------------------
+ *  reproduce exit function on bash.
+ *  exit by argv[0] if it is provided, otherwise return last command status
+ *
+ *  TODO: handle errors
+ */
 int	builtin_exit(char **argv)
 {
 	int	status;
