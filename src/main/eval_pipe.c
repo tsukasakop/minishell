@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/22 23:24:08 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/24 01:41:03 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ unsigned char	eval_pipe(const char *text, char **envp)
 	int					stdio_fd[2];
 	int					next_in_fd;
 
+	//ToDo:fill_struct_simple_cmdにheredocも渡す。fill_struct_simple_cmd(text, &scmd_list, &hd_list);になる
 	scmd_list = fill_struct_simple_cmd(text);
+	//ToDo:ヒアドクの入力を取得する処理を追加
 	stdio_fd[0] = STDIN_FILENO;
 	stdio_fd[1] = STDOUT_FILENO;
 	next_in_fd = STDIN_FILENO;

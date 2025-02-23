@@ -1,0 +1,16 @@
+echo 42 Tokyo > file_1
+< file_1 cat
+< file_1 cat | grep 42 > file_2
+< file_2 cat
+ls -l >> file_2
+< file_2 cat
+yes | head -c 1000 | wc -c > file_3
+< file_3 cat
+< file_2 cat | wc > file_4 >> file_5
+< file_4 cat
+< file_5 cat
+< no_exist_file
+echo testcase_4 > no_exist_file
+< no_exist_file
+rm no_exist_file
+rm file_1 file_2 file_3 file_4 file_5
