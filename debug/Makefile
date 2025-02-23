@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+         #
+#    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/02/22 18:57:59 by tkondo           ###   ########.fr        #
+#    Updated: 2025/02/23 18:36:34 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ROOT_DIR = ..
-RL_DIR = /usr/local/Cellar/readline/8.2.13
+RL_DIR = $(shell brew --prefix readline)
 
 NAME = minishell.debug.o
 CC = cc
