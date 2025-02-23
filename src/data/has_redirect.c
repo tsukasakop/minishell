@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_words.c                                     :+:      :+:    :+:   */
+/*   has_redirect.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 19:29:00 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/22 02:19:41 by miyuu            ###   ########.fr       */
+/*   Created: 2025/02/22 22:35:46 by miyuu             #+#    #+#             */
+/*   Updated: 2025/02/22 22:35:50 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:
+ * Function:has_redirect
  * ----------------------------
- * Expand words and replace them
- *
- * char ***words: pointer to words to be expand and replaced
+ * Returns true if there is a redirect, false if there is not.
  */
-void	expand_words(char **words)
+bool	has_redirect(char *word)
 {
-	// TODO: expand environment variables
-	// TODO: remove quotes
-	(void)words;
+	size_t	len;
+
+	len = ft_strlen(word);
+	if (ft_strnstr(word, "<<", len) || ft_strnstr(word, "<", len) || \
+		ft_strnstr(word, ">", len) || ft_strnstr(word, ">>", len))
+		return (true);
+	return (false);
 }

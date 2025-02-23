@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+         #
+#    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/02/20 14:34:25 by tkondo           ###   ########.fr        #
+#    Updated: 2025/02/22 23:25:55 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,14 @@ TARGET =\
 	command/get_path\
 	data/free_redirects\
 	data/free_simple_cmds\
+	data/add_struct_heredoc\
+	data/free_heredocs\
 	data/free_words\
+	data/has_redirect\
+	data/fill_words\
+	data/add_struct_redirect\
+	data/parse_redirects\
+	data/fill_struct_simple_cmd\
 	data/load_simple_cmd\
 	data/pipe2simple_cmds\
 	expand/expand_words\

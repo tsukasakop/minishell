@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_simple_cmd.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:30:10 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/20 14:33:05 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/22 22:57:54 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,30 +22,26 @@
  * int next_in_fd: is fd to be close on child process
  * char **envp: string if envp
  */
-bool	execute_simple_cmd(const t_simple_cmd scmd, int stdio_fd[2],
+bool	execute_simple_cmd(const t_simple_cmd *scmd, int stdio_fd[2],
 		int next_in_fd, char **envp)
 {
-	t_redirect	*reds;
-	char		**words;
 	const char	*path;
 	int			chpid;
 
-	reds = NULL;
-	load_simple_cmd(scmd, &reds, &words);
-	expand_words(&words);
+	expand_words(scmd->words);
 	chpid = fork();
 	if (chpid)
 	{
-		free_redirects(reds);
-		free_words(words);
+		free_redirects(scmd->reds);
+		free_words(scmd->words);
 		return (chpid != -1);
 	}
 	set_handlers_default();
 	close_fds_no_stdio(&next_in_fd, 1);
-	resolve_redirects(stdio_fd, reds);
-	path = get_path(words[0]);
+	resolve_redirects(stdio_fd, scmd->reds);
+	path = get_path(scmd->words[0]);
 	// TODO: replace execvp to execve
-	execvp(path, words);
+	execvp(path, scmd->words);
 	(void)envp;
 	exit(1);
 }
