@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_words.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:26:32 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/16 20:16:39 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/24 13:53:07 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ void	free_words(char **words)
 		free(*words);
 		words++;
 	}
+	//ToDO:wordsの先頭をfreeする
 }
