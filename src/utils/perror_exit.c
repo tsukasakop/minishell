@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   resolve_redirects.c                                :+:      :+:    :+:   */
+/*   perror_exit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 19:27:40 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/24 14:14:57 by miyuu            ###   ########.fr       */
+/*   Created: 2025/02/24 14:14:07 by miyuu             #+#    #+#             */
+/*   Updated: 2025/02/24 14:46:03 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:
+ * Function:perror_exit
  * ----------------------------
- * Set redirects to stdio or others on simple command
- *
- * int stdio[2]: fds to be redirect from stdin(0), and stdout(1)
- * t_redirect *red: object to open and redirect
- *
+ * Prints an error message with the shell name and exits with status 1.
  */
-void	resolve_redirects(int stdio[2], t_redirect *red)
+void	perror_exit(char *msg)
 {
-	t_redirect	*cur;
-
-	cur = red;
-	dup2(stdio[0], STDIN_FILENO);
-	dup2(stdio[1], STDOUT_FILENO);
-	while (cur)
-	{
-		connect_redirects_path(cur);
-		cur = cur->next;
-	}
-	close_fds_no_stdio(stdio, 2);
-	free_redirects(red);
+	write(2, SHELL_NAME, ft_strlen(SHELL_NAME));
+	perror(msg);
+	exit (1);
 }
