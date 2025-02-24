@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/24 13:51:26 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/24 14:49:39 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ void							free_words(char **words);
 void							free_redirects(t_redirect *reds);
 void							resolve_redirects(int stdio[2],
 									t_redirect *red);
+void							connect_redirects_path(t_redirect *red);
+int								redirects_stdin(t_redirect *red);
+int								redirects_stdout(t_redirect *red);
 t_simple_cmd					*load_simple_cmd(char **cmds_text);
 t_simple_cmd					*fill_struct_simple_cmd(const char *text);
 void							expand_words(char **words);
@@ -106,4 +109,5 @@ void							set_signal(int signal);
 int								builtin_exit(char **args);
 unsigned char					get_exit_status(void);
 unsigned char					*get_exit_status_p(void);
+void							perror_exit(char *msg);
 #endif
