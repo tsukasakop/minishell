@@ -6,15 +6,15 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:27:40 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/24 01:37:33 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/24 13:54:48 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-#include <fcntl.h>
 
 void	perror_exit(char *msg)
 {
+	write(2, SHELL_NAME, ft_strlen(SHELL_NAME));
 	perror(msg);
 	exit (1);
 }
@@ -62,7 +62,7 @@ void	connect_redirects_path(t_redirect *red)
 	if (red->red_type == REDIR_IN)
 		fd = redirects_in(red);
 	else if (red->red_type == REDIR_OUT || red->red_type == REDIR_APPEND)
-		fd = redirects_in(red);
+		fd = redirects_out(red);
 	close(fd);
 }
 
@@ -82,7 +82,6 @@ void	resolve_redirects(int stdio[2], t_redirect *red)
 	cur = red;
 	dup2(stdio[0], STDIN_FILENO);
 	dup2(stdio[1], STDOUT_FILENO);
-	close_fds_no_stdio(stdio, 2);
 	while (cur)
 	{
 		connect_redirects_path(cur);

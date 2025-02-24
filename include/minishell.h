@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/23 15:46:18 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/24 13:51:26 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,15 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 
 # define PROMPT "minishell$ "
+
+# define SHELL_NAME "minishell: "
 
 typedef struct s_simple_cmd		t_simple_cmd;
 typedef struct s_redirect		t_redirect;

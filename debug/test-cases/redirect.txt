@@ -1,16 +1,16 @@
-echo 42 Tokyo > file_1
-< file_1 cat
-< file_1 cat | grep 42 > file_2
-< file_2 cat
-ls -l >> file_2
-< file_2 cat
-yes | head -c 1000 | wc -c > file_3
-< file_3 cat
-< file_2 cat | wc > file_4 >> file_5
-< file_4 cat
-< file_5 cat
-< no_exist_file
-echo testcase_4 > no_exist_file
-< no_exist_file
-rm no_exist_file
-rm file_1 file_2 file_3 file_4 file_5
+echo 42 Tokyo > /tmp/file1
+< /tmp/file1 cat
+< /tmp/file1 cat | grep 42 > /tmp/file2
+< /tmp/file2 cat
+ls -l >> /tmp/file2
+< /tmp/file2 cat
+yes | head -c 10000 | wc -c > /tmp/file3
+< /tmp/file3 cat
+< /tmp/file2 cat | wc > /tmp/file4 >> /tmp/file5
+< /tmp/file4 cat
+< /tmp/file5 cat
+< /tmp/no_exist_file
+echo testcase_4 > /tmp/no_exist_file
+< /tmp/no_exist_file cat
+rm /tmp/no_exist_file
+rm /tmp/file1 /tmp/file2 /tmp/file3 /tmp/file4 /tmp/file5
