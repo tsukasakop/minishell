@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/02/23 15:57:21 by tkondo           ###   ########.fr        #
+#    Updated: 2025/02/24 14:49:09 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,8 +57,12 @@ TARGET =\
 	read/flush_prompt\
 	read/get_input\
 	redirect/resolve_redirects\
+	redirect/connect_redirects_path\
+	redirect/redirects_stdin\
+	redirect/redirects_stdout\
 	signal/at_sigint\
 	utils/close_fds_no_stdio\
+	utils/perror_exit\
 	signal/set_handlers_for_prompt\
 	signal/set_handlers_default\
 	signal/set_handlers_for_process\

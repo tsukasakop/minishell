@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   resolve_redirects.c                                :+:      :+:    :+:   */
+/*   connect_redirects_path.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 19:27:40 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/24 14:14:57 by miyuu            ###   ########.fr       */
+/*   Created: 2025/02/24 14:13:07 by miyuu             #+#    #+#             */
+/*   Updated: 2025/02/24 14:41:57 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:
+ * Function:connect_redirects_path
  * ----------------------------
- * Set redirects to stdio or others on simple command
- *
- * int stdio[2]: fds to be redirect from stdin(0), and stdout(1)
- * t_redirect *red: object to open and redirect
- *
+ * Parse redirect type and perform redirection processing.
  */
-void	resolve_redirects(int stdio[2], t_redirect *red)
+void	connect_redirects_path(t_redirect *red)
 {
-	t_redirect	*cur;
+	int			fd;
 
-	cur = red;
-	dup2(stdio[0], STDIN_FILENO);
-	dup2(stdio[1], STDOUT_FILENO);
-	while (cur)
-	{
-		connect_redirects_path(cur);
-		cur = cur->next;
-	}
-	close_fds_no_stdio(stdio, 2);
-	free_redirects(red);
+	fd = 0;
+	if (red->red_type == REDIR_IN)
+		fd = redirects_stdin(red);
+	else if (red->red_type == REDIR_OUT || red->red_type == REDIR_APPEND)
+		fd = redirects_stdout(red);
+	close(fd);
 }

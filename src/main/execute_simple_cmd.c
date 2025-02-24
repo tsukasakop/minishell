@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:30:10 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/22 22:57:54 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/24 13:54:02 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ bool	execute_simple_cmd(const t_simple_cmd *scmd, int stdio_fd[2],
 	set_handlers_default();
 	close_fds_no_stdio(&next_in_fd, 1);
 	resolve_redirects(stdio_fd, scmd->reds);
+	// ToDo:words[0]がnullだった場合の処理を考える
 	path = get_path(scmd->words[0]);
 	// TODO: replace execvp to execve
 	execvp(path, scmd->words);
