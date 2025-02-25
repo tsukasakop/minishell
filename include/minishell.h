@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/24 16:58:15 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/25 03:32:32 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ struct				s_simple_cmd
 
 struct				s_redirect
 {
-	t_redirect_type	red_type;
-	int				fd_redirect_from;
+	t_redirect_type	redir_type;
+	int				from_fd;
 	const char		*path;
 	t_redirect		*next;
 };
