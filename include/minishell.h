@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/25 03:32:32 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/25 19:57:29 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ struct				s_redirect
 
 struct				s_heredoc
 {
-	char			*eof;
+	char			*hd_eof;
 	char			*path;
 	t_heredoc		*next;
 };
@@ -77,17 +77,17 @@ int				builtin_exit(char **argv);
 const char		*get_path(const char *word);
 
 /* data function */
-void			add_struct_heredoc(t_heredoc **here, char *eof, char *path);
+void			add_struct_heredoc(t_heredoc **hd, char *hd_eof, char *path);
 void			add_struct_redirect(t_redirect **reds, int type, char *path);
 t_simple_cmd	*fill_struct_simple_cmd(const char *text);
 char			**fill_words(char **src, int wc);
-void			free_heredocs(t_heredoc *here);
+void			free_heredocs(t_heredoc *hd);
 void			free_redirects(t_redirect *reds);
 void			free_simple_cmds(t_simple_cmd *scmds);
 void			free_words(char **words);
 bool			has_redirect(char *word);
 t_simple_cmd	*load_simple_cmd(char **cmds_text);
-void			parse_redirects(t_redirect **reds, t_heredoc **here, \
+void			parse_redirects(t_redirect **reds, t_heredoc **hd, \
 								char *word, char *path);
 char			**pipe2simple_cmds(const char *pipe);
 
