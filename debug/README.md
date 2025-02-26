@@ -40,6 +40,12 @@ make test ./test-cases/pipe.txt
 make lldb ./test-cases/pipe.txt
 ```
 
+main関数を指定してコンパイル・実行を行う
+
+```sh
+make run-main main/test_write_heredocs.c
+```
+
 ## Test
 
 ### Usage
