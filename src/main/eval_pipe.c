@@ -6,33 +6,12 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/26 16:08:49 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/26 16:19:40 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-#include <stdio.h>
 
-void	print_commands(const t_simple_cmd *scmd_list)
-{
-	int i = 0;
-
-	while (scmd_list)
-	{
-		printf("Command[%d]:\n", i++);
-		printf("  e_cmd:");
-		for (int j = 0; scmd_list->e_cmd[j]; j++)
-			printf(" %s,", scmd_list->e_cmd[j]);
-		printf("\n");
-		t_redirect *redir = scmd_list->redir;
-		while (redir)
-		{
-			printf("  Redirect: type=%d, path=%s\n", redir->redir_type, redir->path);
-			redir = redir->next;
-		}
-		scmd_list = scmd_list->next;
-	}
-}
 /*
  * Function:
  * ----------------------------
@@ -48,7 +27,8 @@ unsigned char	eval_pipe(const char *cmd_line, char **envp)
 	int					stdio_fd[2];
 	int					next_in_fd;
 
-	//ToDo:fill_struct_simple_cmdにheredocも渡す。fill_struct_simple_cmd(cmd_line, &scmd_list, &hd_list);になる
+	//ToDo:fill_struct_simple_cmdにheredocも渡す。
+	//fill_struct_simple_cmd(cmd_line, &scmd_list, &hd_list);になる
 	scmd_list = fill_struct_simple_cmd(cmd_line);
 	print_commands(scmd_list);
 	//ToDo:ヒアドクの入力を取得する処理を追加
