@@ -6,31 +6,31 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/26 12:38:45 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/26 13:05:44 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 #include <stdio.h>
 
-void	print_commands(const t_simple_cmd *cmds)
+void	print_commands(const t_simple_cmd *scmd_list)
 {
 	int i = 0;
 
-	while (cmds)
+	while (scmd_list)
 	{
 		printf("Command[%d]:\n", i++);
 		printf("  e_cmd:");
-		for (int j = 0; cmds->e_cmd[j]; j++)
-			printf(" %s,", cmds->e_cmd[j]);
+		for (int j = 0; scmd_list->e_cmd[j]; j++)
+			printf(" %s,", scmd_list->e_cmd[j]);
 		printf("\n");
-		t_redirect *redir = cmds->redir;
+		t_redirect *redir = scmd_list->redir;
 		while (redir)
 		{
 			printf("  Redirect: type=%d, path=%s\n", redir->redir_type, redir->path);
 			redir = redir->next;
 		}
-		cmds = cmds->next;
+		scmd_list = scmd_list->next;
 	}
 }
 /*

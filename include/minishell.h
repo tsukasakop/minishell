@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/26 12:36:53 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/26 13:05:43 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ t_simple_cmd	*fill_struct_simple_cmd(const char *text);
 char			**fill_e_cmd(char **src, int wc);
 void			free_heredocs(t_heredoc *hd);
 void			free_redirects(t_redirect *redir);
-void			free_simple_cmds(t_simple_cmd *scmds);
+void			free_simple_cmds(t_simple_cmd *scmd_list);
 void			free_e_cmd(char **e_cmd);
 bool			has_redirect(char *s_cmd);
 t_simple_cmd	*load_simple_cmd(char **s_cmd);
@@ -100,7 +100,7 @@ void			set_exit_status(unsigned char st);
 /* main function */
 unsigned char	eval_pipe(const char *text, char **envp);
 unsigned char	eval_text(const char *text, char **envp);
-bool			execute_simple_cmd(const t_simple_cmd *scmd, int stdio_fd[2], \
+bool			execute_simple_cmd(const t_simple_cmd *scmd_list, int stdio_fd[2], \
 				int next_in_fd, char **envp);
 bool			init(void);
 int				main(int argc, char **argv, char **envp);
