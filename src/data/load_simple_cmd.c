@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/26 12:08:06 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/26 12:37:30 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_simple_cmd	*load_simple_cmd(char **s_cmd)
 		free(s_cmd);
 		return (NULL);
 	}
-	scmd->reds = NULL;
+	scmd->redir = NULL;
 	scmd->next = NULL;
 	i = 0;
 	wc = 0;
@@ -42,7 +42,7 @@ t_simple_cmd	*load_simple_cmd(char **s_cmd)
 	{
 		if (has_redirect(s_cmd[i]) && s_cmd[i + 1])
 		{
-			parse_redirects(&scmd->reds, hd, s_cmd[i], s_cmd[i + 1]);
+			parse_redirects(&scmd->redir, hd, s_cmd[i], s_cmd[i + 1]);
 			i++;
 		}
 		else

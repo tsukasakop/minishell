@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 14:13:07 by miyuu             #+#    #+#             */
-/*   Updated: 2025/02/25 03:31:48 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/26 12:39:22 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,15 @@
  * ----------------------------
  * Parse redirect type and perform redirection processing.
  */
-void	connect_redirects_path(t_redirect *red)
+void	connect_redirects_path(t_redirect *redir)
 {
 	int			fd;
 
 	fd = 0;
-	if (red->redir_type == REDIR_IN)
-		fd = redirects_stdin(red);
-	else if (red->redir_type == REDIR_OUT || red->redir_type == REDIR_APPEND)
-		fd = redirects_stdout(red);
+	if (redir->redir_type == REDIR_IN)
+		fd = redirects_stdin(redir);
+	else if (redir->redir_type == REDIR_OUT ||\
+			redir->redir_type == REDIR_APPEND)
+		fd = redirects_stdout(redir);
 	close(fd);
 }

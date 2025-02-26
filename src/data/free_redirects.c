@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_redirects.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:27:06 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/16 20:16:30 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/26 12:37:19 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@
  * ----------------------------
  * free memory of redirects
  */
-void	free_redirects(t_redirect *reds)
+void	free_redirects(t_redirect *redir)
 {
 	t_redirect	*tmp;
 
-	while (reds != NULL)
+	while (redir != NULL)
 	{
-		free((char *)reds->path);
-		tmp = reds;
-		reds = reds->next;
+		free((char *)redir->path);
+		tmp = redir;
+		redir = redir->next;
 		free(tmp);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:30:10 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/26 11:41:17 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/26 12:37:44 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ bool	execute_simple_cmd(const t_simple_cmd *scmd, int stdio_fd[2],
 	chpid = fork();
 	if (chpid)
 	{
-		free_redirects(scmd->reds);
+		free_redirects(scmd->redir);
 		free_e_cmd(scmd->e_cmd);
 		return (chpid != -1);
 	}
 	set_handlers_default();
 	close_fds_no_stdio(&next_in_fd, 1);
-	resolve_redirects(stdio_fd, scmd->reds);
+	resolve_redirects(stdio_fd, scmd->redir);
 	// ToDo:e_cmd[0]がnullだった場合の処理を考える
 	path = get_path(scmd->e_cmd[0]);
 	// TODO: replace execvp to execve

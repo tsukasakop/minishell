@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/26 12:12:33 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/26 12:36:53 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef enum e_redirect_type
 
 struct				s_simple_cmd
 {
-	t_redirect		*reds;
+	t_redirect		*redir;
 	char			**e_cmd;
 	t_simple_cmd	*next;
 };
@@ -78,16 +78,16 @@ const char		*get_path(const char *e_cmd);
 
 /* data function */
 void			add_struct_heredoc(t_heredoc **hd, char *hd_eof, char *path);
-void			add_struct_redirect(t_redirect **reds, int type, char *path);
+void			add_struct_redirect(t_redirect **redir, int type, char *path);
 t_simple_cmd	*fill_struct_simple_cmd(const char *text);
 char			**fill_e_cmd(char **src, int wc);
 void			free_heredocs(t_heredoc *hd);
-void			free_redirects(t_redirect *reds);
+void			free_redirects(t_redirect *redir);
 void			free_simple_cmds(t_simple_cmd *scmds);
 void			free_e_cmd(char **e_cmd);
 bool			has_redirect(char *s_cmd);
 t_simple_cmd	*load_simple_cmd(char **s_cmd);
-void			parse_redirects(t_redirect **reds, t_heredoc **hd, \
+void			parse_redirects(t_redirect **redir, t_heredoc **hd, \
 								char *s_cmd, char *path);
 char			**pipe2simple_cmds(const char *pipe);
 
@@ -115,10 +115,10 @@ void			flush_prompt(void);
 char			*get_input(void);
 
 /* redirect function */
-void			connect_redirects_path(t_redirect *red);
-int				redirects_stdin(t_redirect *red);
-int				redirects_stdout(t_redirect *red);
-void			resolve_redirects(int stdio[2], t_redirect *red);
+void			connect_redirects_path(t_redirect *redir);
+int				redirects_stdin(t_redirect *redir);
+int				redirects_stdout(t_redirect *redir);
+void			resolve_redirects(int stdio[2], t_redirect *redir);
 
 /* signal function */
 void			at_sigint(int signal);

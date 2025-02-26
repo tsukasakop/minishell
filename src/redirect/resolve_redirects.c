@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:27:40 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/24 14:14:57 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/26 12:39:51 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
  * t_redirect *red: object to open and redirect
  *
  */
-void	resolve_redirects(int stdio[2], t_redirect *red)
+void	resolve_redirects(int stdio[2], t_redirect *redir)
 {
 	t_redirect	*cur;
 
-	cur = red;
+	cur = redir;
 	dup2(stdio[0], STDIN_FILENO);
 	dup2(stdio[1], STDOUT_FILENO);
 	while (cur)
@@ -34,5 +34,5 @@ void	resolve_redirects(int stdio[2], t_redirect *red)
 		cur = cur->next;
 	}
 	close_fds_no_stdio(stdio, 2);
-	free_redirects(red);
+	free_redirects(redir);
 }
