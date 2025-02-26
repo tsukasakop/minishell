@@ -18,6 +18,8 @@
 
   - `infile`: minishell起動時にinfileのコマンドを実行する。
 
+- `make run-main [src-file]`: main関数としてsrc-fileをコンパイルして実行する。（指定のない場合はmake runを実行）
+
 ## Example
 
 `cat | cat | ls`をテストする
@@ -36,6 +38,12 @@ make test ./test-cases/pipe.txt
 
 ```sh
 make lldb ./test-cases/pipe.txt
+```
+
+main関数を指定してコンパイル・実行を行う
+
+```sh
+make run-main main/test_write_heredocs.c
 ```
 
 ## Test
