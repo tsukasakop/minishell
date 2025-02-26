@@ -18,6 +18,8 @@
 
   - `infile`: minishell起動時にinfileのコマンドを実行する。
 
+- `make run-main [src-file]`: main関数としてsrc-fileをコンパイルして実行する。（指定のない場合はmake runを実行）
+
 ## Example
 
 `cat | cat | ls`をテストする
