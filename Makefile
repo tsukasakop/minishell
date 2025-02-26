@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/02/26 11:41:24 by miyuu            ###   ########.fr        #
+#    Updated: 2025/02/26 16:10:17 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ TARGET =\
 	expand/get_exit_status_p\
 	expand/set_exit_status\
 	main/eval_pipe\
-	main/eval_text\
+	main/eval_cmd_line\
 	main/execute_simple_cmd\
 	main/main\
 	main/init\

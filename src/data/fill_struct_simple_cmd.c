@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:33:55 by miyuu             #+#    #+#             */
-/*   Updated: 2025/02/26 12:04:28 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/26 16:09:54 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 /*
  * Function:fill_struct_simple_cmd
  * ----------------------------
- * Parses const char *text and returns the head of the simple_cmd list.
+ * Parses const char *cmd_line and returns the head of the simple_cmd list.
  *
  * ToDO:norminetteエラー
  */
-t_simple_cmd	*fill_struct_simple_cmd(const char *text)
+t_simple_cmd	*fill_struct_simple_cmd(const char *cmd_line)
 {
 	char			**pipeline;
 	t_simple_cmd	*head;
@@ -27,7 +27,7 @@ t_simple_cmd	*fill_struct_simple_cmd(const char *text)
 	t_simple_cmd	*new_s_cmd;
 	int				i;
 
-	pipeline = pipe2simple_cmds(text);
+	pipeline = pipe2simple_cmds(cmd_line);
 	if (!pipeline)
 		return (NULL);
 	i = 0;
