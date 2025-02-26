@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/26 11:40:15 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/26 12:08:06 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  * containing redirections and e_cmd.
  *
  */
-t_simple_cmd	*load_simple_cmd(char **cmds_text)
+t_simple_cmd	*load_simple_cmd(char **s_cmd)
 {
 	size_t				i;
 	size_t				wc;
@@ -31,30 +31,30 @@ t_simple_cmd	*load_simple_cmd(char **cmds_text)
 	scmd = malloc(sizeof(t_simple_cmd));
 	if (!scmd)
 	{
-		free(cmds_text);
+		free(s_cmd);
 		return (NULL);
 	}
 	scmd->reds = NULL;
 	scmd->next = NULL;
 	i = 0;
 	wc = 0;
-	while (cmds_text[i])
+	while (s_cmd[i])
 	{
-		if (has_redirect(cmds_text[i]) && cmds_text[i + 1])
+		if (has_redirect(s_cmd[i]) && s_cmd[i + 1])
 		{
-			parse_redirects(&scmd->reds, hd, cmds_text[i], cmds_text[i + 1]);
+			parse_redirects(&scmd->reds, hd, s_cmd[i], s_cmd[i + 1]);
 			i++;
 		}
 		else
 			wc++;
 		i++;
 	}
-	scmd->e_cmd = fill_e_cmd(cmds_text, wc);
+	scmd->e_cmd = fill_e_cmd(s_cmd, wc);
 	if (!scmd->e_cmd)
 	{
-		free(cmds_text);
+		free(s_cmd);
 		return (NULL);
 	}
-	free(cmds_text);
+	free(s_cmd);
 	return (scmd);
 }

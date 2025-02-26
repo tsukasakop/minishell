@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:36:06 by miyuu             #+#    #+#             */
-/*   Updated: 2025/02/26 11:39:30 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/26 12:05:35 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@
  */
 char	**fill_e_cmd(char **src, int wc)
 {
-	char	**dst;
+	char	**e_cmd;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	dst = (char **)malloc(sizeof(char *) * (wc + 1));
-	if (!dst)
+	e_cmd = (char **)malloc(sizeof(char *) * (wc + 1));
+	if (!e_cmd)
 		return (NULL);
 	while (src[i])
 	{
@@ -35,16 +35,16 @@ char	**fill_e_cmd(char **src, int wc)
 			i++;
 		else
 		{
-			dst[j] = ft_strdup(src[i]);
-			if (!dst[j])
+			e_cmd[j] = ft_strdup(src[i]);
+			if (!e_cmd[j])
 			{
-				free_e_cmd(dst);
+				free_e_cmd(e_cmd);
 				return (NULL);
 			}
 			j++;
 		}
 		i++;
 	}
-	dst[j] = NULL;
-	return (dst);
+	e_cmd[j] = NULL;
+	return (e_cmd);
 }

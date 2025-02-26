@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:29:27 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/17 05:16:01 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/26 12:12:21 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 /*
  * Function:
  * ----------------------------
- * Get path if the first word has not slash(/), otherwise duplicate first word
+ * Get path if the first e_cmd has not slash(/), otherwise duplicate first e_cmd
  *
- * const char *word: fitst word on the simple command
+ * const char *e_cmd: fitst word on the simple command
  */
-const char	*get_path(const char *word)
+const char	*get_path(const char *e_cmd)
 {
 	// TODO: resolve path if it has not slash
-	return (ft_strdup(word));
+	return (ft_strdup(e_cmd));
 }

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/26 11:38:45 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/26 12:12:33 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ extern volatile unsigned char	g_signal;
 int				builtin_exit(char **argv);
 
 /* command function */
-const char		*get_path(const char *word);
+const char		*get_path(const char *e_cmd);
 
 /* data function */
 void			add_struct_heredoc(t_heredoc **hd, char *hd_eof, char *path);
@@ -85,10 +85,10 @@ void			free_heredocs(t_heredoc *hd);
 void			free_redirects(t_redirect *reds);
 void			free_simple_cmds(t_simple_cmd *scmds);
 void			free_e_cmd(char **e_cmd);
-bool			has_redirect(char *word);
-t_simple_cmd	*load_simple_cmd(char **cmds_text);
+bool			has_redirect(char *s_cmd);
+t_simple_cmd	*load_simple_cmd(char **s_cmd);
 void			parse_redirects(t_redirect **reds, t_heredoc **hd, \
-								char *word, char *path);
+								char *s_cmd, char *path);
 char			**pipe2simple_cmds(const char *pipe);
 
 /* expand function */
