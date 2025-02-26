@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/25 19:57:29 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/26 11:38:45 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef enum e_redirect_type
 struct				s_simple_cmd
 {
 	t_redirect		*reds;
-	char			**words;
+	char			**e_cmd;
 	t_simple_cmd	*next;
 };
 
@@ -80,11 +80,11 @@ const char		*get_path(const char *word);
 void			add_struct_heredoc(t_heredoc **hd, char *hd_eof, char *path);
 void			add_struct_redirect(t_redirect **reds, int type, char *path);
 t_simple_cmd	*fill_struct_simple_cmd(const char *text);
-char			**fill_words(char **src, int wc);
+char			**fill_e_cmd(char **src, int wc);
 void			free_heredocs(t_heredoc *hd);
 void			free_redirects(t_redirect *reds);
 void			free_simple_cmds(t_simple_cmd *scmds);
-void			free_words(char **words);
+void			free_e_cmd(char **e_cmd);
 bool			has_redirect(char *word);
 t_simple_cmd	*load_simple_cmd(char **cmds_text);
 void			parse_redirects(t_redirect **reds, t_heredoc **hd, \
@@ -92,7 +92,7 @@ void			parse_redirects(t_redirect **reds, t_heredoc **hd, \
 char			**pipe2simple_cmds(const char *pipe);
 
 /* expand function */
-void			expand_words(char **words);
+void			expand_e_cmd(char **e_cmd);
 unsigned char	*get_exit_status_p(void);
 unsigned char	get_exit_status(void);
 void			set_exit_status(unsigned char st);

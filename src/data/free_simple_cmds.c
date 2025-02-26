@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:32:33 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/25 02:23:18 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/26 11:39:40 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	free_simple_cmds(t_simple_cmd *scmds)
 	while (scmds)
 	{
 		tmp = scmds;
-		free_words(scmds->words);
+		free_e_cmd(scmds->e_cmd);
 		free_redirects(scmds->reds);
 		scmds = scmds->next;
 		free(tmp);

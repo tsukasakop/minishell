@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/25 19:59:58 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/26 11:41:01 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	print_commands(const t_simple_cmd *cmds)
 	while (cmds)
 	{
 		printf("Command[%d]:\n", i++);
-		printf("  words:");
-		for (int j = 0; cmds->words[j]; j++)
-			printf(" %s,", cmds->words[j]);
+		printf("  e_cmd:");
+		for (int j = 0; cmds->e_cmd[j]; j++)
+			printf(" %s,", cmds->e_cmd[j]);
 		printf("\n");
 		t_redirect *red = cmds->reds;
 		while (red)

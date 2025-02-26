@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_words.c                                     :+:      :+:    :+:   */
+/*   expand_e_cmd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:29:00 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/22 02:19:41 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/26 11:40:50 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 /*
  * Function:
  * ----------------------------
- * Expand words and replace them
+ * Expand e_cmd and replace them
  *
- * char ***words: pointer to words to be expand and replaced
+ * char ***e_cmd: pointer to e_cmd to be expand and replaced
  */
-void	expand_words(char **words)
+void	expand_e_cmd(char **e_cmd)
 {
 	// TODO: expand environment variables
 	// TODO: remove quotes
-	(void)words;
+	(void)e_cmd;
 }

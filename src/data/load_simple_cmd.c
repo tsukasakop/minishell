@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/25 19:58:01 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/26 11:40:15 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * ----------------------------
  *
  * Parses a simple command and returns a t_simple_cmd
- * containing redirections and words.
+ * containing redirections and e_cmd.
  *
  */
 t_simple_cmd	*load_simple_cmd(char **cmds_text)
@@ -49,8 +49,8 @@ t_simple_cmd	*load_simple_cmd(char **cmds_text)
 			wc++;
 		i++;
 	}
-	scmd->words = fill_words(cmds_text, wc);
-	if (!scmd->words)
+	scmd->e_cmd = fill_e_cmd(cmds_text, wc);
+	if (!scmd->e_cmd)
 	{
 		free(cmds_text);
 		return (NULL);
