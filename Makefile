@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/02/27 18:39:27 by tkondo           ###   ########.fr        #
+#    Updated: 2025/02/27 19:02:34 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,7 @@ TARGET =\
 
 OBJS = $(addprefix $(OBJ_DIR)/,$(addsuffix .o,$(TARGET)))
 
+LIBFT = libft/libft.a
 
 # Build only
 all: $(NAME)
@@ -83,7 +84,7 @@ run: all
 	./$(NAME)
 
 # Build only
-$(NAME): libft $(OBJS)
+$(NAME): $(LIBFT) $(OBJS)
 	$(CC) $(OBJS) -o $@ $(LFLAGS)
 
 # Compile single object file
@@ -92,7 +93,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $< -o $@ $(CFLAGS)
 
 # Build libft
-libft:
+$(LIBFT):
 	make -C libft
 
 # Clean except ./minishell
