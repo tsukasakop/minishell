@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:29:27 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/26 12:12:21 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/27 14:39:35 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 /*
  * Function:
  * ----------------------------
- * Get path if the first e_cmd has not slash(/), otherwise duplicate first e_cmd
+ * Get path if the first ecmd has not slash(/), otherwise duplicate first ecmd
  *
- * const char *e_cmd: fitst word on the simple command
+ * const char *ecmd: fitst word on the simple command
  */
-const char	*get_path(const char *e_cmd)
+const char	*get_path(const char *ecmd)
 {
 	// TODO: resolve path if it has not slash
-	return (ft_strdup(e_cmd));
+	return (ft_strdup(ecmd));
 }

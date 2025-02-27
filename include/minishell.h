@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/26 15:22:44 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/27 14:42:33 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef enum e_redirect_type
 struct				s_simple_cmd
 {
 	t_redirect		*redir;
-	char			**e_cmd;
+	char			**ecmd;
 	t_simple_cmd	*next;
 };
 
@@ -74,25 +74,25 @@ extern volatile unsigned char	g_signal;
 int				builtin_exit(char **argv);
 
 /* command function */
-const char		*get_path(const char *e_cmd);
+const char		*get_path(const char *ecmd);
 
 /* data function */
 void			add_struct_heredoc(t_heredoc **hd, char *hd_eof, char *path);
 void			add_struct_redirect(t_redirect **redir, int type, char *path);
 t_simple_cmd	*fill_struct_simple_cmd(const char *cmd_line);
-char			**fill_e_cmd(char **src, int wc);
+char			**fill_ecmd(char **src, int wc);
 void			free_heredocs(t_heredoc *hd);
 void			free_redirects(t_redirect *redir);
 void			free_simple_cmds(t_simple_cmd *scmd_list);
-void			free_e_cmd(char **e_cmd);
-bool			has_redirect(char *s_cmd);
-t_simple_cmd	*load_simple_cmd(char **s_cmd);
+void			free_ecmd(char **ecmd);
+bool			has_redirect(char *scmd);
+t_simple_cmd	*load_simple_cmd(char **scmd);
 void			parse_redirects(t_redirect **redir, t_heredoc **hd, \
-								char *s_cmd, char *path);
+								char *scmd, char *path);
 char			**pipe2simple_cmds(const char *pipe);
 
 /* expand function */
-void			expand_e_cmd(char **e_cmd);
+void			expand_ecmd(char **ecmd);
 unsigned char	*get_exit_status_p(void);
 unsigned char	get_exit_status(void);
 void			set_exit_status(unsigned char st);

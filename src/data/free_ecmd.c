@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_e_cmd.c                                     :+:      :+:    :+:   */
+/*   free_ecmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 19:29:00 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/26 11:40:50 by miyuu            ###   ########.fr       */
+/*   Created: 2025/02/16 19:26:32 by tkondo            #+#    #+#             */
+/*   Updated: 2025/02/26 11:40:03 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,19 @@
 /*
  * Function:
  * ----------------------------
- * Expand e_cmd and replace them
- *
- * char ***e_cmd: pointer to e_cmd to be expand and replaced
+ * free memory of ecmd
  */
-void	expand_e_cmd(char **e_cmd)
+void	free_ecmd(char **ecmd)
 {
-	// TODO: expand environment variables
-	// TODO: remove quotes
-	(void)e_cmd;
+	int	i;
+
+	i = 0;
+	if (ecmd == NULL)
+		return ;
+	while (ecmd[i])
+	{
+		free(ecmd[i]);
+		i++;
+	}
+	free(ecmd);
 }

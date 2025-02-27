@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_e_cmd.c                                       :+:      :+:    :+:   */
+/*   fill_ecmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,21 +13,21 @@
 #include <minishell.h>
 
 /*
- * Function:fill_e_cmd
+ * Function:fill_ecmd
  * ----------------------------
  * Returns an array only strings without redirects.
  * ToDO:norminetteエラー
  */
-char	**fill_e_cmd(char **src, int wc)
+char	**fill_ecmd(char **src, int wc)
 {
-	char	**e_cmd;
+	char	**ecmd;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	e_cmd = (char **)malloc(sizeof(char *) * (wc + 1));
-	if (!e_cmd)
+	ecmd = (char **)malloc(sizeof(char *) * (wc + 1));
+	if (!ecmd)
 		return (NULL);
 	while (src[i])
 	{
@@ -35,16 +35,16 @@ char	**fill_e_cmd(char **src, int wc)
 			i++;
 		else
 		{
-			e_cmd[j] = ft_strdup(src[i]);
-			if (!e_cmd[j])
+			ecmd[j] = ft_strdup(src[i]);
+			if (!ecmd[j])
 			{
-				free_e_cmd(e_cmd);
+				free_ecmd(ecmd);
 				return (NULL);
 			}
 			j++;
 		}
 		i++;
 	}
-	e_cmd[j] = NULL;
-	return (e_cmd);
+	ecmd[j] = NULL;
+	return (ecmd);
 }

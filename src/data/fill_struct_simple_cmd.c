@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:33:55 by miyuu             #+#    #+#             */
-/*   Updated: 2025/02/26 16:09:54 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/27 14:35:24 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_simple_cmd	*fill_struct_simple_cmd(const char *cmd_line)
 	char			**pipeline;
 	t_simple_cmd	*head;
 	t_simple_cmd	*cur;
-	t_simple_cmd	*new_s_cmd;
+	t_simple_cmd	*new_scmd;
 	int				i;
 
 	pipeline = pipe2simple_cmds(cmd_line);
@@ -35,18 +35,18 @@ t_simple_cmd	*fill_struct_simple_cmd(const char *cmd_line)
 	cur = NULL;
 	while (pipeline[i])
 	{
-		new_s_cmd = load_simple_cmd(ft_split(pipeline[i], ' '));
-		if (!new_s_cmd)
+		new_scmd = load_simple_cmd(ft_split(pipeline[i], ' '));
+		if (!new_scmd)
 		{
 			free_simple_cmds(head);
 			free(pipeline);
 			return (NULL);
 		}
 		if (!head)
-			head = new_s_cmd;
+			head = new_scmd;
 		else
-			cur->next = new_s_cmd;
-		cur = new_s_cmd;
+			cur->next = new_scmd;
+		cur = new_scmd;
 		i++;
 	}
 	free(pipeline);

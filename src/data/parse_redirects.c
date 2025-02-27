@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:35:26 by miyuu             #+#    #+#             */
-/*   Updated: 2025/02/26 12:37:35 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/27 14:35:35 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,20 @@
  * add_struct_heredoc(here, path, "/tmp/test")
  */
 void	parse_redirects(t_redirect **redir, t_heredoc **hd, \
-						char *s_cmd, char *path)
+						char *scmd, char *path)
 {
 	size_t	len;
 
 	(void)hd;
-	len = ft_strlen(s_cmd);
-	if ((ft_strnstr(s_cmd, "<<", len)))
+	len = ft_strlen(scmd);
+	if ((ft_strnstr(scmd, "<<", len)))
 	{
 		add_struct_redirect(redir, REDIR_IN, path);
 	}
-	else if ((ft_strnstr(s_cmd, ">>", len)))
+	else if ((ft_strnstr(scmd, ">>", len)))
 		add_struct_redirect(redir, REDIR_APPEND, path);
-	else if ((ft_strnstr(s_cmd, "<", len)))
+	else if ((ft_strnstr(scmd, "<", len)))
 		add_struct_redirect(redir, REDIR_IN, path);
-	else if ((ft_strnstr(s_cmd, ">", len)))
+	else if ((ft_strnstr(scmd, ">", len)))
 		add_struct_redirect(redir, REDIR_OUT, path);
 }
