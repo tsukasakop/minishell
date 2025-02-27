@@ -6,32 +6,12 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/27 16:16:30 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/27 16:32:52 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-#include <stdio.h>
-void	print_commands(const t_simple_cmd *cmds)
-{
-	int i = 0;
 
-	while (cmds)
-	{
-		printf("Command[%d]:\n", i++);
-		printf("  ecmd:");
-		for (int j = 0; cmds->ecmd[j]; j++)
-			printf(" %s,", cmds->ecmd[j]);
-		printf("\n");
-		t_redirect *red = cmds->redir;
-		while (red)
-		{
-			printf("  Redirect: type=%d, path=%s\n", red->type, red->path);
-			red = red->next;
-		}
-		cmds = cmds->next;
-	}
-}
 /*
  * Function:
  * ----------------------------
@@ -50,7 +30,6 @@ unsigned char	eval_pipe(const char *cmd_line, char **envp)
 	//ToDo:fill_struct_simple_cmdにheredocも渡す。
 	//fill_struct_simple_cmd(cmd_line, &scmd_list, &hd_list);になる
 	scmd_list = pipe2scmd_list(cmd_line);
-	print_commands(scmd_list);
 	//ToDo:ヒアドクの入力を取得する処理を追加
 	stdio_fd[0] = STDIN_FILENO;
 	stdio_fd[1] = STDOUT_FILENO;

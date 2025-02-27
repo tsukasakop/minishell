@@ -15,9 +15,9 @@
 /*
  * Function:
  * ----------------------------
- * Expand pipeline string and returns array of simple commands
+ * Expand pipeline string and returns list of simple commands
  *
- * const char *pipe: string on pipeline
+ * const char *cmd_line: string on pipeline
  */
 t_simple_cmd	*pipe2scmd_list(const char *cmd_line)
 {
@@ -28,6 +28,8 @@ t_simple_cmd	*pipe2scmd_list(const char *cmd_line)
 	if (!scmd_texts)
 		return (NULL);
 	scmd_list = fill_struct_simple_cmd(scmd_texts);
+	if (!scmd_list)
+		return (NULL);
 	free(scmd_texts);
 	return (scmd_list);
 }
