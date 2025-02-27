@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:35:12 by miyuu             #+#    #+#             */
-/*   Updated: 2025/02/26 12:37:11 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/27 16:13:19 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	add_struct_redirect(t_redirect **redir, int type, char *path)
 	if (!new)
 		return ;
 	new->path = ft_strdup(path);
-	new->redir_type = type;
+	new->type = type;
 	new->next = NULL;
 	if (*redir == NULL)
 		*redir = new;
