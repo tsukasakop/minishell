@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/24 16:58:15 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/27 14:18:00 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 /* header file*/
 # include <ft_stdio.h>
+# include <ft_string.h>
 # include <libft.h>
 
 /* library */
@@ -33,6 +34,7 @@
 /* macro */
 # define PROMPT "minishell$ "
 # define SHELL_NAME "minishell: "
+# define ERR_HEREDOC "%swarning: here-document delimited by end-of-file (wanted `%s')\n"
 
 /* struct */
 typedef struct s_simple_cmd		t_simple_cmd;
@@ -103,7 +105,6 @@ unsigned char	eval_text(const char *text, char **envp);
 bool			execute_simple_cmd(const t_simple_cmd *scmd, int stdio_fd[2], \
 				int next_in_fd, char **envp);
 bool			init(void);
-int				main(int argc, char **argv, char **envp);
 
 /* pipe function */
 bool			iterate_pipefd(bool is_first, bool is_last, int (*stdio)[2], \
@@ -113,6 +114,9 @@ unsigned char	wait_status(void);
 /* read function */
 void			flush_prompt(void);
 char			*get_input(void);
+void			write_until_eof(int fd, const char *hd_eof);
+bool			write_until_eof_on_chproc(int fd, const char *hd_eof);
+bool			write_heredocs(t_heredoc *hd);
 
 /* redirect function */
 void			connect_redirects_path(t_redirect *red);
@@ -125,6 +129,7 @@ void			at_sigint(int signal);
 void			set_handlers_default(void);
 void			set_handlers_for_process(void);
 void			set_handlers_for_prompt(void);
+void			set_handlers_for_heredoc(void);
 void			set_signal(int signal);
 
 /* utils */

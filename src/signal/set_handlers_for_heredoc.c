@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   at_sigint.c                                        :+:      :+:    :+:   */
+/*   set_handlers_for_heredoc.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 20:45:42 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/25 14:52:46 by tkondo           ###   ########.fr       */
+/*   Created: 2025/02/19 14:27:06 by tkondo            #+#    #+#             */
+/*   Updated: 2025/02/27 14:13:06 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 /*
  * Function:
  * ----------------------------
- *  do when catch sigint on prompt
+ *  during waiting user input, kill prompt on SIGINT
  */
-void	at_sigint(int signal)
+void	set_handlers_for_heredoc(void)
 {
-	(void)signal;
-	g_signal = signal;
-	set_exit_status(signal + 128);
-	flush_prompt();
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_IGN);
 }

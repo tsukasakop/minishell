@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:04:20 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/19 15:46:41 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/25 14:50:32 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	main(int argc, char **argv, char **envp)
 	{
 		input = get_input();
 		last_status = eval_text(input, envp);
+		if (g_signal)
+			last_status = 128 + g_signal;
 		set_exit_status(last_status);
 		free(input);
 	}

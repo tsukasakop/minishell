@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/02/24 14:49:09 by miyuu            ###   ########.fr        #
+#    Updated: 2025/02/27 14:41:26 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,9 @@ TARGET =\
 	pipe/wait_status\
 	read/flush_prompt\
 	read/get_input\
+	read/write_heredocs\
+	read/write_until_eof\
+	read/write_until_eof_on_chproc\
 	redirect/resolve_redirects\
 	redirect/connect_redirects_path\
 	redirect/redirects_stdin\
@@ -66,6 +69,7 @@ TARGET =\
 	signal/set_handlers_for_prompt\
 	signal/set_handlers_default\
 	signal/set_handlers_for_process\
+	signal/set_handlers_for_heredoc\
 	signal/set_signal\
 
 OBJS = $(addprefix $(OBJ_DIR)/,$(addsuffix .o,$(TARGET)))
