@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/02/27 16:06:08 by miyuu            ###   ########.fr        #
+#    Updated: 2025/02/27 23:17:08 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC_DIR = src
 OBJ_DIR = bin
 TARGET =\
 	builtin/builtin_exit\
+	builtin/is_builtin\
 	command/get_path\
 	data/free_redirects\
 	data/free_simple_cmds\
@@ -52,6 +53,8 @@ TARGET =\
 	main/execute_simple_cmd\
 	main/main\
 	main/init\
+	main/execute_builtin\
+	main/execute_on_current_env\
 	pipe/iterate_pipefd\
 	pipe/wait_status\
 	read/flush_prompt\
