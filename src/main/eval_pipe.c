@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/27 18:55:57 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/27 18:57:35 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ unsigned char	eval_pipe(const char *cmd_line, char **envp)
 		execute_simple_cmd(cur, stdio_fd, next_in_fd, envp);
 		cur = cur->next;
 	}
-	free_heredoc(hd_list);
+	free_heredocs(hd_list);
 	free_simple_cmds((t_simple_cmd *)cur);
 	close_fds_no_stdio((int [3]){stdio_fd[0], stdio_fd[1], next_in_fd}, 3);
 	return (wait_status());
