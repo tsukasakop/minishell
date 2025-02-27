@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/27 14:42:33 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/27 15:20:32 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ const char		*get_path(const char *ecmd);
 /* data function */
 void			add_struct_heredoc(t_heredoc **hd, char *hd_eof, char *path);
 void			add_struct_redirect(t_redirect **redir, int type, char *path);
-t_simple_cmd	*fill_struct_simple_cmd(const char *cmd_line);
+// t_simple_cmd	*fill_struct_simple_cmd(const char *cmd_line);
+t_simple_cmd	*fill_struct_simple_cmd(char **scmd_texts);
 char			**fill_ecmd(char **src, int wc);
 void			free_heredocs(t_heredoc *hd);
 void			free_redirects(t_redirect *redir);
@@ -89,8 +90,8 @@ bool			has_redirect(char *scmd);
 t_simple_cmd	*load_simple_cmd(char **scmd);
 void			parse_redirects(t_redirect **redir, t_heredoc **hd, \
 								char *scmd, char *path);
-char			**pipe2simple_cmds(const char *pipe);
-
+// char			**pipe2simple_cmds(const char *pipe);
+t_simple_cmd	*pipe2simple_cmds(const char *cmd_line);
 /* expand function */
 void			expand_ecmd(char **ecmd);
 unsigned char	*get_exit_status_p(void);

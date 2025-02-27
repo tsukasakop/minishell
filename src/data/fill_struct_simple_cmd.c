@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:33:55 by miyuu             #+#    #+#             */
-/*   Updated: 2025/02/27 14:35:24 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/27 15:28:57 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,23 @@
  *
  * ToDO:norminetteエラー
  */
-t_simple_cmd	*fill_struct_simple_cmd(const char *cmd_line)
+t_simple_cmd	*fill_struct_simple_cmd(char **scmd_texts)
 {
-	char			**pipeline;
 	t_simple_cmd	*head;
 	t_simple_cmd	*cur;
 	t_simple_cmd	*new_scmd;
 	int				i;
 
-	pipeline = pipe2simple_cmds(cmd_line);
-	if (!pipeline)
-		return (NULL);
 	i = 0;
 	head = NULL;
 	cur = NULL;
-	while (pipeline[i])
+	while (scmd_texts[i])
 	{
-		new_scmd = load_simple_cmd(ft_split(pipeline[i], ' '));
+		new_scmd = load_simple_cmd(ft_split(scmd_texts[i], ' '));
 		if (!new_scmd)
 		{
 			free_simple_cmds(head);
-			free(pipeline);
+			free(scmd_texts);
 			return (NULL);
 		}
 		if (!head)
@@ -49,6 +45,5 @@ t_simple_cmd	*fill_struct_simple_cmd(const char *cmd_line)
 		cur = new_scmd;
 		i++;
 	}
-	free(pipeline);
 	return (head);
 }
