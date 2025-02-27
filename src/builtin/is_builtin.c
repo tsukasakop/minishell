@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 22:11:20 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/27 22:11:27 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/27 23:00:18 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 bool	is_builtin(char *ecmd)
 {
+	if (ecmd == NULL)
+		return (false);
 	if (ft_strcmp(ecmd, "cd") == 0)
 		return (true);
 	if (ft_strcmp(ecmd, "echo") == 0)
