@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:36:06 by miyuu             #+#    #+#             */
-/*   Updated: 2025/02/22 22:36:27 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/27 03:08:40 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	**fill_words(char **src, int wc)
 		return (NULL);
 	while (src[i])
 	{
-		if (has_redirect(src[i]) == true && src[i + 1])
+		if (has_redirect(src[i]) != NULL && src[i + 1])
 			i++;
 		else
 		{
