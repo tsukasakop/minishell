@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe2scmd_list.c                                 :+:      :+:    :+:   */
+/*   pipe2scmd_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:23:38 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/27 16:05:30 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/27 22:49:59 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ t_simple_cmd	*pipe2scmd_list(const char *cmd_line)
 	if (!scmd_list)
 		return (NULL);
 	free(scmd_texts);
+	expand_ecmd(scmd_list->ecmd);
 	return (scmd_list);
 }

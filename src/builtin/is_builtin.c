@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_exit.c                                     :+:      :+:    :+:   */
+/*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/21 18:33:01 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/27 22:30:38 by tkondo           ###   ########.fr       */
+/*   Created: 2025/02/27 22:11:20 by tkondo            #+#    #+#             */
+/*   Updated: 2025/02/27 22:11:27 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-/*
- * Function:
- * ----------------------------
- *  reproduce exit function on bash.
- *  exit by argv[0] if it is provided, otherwise return last command status
- *
- *  TODO: handle errors
- */
-int	builtin_exit(char **argv)
+bool	is_builtin(char *ecmd)
 {
-	int	status;
-
-	if (argv == NULL || argv[0] == NULL)
-		status = (int)get_exit_status();
-	else
-		status = ft_atoi(argv[0]);
-	ft_fprintf(ft_stderr(), "exit\n");
-	exit(status);
+	if (ft_strcmp(ecmd, "cd") == 0)
+		return (true);
+	if (ft_strcmp(ecmd, "echo") == 0)
+		return (true);
+	if (ft_strcmp(ecmd, "env") == 0)
+		return (true);
+	if (ft_strcmp(ecmd, "exit") == 0)
+		return (true);
+	if (ft_strcmp(ecmd, "export") == 0)
+		return (true);
+	if (ft_strcmp(ecmd, "pwd") == 0)
+		return (true);
+	if (ft_strcmp(ecmd, "unset") == 0)
+		return (true);
+	return (false);
 }

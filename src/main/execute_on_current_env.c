@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute_simple_cmd.c                               :+:      :+:    :+:   */
+/*   execute_on_current_env.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:30:10 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/27 22:37:05 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/27 22:44:25 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,24 @@
 /*
  * Function:
  * ----------------------------
- * execute simple command
+ * execute on current env
  *
  * const t_simple_cmd: is raw simple command
  * int stdio_fd[2]: are fds to be redirect from stdio
  * int next_in_fd: is fd to be close on child process
  * char **envp: string if envp
  */
-bool	execute_simple_cmd(const t_simple_cmd *scmd_list, int stdio_fd[2],
-		int next_in_fd, char **envp)
+unsigned char	execute_on_current_env(char **ecmds, t_redirect *redir,
+		char **envp)
 {
-	const char	*path;
-	int			chpid;
+	unsigned char	status;
 
-	chpid = fork();
-	if (chpid)
-	{
-		free_redirects(scmd_list->redir);
-		free_ecmd(scmd_list->ecmd);
-		return (chpid != -1);
-	}
-	set_handlers_default();
-	close_fds_no_stdio(&next_in_fd, 1);
-	resolve_redirects(stdio_fd, scmd_list->redir);
+	// TODO: fdを元に戻すために保存
+	// fd_backup = backup_redirects(redir);
+	resolve_redirects((int [2]){0, 1}, redir);
 	// ToDo:e_cmd[0]がnullだった場合の処理を考える
-	if (is_builtin(scmd_list->ecmd[0]))
-		exit(execute_builtin(scmd_list->ecmd, envp));
-	path = get_path(scmd_list->ecmd[0]);
-	// TODO: replace execvp to execve
-	execvp(path, scmd_list->ecmd);
-	(void)envp;
-	exit(1);
+	status = execute_builtin(ecmds, envp);
+	// TODO: セットしたfdを元に戻す
+	// restore_redirects(fd_backup);
+	return (status);
 }

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/27 16:15:23 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/27 22:25:40 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 /* header file*/
 # include <ft_stdio.h>
+# include <ft_string.h>
 # include <libft.h>
 
 /* library */
@@ -71,6 +72,8 @@ struct				s_heredoc
 extern volatile unsigned char	g_signal;
 
 /* builtin function */
+bool			is_builtin(char *ecmd);
+unsigned char	execute_builtin(char **ecmds, char **envp);
 int				builtin_exit(char **argv);
 
 /* command function */
@@ -104,6 +107,7 @@ bool			execute_simple_cmd(const t_simple_cmd *scmd_list, \
 				int stdio_fd[2], int next_in_fd, char **envp);
 bool			init(void);
 int				main(int argc, char **argv, char **envp);
+unsigned char	execute_on_current_env(char **ecmds, t_redirect *redir, char **envp);
 
 /* pipe function */
 bool			iterate_pipefd(bool is_first, bool is_last, int (*stdio)[2], \
