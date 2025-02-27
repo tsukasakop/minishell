@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:04:20 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/19 15:46:41 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/26 16:09:18 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv, char **envp)
 	while (true)
 	{
 		input = get_input();
-		last_status = eval_text(input, envp);
+		last_status = eval_cmd_line(input, envp);
 		set_exit_status(last_status);
 		free(input);
 	}
