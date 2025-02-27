@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/27 15:20:32 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/27 16:06:08 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ bool			has_redirect(char *scmd);
 t_simple_cmd	*load_simple_cmd(char **scmd);
 void			parse_redirects(t_redirect **redir, t_heredoc **hd, \
 								char *scmd, char *path);
-// char			**pipe2simple_cmds(const char *pipe);
-t_simple_cmd	*pipe2simple_cmds(const char *cmd_line);
+// char			**pipe2scmd_list(const char *pipe);
+t_simple_cmd	*pipe2scmd_list(const char *cmd_line);
 /* expand function */
 void			expand_ecmd(char **ecmd);
 unsigned char	*get_exit_status_p(void);

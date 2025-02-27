@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/02/27 14:42:57 by miyuu            ###   ########.fr        #
+#    Updated: 2025/02/27 16:06:08 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ TARGET =\
 	data/parse_redirects\
 	data/fill_struct_simple_cmd\
 	data/load_simple_cmd\
-	data/pipe2simple_cmds\
+	data/pipe2scmd_list\
 	expand/expand_ecmd\
 	expand/get_exit_status\
 	expand/get_exit_status_p\

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:16:28 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/16 20:31:11 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/27 16:06:08 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	close_fds_safely(int *fds, size_t size)
  *
  * const char *pipe: string on pipeline
  */
-t_simple_cmd	*pipe2simple_cmds(const char *pipe)
+t_simple_cmd	*pipe2scmd_list(const char *pipe)
 {
 	return (ft_split(pipe, '|'));
 }
@@ -302,7 +302,7 @@ unsigned char	eval_pipe(const char *text, char **envp)
 	int					next_out_fd;
 	size_t				i;
 
-	cmds = pipe2simple_cmds(text);
+	cmds = pipe2scmd_list(text);
 	i = 0;
 	while (cmds[i])
 	{
