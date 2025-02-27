@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_heredocs.c                                    :+:      :+:    :+:   */
+/*   pipe2scmd_list.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 22:34:30 by miyuu             #+#    #+#             */
-/*   Updated: 2025/02/27 16:12:50 by miyuu            ###   ########.fr       */
+/*   Created: 2025/02/16 19:23:38 by tkondo            #+#    #+#             */
+/*   Updated: 2025/02/27 16:05:30 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:add_struct_heredoc
+ * Function:
  * ----------------------------
- * free memory of t_heredoc
+ * Expand pipeline string and returns list of simple commands
+ *
+ * const char *cmd_line: string on pipeline
  */
-void	free_heredocs(t_heredoc *hd)
+t_simple_cmd	*pipe2scmd_list(const char *cmd_line)
 {
-	t_heredoc	*tmp;
+	char			**scmd_texts;
+	t_simple_cmd	*scmd_list;
 
-	while (hd)
-	{
-		tmp = hd;
-		free(hd->eof);
-		free(hd->path);
-		hd = hd->next;
-		free(tmp);
-	}
+	scmd_texts = ft_split(cmd_line, '|');
+	if (!scmd_texts)
+		return (NULL);
+	scmd_list = fill_struct_simple_cmd(scmd_texts);
+	if (!scmd_list)
+		return (NULL);
+	free(scmd_texts);
+	return (scmd_list);
 }

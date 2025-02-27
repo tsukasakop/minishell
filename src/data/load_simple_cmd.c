@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/22 22:36:14 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/27 14:41:16 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,44 +17,44 @@
  * ----------------------------
  *
  * Parses a simple command and returns a t_simple_cmd
- * containing redirections and words.
+ * containing redirections and ecmd.
  *
  */
-t_simple_cmd	*load_simple_cmd(char **cmds_text)
+t_simple_cmd	*load_simple_cmd(char **scmd)
 {
 	size_t				i;
 	size_t				wc;
-	t_simple_cmd		*scmd;
-	t_heredoc			**here;
+	t_simple_cmd		*scmd_list;
+	t_heredoc			**hd;
 
-	here = NULL;
-	scmd = malloc(sizeof(t_simple_cmd));
-	if (!scmd)
+	hd = NULL;
+	scmd_list = malloc(sizeof(t_simple_cmd));
+	if (!scmd_list)
 	{
-		free(cmds_text);
+		free(scmd);
 		return (NULL);
 	}
-	scmd->reds = NULL;
-	scmd->next = NULL;
+	scmd_list->redir = NULL;
+	scmd_list->next = NULL;
 	i = 0;
 	wc = 0;
-	while (cmds_text[i])
+	while (scmd[i])
 	{
-		if (has_redirect(cmds_text[i]) && cmds_text[i + 1])
+		if (has_redirect(scmd[i]) && scmd[i + 1])
 		{
-			parse_redirects(&scmd->reds, here, cmds_text[i], cmds_text[i + 1]);
+			parse_redirects(&scmd_list->redir, hd, scmd[i], scmd[i + 1]);
 			i++;
 		}
 		else
 			wc++;
 		i++;
 	}
-	scmd->words = fill_words(cmds_text, wc);
-	if (!scmd->words)
+	scmd_list->ecmd = fill_ecmd(scmd, wc);
+	if (!scmd_list->ecmd)
 	{
-		free(cmds_text);
+		free(scmd);
 		return (NULL);
 	}
-	free(cmds_text);
-	return (scmd);
+	free(scmd);
+	return (scmd_list);
 }

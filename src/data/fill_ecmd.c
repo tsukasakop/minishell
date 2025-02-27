@@ -1,33 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_words.c                                       :+:      :+:    :+:   */
+/*   fill_ecmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 19:26:32 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/25 02:23:46 by miyuu            ###   ########.fr       */
+/*   Created: 2025/02/22 22:36:06 by miyuu             #+#    #+#             */
+/*   Updated: 2025/02/26 12:05:35 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:
+ * Function:fill_ecmd
  * ----------------------------
- * free memory of words
+ * Returns an array only strings without redirects.
+ * ToDO:norminetteエラー
  */
-void	free_words(char **words)
+char	**fill_ecmd(char **src, int wc)
 {
-	int	i;
+	char	**ecmd;
+	int		i;
+	int		j;
 
 	i = 0;
-	if (words == NULL)
-		return ;
-	while (words[i])
+	j = 0;
+	ecmd = (char **)malloc(sizeof(char *) * (wc + 1));
+	if (!ecmd)
+		return (NULL);
+	while (src[i])
 	{
-		free(words[i]);
+		if (has_redirect(src[i]) == true && src[i + 1])
+			i++;
+		else
+		{
+			ecmd[j] = ft_strdup(src[i]);
+			if (!ecmd[j])
+			{
+				free_ecmd(ecmd);
+				return (NULL);
+			}
+			j++;
+		}
 		i++;
 	}
-	free(words);
+	ecmd[j] = NULL;
+	return (ecmd);
 }

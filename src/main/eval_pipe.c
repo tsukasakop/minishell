@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/27 14:51:51 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/27 18:55:57 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
  * ----------------------------
  * Execute pipeline
  *
- * const char* textt: string of pipeline
+ * const char* cmd_line: string of pipeline
  * char **envp: string of envp
  */
-unsigned char	eval_pipe(const char *text, char **envp)
+unsigned char	eval_pipe(const char *cmd_line, char **envp)
 {
 	const t_simple_cmd	*scmd_list;
 	t_simple_cmd		*cur;
@@ -28,13 +28,12 @@ unsigned char	eval_pipe(const char *text, char **envp)
 	int					next_in_fd;
 	t_heredoc			*hd_list;
 
-	//ToDo:fill_struct_simple_cmdにheredocも渡す。fill_struct_simple_cmd(text, &scmd_list, &hd_list);になる
-	scmd_list = fill_struct_simple_cmd(text);
+	//ToDo:fill_struct_simple_cmdにheredocも渡す。
+	//fill_struct_simple_cmd(cmd_line, &scmd_list, &hd_list);になる
+	scmd_list = pipe2scmd_list(cmd_line);
 	hd_list = NULL;
-	//ToDo:ヒアドクの入力を取得する処理を追加
 	if (!write_heredocs(hd_list))
 		return (0);
-	//TODO: free_heredoc(hd_list);
 	stdio_fd[0] = STDIN_FILENO;
 	stdio_fd[1] = STDOUT_FILENO;
 	next_in_fd = STDIN_FILENO;
@@ -52,6 +51,7 @@ unsigned char	eval_pipe(const char *text, char **envp)
 		execute_simple_cmd(cur, stdio_fd, next_in_fd, envp);
 		cur = cur->next;
 	}
+	free_heredoc(hd_list);
 	free_simple_cmds((t_simple_cmd *)cur);
 	close_fds_no_stdio((int [3]){stdio_fd[0], stdio_fd[1], next_in_fd}, 3);
 	return (wait_status());
