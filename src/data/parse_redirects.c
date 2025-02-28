@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:35:26 by miyuu             #+#    #+#             */
-/*   Updated: 2025/02/28 19:47:45 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/28 20:01:51 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,11 @@ char	*get_redirect_path(char *redir_symbol, char *next_word)
 		return (next_word);
 
 	next = has_redirect(redir_symbol);
-
 	if (!next)
 		return (redir_symbol);
 
 	len = next - redir_symbol;
-	path = strndup(redir_symbol, len);
+	path = ft_strndup(redir_symbol, len);
 	return (path);
 }
 
@@ -90,5 +89,4 @@ void	parse_redirects(t_redirect **redir, t_heredoc **hd, \
 			redir_symbol++;
 		redir_symbol = has_redirect(redir_symbol);
 	}
-
 }
