@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/02/28 16:13:43 by tkondo           ###   ########.fr        #
+#    Updated: 2025/02/28 18:45:32 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,15 +36,15 @@ TARGET =\
 	data/free_simple_cmds\
 	data/add_struct_heredoc\
 	data/free_heredocs\
-	data/free_ecmd\
+	data/free_ecmds\
 	data/has_redirect\
-	data/fill_ecmd\
+	data/fill_ecmds\
 	data/add_struct_redirect\
 	data/parse_redirects\
 	data/fill_struct_simple_cmd\
 	data/load_simple_cmd\
 	data/pipe2scmd_list\
-	expand/expand_ecmd\
+	expand/expand_ecmds\
 	expand/get_exit_status\
 	expand/get_exit_status_p\
 	expand/set_exit_status\

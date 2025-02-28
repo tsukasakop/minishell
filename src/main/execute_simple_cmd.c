@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:30:10 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/27 22:37:05 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/28 18:47:58 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,18 @@ bool	execute_simple_cmd(const t_simple_cmd *scmd_list, int stdio_fd[2],
 	if (chpid)
 	{
 		free_redirects(scmd_list->redir);
-		free_ecmd(scmd_list->ecmd);
+		free_ecmds(scmd_list->ecmds);
 		return (chpid != -1);
 	}
 	set_handlers_default();
 	close_fds_no_stdio(&next_in_fd, 1);
 	resolve_redirects(stdio_fd, scmd_list->redir);
 	// ToDo:e_cmd[0]がnullだった場合の処理を考える
-	if (is_builtin(scmd_list->ecmd[0]))
-		exit(execute_builtin(scmd_list->ecmd, envp));
-	path = get_path(scmd_list->ecmd[0]);
+	if (is_builtin(scmd_list->ecmds[0]))
+		exit(execute_builtin(scmd_list->ecmds, envp));
+	path = get_path(scmd_list->ecmds[0]);
 	// TODO: replace execvp to execve
-	execvp(path, scmd_list->ecmd);
+	execvp(path, scmd_list->ecmds);
 	(void)envp;
 	exit(1);
 }
