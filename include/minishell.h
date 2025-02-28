@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/28 22:09:19 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/28 23:03:34 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ const char		*get_path(const char *ecmds);
 
 /* data function */
 void			add_struct_heredoc(t_heredoc **hd, char *eof, char *path);
-// void			add_struct_redirect(t_redirect **redir, int type, char *path);
 void			add_struct_redirect(t_redirect **redir, int type, \
 				int from_fd, char *path);
 t_simple_cmd	*fill_struct_simple_cmd(char **scmd_texts);
@@ -91,12 +90,10 @@ void			free_heredocs(t_heredoc *hd);
 void			free_redirects(t_redirect *redir);
 void			free_simple_cmds(t_simple_cmd *scmd_list);
 void			free_ecmds(char **ecmds);
-// bool			has_redirect(char *scmd);
+int				get_redirect_from_fd(char *cmds_text, int i);
+char			*get_redirect_path(char *redir_symbol, char *next_word);
 char			*has_redirect(char *word);
-
 t_simple_cmd	*load_simple_cmd(char **scmds);
-// void			parse_redirects(t_redirect **redir, t_heredoc **hd, \
-// 								char *scmd, char *path);
 void			parse_redirects(t_redirect **redir, t_heredoc **hd, \
 								char *word, char *next_word);
 t_simple_cmd	*pipe2scmd_list(const char *cmd_line);

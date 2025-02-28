@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/02/28 18:45:32 by tkondo           ###   ########.fr        #
+#    Updated: 2025/02/28 22:59:39 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,8 @@ TARGET =\
 	data/has_redirect\
 	data/fill_ecmds\
 	data/add_struct_redirect\
+	data/get_redirect_from_fd\
+	data/get_redirect_path\
 	data/parse_redirects\
 	data/fill_struct_simple_cmd\
 	data/load_simple_cmd\
