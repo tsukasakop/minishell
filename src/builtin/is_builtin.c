@@ -6,12 +6,17 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 22:11:20 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/27 23:00:18 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/28 16:31:15 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
+/*
+ * Function:
+ * ----------------------------
+ *  return true if arg text is builtin
+ */
 bool	is_builtin(char *ecmd)
 {
 	if (ecmd == NULL)
