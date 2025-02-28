@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/24 01:41:03 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/27 16:32:52 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,19 @@
  * ----------------------------
  * Execute pipeline
  *
- * const char* textt: string of pipeline
+ * const char* cmd_line: string of pipeline
  * char **envp: string of envp
  */
-unsigned char	eval_pipe(const char *text, char **envp)
+unsigned char	eval_pipe(const char *cmd_line, char **envp)
 {
 	const t_simple_cmd	*scmd_list;
 	t_simple_cmd		*cur;
 	int					stdio_fd[2];
 	int					next_in_fd;
 
-	//ToDo:fill_struct_simple_cmdにheredocも渡す。fill_struct_simple_cmd(text, &scmd_list, &hd_list);になる
-	scmd_list = fill_struct_simple_cmd(text);
+	//ToDo:fill_struct_simple_cmdにheredocも渡す。
+	//fill_struct_simple_cmd(cmd_line, &scmd_list, &hd_list);になる
+	scmd_list = pipe2scmd_list(cmd_line);
 	//ToDo:ヒアドクの入力を取得する処理を追加
 	stdio_fd[0] = STDIN_FILENO;
 	stdio_fd[1] = STDOUT_FILENO;

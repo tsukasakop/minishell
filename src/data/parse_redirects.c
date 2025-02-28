@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:35:26 by miyuu             #+#    #+#             */
-/*   Updated: 2025/02/22 22:48:55 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/27 14:35:35 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,21 @@
  *  perror(NULL);
  * add_struct_heredoc(here, path, "/tmp/test")
  */
-void	parse_redirects(t_redirect **reds, t_heredoc **here, \
-						char *word, char *path)
+void	parse_redirects(t_redirect **redir, t_heredoc **hd, \
+						char *scmd, char *path)
 {
 	size_t	len;
 
-	(void)here;
-	len = ft_strlen(word);
-	if ((ft_strnstr(word, "<<", len)))
+	(void)hd;
+	len = ft_strlen(scmd);
+	if ((ft_strnstr(scmd, "<<", len)))
 	{
-		add_struct_redirect(reds, REDIR_IN, path);
+		add_struct_redirect(redir, REDIR_IN, path);
 	}
-	else if ((ft_strnstr(word, ">>", len)))
-		add_struct_redirect(reds, REDIR_APPEND, path);
-	else if ((ft_strnstr(word, "<", len)))
-		add_struct_redirect(reds, REDIR_IN, path);
-	else if ((ft_strnstr(word, ">", len)))
-		add_struct_redirect(reds, REDIR_OUT, path);
+	else if ((ft_strnstr(scmd, ">>", len)))
+		add_struct_redirect(redir, REDIR_APPEND, path);
+	else if ((ft_strnstr(scmd, "<", len)))
+		add_struct_redirect(redir, REDIR_IN, path);
+	else if ((ft_strnstr(scmd, ">", len)))
+		add_struct_redirect(redir, REDIR_OUT, path);
 }

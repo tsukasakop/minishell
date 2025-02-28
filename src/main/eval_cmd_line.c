@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_words.c                                     :+:      :+:    :+:   */
+/*   eval_text.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 19:29:00 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/22 02:19:41 by miyuu            ###   ########.fr       */
+/*   Created: 2025/02/16 19:33:40 by tkondo            #+#    #+#             */
+/*   Updated: 2025/02/26 16:09:04 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 /*
  * Function:
  * ----------------------------
- * Expand words and replace them
+ * Execute text get from prompt
+ * 		(if not implement bonus, it do nothing but eval_pipe)
  *
- * char ***words: pointer to words to be expand and replaced
+ * const char *cmd_line: string to do as a command
+ * char **envp: string of envp
  */
-void	expand_words(char **words)
+unsigned char	eval_cmd_line(const char *cmd_line, char **envp)
 {
-	// TODO: expand environment variables
-	// TODO: remove quotes
-	(void)words;
+	unsigned char	status;
+
+	status = eval_pipe(cmd_line, envp);
+	return (status);
 }
