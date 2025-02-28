@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/02/27 23:17:08 by tkondo           ###   ########.fr        #
+#    Updated: 2025/02/28 16:13:43 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,9 @@ TARGET =\
 	pipe/wait_status\
 	read/flush_prompt\
 	read/get_input\
+	read/write_heredocs\
+	read/write_until_eof\
+	read/write_until_eof_on_chproc\
 	redirect/resolve_redirects\
 	redirect/connect_redirects_path\
 	redirect/redirects_stdin\
@@ -69,10 +72,12 @@ TARGET =\
 	signal/set_handlers_for_prompt\
 	signal/set_handlers_default\
 	signal/set_handlers_for_process\
+	signal/set_handlers_for_heredoc\
 	signal/set_signal\
 
 OBJS = $(addprefix $(OBJ_DIR)/,$(addsuffix .o,$(TARGET)))
 
+LIBFT = libft/libft.a
 
 # Build only
 all: $(NAME)
@@ -82,7 +87,7 @@ run: all
 	./$(NAME)
 
 # Build only
-$(NAME): libft $(OBJS)
+$(NAME): $(LIBFT) $(OBJS)
 	$(CC) $(OBJS) -o $@ $(LFLAGS)
 
 # Compile single object file
@@ -91,7 +96,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $< -o $@ $(CFLAGS)
 
 # Build libft
-libft:
+$(LIBFT):
 	make -C libft
 
 # Clean except ./minishell

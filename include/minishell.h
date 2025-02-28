@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/27 22:25:40 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/02/28 16:14:11 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 /* macro */
 # define PROMPT "minishell$ "
 # define SHELL_NAME "minishell: "
+# define ERR_HEREDOC "%swarning: here-document delimited by end-of-file (wanted `%s')\n"
 
 /* struct */
 typedef struct s_simple_cmd		t_simple_cmd;
@@ -106,7 +107,6 @@ unsigned char	eval_cmd_line(const char *cmd_line, char **envp);
 bool			execute_simple_cmd(const t_simple_cmd *scmd_list, \
 				int stdio_fd[2], int next_in_fd, char **envp);
 bool			init(void);
-int				main(int argc, char **argv, char **envp);
 unsigned char	execute_on_current_env(char **ecmds, t_redirect *redir, char **envp);
 
 /* pipe function */
@@ -117,6 +117,9 @@ unsigned char	wait_status(void);
 /* read function */
 void			flush_prompt(void);
 char			*get_input(void);
+void			write_until_eof(int fd, const char *hd_eof);
+bool			write_until_eof_on_chproc(int fd, const char *hd_eof);
+bool			write_heredocs(t_heredoc *hd);
 
 /* redirect function */
 void			connect_redirects_path(t_redirect *redir);
@@ -129,6 +132,7 @@ void			at_sigint(int signal);
 void			set_handlers_default(void);
 void			set_handlers_for_process(void);
 void			set_handlers_for_prompt(void);
+void			set_handlers_for_heredoc(void);
 void			set_signal(int signal);
 
 /* utils */
