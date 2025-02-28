@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute_builtin.c                                  :+:      :+:    :+:   */
+/*   builtin_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/27 22:45:22 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/28 19:28:00 by tkondo           ###   ########.fr       */
+/*   Created: 2025/02/21 18:33:01 by tkondo            #+#    #+#             */
+/*   Updated: 2025/02/28 19:26:54 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,23 @@
 /*
  * Function:
  * ----------------------------
- *  execute bultin command
+ *  show agument to stdout
  */
-unsigned char	execute_builtin(char **ecmds, char **envp)
+int	builtin_echo(char **argv)
 {
-	if (ft_strcmp(*ecmds, "exit") == 0)
-		return (builtin_exit(ecmds + 1));
-	if (ft_strcmp(*ecmds, "echo") == 0)
-		return (builtin_echo(ecmds + 1));
-	if (ft_strcmp(*ecmds, "env") == 0)
-		return (0);
-	if (ft_strcmp(*ecmds, "export") == 0)
-		return (0);
-	if (ft_strcmp(*ecmds, "unset") == 0)
-		return (0);
-	if (ft_strcmp(*ecmds, "pwd") == 0)
-		return (0);
-	if (ft_strcmp(*ecmds, "cd") == 0)
-		return (0);
-	(void)envp;
+	bool	opt_n;
+
+	opt_n = (*argv != NULL && ft_strcmp(*argv, "-n") == 0);
+	if (opt_n)
+		argv++;
+	while (*argv)
+	{
+		ft_printf("%s", *argv);
+		if (*(argv + 1))
+			ft_printf(" ");
+		argv++;
+	}
+	if (!opt_n)
+		ft_printf("\n");
 	return (0);
 }
