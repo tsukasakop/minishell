@@ -31,7 +31,7 @@ char	**fill_ecmds(char **src, int wc)
 		return (NULL);
 	while (src[i])
 	{
-		if (has_redirect(src[i]) == true && src[i + 1])
+		if (has_redirect(src[i]) != NULL && src[i + 1])
 			i++;
 		else
 		{

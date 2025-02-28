@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/28 18:16:44 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/28 18:48:40 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,9 @@ void			free_heredocs(t_heredoc *hd);
 void			free_redirects(t_redirect *redir);
 void			free_simple_cmds(t_simple_cmd *scmd_list);
 void			free_ecmds(char **ecmds);
-bool			has_redirect(char *scmd);
+// bool			has_redirect(char *scmd);
+char			*has_redirect(char *word);
+
 t_simple_cmd	*load_simple_cmd(char **scmds);
 void			parse_redirects(t_redirect **redir, t_heredoc **hd, \
 								char *scmd, char *path);

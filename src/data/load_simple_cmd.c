@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/28 18:17:17 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/28 18:48:56 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_simple_cmd	*load_simple_cmd(char **scmds)
 	wc = 0;
 	while (scmds[i])
 	{
-		if (has_redirect(scmds[i]) && scmds[i + 1])
+		if (has_redirect(scmds[i]) != NULL && scmds[i + 1])
 		{
 			parse_redirects(&scmd_list->redir, hd, scmds[i], scmds[i + 1]);
 			i++;
