@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_ecmd.c                                     :+:      :+:    :+:   */
+/*   expand_ecmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:29:00 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/26 11:40:50 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/28 18:08:22 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 /*
  * Function:
  * ----------------------------
- * Expand ecmd and replace them
+ * Expand ecmds and replace them
  *
- * char ***ecmd: pointer to ecmd to be expand and replaced
+ * char ***ecmds: pointer to ecmds to be expand and replaced
  */
-void	expand_ecmd(char **ecmd)
+void	expand_ecmds(char **ecmds)
 {
 	// TODO: expand environment variables
 	// TODO: remove quotes
-	(void)ecmd;
+	(void)ecmds;
 }
