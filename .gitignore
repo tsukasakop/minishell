@@ -1,11 +1,13 @@
 # System files
 .DS_Store
 *.swp
+/tags
 
 # Binary files
 minishell
 *.a
 *.o
+*.dSYM
 
 # Work directories
 /tkondo
