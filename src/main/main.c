@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:04:20 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/26 16:09:18 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/27 18:47:16 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	main(int argc, char **argv, char **envp)
 	{
 		input = get_input();
 		last_status = eval_cmd_line(input, envp);
+		if (g_signal)
+			last_status = 128 + g_signal;
 		set_exit_status(last_status);
 		free(input);
 	}

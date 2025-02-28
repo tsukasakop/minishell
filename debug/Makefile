@@ -6,10 +6,9 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/02/26 12:37:37 by tkondo           ###   ########.fr        #
+#    Updated: 2025/02/27 14:32:41 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 ROOT_DIR = ..
 RL_DIR = $(shell brew --prefix readline)
 
@@ -17,7 +16,7 @@ NAME = minishell.debug.o
 LIB_DEBUG = libdebug.a
 LIB_FT = $(ROOT_DIR)/libft/libft.a
 CC = cc
-AR = ar rcs
+AR = ar
 CFLAGS = \
 	-O0 \
 	-g \
@@ -39,18 +38,21 @@ SRC_EXT = .c
 OBJ_EXT = .debug.o
 SRCS = $(wildcard $(SRC_DIR)/*/*$(SRC_EXT))
 OBJS = $(SRCS:$(SRC_DIR)/%$(SRC_EXT)=$(OBJ_DIR)/%$(OBJ_EXT))
+OBJ_MAIN = $(OBJ_DIR)/main/main$(OBJ_EXT)
 
 ARG := $(word 2,$(MAKECMDGOALS))
 
 all: $(NAME) #Compile target with debug options
 
 $(NAME): $(LIB_FT) $(LIB_DEBUG)
-	$(CC) -L. -ldebug $(OBJ_DIR)/main/main$(OBJ_EXT) -o $(NAME) $(LIB_DIR) $(LFLAGS)
+	$(CC) -L. -ldebug $(OBJ_MAIN) -o $(NAME) $(LIB_DIR) $(LFLAGS)
 
 run-main: $(LIB_FT) $(LIB_DEBUG) #Compile and run by selecting file contain main
 ifeq ($(strip $(ARG)),)
 	@make run
 else
+	$(AR) rcs $(LIB_DEBUG) $(OBJ_MAIN)
+	$(AR) -d $(LIB_DEBUG) $(OBJ_MAIN)
 	$(CC) $(ARG) -o /tmp/$(basename $(notdir $(ARG)))$(OBJ_EXT) $(CFLAGS) $(LFLAGS) -L. -ldebug
 	/tmp/$(basename $(notdir $(ARG)))$(OBJ_EXT)
 endif
@@ -59,7 +61,7 @@ $(LIB_FT):
 	@make -C $(ROOT_DIR)/libft
 
 $(LIB_DEBUG): $(OBJS)
-	$(AR) $@ $?
+	$(AR) rcs $@ $?
 
 $(OBJ_DIR)/%$(OBJ_EXT): $(SRC_DIR)/%$(SRC_EXT)
 	@mkdir -p $(dir $@)
