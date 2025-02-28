@@ -13,21 +13,21 @@
 #include <minishell.h>
 
 /*
- * Function:fill_ecmd
+ * Function:fill_ecmds
  * ----------------------------
  * Returns an array only strings without redirects.
  * ToDO:norminetteエラー
  */
-char	**fill_ecmd(char **src, int wc)
+char	**fill_ecmds(char **src, int wc)
 {
-	char	**ecmd;
+	char	**ecmds;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	ecmd = (char **)malloc(sizeof(char *) * (wc + 1));
-	if (!ecmd)
+	ecmds = (char **)malloc(sizeof(char *) * (wc + 1));
+	if (!ecmds)
 		return (NULL);
 	while (src[i])
 	{
@@ -35,16 +35,16 @@ char	**fill_ecmd(char **src, int wc)
 			i++;
 		else
 		{
-			ecmd[j] = ft_strdup(src[i]);
-			if (!ecmd[j])
+			ecmds[j] = ft_strdup(src[i]);
+			if (!ecmds[j])
 			{
-				free_ecmd(ecmd);
+				free_ecmds(ecmds);
 				return (NULL);
 			}
 			j++;
 		}
 		i++;
 	}
-	ecmd[j] = NULL;
-	return (ecmd);
+	ecmds[j] = NULL;
+	return (ecmds);
 }
