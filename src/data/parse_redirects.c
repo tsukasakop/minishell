@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:35:26 by miyuu             #+#    #+#             */
-/*   Updated: 2025/02/28 20:01:51 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/28 22:09:30 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,16 @@ void	parse_redirects(t_redirect **redir, t_heredoc **hd, \
 	{
 		from_fd = has_from_fd(word, redir_symbol - word);
 		path = get_redirect_path(redir_symbol, next_word);
-		printf("redir_symbol = %p, word = %p, i = %ld\n", redir_symbol, word, redir_symbol - word);
-		printf("redir_symbol = %s, from_fd = %d, path = %s, \n", redir_symbol, from_fd, path);
-
 		if ((ft_strncmp(redir_symbol, "<<", 2)) == 0)
 		{
-			add_struct_redirect(redir, REDIR_IN, path);
+			add_struct_redirect(redir, REDIR_IN, from_fd, path);
 		}
 		else if ((ft_strncmp(redir_symbol, ">>", 2)) == 0)
-			add_struct_redirect(redir, REDIR_APPEND, path);
+			add_struct_redirect(redir, REDIR_APPEND, from_fd, path);
 		else if ((ft_strncmp(redir_symbol, "<", 1)) == 0)
-			add_struct_redirect(redir, REDIR_IN, path);
+			add_struct_redirect(redir, REDIR_IN, from_fd, path);
 		else if ((ft_strncmp(redir_symbol, ">", 1)) == 0)
-			add_struct_redirect(redir, REDIR_OUT, path);
+			add_struct_redirect(redir, REDIR_OUT, from_fd, path);
 
 		while (*redir_symbol && (*redir_symbol == '>' || *redir_symbol == '<'))
 			redir_symbol++;

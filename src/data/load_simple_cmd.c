@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/28 20:23:27 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/28 20:58:11 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_simple_cmd	*load_simple_cmd(char **scmds)
 		if (has_redirect(scmds[i]) != NULL)
 		{
 			parse_redirects(&scmd_list->redir, hd, scmds[i], scmds[i + 1]);
-			//ToDo:リダイレクトを含む文字列の最後もの字が記号かいなか関数分けする？
+			//ToDo:リダイレクトを含む文字列の最後の字が記号かいなか関数分けする？
 			len = ft_strlen(scmds[i]);
 			if (scmds[i + 1] != NULL && \
 				(scmds[i][len - 1] == '>' || scmds[i][len - 1] == '<'))

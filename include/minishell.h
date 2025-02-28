@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/28 19:48:29 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/28 22:09:19 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,9 @@ const char		*get_path(const char *ecmds);
 
 /* data function */
 void			add_struct_heredoc(t_heredoc **hd, char *eof, char *path);
-void			add_struct_redirect(t_redirect **redir, int type, char *path);
+// void			add_struct_redirect(t_redirect **redir, int type, char *path);
+void			add_struct_redirect(t_redirect **redir, int type, \
+				int from_fd, char *path);
 t_simple_cmd	*fill_struct_simple_cmd(char **scmd_texts);
 char			**fill_ecmds(char **src, int wc);
 void			free_heredocs(t_heredoc *hd);

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/28 20:19:44 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/28 22:01:57 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	print_commands(const t_simple_cmd *cmds)
 		t_redirect *red = cmds->redir;
 		while (red)
 		{
-			printf("  Redirect: type=%d, path=%s\n", red->type, red->path);
+			printf("  Redirect: type=%d, from_fd=%d, path=%s\n", red->type, red->from_fd, red->path);
 			red = red->next;
 		}
 		cmds = cmds->next;
