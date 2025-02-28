@@ -6,12 +6,11 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/28 22:01:57 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/01 02:59:10 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-
 #include <stdio.h>
 void	print_commands(const t_simple_cmd *cmds)
 {
@@ -19,21 +18,20 @@ void	print_commands(const t_simple_cmd *cmds)
 
 	while (cmds)
 	{
-		printf("Command[%d]:\n", i++);
-		printf("  ecmds:");
+		printf("\x1b[32mCommand[%d]:\n", i++);
+		printf("  ecmds:\x1b[39m");
 		for (int j = 0; cmds->ecmds[j]; j++)
-			printf(" %s,", cmds->ecmds[j]);
-		printf("\n");
+			printf(" \x1b[32m%s,\x1b[39m", cmds->ecmds[j]);
+		printf("\n\x1b[39m");
 		t_redirect *red = cmds->redir;
 		while (red)
 		{
-			printf("  Redirect: type=%d, from_fd=%d, path=%s\n", red->type, red->from_fd, red->path);
+			printf("  \x1b[32mRedirect: type=%u, from_fd=%d, path=%s\x1b[39m\n", red->type, red->from_fd, red->path);
 			red = red->next;
 		}
 		cmds = cmds->next;
 	}
 }
-
 /*
  * Function:
  * ----------------------------
