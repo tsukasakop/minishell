@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/01 14:22:15 by tkondo           ###   ########.fr        #
+#    Updated: 2025/03/01 18:20:50 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -154,7 +154,7 @@ $(INC_DEBUG): $(SRCS)
 	@./scripts/exclude-prototype.pl $(ROOT_DIR)/include/minishell.h > $(INC_DEBUG).tmp
 	@./scripts/extract-prototype.pl $(ROOT_DIR)/src/*/*.c >> $(INC_DEBUG).tmp
 	@sed -E '/^int[[:space:]]+main\(.*\);$$/d' $(INC_DEBUG).tmp > $(INC_DEBUG).tmp2
-	@find $(INC_DEBUG) >/dev/null && (diff $(INC_DEBUG).tmp2 $(INC_DEBUG) || cp $(INC_DEBUG).tmp2 $(INC_DEBUG))
+	@(find $(INC_DEBUG) >/dev/null && diff $(INC_DEBUG).tmp2 $(INC_DEBUG)) || cp $(INC_DEBUG).tmp2 $(INC_DEBUG)
 	@rm -f $(INC_DEBUG).tmp $(INC_DEBUG).tmp2
 
 %:
