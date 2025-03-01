@@ -1,8 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_cd.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
+/*   builtin_cd.c                                       :+:      :+:    :+:   */ /*                                                    +:+ +:+         +:+     */
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 16:47:30 by tkondo            #+#    #+#             */
@@ -53,5 +52,5 @@ int	builtin_cd(char **argv)
 		ft_printf("%s\n", next_dir);
 	free(old_dir);
 	old_dir = cur_dir;
-	return (1);
+	return (0);
 }
