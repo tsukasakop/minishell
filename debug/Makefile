@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/01 12:30:08 by tkondo           ###   ########.fr        #
+#    Updated: 2025/03/01 12:37:02 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,23 +71,25 @@ ARG := $(word 2,$(MAKECMDGOALS))
 
 # ---------- Build and Scrap ---------- #
 
-#Make executable with debug options
+#デバッグ用実行ファイルを作成
 all: $(NAME)
 
-#remove files except executable
+#実行ファイル以外の中間成果物を破棄
 clean:
 	rm -f $(LIB_DEBUG)
 	rm -f $(INC_DEBUG)
 	rm -f $(OBJS)
 
+#すべての成果物を破棄
 fclean: clean
 	rm -f $(NAME)
 
+#実行ファイルを再作成
 re: fclean all
 
 # ---------- Debug and Test ---------- #
 
-#Make and run executable by selecting main file
+#main関数を指定してビルド&実行
 run-main: $(LIB_FT) $(LIB_DEBUG)
 ifeq ($(strip $(ARG)),)
 	@make run
@@ -98,7 +100,7 @@ else
 	$(OUT_DIR)/$(basename $(notdir $(ARG)))
 endif
 
-#Build target and immediately run it
+#ビルド&実行
 run:
 	@make -s all
 ifeq ($(strip $(ARG)),)
@@ -107,7 +109,7 @@ else
 	@$(NAME) <$(ARG)
 endif
 
-#Run bash like minishell
+#bashをminishell風にして実行
 bash:
 ifeq ($(strip $(ARG)),)
 	@PS1="minishell$$ " bash --norc --noprofile -i
@@ -115,7 +117,7 @@ else
 	@PS1="minishell$$ " bash --norc --noprofile -i <$(ARG)
 endif
 
-#Build target and immediately run it via lldb
+#ビルドしてlldb上で実行
 lldb: all
 ifeq ($(strip $(ARG)),)
 	lldb $(NAME)
@@ -123,7 +125,7 @@ else
 	lldb $(NAME) -o "settings set target.input-path $(ARG)"
 endif
 
-#Run test after build
+#ビルドしてテストを実行
 test: all
 ifeq ($(strip $(ARG)),)
 	MISH=$(NAME) ./test.sh
