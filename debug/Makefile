@@ -6,15 +6,19 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/02/27 14:32:41 by tkondo           ###   ########.fr        #
+#    Updated: 2025/03/01 11:13:33 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 ROOT_DIR = ..
-RL_DIR = $(shell brew --prefix readline)
+OUT_DIR = /tmp/debug-minishell
 
-NAME = minishell.debug.o
-LIB_DEBUG = libdebug.a
+NAME = $(OUT_DIR)/minishell
+LIB_DEBUG = $(OUT_DIR)/libdebug.a
+INC_DEBUG = $(OUT_DIR)/include/minishell.h
+
+RL_DIR = $(shell brew --prefix readline)
 LIB_FT = $(ROOT_DIR)/libft/libft.a
+
 CC = cc
 AR = ar
 CFLAGS = \
@@ -22,20 +26,21 @@ CFLAGS = \
 	-g \
 	-fsanitize=address \
 	-Wall -Wextra -Werror \
-	-I$(ROOT_DIR)/include \
+	-I$(OUT_DIR)/include \
 	-I$(ROOT_DIR)/libft/include \
 	-I$(RL_DIR)/include \
 
 LFLAGS = \
 	-g \
 	-fsanitize=address \
-	-L../libft -lft \
+	-L$(OUT_DIR) -ldebug \
+	-L$(ROOT_DIR)/libft -lft \
 	-L$(RL_DIR)/lib -lreadline \
 
 SRC_DIR = $(ROOT_DIR)/src
-OBJ_DIR = $(ROOT_DIR)/bin
+OBJ_DIR = $(OUT_DIR)/bin
 SRC_EXT = .c
-OBJ_EXT = .debug.o
+OBJ_EXT = .o
 SRCS = $(wildcard $(SRC_DIR)/*/*$(SRC_EXT))
 OBJS = $(SRCS:$(SRC_DIR)/%$(SRC_EXT)=$(OBJ_DIR)/%$(OBJ_EXT))
 OBJ_MAIN = $(OBJ_DIR)/main/main$(OBJ_EXT)
@@ -45,34 +50,42 @@ ARG := $(word 2,$(MAKECMDGOALS))
 all: $(NAME) #Compile target with debug options
 
 $(NAME): $(LIB_FT) $(LIB_DEBUG)
-	$(CC) -L. -ldebug $(OBJ_MAIN) -o $(NAME) $(LIB_DIR) $(LFLAGS)
+	@mkdir -p $(dir $@)
+	$(CC) $(OBJ_MAIN) -o $(NAME) $(LIB_DIR) $(LFLAGS)
 
 run-main: $(LIB_FT) $(LIB_DEBUG) #Compile and run by selecting file contain main
 ifeq ($(strip $(ARG)),)
 	@make run
 else
-	$(AR) rcs $(LIB_DEBUG) $(OBJ_MAIN)
-	$(AR) -d $(LIB_DEBUG) $(OBJ_MAIN)
-	$(CC) $(ARG) -o /tmp/$(basename $(notdir $(ARG)))$(OBJ_EXT) $(CFLAGS) $(LFLAGS) -L. -ldebug
-	/tmp/$(basename $(notdir $(ARG)))$(OBJ_EXT)
+	@$(AR) rcs $(LIB_DEBUG) $(OBJ_MAIN)
+	@$(AR) -d $(LIB_DEBUG) $(OBJ_MAIN)
+	$(CC) $(ARG) -o $(OUT_DIR)/$(basename $(notdir $(ARG))) $(CFLAGS) $(LFLAGS)
+	$(OUT_DIR)/$(basename $(notdir $(ARG)))
 endif
 
 $(LIB_FT):
 	@make -C $(ROOT_DIR)/libft
 
+$(INC_DEBUG):
+	@mkdir -p $(dir $@)
+	./scripts/exclude-prototype.pl $(ROOT_DIR)/include/minishell.h > $(INC_DEBUG).tmp
+	./scripts/extract-prototype.pl $(ROOT_DIR)/src/*/*.c >> $(INC_DEBUG).tmp
+	grep -v -E 'int\t+main(.*)$$' $(INC_DEBUG).tmp > $(INC_DEBUG)
+
 $(LIB_DEBUG): $(OBJS)
 	$(AR) rcs $@ $?
 
-$(OBJ_DIR)/%$(OBJ_EXT): $(SRC_DIR)/%$(SRC_EXT)
+$(OBJ_DIR)/%$(OBJ_EXT): $(SRC_DIR)/%$(SRC_EXT) $(INC_DEBUG)
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE_DIR)
 
 run: #Build target and immediately run it
 	@make -s all
+
 ifeq ($(strip $(ARG)),)
-	@./$(NAME)
+	@$(NAME)
 else
-	@./$(NAME) <$(ARG)
+	@$(NAME) <$(ARG)
 endif
 
 bash: #Run bash like minishell
@@ -93,13 +106,14 @@ endif
 test: #Run test after build
 	@make -s
 ifeq ($(strip $(ARG)),)
-	MISH=./$(NAME) ./test.sh
+	MISH=$(NAME) ./test.sh
 else
-	MISH=./$(NAME) ./test.sh $(ARG)
+	MISH=$(NAME) ./test.sh $(ARG)
 endif
 
 clean:
 	rm -f $(LIB_DEBUG)
+	rm -f $(INC_DEBUG)
 	rm -f $(OBJS)
 
 fclean: clean
