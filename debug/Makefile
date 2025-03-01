@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/01 11:13:33 by tkondo           ###   ########.fr        #
+#    Updated: 2025/03/01 11:19:00 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 ROOT_DIR = ..
@@ -25,7 +25,6 @@ CFLAGS = \
 	-O0 \
 	-g \
 	-fsanitize=address \
-	-Wall -Wextra -Werror \
 	-I$(OUT_DIR)/include \
 	-I$(ROOT_DIR)/libft/include \
 	-I$(RL_DIR)/include \
