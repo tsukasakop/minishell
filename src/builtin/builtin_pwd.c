@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 14:22:54 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/01 14:28:52 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/01 15:50:11 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	builtin_pwd(char **argv)
 	(void)argv;
 	cwd = getcwd(NULL, 0);
 	if (cwd)
-		printf("%s\n", cwd);
+		ft_printf("%s\n", cwd);
 	free(cwd);
 	return (cwd == NULL);
 }
