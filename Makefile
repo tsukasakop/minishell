@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/02/28 19:14:29 by tkondo           ###   ########.fr        #
+#    Updated: 2025/03/01 14:27:18 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ OBJ_DIR = bin
 TARGET =\
 	builtin/builtin_echo\
 	builtin/builtin_exit\
+	builtin/builtin_pwd\
 	builtin/is_builtin\
 	command/get_path\
 	data/free_redirects\
