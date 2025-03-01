@@ -18,6 +18,10 @@ main()
     echo "path: $PATH" > "$DEBUG_FILE"
     pwd > "$DEBUG_FILE"
 
+    if [ -e "$PATH" ]; then
+        echo "$PATH is already exist" >/dev/stderr
+        return 1
+    fi
     /bin/mkdir -p "$DIR"
     /bin/cat <<EOF >"$PATH"
 # include <minishell.h>
@@ -30,6 +34,7 @@ void	$NAME()
 {
 }
 EOF
+    echo "$PATH created" >/dev/stderr
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
