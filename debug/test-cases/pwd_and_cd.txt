@@ -16,3 +16,7 @@ cd /tmp
 touch file
 cd file
 cd /not/exit/path
+cd
+cd /
+cd - | pwd
+pwd
