@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/02 20:48:20 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/02 22:04:42 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,8 +137,8 @@ bool			write_heredocs(t_heredoc *hd);
 
 /* redirect function */
 void			connect_redirects_path(t_redirect *redir);
-int				redirects_stdin(t_redirect *redir);
-int				redirects_stdout(t_redirect *redir);
+void			redirects_stdin(t_redirect *redir);
+void			redirects_stdout(t_redirect *redir);
 void			resolve_redirects(int stdio[2], t_redirect *redir);
 
 /* signal function */
