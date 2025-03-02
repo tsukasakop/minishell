@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/01 17:15:18 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/02 18:13:44 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * ----------------------------
  * Execute pipeline
  *
- * const char* cmd_line: string of pipeline
+ * const char *cmd_line: string to do as a command
  * char **envp: string of envp
  */
 unsigned char	eval_pipe(const char *cmd_line, char **envp)
