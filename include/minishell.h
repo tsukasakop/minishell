@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/28 23:03:34 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/02 16:28:02 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,9 @@ extern volatile unsigned char	g_signal;
 bool			is_builtin(char *ecmd);
 unsigned char	execute_builtin(char **ecmds, char **envp);
 int				builtin_exit(char **argv);
+int				builtin_echo(char **argv);
+int				builtin_pwd(char **argv);
+int				builtin_cd(char **argv);
 
 /* command function */
 const char		*get_path(const char *ecmds);

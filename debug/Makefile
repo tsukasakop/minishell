@@ -6,56 +6,138 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/02/27 14:32:41 by tkondo           ###   ########.fr        #
+#    Updated: 2025/03/01 18:20:50 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-ROOT_DIR = ..
-RL_DIR = $(shell brew --prefix readline)
 
-NAME = minishell.debug.o
-LIB_DEBUG = libdebug.a
+
+############### Build Preferrencess ###############
+
+
+# ---------- Path for Process ---------- #
+
+OUT_DIR = /tmp/debug-minishell
+NAME = $(OUT_DIR)/minishell
+LIB_DEBUG = $(OUT_DIR)/libdebug.a
+
+INC_DEBUG = $(OUT_DIR)/include/minishell.h
+OBJ_DIR = $(OUT_DIR)/bin
+
+# ----------  Dependency ---------- #
+
+OBJ_MAIN = $(OBJ_DIR)/main/main$(OBJ_EXT)
+ROOT_DIR = ..
+SRC_DIR = $(ROOT_DIR)/src
+
+RL_DIR = $(shell brew --prefix readline)
 LIB_FT = $(ROOT_DIR)/libft/libft.a
+
+# ---------- Compile  ---------- #
+
 CC = cc
-AR = ar
 CFLAGS = \
 	-O0 \
 	-g \
 	-fsanitize=address \
-	-Wall -Wextra -Werror \
-	-I$(ROOT_DIR)/include \
+	-I$(OUT_DIR)/include \
 	-I$(ROOT_DIR)/libft/include \
 	-I$(RL_DIR)/include \
 
+SRC_EXT = .c
+OBJ_EXT = .o
+SRCS = $(wildcard $(SRC_DIR)/*/*$(SRC_EXT))
+OBJS = $(SRCS:$(SRC_DIR)/%$(SRC_EXT)=$(OBJ_DIR)/%$(OBJ_EXT))
+
+# ---------- Archive ---------- #
+
+AR = ar
 LFLAGS = \
 	-g \
 	-fsanitize=address \
-	-L../libft -lft \
+	-L$(OUT_DIR) -ldebug \
+	-L$(ROOT_DIR)/libft -lft \
 	-L$(RL_DIR)/lib -lreadline \
 
-SRC_DIR = $(ROOT_DIR)/src
-OBJ_DIR = $(ROOT_DIR)/bin
-SRC_EXT = .c
-OBJ_EXT = .debug.o
-SRCS = $(wildcard $(SRC_DIR)/*/*$(SRC_EXT))
-OBJS = $(SRCS:$(SRC_DIR)/%$(SRC_EXT)=$(OBJ_DIR)/%$(OBJ_EXT))
-OBJ_MAIN = $(OBJ_DIR)/main/main$(OBJ_EXT)
+# ---------- Argument ---------- #
 
 ARG := $(word 2,$(MAKECMDGOALS))
 
-all: $(NAME) #Compile target with debug options
+# ----------  ---------- #
 
-$(NAME): $(LIB_FT) $(LIB_DEBUG)
-	$(CC) -L. -ldebug $(OBJ_MAIN) -o $(NAME) $(LIB_DIR) $(LFLAGS)
 
-run-main: $(LIB_FT) $(LIB_DEBUG) #Compile and run by selecting file contain main
+############### Build Rules ###############
+
+.PHONY: all libft run-main run lldb test clean fclean re
+
+# ---------- Build and Scrap ---------- #
+
+#デバッグ用実行ファイルを作成
+all: $(NAME)
+
+#実行ファイル以外の中間成果物を破棄
+clean:
+	rm -f $(LIB_DEBUG)
+	rm -f $(INC_DEBUG)
+	rm -f $(OBJS)
+
+#すべての成果物を破棄
+fclean: clean
+	rm -f $(NAME)
+
+#実行ファイルを再作成
+re: fclean all
+
+# ---------- Debug and Test ---------- #
+
+#main関数を指定してビルド&実行
+run-main: $(LIB_FT) $(LIB_DEBUG)
 ifeq ($(strip $(ARG)),)
 	@make run
 else
-	$(AR) rcs $(LIB_DEBUG) $(OBJ_MAIN)
-	$(AR) -d $(LIB_DEBUG) $(OBJ_MAIN)
-	$(CC) $(ARG) -o /tmp/$(basename $(notdir $(ARG)))$(OBJ_EXT) $(CFLAGS) $(LFLAGS) -L. -ldebug
-	/tmp/$(basename $(notdir $(ARG)))$(OBJ_EXT)
+	@$(AR) rcs $(LIB_DEBUG) $(OBJ_MAIN)
+	@$(AR) -d $(LIB_DEBUG) $(OBJ_MAIN)
+	$(CC) $(ARG) -o $(OUT_DIR)/$(basename $(notdir $(ARG))) $(CFLAGS) $(LFLAGS)
+	$(OUT_DIR)/$(basename $(notdir $(ARG)))
 endif
+
+#ビルド&実行
+run:
+	@make -s all
+ifeq ($(strip $(ARG)),)
+	@$(NAME)
+else
+	@$(NAME) <$(ARG)
+endif
+
+#bashをminishell風にして実行
+bash:
+ifeq ($(strip $(ARG)),)
+	@PS1="minishell$$ " bash --norc --noprofile -i
+else
+	@PS1="minishell$$ " bash --norc --noprofile -i <$(ARG)
+endif
+
+#ビルドしてlldb上で実行
+lldb: all
+ifeq ($(strip $(ARG)),)
+	lldb $(NAME)
+else
+	lldb $(NAME) -o "settings set target.input-path $(ARG)"
+endif
+
+#ビルドしてテストを実行
+test: all
+ifeq ($(strip $(ARG)),)
+	MISH=$(NAME) ./test.sh
+else
+	MISH=$(NAME) ./test.sh $(ARG)
+endif
+
+# ---------- File Dependency ---------- #
+
+$(NAME): $(LIB_FT) $(LIB_DEBUG)
+	@mkdir -p $(dir $@)
+	$(CC) $(OBJ_MAIN) -o $(NAME) $(LIB_DIR) $(LFLAGS)
 
 $(LIB_FT):
 	@make -C $(ROOT_DIR)/libft
@@ -63,51 +145,17 @@ $(LIB_FT):
 $(LIB_DEBUG): $(OBJS)
 	$(AR) rcs $@ $?
 
-$(OBJ_DIR)/%$(OBJ_EXT): $(SRC_DIR)/%$(SRC_EXT)
+$(OBJ_DIR)/%$(OBJ_EXT): $(SRC_DIR)/%$(SRC_EXT) $(INC_DEBUG)
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE_DIR)
 
-run: #Build target and immediately run it
-	@make -s all
-ifeq ($(strip $(ARG)),)
-	@./$(NAME)
-else
-	@./$(NAME) <$(ARG)
-endif
-
-bash: #Run bash like minishell
-ifeq ($(strip $(ARG)),)
-	@PS1="minishell$$ " bash --norc --noprofile -i
-else
-	@PS1="minishell$$ " bash --norc --noprofile -i <$(ARG)
-endif
-
-lldb: #Build target and immediately run it via lldb
-	@make -s all
-ifeq ($(strip $(ARG)),)
-	lldb ./$(NAME)
-else
-	lldb ./$(NAME) -o "settings set target.input-path $(ARG)"
-endif
-
-test: #Run test after build
-	@make -s
-ifeq ($(strip $(ARG)),)
-	MISH=./$(NAME) ./test.sh
-else
-	MISH=./$(NAME) ./test.sh $(ARG)
-endif
-
-clean:
-	rm -f $(LIB_DEBUG)
-	rm -f $(OBJS)
-
-fclean: clean
-	rm -f $(NAME)
-
-re: fclean all
-
-.PHONY: all libft run-main run lldb test clean fclean re
+$(INC_DEBUG): $(SRCS)
+	@mkdir -p $(dir $@)
+	@./scripts/exclude-prototype.pl $(ROOT_DIR)/include/minishell.h > $(INC_DEBUG).tmp
+	@./scripts/extract-prototype.pl $(ROOT_DIR)/src/*/*.c >> $(INC_DEBUG).tmp
+	@sed -E '/^int[[:space:]]+main\(.*\);$$/d' $(INC_DEBUG).tmp > $(INC_DEBUG).tmp2
+	@(find $(INC_DEBUG) >/dev/null && diff $(INC_DEBUG).tmp2 $(INC_DEBUG)) || cp $(INC_DEBUG).tmp2 $(INC_DEBUG)
+	@rm -f $(INC_DEBUG).tmp $(INC_DEBUG).tmp2
 
 %:
 	@:

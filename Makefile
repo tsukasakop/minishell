@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/02/28 22:59:39 by miyuu            ###   ########.fr        #
+#    Updated: 2025/03/02 16:27:55 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,10 @@ LFLAGS = \
 SRC_DIR = src
 OBJ_DIR = bin
 TARGET =\
+	builtin/builtin_echo\
 	builtin/builtin_exit\
+	builtin/builtin_pwd\
+	builtin/builtin_cd\
 	builtin/is_builtin\
 	command/get_path\
 	data/free_redirects\
