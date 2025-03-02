@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/01 16:49:16 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/02 19:22:33 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 /* struct */
 typedef struct s_simple_cmd		t_simple_cmd;
 typedef struct s_redirect		t_redirect;
+typedef struct s_text_list		t_text_list;
 typedef struct s_heredoc		t_heredoc;
 typedef enum e_redirect_type
 {
@@ -60,6 +61,13 @@ struct				s_redirect
 	int				from_fd;
 	const char		*path;
 	t_redirect		*next;
+};
+
+struct				s_text_list
+{
+	char			*text;
+	t_text_list		*prev;
+	t_text_list		*next;
 };
 
 struct				s_heredoc
