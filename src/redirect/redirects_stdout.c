@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 14:13:32 by miyuu             #+#    #+#             */
-/*   Updated: 2025/02/27 16:13:20 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/02 22:03:47 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,29 @@
 /*
  * Function:redirects_stdout
  * ----------------------------
- * Set stdout(1) to the fd of path.
+ * Set from_fd to the fd of path.
  */
-int	redirects_stdout(t_redirect *redir)
+void	redirects_stdout(t_redirect *redir)
 {
-	int	fd;
+	int	oldfd;
+	int	newfd;
 
-	fd = 0;
 	if (redir->type == REDIR_OUT)
 	{
-		fd = open(redir->path, O_WRONLY | O_TRUNC | O_CREAT, 0644);
-		if (fd == -1)
+		oldfd = open(redir->path, O_WRONLY | O_TRUNC | O_CREAT, 0644);
+		if (oldfd == -1)
 			perror_exit((char *)redir->path);
 	}
 	else if (redir->type == REDIR_APPEND)
 	{
-		fd = open(redir->path, O_WRONLY | O_APPEND | O_CREAT, 0644);
-		if (fd == -1)
+		oldfd = open(redir->path, O_WRONLY | O_APPEND | O_CREAT, 0644);
+		if (oldfd == -1)
 			perror_exit((char *)redir->path);
 	}
-	if (dup2(fd, STDOUT_FILENO) < 0)
+	else
+		return ;
+	newfd = redir->from_fd;
+	if (dup2(oldfd, newfd) < 0)
 		perror_exit(NULL);
-	return (fd);
+	close(oldfd);
 }
