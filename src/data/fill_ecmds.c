@@ -23,6 +23,7 @@ char	**fill_ecmds(char **src, int wc)
 	char	**ecmds;
 	int		i;
 	int		j;
+	int		len;
 
 	i = 0;
 	j = 0;
@@ -31,8 +32,14 @@ char	**fill_ecmds(char **src, int wc)
 		return (NULL);
 	while (src[i])
 	{
-		if (has_redirect(src[i]) == true && src[i + 1])
-			i++;
+		if (has_redirect(src[i]) != NULL)
+		{
+			//ToDo:リダイレクトを含む文字列の最後もの字が記号かいなか関数分けする？
+			len = ft_strlen(src[i]);
+			if (src[i + 1] != NULL && \
+				(src[i][len - 1] == '>' || src[i][len - 1] == '<'))
+				i++;
+		}
 		else
 		{
 			ecmds[j] = ft_strdup(src[i]);
