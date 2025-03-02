@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:35:26 by miyuu             #+#    #+#             */
-/*   Updated: 2025/02/27 14:35:35 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/02/28 23:03:51 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,30 @@
  * add_struct_heredoc(here, path, "/tmp/test")
  */
 void	parse_redirects(t_redirect **redir, t_heredoc **hd, \
-						char *scmd, char *path)
+						char *word, char *next_word)
 {
-	size_t	len;
+	int		from_fd;
+	char	*redir_symbol;
+	char	*path;
 
 	(void)hd;
-	len = ft_strlen(scmd);
-	if ((ft_strnstr(scmd, "<<", len)))
+	redir_symbol = has_redirect(word);
+	while (redir_symbol)
 	{
-		add_struct_redirect(redir, REDIR_IN, path);
+		from_fd = get_redirect_from_fd(word, redir_symbol - word);
+		path = get_redirect_path(redir_symbol, next_word);
+		if ((ft_strncmp(redir_symbol, "<<", 2)) == 0)
+		{
+			add_struct_redirect(redir, REDIR_IN, from_fd, path);
+		}
+		else if ((ft_strncmp(redir_symbol, ">>", 2)) == 0)
+			add_struct_redirect(redir, REDIR_APPEND, from_fd, path);
+		else if ((ft_strncmp(redir_symbol, "<", 1)) == 0)
+			add_struct_redirect(redir, REDIR_IN, from_fd, path);
+		else if ((ft_strncmp(redir_symbol, ">", 1)) == 0)
+			add_struct_redirect(redir, REDIR_OUT, from_fd, path);
+		while (*redir_symbol && (*redir_symbol == '>' || *redir_symbol == '<'))
+			redir_symbol++;
+		redir_symbol = has_redirect(redir_symbol);
 	}
-	else if ((ft_strnstr(scmd, ">>", len)))
-		add_struct_redirect(redir, REDIR_APPEND, path);
-	else if ((ft_strnstr(scmd, "<", len)))
-		add_struct_redirect(redir, REDIR_IN, path);
-	else if ((ft_strnstr(scmd, ">", len)))
-		add_struct_redirect(redir, REDIR_OUT, path);
 }
