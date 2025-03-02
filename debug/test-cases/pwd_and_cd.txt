@@ -1,0 +1,28 @@
+pwd
+cd -
+pwd
+cd .
+pwd
+cd -
+pwd
+cd ..
+pwd
+cd -
+pwd
+cd -
+pwd
+cd /tmp
+pwd
+cd
+pwd
+cd /tmp
+cd ~
+pwd
+cd /tmp
+touch file
+cd file
+cd /not/exit/path
+cd
+cd /
+cd - | pwd
+pwd
