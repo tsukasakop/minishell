@@ -6,60 +6,11 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:57:29 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/03 18:42:02 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/03 20:04:11 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-
-t_text_list	*new_text_list(char *str, int len)
-{
-	t_text_list	*node;
-
-	node = malloc(sizeof(t_text_list));
-	if (!node)
-		return (NULL);
-	node->text = ft_strndup(str, len);
-	node->prev = NULL;
-	node->next = NULL;
-	return (node);
-}
-
-void	add_text_list(t_text_list **head, t_text_list *new)
-{
-	t_text_list	*cur;
-
-	if (!*head)
-		*head = new;
-	else
-	{
-		cur = *head;
-		while (cur->next)
-			cur = cur->next;
-		cur->next = new;
-		new->prev = cur;
-	}
-}
-
-int	get_redir_length(char *scmd_text)
-{
-	int	con;
-
-	con = 0;
-	if (*scmd_text == '>' || *scmd_text == '<')
-	{
-		con++;
-		if (*(scmd_text + 1) && *scmd_text == *(scmd_text + 1))
-			con++;
-	}
-	return (con);
-}
-
-int	ft_isspace(int c)
-{
-	return (c == ' ' || c == '\t' || c == '\n' || \
-			c == '\v' || c == '\f' || c == '\r');
-}
 
 t_text_list	*tokenizer_scmd_text(char *scmd_text)
 {
@@ -93,10 +44,10 @@ t_text_list	*tokenizer_scmd_text(char *scmd_text)
 				i++;
 		}
 		len = i - start;
-		new = new_text_list(scmd_text + start, len);
+		new = new_struct_text_list(scmd_text + start, len);
 		if (!new)
 			return (NULL);
-		add_text_list(&head, new);
+		add_struct_text_list(&head, new);
 	}
 	return (head);
 }
