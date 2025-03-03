@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/03 13:22:25 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/03 17:57:36 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <string.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <errno.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <sys/types.h>
@@ -89,6 +90,7 @@ int				builtin_echo(char **argv);
 int				builtin_pwd(char **argv);
 int				builtin_cd(char **argv);
 int				builtin_env(char **argv);
+int				builtin_export(char **argv);
 
 /* command function */
 const char		*get_path(const char *ecmds);
@@ -110,6 +112,11 @@ t_simple_cmd	*load_simple_cmd(char **scmds);
 void			parse_redirects(t_redirect **redir, t_heredoc **hd, \
 								char *word, char *next_word);
 t_simple_cmd	*pipe2scmd_list(const char *cmd_line);
+
+/* env function */
+bool			is_valid_identifier(char *string);
+void			load_variable_assignment(char *string, char **name, char **value);
+bool			register_env(char *string);
 
 /* expand function */
 void			expand_ecmds(char **ecmds);

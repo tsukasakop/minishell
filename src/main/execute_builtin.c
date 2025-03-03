@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 22:45:22 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/03 12:52:09 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/03 17:15:37 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ unsigned char	execute_builtin(char **ecmds, char **envp)
 	if (ft_strcmp(*ecmds, "env") == 0)
 		return (builtin_env(ecmds + 1));
 	if (ft_strcmp(*ecmds, "export") == 0)
-		return (0);
+		return (builtin_export(ecmds + 1));
 	if (ft_strcmp(*ecmds, "unset") == 0)
 		return (0);
 	if (ft_strcmp(*ecmds, "pwd") == 0)
