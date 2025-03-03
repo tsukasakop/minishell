@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:57:29 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/03 20:26:42 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/04 01:35:09 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_text_list	*tokenizer_scmd_text(char *scmd_text)
 	t_text_list	*new;
 	t_text_list	*head;
 	int			start;
-	int			len;
+	size_t		len;
 	int			i;
 
 	head = NULL;
@@ -36,7 +36,7 @@ t_text_list	*tokenizer_scmd_text(char *scmd_text)
 		start = i;
 		if (ft_isdigit(scmd_text[i]))
 		{
-			while (scmd_text[i] && ft_isdigit(scmd_text[i]))
+			while (ft_isdigit(scmd_text[i]))
 				i++;
 			i += get_redir_length(&scmd_text[i]);
 		}
