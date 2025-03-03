@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:56:50 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/03 19:56:58 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/03 20:26:03 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
  * Function:new_struct_text_list
  * ----------------------------
+ * Creates a new t_text_list node with a str
  */
 t_text_list	*new_struct_text_list(char *str, int len)
 {

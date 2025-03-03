@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:54:40 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/03 19:55:10 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/03 20:24:08 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
  * Function:ft_isspace
  * ----------------------------
+ * Checks if a character is a whitespace.
  */
 int	ft_isspace(int c)
 {

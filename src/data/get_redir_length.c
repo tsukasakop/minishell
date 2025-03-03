@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:55:32 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/03 19:55:51 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/03 20:25:23 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 /*
  * Function:get_redir_length
  * ----------------------------
+ *  Returns the length of a redirection operator. (>, >>, <, <<).
+ * Even if there are three or more redirection symbols,
+ * they only count up to two.
  */
 int	get_redir_length(char *scmd_text)
 {

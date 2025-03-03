@@ -6,12 +6,17 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:57:29 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/03 20:04:11 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/03 20:26:42 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
+/*
+ * Function:
+ * ----------------------------
+ * Tokenizes scmd_text and returns the head of the t_text_list.
+ */
 t_text_list	*tokenizer_scmd_text(char *scmd_text)
 {
 	t_text_list	*new;
