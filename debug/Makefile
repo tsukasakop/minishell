@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/01 18:20:50 by tkondo           ###   ########.fr        #
+#    Updated: 2025/03/03 12:49:05 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -149,7 +149,7 @@ $(OBJ_DIR)/%$(OBJ_EXT): $(SRC_DIR)/%$(SRC_EXT) $(INC_DEBUG)
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE_DIR)
 
-$(INC_DEBUG): $(SRCS)
+$(INC_DEBUG): $(SRCS) $(ROOT_DIR)/include/minishell.h
 	@mkdir -p $(dir $@)
 	@./scripts/exclude-prototype.pl $(ROOT_DIR)/include/minishell.h > $(INC_DEBUG).tmp
 	@./scripts/extract-prototype.pl $(ROOT_DIR)/src/*/*.c >> $(INC_DEBUG).tmp
