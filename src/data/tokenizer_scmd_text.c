@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:57:29 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/03 17:43:37 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/03 17:53:38 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,3 @@ t_text_list	*tokenizer_scmd_text(char *scmd_text)
 	}
 	return (head);
 }
-
-
-+       //このsplitを変える↓
-+       scmds = ft_split(scmd_text, ' ');
-+       // t_text_list *scmds = tokenizer_scmd_text(scmd_text);
