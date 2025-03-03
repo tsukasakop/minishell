@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/02 16:27:55 by miyuu            ###   ########.fr        #
+#    Updated: 2025/03/03 13:17:15 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ TARGET =\
 	builtin/builtin_exit\
 	builtin/builtin_pwd\
 	builtin/builtin_cd\
+	builtin/builtin_env\
 	builtin/is_builtin\
 	command/get_path\
 	data/free_redirects\
