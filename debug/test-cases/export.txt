@@ -1,0 +1,15 @@
+export ft=42
+export 42=FT
+export a==
+export B=b=
+export aaa=iii uuu=eee
+
+export = ooo=kkk
+
+env | sort | grep -v ^_=
+
+export =ft
+export == ===
+export ^=a
+export %=ft
+export === a=1
