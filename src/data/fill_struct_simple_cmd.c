@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:33:55 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/03 17:49:34 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/03 19:31:22 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ t_simple_cmd	*fill_struct_simple_cmd(char **scmd_texts)
 	while (scmd_texts[i])
 	{
 		//このsplitを変える↓
-		// t_text_list *scmds = tokenizer_scmd_text(scmd_text);
-		// new_scmd = load_simple_cmd(scmds);
-		new_scmd = load_simple_cmd(ft_split(scmd_texts[i], ' '));
+		t_text_list *scmds = tokenizer_scmd_text(scmd_texts[i]);
+		new_scmd = load_simple_cmd(scmds);
+		// new_scmd = load_simple_cmd(ft_split(scmd_texts[i], ' '));
 		if (!new_scmd)
 		{
 			free_simple_cmds(head);
