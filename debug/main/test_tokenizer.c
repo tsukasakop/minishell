@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 12:39:47 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/03 19:50:18 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/03 20:31:53 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,6 @@ void	print_list(t_text_list *head)
 			printf(", ");
 	}
 	printf("]\n");
-}
-
-void	free_text_list(t_text_list *scmds)
-{
-	t_redirect	*tmp;
-
-	while (scmds)
-	{
-		tmp = scmds->next;
-		if (scmds->text)
-			free(scmds->text);
-		free(scmds);
-		scmds = tmp;
-	}
 }
 
 int	main(void)
