@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:57:29 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/03 18:26:08 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/03 18:42:02 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ int	get_redir_length(char *scmd_text)
 	return (con);
 }
 
+int	ft_isspace(int c)
+{
+	return (c == ' ' || c == '\t' || c == '\n' || \
+			c == '\v' || c == '\f' || c == '\r');
+}
+
 t_text_list	*tokenizer_scmd_text(char *scmd_text)
 {
 	t_text_list	*new;
@@ -67,7 +73,7 @@ t_text_list	*tokenizer_scmd_text(char *scmd_text)
 	i = 0;
 	while (scmd_text[i])
 	{
-		while (scmd_text[i] && isspace(scmd_text[i]))
+		while (scmd_text[i] && ft_isspace(scmd_text[i]))
 			i++;
 		if (!scmd_text[i])
 			break ;
@@ -82,11 +88,11 @@ t_text_list	*tokenizer_scmd_text(char *scmd_text)
 			i += get_redir_length(&scmd_text[i]);
 		else
 		{
-			while (scmd_text[i] && !isspace(scmd_text[i]) && scmd_text[i] != '>' && scmd_text[i] != '<')
+			while (scmd_text[i] && !ft_isspace(scmd_text[i]) && \
+					scmd_text[i] != '>' && scmd_text[i] != '<')
 				i++;
 		}
 		len = i - start;
-
 		new = new_text_list(scmd_text + start, len);
 		if (!new)
 			return (NULL);
