@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 19:52:48 by tkondo            #+#    #+#             */
-/*   Updated: 2025/01/04 11:47:12 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/03 11:31:05 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ int		ft_putenv(char *string);
 int		ft_unsetenv(const char *name);
 int		ft_initenv(char **envp);
 void	ft_clearenv(void);
+char	**ft_getenvp(void);
 
 #endif
