@@ -8,6 +8,7 @@ export = ooo=kkk
 
 env | sort | grep -v ^_=
 
+export aiueo=aiueo | env | sort | grep -v ^_=
 export =ft
 export == ===
 export ^=a
