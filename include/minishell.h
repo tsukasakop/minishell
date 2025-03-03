@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/03 17:57:36 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/03 18:31:37 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int				builtin_pwd(char **argv);
 int				builtin_cd(char **argv);
 int				builtin_env(char **argv);
 int				builtin_export(char **argv);
+int				builtin_unset(char **argv);
 
 /* command function */
 const char		*get_path(const char *ecmds);
