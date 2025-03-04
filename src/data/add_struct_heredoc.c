@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:34:48 by miyuu             #+#    #+#             */
-/*   Updated: 2025/02/27 16:12:49 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/04 15:58:49 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * ----------------------------
  * Fill t_heredoc with data
  */
-void	add_struct_heredoc(t_heredoc **hd, char *eof, char *path)
+void	add_struct_heredoc(t_heredoc **hd_list, char *eof, char *path)
 {
 	t_heredoc	*new;
 	t_heredoc	*tmp;
@@ -28,11 +28,11 @@ void	add_struct_heredoc(t_heredoc **hd, char *eof, char *path)
 	new->eof = ft_strdup(eof);
 	new->path = ft_strdup(path);
 	new->next = NULL;
-	if (*hd == NULL)
-		*hd = new;
+	if (*hd_list == NULL)
+		*hd_list = new;
 	else
 	{
-		tmp = *hd;
+		tmp = *hd_list;
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = new;
