@@ -6,15 +6,16 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:43:09 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/04 14:45:28 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/04 16:44:07 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:
+ * Function:create_tmp_file
  * ----------------------------
+ * Creates a unique /tmp/heredoc_* file and returns its path.
  */
 char	*create_tmp_file(void)
 {
