@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 02:17:24 by tkondo            #+#    #+#             */
-/*   Updated: 2025/01/04 12:29:06 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/03 11:12:39 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ t_htbl					htget(t_htbl ht, const char *key);
 void					htdelone(t_htbl ht, const char *key,
 							void (*del)(t_htnode *));
 void					htclear(t_htbl ht, void (*del)(t_htnode *));
+void					htiter(t_htbl ht, void (*f)(t_htnode *, void *),
+							void *p);
 
 #endif

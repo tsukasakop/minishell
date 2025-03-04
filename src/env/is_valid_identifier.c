@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   is_valid_identifier.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 20:27:02 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/03 13:21:42 by tkondo           ###   ########.fr       */
+/*   Created: 2025/03/03 17:53:53 by tkondo            #+#    #+#             */
+/*   Updated: 2025/03/03 17:53:57 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,20 @@
 /*
  * Function:
  * ----------------------------
- * Do anything before starting shell such as:
- *   setup signal handler
- *   setup function do on exit
- *   ...
- *
- * Returns: false if any unexpected result will happen, otherwise true
+ *  check if is the given string valid as identifier
  */
-bool	init(char **envp)
+bool	is_valid_identifier(char *string)
 {
-	rl_outstream = stderr;
-	set_handlers_for_process();
-	ft_initenv(envp);
+	if (string == NULL)
+		return (false);
+	if (!ft_isalpha(*string) && *string != '_')
+		return (false);
+	string++;
+	while (*string)
+	{
+		if (!ft_isalnum(*string) && *string != '_')
+			return (false);
+		string++;
+	}
 	return (true);
 }

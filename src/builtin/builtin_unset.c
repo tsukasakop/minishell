@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   builtin_unset.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 20:27:02 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/03 13:21:42 by tkondo           ###   ########.fr       */
+/*   Created: 2025/03/03 18:29:39 by tkondo            #+#    #+#             */
+/*   Updated: 2025/03/03 18:30:33 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:
+ * Function: builtin_unset
  * ----------------------------
- * Do anything before starting shell such as:
- *   setup signal handler
- *   setup function do on exit
- *   ...
- *
- * Returns: false if any unexpected result will happen, otherwise true
+ *  unset environment varibales
  */
-bool	init(char **envp)
+int	builtin_unset(char **argv)
 {
-	rl_outstream = stderr;
-	set_handlers_for_process();
-	ft_initenv(envp);
-	return (true);
+	size_t	i;
+
+	i = 0;
+	while (argv[i])
+	{
+		ft_unsetenv(argv[i]);
+		i++;
+	}
+	return (0);
 }

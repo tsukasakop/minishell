@@ -1,0 +1,12 @@
+export V1=1
+unset V1
+env | grep V1
+
+export UNSET1=1 UNSET2= UNSET3=3
+unset UNSET1 UNSET2 UNSET3
+env | grep UNSET
+
+
+export V1=1
+echo | unset V1
+env | grep V1

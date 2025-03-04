@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   builtin_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 20:27:02 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/03 13:21:42 by tkondo           ###   ########.fr       */
+/*   Created: 2025/03/03 12:51:45 by tkondo            #+#    #+#             */
+/*   Updated: 2025/03/03 17:15:00 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:
+ * Function: builtin_env
  * ----------------------------
- * Do anything before starting shell such as:
- *   setup signal handler
- *   setup function do on exit
- *   ...
- *
- * Returns: false if any unexpected result will happen, otherwise true
+ *  show environment variables
  */
-bool	init(char **envp)
+int	builtin_env(char **argv)
 {
-	rl_outstream = stderr;
-	set_handlers_for_process();
-	ft_initenv(envp);
-	return (true);
+	char	**envp;
+	char	**envp_bak;
+
+	(void)argv;
+	envp = ft_getenvp();
+	if (envp == NULL)
+		return (1);
+	envp_bak = envp;
+	while (*envp != NULL)
+	{
+		ft_printf("%s\n", *envp);
+		free(*envp);
+		envp++;
+	}
+	free(envp_bak);
+	return (0);
 }

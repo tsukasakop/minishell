@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   ft_htbl2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 20:27:02 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/03 13:21:42 by tkondo           ###   ########.fr       */
+/*   Created: 2025/03/03 12:18:31 by tkondo            #+#    #+#             */
+/*   Updated: 2025/03/03 12:18:33 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "ft_htbl.h"
+#include "ft_stdlib.h"
+#include "ft_string.h"
+#include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
 
-/*
- * Function:
- * ----------------------------
- * Do anything before starting shell such as:
- *   setup signal handler
- *   setup function do on exit
- *   ...
- *
- * Returns: false if any unexpected result will happen, otherwise true
- */
-bool	init(char **envp)
+void	htiter(t_htbl ht, void (*f)(t_htnode *, void *), void *p)
 {
-	rl_outstream = stderr;
-	set_handlers_for_process();
-	ft_initenv(envp);
-	return (true);
+	int			h;
+	t_htnode	*node;
+	t_htnode	*_node;
+
+	h = 0;
+	while (h < HTSIZE)
+	{
+		node = ht[h];
+		while (node)
+		{
+			_node = node->next;
+			f(node, p);
+			node = _node;
+		}
+		h++;
+	}
 }

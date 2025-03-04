@@ -6,7 +6,11 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2025/03/04 14:50:23 by miyuu            ###   ########.fr        #
+=======
+#    Updated: 2025/03/04 14:38:29 by tkondo           ###   ########.fr        #
+>>>>>>> develop
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +37,9 @@ TARGET =\
 	builtin/builtin_exit\
 	builtin/builtin_pwd\
 	builtin/builtin_cd\
+	builtin/builtin_env\
+	builtin/builtin_export\
+	builtin/builtin_unset\
 	builtin/is_builtin\
 	command/get_path\
 	data/free_redirects\
@@ -57,6 +64,9 @@ TARGET =\
 	data/new_struct_text_list\
 	data/create_tmp_file\
 	data/handle_heredoc\
+	env/is_valid_identifier\
+	env/load_variable_assignment\
+	env/register_env\
 	expand/expand_ecmds\
 	expand/get_exit_status\
 	expand/get_exit_status_p\

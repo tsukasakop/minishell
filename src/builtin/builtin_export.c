@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 20:27:02 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/03 13:21:42 by tkondo           ###   ########.fr       */
+/*   Created: 2025/03/03 17:07:28 by tkondo            #+#    #+#             */
+/*   Updated: 2025/03/03 18:09:49 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:
+ * Function: builtin_export
  * ----------------------------
- * Do anything before starting shell such as:
- *   setup signal handler
- *   setup function do on exit
- *   ...
  *
- * Returns: false if any unexpected result will happen, otherwise true
  */
-bool	init(char **envp)
+int	builtin_export(char **argv)
 {
-	rl_outstream = stderr;
-	set_handlers_for_process();
-	ft_initenv(envp);
-	return (true);
+	size_t	i;
+	bool	success;
+
+	i = 0;
+	// TODO: export用の表示に変更する
+	if (argv[i] == NULL)
+		return (builtin_env(NULL));
+	success = true;
+	while (argv[i] != NULL)
+	{
+		success = (register_env(argv[i]) && success);
+		i++;
+	}
+	return (!success);
 }
