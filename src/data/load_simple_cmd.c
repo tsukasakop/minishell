@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/28 20:58:11 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/04 13:21:09 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,46 +20,48 @@
  * containing redirections and ecmds.
  *
  */
-t_simple_cmd	*load_simple_cmd(char **scmds)
+t_simple_cmd	*load_simple_cmd(t_text_list *text_list)
 {
-	size_t				i;
 	size_t				wc;
 	t_simple_cmd		*scmd_list;
 	t_heredoc			**hd;
 	int					len;
+	t_text_list			*cur;
 
 	hd = NULL;
 	scmd_list = malloc(sizeof(t_simple_cmd));
 	if (!scmd_list)
 	{
-		free(scmds);
+		free_text_list(text_list);
 		return (NULL);
 	}
 	scmd_list->redir = NULL;
 	scmd_list->next = NULL;
-	i = 0;
 	wc = 0;
-	while (scmds[i])
+	cur = text_list;
+	//Todo;リダイレクトを構造体に格納する&text_listから削除するwhile
+	while (cur)
 	{
-		if (has_redirect(scmds[i]) != NULL)
+		if (has_redirect(cur->text) != NULL)
 		{
-			parse_redirects(&scmd_list->redir, hd, scmds[i], scmds[i + 1]);
+			if (cur->next)
+				parse_redirects(&scmd_list->redir, hd, cur->text, cur->next->text);
+			else
+				parse_redirects(&scmd_list->redir, hd, cur->text, NULL);
 			//ToDo:リダイレクトを含む文字列の最後の字が記号かいなか関数分けする？
-			len = ft_strlen(scmds[i]);
-			if (scmds[i + 1] != NULL && \
-				(scmds[i][len - 1] == '>' || scmds[i][len - 1] == '<'))
-				i++;
+			len = ft_strlen(cur->text);
+			if (cur->next && \
+				(cur->text[len - 1] == '>' || cur->text[len - 1] == '<'))
+				cur = cur->next;
 		}
 		else
 			wc++;
-		i++;
+		cur = cur->next;
 	}
-	scmd_list->ecmds = fill_ecmds(scmds, wc);
+	//ToDo:リダイレクトを除いたクォート処理・環境変数展開を、expand_ecmdsで行う。
+	expand_ecmds(text_list);
+	scmd_list->ecmds = fill_ecmds(text_list, wc);
 	if (!scmd_list->ecmds)
-	{
-		free(scmds);
 		return (NULL);
-	}
-	free(scmds);
 	return (scmd_list);
 }

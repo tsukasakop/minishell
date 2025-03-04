@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_ecmds.c                                     :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 19:29:00 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/04 02:25:28 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/03 19:54:40 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/03 20:24:08 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:
+ * Function:ft_isspace
  * ----------------------------
- * Expand text_list and replace them
- *
- * t_text_list *text_list: text_list to be expand and replaced
+ * Checks if a character is a whitespace.
  */
-void	expand_ecmds(t_text_list *text_list)
+int	ft_isspace(int c)
 {
-	// TODO: expand environment variables
-	// TODO: remove quotes
-	(void)text_list;
+	return (c == ' ' || c == '\t' || c == '\n' || \
+			c == '\v' || c == '\f' || c == '\r');
 }

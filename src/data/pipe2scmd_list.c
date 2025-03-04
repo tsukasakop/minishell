@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:23:38 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/28 18:48:14 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/04 02:20:58 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,5 @@ t_simple_cmd	*pipe2scmd_list(const char *cmd_line)
 	if (!scmd_list)
 		return (NULL);
 	free(scmd_texts);
-	expand_ecmds(scmd_list->ecmds);
 	return (scmd_list);
 }

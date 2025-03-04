@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/03 18:31:47 by tkondo           ###   ########.fr        #
+#    Updated: 2025/03/04 14:38:29 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ TARGET =\
 	data/free_redirects\
 	data/free_simple_cmds\
 	data/add_struct_heredoc\
+	data/free_text_list\
 	data/free_heredocs\
 	data/free_ecmds\
 	data/has_redirect\
@@ -52,6 +53,11 @@ TARGET =\
 	data/fill_struct_simple_cmd\
 	data/load_simple_cmd\
 	data/pipe2scmd_list\
+	data/tokenizer_scmd_text\
+	data/add_struct_text_list\
+	data/ft_isspace\
+	data/get_redir_length\
+	data/new_struct_text_list\
 	env/is_valid_identifier\
 	env/load_variable_assignment\
 	env/register_env\
