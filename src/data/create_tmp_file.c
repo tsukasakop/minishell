@@ -1,40 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_struct_heredoc.c                               :+:      :+:    :+:   */
+/*   create_tmp_file.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 22:34:48 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/04 15:58:49 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/04 14:43:09 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/04 16:44:07 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:add_struct_heredoc
+ * Function:create_tmp_file
  * ----------------------------
- * Fill t_heredoc with data
+ * Creates a unique /tmp/heredoc_* file and returns its path.
  */
-void	add_struct_heredoc(t_heredoc **hd_list, char *eof, char *path)
+char	*create_tmp_file(void)
 {
-	t_heredoc	*new;
-	t_heredoc	*tmp;
+	int		count;
+	char	*filename;
+	char	*num;
+	int		fd;
 
-	new = malloc(sizeof(t_heredoc));
-	if (!new)
-		return ;
-	new->eof = ft_strdup(eof);
-	new->path = ft_strdup(path);
-	new->next = NULL;
-	if (*hd_list == NULL)
-		*hd_list = new;
-	else
+	count = 0;
+	while (1)
 	{
-		tmp = *hd_list;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
+		num = ft_itoa(count++);
+		filename = ft_strjoin("/tmp/heredoc_", num);
+		free(num);
+		if (access(filename, F_OK) != 0)
+		{
+			fd = open(filename, O_CREAT | O_EXCL, 0600);
+			if (fd != -1)
+			{
+				close(fd);
+				return (filename);
+			}
+		}
+		free(filename);
 	}
 }

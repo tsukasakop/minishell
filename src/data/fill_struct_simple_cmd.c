@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:33:55 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/04 13:16:22 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/04 15:54:34 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * Parses const char *cmd_line and returns the head of the simple_cmd list.
  *
  */
-t_simple_cmd	*fill_struct_simple_cmd(char **scmd_texts)
+t_simple_cmd	*fill_struct_simple_cmd(char **scmd_texts, t_heredoc **hd_list)
 {
 	t_text_list		*text_list;
 	t_simple_cmd	*new_scmd;
@@ -32,7 +32,7 @@ t_simple_cmd	*fill_struct_simple_cmd(char **scmd_texts)
 	while (scmd_texts[i])
 	{
 		text_list = tokenizer_scmd_text(scmd_texts[i]);
-		new_scmd = load_simple_cmd(text_list);
+		new_scmd = load_simple_cmd(text_list, hd_list);
 		if (!new_scmd)
 		{
 			free_simple_cmds(head);
