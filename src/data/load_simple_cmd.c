@@ -6,33 +6,12 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/05 03:37:26 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/05 03:43:08 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	syntax_error_handle(char *msg)
-{
-	write(2, SHELL_NAME, ft_strlen(SHELL_NAME));
-	ft_fprintf(ft_stderr(), "syntax error near unexpected token `%s`\n", msg);
-}
-
-int	validate_redirect_syntax(t_text_list *cur)
-{
-	if (cur->next == NULL || has_redirect(cur->next->text))
-	{
-		if (cur->next == NULL)
-			syntax_error_handle("newline");
-		else
-			syntax_error_handle(cur->next->text);
-		//ToDO；終了ステータスどうする？exitできないから設定できない。
-		//いっそ子プロセスまで実行させて、pathがNULLだったらシンタックスにする？
-		//でも`ls -l > out>`みたいに、シンタックスエラーになるとき、outは作られないから子プロセス生成前にやるのか
-		return (-1);
-	}
-	return (0);
-}
 /*
  * Function:
  * ----------------------------

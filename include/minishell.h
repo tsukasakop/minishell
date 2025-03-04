@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/04 14:39:34 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/05 03:43:44 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,9 @@ t_text_list		*new_struct_text_list(char *str, size_t len);
 void			parse_redirects(t_redirect **redir, t_heredoc **hd, \
 								char *word, char *next_word);
 t_simple_cmd	*pipe2scmd_list(const char *cmd_line);
+void			syntax_error_handle(char *msg);
 t_text_list		*tokenizer_scmd_text(char *scmd_text);
+int				validate_redirect_syntax(t_text_list *cur);
 
 /* env function */
 bool			is_valid_identifier(char *string);
