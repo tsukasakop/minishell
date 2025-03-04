@@ -99,6 +99,7 @@ main()
         echo "  export MISH='/path/to/minishell'" >&2
         return 1
     fi
+    unset OLDPWD
     if [ -z "$1" ]; then
         test-files "$TESTCASE_DIR"
     elif [ -f "$1" ]; then

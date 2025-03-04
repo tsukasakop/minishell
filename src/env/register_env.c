@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   register_env.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 20:27:02 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/03 13:21:42 by tkondo           ###   ########.fr       */
+/*   Created: 2025/03/03 17:55:35 by tkondo            #+#    #+#             */
+/*   Updated: 2025/03/03 17:55:39 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,28 @@
 /*
  * Function:
  * ----------------------------
- * Do anything before starting shell such as:
- *   setup signal handler
- *   setup function do on exit
- *   ...
- *
- * Returns: false if any unexpected result will happen, otherwise true
+ *  manage applying variable assignment statament to env
  */
-bool	init(char **envp)
+bool	register_env(char *string)
 {
-	rl_outstream = stderr;
-	set_handlers_for_process();
-	ft_initenv(envp);
-	return (true);
+	char	*name;
+	char	*value;
+	bool	success;
+
+	load_variable_assignment(string, &name, &value);
+	if (name == NULL)
+	{
+		if (errno)
+			perror_exit(NULL);
+		else
+			ft_fprintf(ft_stderr(),
+				"bash: export: `%s': not a valid identifier\n", string);
+		return (false);
+	}
+	success = ft_setenv(name, value, true) != -1;
+	free(name);
+	free(value);
+	if (!success)
+		perror_exit(NULL);
+	return (success);
 }

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/04 02:26:09 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/04 14:39:34 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 /* header file*/
 # include <ft_stdio.h>
 # include <ft_string.h>
+# include <ft_stdlib.h>
 # include <libft.h>
 
 /* library */
@@ -26,6 +27,7 @@
 # include <string.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <errno.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <sys/types.h>
@@ -87,6 +89,9 @@ int				builtin_exit(char **argv);
 int				builtin_echo(char **argv);
 int				builtin_pwd(char **argv);
 int				builtin_cd(char **argv);
+int				builtin_env(char **argv);
+int				builtin_export(char **argv);
+int				builtin_unset(char **argv);
 
 /* command function */
 const char		*get_path(const char *ecmds);
@@ -109,11 +114,16 @@ int				get_redirect_from_fd(char *cmds_text, int i);
 char			*get_redirect_path(char *redir_symbol, char *next_word);
 char			*has_redirect(char *word);
 t_simple_cmd	*load_simple_cmd(t_text_list *text_list);
-t_text_list	*new_struct_text_list(char *str, size_t len);
+t_text_list		*new_struct_text_list(char *str, size_t len);
 void			parse_redirects(t_redirect **redir, t_heredoc **hd, \
 								char *word, char *next_word);
 t_simple_cmd	*pipe2scmd_list(const char *cmd_line);
 t_text_list		*tokenizer_scmd_text(char *scmd_text);
+
+/* env function */
+bool			is_valid_identifier(char *string);
+void			load_variable_assignment(char *string, char **name, char **value);
+bool			register_env(char *string);
 
 /* expand function */
 void			expand_ecmds(t_text_list *text_list);
@@ -126,7 +136,7 @@ unsigned char	eval_pipe(const char *cmd_line, char **envp);
 unsigned char	eval_cmd_line(const char *cmd_line, char **envp);
 bool			execute_simple_cmd(const t_simple_cmd *scmd_list, \
 				int stdio_fd[2], int next_in_fd, char **envp);
-bool			init(void);
+bool			init(char **envp);
 unsigned char	execute_on_current_env(char **ecmds, t_redirect *redir, char **envp);
 
 /* pipe function */
