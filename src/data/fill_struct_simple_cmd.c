@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:33:55 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/04 02:21:55 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/04 13:16:22 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ t_simple_cmd	*fill_struct_simple_cmd(char **scmd_texts)
 	while (scmd_texts[i])
 	{
 		text_list = tokenizer_scmd_text(scmd_texts[i]);
-		//ToDo:クォート処理・環境変数展開を、expand_ecmdsで行う
-		expand_ecmds(text_list);
 		new_scmd = load_simple_cmd(text_list);
 		if (!new_scmd)
 		{
