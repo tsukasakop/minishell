@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/04 14:38:29 by tkondo           ###   ########.fr        #
+#    Updated: 2025/03/05 00:43:48 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,9 +55,10 @@ TARGET =\
 	data/pipe2scmd_list\
 	data/tokenizer_scmd_text\
 	data/add_struct_text_list\
-	data/ft_isspace\
+	data/ft_isifs\
 	data/get_redir_length\
 	data/new_struct_text_list\
+	data/get_token_length\
 	env/is_valid_identifier\
 	env/load_variable_assignment\
 	env/register_env\

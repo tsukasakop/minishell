@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:57:29 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/04 13:31:32 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/05 00:38:35 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_text_list	*tokenizer_scmd_text(char *scmd_text)
 {
 	t_text_list	*new;
 	t_text_list	*head;
-	int			start;
 	size_t		len;
 	int			i;
 
@@ -29,30 +28,16 @@ t_text_list	*tokenizer_scmd_text(char *scmd_text)
 	i = 0;
 	while (scmd_text[i])
 	{
-		while (ft_isspace(scmd_text[i]))
+		while (ft_isifs(scmd_text[i]))
 			i++;
 		if (!scmd_text[i])
 			break ;
-		start = i;
-		if (ft_isdigit(scmd_text[i]))
-		{
-			while (ft_isdigit(scmd_text[i]))
-				i++;
-			i += get_redir_length(&scmd_text[i]);
-		}
-		else if (scmd_text[i] == '>' || scmd_text[i] == '<')
-			i += get_redir_length(&scmd_text[i]);
-		else
-		{
-			while (scmd_text[i] && !ft_isspace(scmd_text[i]) && \
-					scmd_text[i] != '>' && scmd_text[i] != '<')
-				i++;
-		}
-		len = i - start;
-		new = new_struct_text_list(scmd_text + start, len);
+		len = get_token_length(&scmd_text[i]);
+		new = new_struct_text_list(scmd_text + i, len);
 		if (!new)
 			return (NULL);
 		add_struct_text_list(&head, new);
+		i += len;
 	}
 	return (head);
 }

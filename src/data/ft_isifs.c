@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   ft_isifs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:54:40 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/03 20:24:08 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/04 23:19:50 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:ft_isspace
+ * Function:ft_isifs
  * ----------------------------
  * Checks if a character is a whitespace.
  */
-int	ft_isspace(int c)
+int	ft_isifs(int c)
 {
-	return (c == ' ' || c == '\t' || c == '\n' || \
-			c == '\v' || c == '\f' || c == '\r');
+	return (c == ' ' || c == '\t' || c == '\n' );
 }

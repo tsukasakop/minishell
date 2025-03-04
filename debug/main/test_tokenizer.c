@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 12:39:47 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/04 18:06:01 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/04 20:36:50 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int	main(void)
 		"echo \"aa aa",
 		"echo 'aa aa'",
 		"echo 42",
-		"echo 'aa aa'",
+		"echo \"Hello\"\'World'",
+		"echo $PATH",
 		"export 42=FT",	//数字が来た時のバグ対象
 		"env | grep 42tokyo",	//数字が来た時のバグ対象
 		NULL
@@ -59,3 +60,6 @@ int	main(void)
 	}
 	return (0);
 }
+
+// export 42=FT
+//          ↑
