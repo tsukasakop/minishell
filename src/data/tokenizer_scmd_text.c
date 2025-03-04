@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:57:29 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/04 01:35:09 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/04 13:31:32 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_text_list	*tokenizer_scmd_text(char *scmd_text)
 	i = 0;
 	while (scmd_text[i])
 	{
-		while (scmd_text[i] && ft_isspace(scmd_text[i]))
+		while (ft_isspace(scmd_text[i]))
 			i++;
 		if (!scmd_text[i])
 			break ;
