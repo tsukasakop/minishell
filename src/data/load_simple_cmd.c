@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/04 13:21:09 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/05 04:29:44 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_simple_cmd	*load_simple_cmd(t_text_list *text_list)
 		free_text_list(text_list);
 		return (NULL);
 	}
+	scmd_list->ecmds = NULL;
 	scmd_list->redir = NULL;
 	scmd_list->next = NULL;
 	wc = 0;
@@ -59,9 +60,12 @@ t_simple_cmd	*load_simple_cmd(t_text_list *text_list)
 		cur = cur->next;
 	}
 	//ToDo:リダイレクトを除いたクォート処理・環境変数展開を、expand_ecmdsで行う。
-	expand_ecmds(text_list);
-	scmd_list->ecmds = fill_ecmds(text_list, wc);
-	if (!scmd_list->ecmds)
-		return (NULL);
+	if (wc != 0)
+	{
+		expand_ecmds(text_list);
+		scmd_list->ecmds = fill_ecmds(text_list, wc);
+		if (!scmd_list->ecmds)
+			return (NULL);
+	}
 	return (scmd_list);
 }

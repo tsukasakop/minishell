@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/02 18:13:44 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/05 04:29:01 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ unsigned char	eval_pipe(const char *cmd_line, char **envp)
 	stdio_fd[1] = STDOUT_FILENO;
 	next_in_fd = STDIN_FILENO;
 	cur = (t_simple_cmd *)scmd_list;
-	if (cur && cur->next == NULL && is_builtin(cur->ecmds[0]))
+	if (cur && cur->next == NULL && cur->ecmds && is_builtin(cur->ecmds[0]))
 		return (execute_on_current_env(cur->ecmds, cur->redir, envp));
 	while (cur)
 	{
