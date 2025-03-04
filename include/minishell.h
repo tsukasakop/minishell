@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/04 14:39:34 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/04 15:18:24 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void			add_struct_heredoc(t_heredoc **hd, char *eof, char *path);
 void			add_struct_redirect(t_redirect **redir, int type, \
 				int from_fd, char *path);
 void			add_struct_text_list(t_text_list **head, t_text_list *new);
+char			*create_tmp_file(void);
 t_simple_cmd	*fill_struct_simple_cmd(char **scmd_texts);
 char			**fill_ecmds(t_text_list *scmds, int wc);
 void			free_text_list(t_text_list *scmds);
@@ -112,6 +113,8 @@ int				ft_isspace(int c);
 int				get_redir_length(char *scmd_text);
 int				get_redirect_from_fd(char *cmds_text, int i);
 char			*get_redirect_path(char *redir_symbol, char *next_word);
+void			handle_heredoc(t_redirect **redir, t_heredoc **hd, \
+				char *eof, int from_fd);
 char			*has_redirect(char *word);
 t_simple_cmd	*load_simple_cmd(t_text_list *text_list);
 t_text_list		*new_struct_text_list(char *str, size_t len);
