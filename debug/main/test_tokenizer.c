@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 12:39:47 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/04 01:30:08 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/04 18:06:01 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,17 @@ int	main(void)
 		"ls 123456789< out",
 		"ls 2 > out",
 		"ls '2'> out",
-		"ls -l > ",	//シンタックスエラーのテストケース
-		"ls -l >2>aiueo",	//シンタックスエラーのテストケース
-		"ls -l <<<aiueo",	//シンタックスエラーのテストケース
+		"ls 2> out1> out2",
+		"ls -l > ",	//bash: syntax error near unexpected token `newline'
+		"ls -l >2>aiueo",	//bash: syntax error near unexpected token `2'
+		"ls >2>",	//bash: syntax error near unexpected token `2'
+		"ls -l <<<aiueo",	//bash: syntax error near unexpected token `<'
 		"echo \"aa aa",
 		"echo 'aa aa'",
 		"echo 42",
+		"echo 'aa aa'",
+		"export 42=FT",	//数字が来た時のバグ対象
+		"env | grep 42tokyo",	//数字が来た時のバグ対象
 		NULL
 	};
 
