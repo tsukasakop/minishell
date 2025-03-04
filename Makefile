@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/05 00:43:48 by miyuu            ###   ########.fr        #
+#    Updated: 2025/03/05 02:39:57 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,9 @@ TARGET =\
 	data/get_redir_length\
 	data/new_struct_text_list\
 	data/get_token_length\
+	data/parse_general_token\
+	data/parse_number_redir_token\
+	data/skip_quote_text\
 	env/is_valid_identifier\
 	env/load_variable_assignment\
 	env/register_env\
