@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/02 22:04:42 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/04 02:26:09 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,22 +95,28 @@ const char		*get_path(const char *ecmds);
 void			add_struct_heredoc(t_heredoc **hd, char *eof, char *path);
 void			add_struct_redirect(t_redirect **redir, int type, \
 				int from_fd, char *path);
+void			add_struct_text_list(t_text_list **head, t_text_list *new);
 t_simple_cmd	*fill_struct_simple_cmd(char **scmd_texts);
-char			**fill_ecmds(char **src, int wc);
+char			**fill_ecmds(t_text_list *scmds, int wc);
+void			free_text_list(t_text_list *scmds);
 void			free_heredocs(t_heredoc *hd);
 void			free_redirects(t_redirect *redir);
 void			free_simple_cmds(t_simple_cmd *scmd_list);
 void			free_ecmds(char **ecmds);
+int				ft_isspace(int c);
+int				get_redir_length(char *scmd_text);
 int				get_redirect_from_fd(char *cmds_text, int i);
 char			*get_redirect_path(char *redir_symbol, char *next_word);
 char			*has_redirect(char *word);
-t_simple_cmd	*load_simple_cmd(char **scmds);
+t_simple_cmd	*load_simple_cmd(t_text_list *text_list);
+t_text_list	*new_struct_text_list(char *str, size_t len);
 void			parse_redirects(t_redirect **redir, t_heredoc **hd, \
 								char *word, char *next_word);
 t_simple_cmd	*pipe2scmd_list(const char *cmd_line);
+t_text_list		*tokenizer_scmd_text(char *scmd_text);
 
 /* expand function */
-void			expand_ecmds(char **ecmds);
+void			expand_ecmds(t_text_list *text_list);
 unsigned char	*get_exit_status_p(void);
 unsigned char	get_exit_status(void);
 void			set_exit_status(unsigned char st);

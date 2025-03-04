@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_ecmds.c                                     :+:      :+:    :+:   */
+/*   free_text_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 19:29:00 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/04 02:25:28 by miyuu            ###   ########.fr       */
+/*   Created: 2025/02/16 19:27:06 by tkondo            #+#    #+#             */
+/*   Updated: 2025/03/03 19:37:03 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,18 @@
 /*
  * Function:
  * ----------------------------
- * Expand text_list and replace them
- *
- * t_text_list *text_list: text_list to be expand and replaced
+ * free memory of text_list
  */
-void	expand_ecmds(t_text_list *text_list)
+void	free_text_list(t_text_list *scmds)
 {
-	// TODO: expand environment variables
-	// TODO: remove quotes
-	(void)text_list;
+	t_text_list	*tmp;
+
+	while (scmds)
+	{
+		tmp = scmds->next;
+		if (scmds->text)
+			free(scmds->text);
+		free(scmds);
+		scmds = tmp;
+	}
 }

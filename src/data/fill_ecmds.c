@@ -18,31 +18,31 @@
  * Returns an array only strings without redirects.
  * ToDO:norminetteエラー
  */
-char	**fill_ecmds(char **src, int wc)
+char	**fill_ecmds(t_text_list *scmds, int wc)
 {
-	char	**ecmds;
-	int		i;
-	int		j;
-	int		len;
+	char		**ecmds;
+	int			j;
+	int			len;
+	t_text_list	*cur;
 
-	i = 0;
 	j = 0;
 	ecmds = (char **)malloc(sizeof(char *) * (wc + 1));
 	if (!ecmds)
 		return (NULL);
-	while (src[i])
+	cur = scmds;
+	while (cur)
 	{
-		if (has_redirect(src[i]) != NULL)
+		if (has_redirect(cur->text) != NULL)
 		{
 			//ToDo:リダイレクトを含む文字列の最後もの字が記号かいなか関数分けする？
-			len = ft_strlen(src[i]);
-			if (src[i + 1] != NULL && \
-				(src[i][len - 1] == '>' || src[i][len - 1] == '<'))
-				i++;
+			len = ft_strlen(cur->text);
+			if (cur->next && \
+				(cur->text[len - 1] == '>' || cur->text[len - 1] == '<'))
+				cur = cur->next;
 		}
 		else
 		{
-			ecmds[j] = ft_strdup(src[i]);
+			ecmds[j] = ft_strdup(cur->text);
 			if (!ecmds[j])
 			{
 				free_ecmds(ecmds);
@@ -50,7 +50,7 @@ char	**fill_ecmds(char **src, int wc)
 			}
 			j++;
 		}
-		i++;
+		cur = cur->next;
 	}
 	ecmds[j] = NULL;
 	return (ecmds);

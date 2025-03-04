@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_ecmds.c                                     :+:      :+:    :+:   */
+/*   get_redir_length.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 19:29:00 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/04 02:25:28 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/03 19:55:32 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/04 14:12:47 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:
+ * Function:get_redir_length
  * ----------------------------
- * Expand text_list and replace them
- *
- * t_text_list *text_list: text_list to be expand and replaced
+ *  Returns the length of a redirection operator. (>, >>, <, <<).
+ * Even if there are three or more redirection symbols,
+ * they only count up to two.
  */
-void	expand_ecmds(t_text_list *text_list)
+int	get_redir_length(char *scmd_text)
 {
-	// TODO: expand environment variables
-	// TODO: remove quotes
-	(void)text_list;
+	int	con;
+	int	i;
+
+	con = 0;
+	i = 0;
+	if (scmd_text[i] == '>' || scmd_text[i] == '<')
+	{
+		con++;
+		if (scmd_text[i] == scmd_text[i + 1])
+			con++;
+	}
+	return (con);
 }
