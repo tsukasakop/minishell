@@ -6,12 +6,33 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/04 13:21:09 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/05 03:37:26 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
+void	syntax_error_handle(char *msg)
+{
+	write(2, SHELL_NAME, ft_strlen(SHELL_NAME));
+	ft_fprintf(ft_stderr(), "syntax error near unexpected token `%s`\n", msg);
+}
+
+int	validate_redirect_syntax(t_text_list *cur)
+{
+	if (cur->next == NULL || has_redirect(cur->next->text))
+	{
+		if (cur->next == NULL)
+			syntax_error_handle("newline");
+		else
+			syntax_error_handle(cur->next->text);
+		//ToDO；終了ステータスどうする？exitできないから設定できない。
+		//いっそ子プロセスまで実行させて、pathがNULLだったらシンタックスにする？
+		//でも`ls -l > out>`みたいに、シンタックスエラーになるとき、outは作られないから子プロセス生成前にやるのか
+		return (-1);
+	}
+	return (0);
+}
 /*
  * Function:
  * ----------------------------
@@ -44,10 +65,9 @@ t_simple_cmd	*load_simple_cmd(t_text_list *text_list)
 	{
 		if (has_redirect(cur->text) != NULL)
 		{
-			if (cur->next)
-				parse_redirects(&scmd_list->redir, hd, cur->text, cur->next->text);
-			else
-				parse_redirects(&scmd_list->redir, hd, cur->text, NULL);
+			if (validate_redirect_syntax(cur) == -1)
+				return (NULL);
+			parse_redirects(&scmd_list->redir, hd, cur->text, cur->next->text);
 			//ToDo:リダイレクトを含む文字列の最後の字が記号かいなか関数分けする？
 			len = ft_strlen(cur->text);
 			if (cur->next && \
