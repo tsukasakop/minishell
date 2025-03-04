@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/03 20:00:49 by miyuu            ###   ########.fr        #
+#    Updated: 2025/03/04 14:50:23 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,8 @@ TARGET =\
 	data/ft_isspace\
 	data/get_redir_length\
 	data/new_struct_text_list\
+	data/create_tmp_file\
+	data/handle_heredoc\
 	expand/expand_ecmds\
 	expand/get_exit_status\
 	expand/get_exit_status_p\

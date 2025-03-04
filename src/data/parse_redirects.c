@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:35:26 by miyuu             #+#    #+#             */
-/*   Updated: 2025/02/28 23:03:51 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/04 14:45:42 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ void	parse_redirects(t_redirect **redir, t_heredoc **hd, \
 		from_fd = get_redirect_from_fd(word, redir_symbol - word);
 		path = get_redirect_path(redir_symbol, next_word);
 		if ((ft_strncmp(redir_symbol, "<<", 2)) == 0)
-		{
-			add_struct_redirect(redir, REDIR_IN, from_fd, path);
-		}
+			handle_heredoc(redir, hd, next_word, from_fd);
 		else if ((ft_strncmp(redir_symbol, ">>", 2)) == 0)
 			add_struct_redirect(redir, REDIR_APPEND, from_fd, path);
 		else if ((ft_strncmp(redir_symbol, "<", 1)) == 0)
