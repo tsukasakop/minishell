@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:55:32 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/04 01:34:16 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/04 14:12:47 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	get_redir_length(char *scmd_text)
 	if (scmd_text[i] == '>' || scmd_text[i] == '<')
 	{
 		con++;
-		if (scmd_text[i + 1] && scmd_text[i] == scmd_text[i + 1])
+		if (scmd_text[i] == scmd_text[i + 1])
 			con++;
 	}
 	return (con);
