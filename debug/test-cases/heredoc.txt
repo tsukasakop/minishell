@@ -1,0 +1,41 @@
+cat <<EOF
+aiueo
+test
+EOF
+
+cat <<EOF | ls
+aiueo
+kakikukeko
+aaaa
+EOF
+
+cat <<EOF | ls | cat <<EOF
+this
+is
+first
+EOF
+i
+am
+hangry
+tenya
+ikitai
+EOF
+
+cat <<EOF <<EEE <<EOF
+aiueo
+test
+EEE
+aaaaa
+EEO
+EOOF
+EOF
+OEF
+EOF
+EEE
+EOF
+
+cat <<    EOF
+EOF
+
+< out | cat <<EOF
+EOF
