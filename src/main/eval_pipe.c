@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/02 18:13:44 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/04 16:26:42 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@ unsigned char	eval_pipe(const char *cmd_line, char **envp)
 	int					next_in_fd;
 	t_heredoc			*hd_list;
 
-	//ToDo:fill_struct_simple_cmdにheredocも渡す。
-	//fill_struct_simple_cmd(cmd_line, &scmd_list, &hd_list);になる
-	scmd_list = pipe2scmd_list(cmd_line);
 	hd_list = NULL;
+	scmd_list = pipe2scmd_list(cmd_line, &hd_list);
 	if (!write_heredocs(hd_list))
 		return (0);
 	stdio_fd[0] = STDIN_FILENO;

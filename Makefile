@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/05 14:37:44 by tkondo           ###   ########.fr        #
+#    Updated: 2025/03/05 18:43:33 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,8 @@ TARGET =\
 	data/ft_isspace\
 	data/get_redir_length\
 	data/new_struct_text_list\
+	data/create_tmp_file\
+	data/handle_heredoc\
 	env/is_valid_identifier\
 	env/load_variable_assignment\
 	env/register_env\
