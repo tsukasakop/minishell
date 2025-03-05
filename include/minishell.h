@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/06 02:14:43 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/06 02:57:40 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,15 +109,23 @@ void			free_heredocs(t_heredoc *hd);
 void			free_redirects(t_redirect *redir);
 void			free_simple_cmds(t_simple_cmd *scmd_list);
 void			free_ecmds(char **ecmds);
-int				ft_isspace(int c);
+int				ft_isifs(int c);
 int				get_redir_length(char *scmd_text);
 int				get_redirect_from_fd(char *cmds_text, int i);
 char			*get_redirect_path(char *redir_symbol, char *next_word);
+size_t			get_token_length(char *scmd_text);
 void			handle_heredoc(t_redirect **redir, t_heredoc **hd_list, \
 				char *eof, int from_fd);
 char			*has_redirect(char *word);
 t_simple_cmd	*load_simple_cmd(t_text_list *text_list, t_heredoc **hd_list);
 t_text_list		*new_struct_text_list(char *str, size_t len);
+void			parse_redirects(t_redirect **redir, t_heredoc **hd_list, \
+								char *word, char *next_word);
+size_t			parse_general_token(char *scmd_text);
+size_t			parse_number_redir_token(char *scmd_text);
+void			parse_redirects(t_redirect **redir, t_heredoc **hd, \
+								char *word, char *next_word);
+size_t			skip_quote_text(char *scmd_text, char quote);
 void			parse_redirects(t_redirect **redir, t_heredoc **hd_list, \
 								char *word, char *next_word);
 t_simple_cmd	*pipe2scmd_list(const char *cmd_line, t_heredoc **hd_list);
@@ -133,6 +141,9 @@ void			expand_ecmds(t_text_list *text_list);
 unsigned char	*get_exit_status_p(void);
 unsigned char	get_exit_status(void);
 void			set_exit_status(unsigned char st);
+void			append_str(char ***store, char *orig);
+char			**expand_single_token(char *orig);
+size_t			namelen(char *str);
 
 /* main function */
 unsigned char	eval_pipe(const char *cmd_line, char **envp);
@@ -173,5 +184,9 @@ void			close_fds_no_stdio(int *fds, size_t size);
 int				ft_redirect_lstsize(t_redirect *lst);
 void			perror_exit(char *msg);
 int				perror_return(char *msg, int status);
+void			free_null_terminated_array(void **arr);
+char			*ft_strchr_mul(const char *s, char *targets, size_t target_len);
+char			*ft_strnjoin(char *s1, char *s2, size_t s2_len);
+size_t			null_terminated_array_len(void **arr);
 
 #endif

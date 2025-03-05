@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer_scmd_text.c                              :+:      :+:    :+:   */
+/*   get_token_length.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/03 14:57:29 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/05 00:38:35 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/05 00:38:24 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/05 02:31:41 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,14 @@
 /*
  * Function:
  * ----------------------------
- * Tokenizes scmd_text and returns the head of the t_text_list.
+ * Returns the length of a token,
+ * considering redirections and IFS(' ', '\t', '\n').
  */
-t_text_list	*tokenizer_scmd_text(char *scmd_text)
+size_t	get_token_length(char *scmd_text)
 {
-	t_text_list	*new;
-	t_text_list	*head;
-	size_t		len;
-	int			i;
-
-	head = NULL;
-	i = 0;
-	while (scmd_text[i])
-	{
-		while (ft_isifs(scmd_text[i]))
-			i++;
-		if (!scmd_text[i])
-			break ;
-		len = get_token_length(&scmd_text[i]);
-		new = new_struct_text_list(scmd_text + i, len);
-		if (!new)
-			return (NULL);
-		add_struct_text_list(&head, new);
-		i += len;
-	}
-	return (head);
+	if (scmd_text[0] == '>' || scmd_text[0] == '<')
+		return (get_redir_length(scmd_text));
+	if (ft_isdigit(scmd_text[0]))
+		return (parse_number_redir_token(scmd_text));
+	return (parse_general_token(scmd_text));
 }

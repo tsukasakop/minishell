@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/06 02:14:58 by miyuu            ###   ########.fr        #
+#    Updated: 2025/03/06 02:57:14 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,9 +55,13 @@ TARGET =\
 	data/pipe2scmd_list\
 	data/tokenizer_scmd_text\
 	data/add_struct_text_list\
-	data/ft_isspace\
+	data/ft_isifs\
 	data/get_redir_length\
 	data/new_struct_text_list\
+	data/get_token_length\
+	data/parse_general_token\
+	data/parse_number_redir_token\
+	data/skip_quote_text\
 	data/create_tmp_file\
 	data/handle_heredoc\
 	env/is_valid_identifier\
@@ -67,6 +71,9 @@ TARGET =\
 	expand/get_exit_status\
 	expand/get_exit_status_p\
 	expand/set_exit_status\
+	expand/append_str\
+	expand/expand_single_token\
+	expand/namelen\
 	main/eval_pipe\
 	main/eval_cmd_line\
 	main/execute_simple_cmd\
@@ -90,6 +97,10 @@ TARGET =\
 	utils/perror_exit\
 	utils/ft_redirect_lstsize\
 	utils/perror_return\
+	utils/free_null_terminated_arrar\
+	utils/ft_strchr_mul\
+	utils/ft_strnjoin\
+	utils/null_terminatted_array_len\
 	signal/set_handlers_for_prompt\
 	signal/set_handlers_default\
 	signal/set_handlers_for_process\

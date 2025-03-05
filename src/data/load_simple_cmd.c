@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/04 15:59:23 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/05 18:16:10 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_simple_cmd	*load_simple_cmd(t_text_list *text_list, t_heredoc **hd_list)
 		free_text_list(text_list);
 		return (NULL);
 	}
+	scmd_list->ecmds = NULL;
 	scmd_list->redir = NULL;
 	scmd_list->next = NULL;
 	wc = 0;
