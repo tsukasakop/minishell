@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/04 14:38:29 by tkondo           ###   ########.fr        #
+#    Updated: 2025/03/05 14:37:44 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,9 @@ TARGET =\
 	expand/get_exit_status\
 	expand/get_exit_status_p\
 	expand/set_exit_status\
+	expand/append_str\
+	expand/expand_single_token\
+	expand/namelen\
 	main/eval_pipe\
 	main/eval_cmd_line\
 	main/execute_simple_cmd\
@@ -86,6 +89,10 @@ TARGET =\
 	signal/at_sigint\
 	utils/close_fds_no_stdio\
 	utils/perror_exit\
+	utils/free_null_terminated_arrar\
+	utils/ft_strchr_mul\
+	utils/ft_strnjoin\
+	utils/null_terminatted_array_len\
 	signal/set_handlers_for_prompt\
 	signal/set_handlers_default\
 	signal/set_handlers_for_process\

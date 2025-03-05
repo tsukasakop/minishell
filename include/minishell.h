@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/04 14:39:34 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/05 14:47:25 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,9 @@ void			expand_ecmds(t_text_list *text_list);
 unsigned char	*get_exit_status_p(void);
 unsigned char	get_exit_status(void);
 void			set_exit_status(unsigned char st);
+void			append_str(char ***store, char *orig);
+char			**expand_single_token(char *orig);
+size_t			namelen(char *str);
 
 /* main function */
 unsigned char	eval_pipe(const char *cmd_line, char **envp);
@@ -168,5 +171,9 @@ void			set_signal(int signal);
 /* utils */
 void			close_fds_no_stdio(int *fds, size_t size);
 void			perror_exit(char *msg);
+void			free_null_terminated_array(void **arr);
+char			*ft_strchr_mul(const char *s, char *targets, size_t target_len);
+char			*ft_strnjoin(char *s1, char *s2, size_t s2_len);
+size_t			null_terminated_array_len(void **arr);
 
 #endif
