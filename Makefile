@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/05 02:39:57 by miyuu            ###   ########.fr        #
+#    Updated: 2025/03/05 18:32:12 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,8 @@ TARGET =\
 	data/parse_general_token\
 	data/parse_number_redir_token\
 	data/skip_quote_text\
+	data/create_tmp_file\
+	data/handle_heredoc\
 	env/is_valid_identifier\
 	env/load_variable_assignment\
 	env/register_env\

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 12:39:47 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/05 18:27:20 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/05 18:32:33 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ int	main(void)
 		"ls >2>",	//bash: syntax error near unexpected token `2'
 		"ls -l <<<aiueo",	//bash: syntax error near unexpected token `<'
 		"echo \"aa aa\"",
+		"cat <<EOF",
+		"<<EOF",
+		"ls -l > ",	//シンタックスエラーのテストケース
+		"ls -l >2>aiueo",	//シンタックスエラーのテストケース
+		"ls -l <<<aiueo",	//シンタックスエラーのテストケース
+		"echo \"aa aa",
 		"echo 'aa aa'",
 		"echo \"aa         \"2>out",
 		"echo 42",
