@@ -6,15 +6,16 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 03:46:43 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/06 04:04:18 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/06 04:26:51 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:yyyyy
+ * Function:backup_from_fds
  * ----------------------------
+ * Saves from_fd and their duplicates into an array.
  */
 int	*backup_from_fds(t_redirect *redir, int fd_count)
 {

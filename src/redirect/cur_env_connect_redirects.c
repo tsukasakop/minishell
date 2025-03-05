@@ -6,15 +6,16 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 03:48:50 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/06 03:50:24 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/06 04:24:41 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:yyyyy
+ * Function:cur_env_connect_redirects
  * ----------------------------
+ * In the parent process, Parse redirect type and perform redirection processing.
  */
 int	cur_env_connect_redirects(t_redirect *redir)
 {

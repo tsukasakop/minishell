@@ -6,15 +6,17 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 03:51:16 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/06 03:51:28 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/06 04:23:39 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:yyyyy
+ * Function:cur_env_redirects_stdin
  * ----------------------------
+ * In the parent process, Set from_fd to the fd of path.
+ * Do not exit even if an error occurs.
  */
 int	cur_env_redirects_stdin(t_redirect *redir)
 {

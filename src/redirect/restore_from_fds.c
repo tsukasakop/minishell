@@ -6,15 +6,16 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 03:47:21 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/06 03:47:40 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/06 04:28:38 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:yyyyy
+ * Function:restore_from_fds
  * ----------------------------
+ * Restores original file descriptors from the saved backup.
  */
 void	restore_from_fds(int *keep_fds, int fd_count)
 {
