@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:30:10 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/06 02:33:01 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/06 03:14:09 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,33 @@ int	redirects_stdin_on_current_env(t_redirect *redir)
 	if (oldfd == -1)
 		return (perror_return((char *)redir->path, -1));
 	if (dup2(oldfd, newfd) < 0)
-		perror_exit(NULL);
+		return (perror_return(ft_itoa(newfd), -1));
+	close(oldfd);
+	return (0);
+}
+
+int	redirects_stdout_on_current_env(t_redirect *redir)
+{
+	int	oldfd;
+	int	newfd;
+
+	if (redir->type == REDIR_OUT)
+	{
+		oldfd = open(redir->path, O_WRONLY | O_TRUNC | O_CREAT, 0644);
+		if (oldfd == -1)
+			return (perror_return((char *)redir->path, -1));
+	}
+	else if (redir->type == REDIR_APPEND)
+	{
+		oldfd = open(redir->path, O_WRONLY | O_APPEND | O_CREAT, 0644);
+		if (oldfd == -1)
+			return (perror_return((char *)redir->path, -1));
+	}
+	else
+		return (-1);
+	newfd = redir->from_fd;
+	if (dup2(oldfd, newfd) < 0)
+		return (perror_return(ft_itoa(newfd), -1));
 	close(oldfd);
 	return (0);
 }
@@ -38,10 +64,7 @@ int	redirects_on_current_env(t_redirect *redir)
 		return (redirects_stdin_on_current_env(redir));
 	else if (redir->type == REDIR_OUT || \
 			redir->type == REDIR_APPEND)
-	{
-		redirects_stdout(redir);
-		return (0);
-	}
+		return (redirects_stdout_on_current_env(redir));
 	return (-1);
 }
 
