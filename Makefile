@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/06 02:57:14 by miyuu            ###   ########.fr        #
+#    Updated: 2025/03/06 03:58:57 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,6 +92,12 @@ TARGET =\
 	redirect/connect_redirects_path\
 	redirect/redirects_stdin\
 	redirect/redirects_stdout\
+	redirect/apply_redirects\
+	redirect/backup_from_fds\
+	redirect/cur_env_connect_redirects\
+	redirect/cur_env_redirects_stdin\
+	redirect/cur_env_redirects_stdout\
+	redirect/restore_from_fds\
 	signal/at_sigint\
 	utils/close_fds_no_stdio\
 	utils/perror_exit\

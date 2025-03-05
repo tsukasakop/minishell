@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/06 02:57:40 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/06 03:57:26 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,10 +166,16 @@ bool			write_until_eof_on_chproc(int fd, const char *hd_eof);
 bool			write_heredocs(t_heredoc *hd);
 
 /* redirect function */
+int				apply_redirects(t_redirect *redir, int *keep_fds, int fd_count);
+int				*backup_from_fds(t_redirect *redir, int fd_count);
 void			connect_redirects_path(t_redirect *redir);
+int				cur_env_connect_redirects(t_redirect *redir);
+int				cur_env_redirects_stdin(t_redirect *redir);
+int				cur_env_redirects_stdout(t_redirect *redir);
 void			redirects_stdin(t_redirect *redir);
 void			redirects_stdout(t_redirect *redir);
 void			resolve_redirects(int stdio[2], t_redirect *redir);
+void			restore_from_fds(int *keep_fds, int fd_count);
 
 /* signal function */
 void			at_sigint(int signal);
