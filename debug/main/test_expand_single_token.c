@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:52:53 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/05 14:43:25 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/05 16:14:09 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,43 @@
 
 static void	print_str_array(char **p)
 {
+	size_t	i;
+
 	if (p == NULL)
 	{
-		fprintf(stderr, "Null Pointer\n");
-		return;
+		fprintf(stderr, " [Error]: Caught Null Pointer\n");
+		return ;
 	}
-	while(*p)
+	i = 0;
+	while (p[i])
 	{
-		fprintf(stderr, "%s\n", *p);
-		p++;
+		fprintf(stderr, " [%lu] = \"%s\"\n", i, p[i]);
+		i++;
 	}
 }
 
-int main()
+static void	test_expand_single_token(char *name, char *value, char *token)
 {
-	ft_setenv("VAR", "   test  '  ", 1);
-	char **pp;
-	pp = expand_single_token("'$VAR");
+	char	**pp;
+
+	fprintf(stderr, "---------- Test Condition ----------\n");
+	fprintf(stderr, " name  = \"%s\"\n", name);
+	fprintf(stderr, " value = \"%s\"\n", value);
+	fprintf(stderr, " token = \"%s\"\n", token);
+	fprintf(stderr, "---------- Errors on Processing ----------\n");
+	ft_setenv(name, value, 1);
+	pp = expand_single_token(token);
+	fprintf(stderr, "---------- Retuned Texts ----------\n");
 	print_str_array(pp);
-	pp = expand_single_token("aaa$VAR\"==$VAR===\"$VAR---\'$VAR\'+++");
-	print_str_array(pp);
+	fprintf(stderr, "------------------------------------\n");
+}
+
+int	main(void)
+{
+	char	*name;
+	char	*value;
+
+	test_expand_single_token("VAR", "   test  '  ", "'$VAR");
+	test_expand_single_token("VAR", "   test  '  ",
+		"aaa$VAR\"==$VAR===\"$VAR---\'$VAR\'+++");
 }
