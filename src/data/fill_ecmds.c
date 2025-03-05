@@ -29,6 +29,7 @@ char	**fill_ecmds(t_text_list *scmds, int wc)
 	ecmds = (char **)malloc(sizeof(char *) * (wc + 1));
 	if (!ecmds)
 		return (NULL);
+	ecmds[wc] = NULL;
 	cur = scmds;
 	while (cur)
 	{
@@ -52,6 +53,5 @@ char	**fill_ecmds(t_text_list *scmds, int wc)
 		}
 		cur = cur->next;
 	}
-	ecmds[j] = NULL;
 	return (ecmds);
 }
