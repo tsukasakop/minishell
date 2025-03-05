@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/04 15:16:30 by miyuu            ###   ########.fr        #
+#    Updated: 2025/03/06 02:14:58 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,6 +88,8 @@ TARGET =\
 	signal/at_sigint\
 	utils/close_fds_no_stdio\
 	utils/perror_exit\
+	utils/ft_redirect_lstsize\
+	utils/perror_return\
 	signal/set_handlers_for_prompt\
 	signal/set_handlers_default\
 	signal/set_handlers_for_process\
