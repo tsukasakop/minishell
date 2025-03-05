@@ -1,0 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   skip_quote_text.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/05 02:30:12 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/05 02:34:57 by miyuu            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <minishell.h>
+
+/*
+ * Function:skip_quote_text
+ * ----------------------------
+ * Skips quoted text.
+ * Returns its length, including the closing quote.
+ */
+size_t	skip_quote_text(char *scmd_text, char quote)
+{
+	size_t	i;
+
+	i = 1;
+	while (scmd_text[i] && scmd_text[i] != quote)
+		i++;
+	if (scmd_text[i] == quote)
+		i++;
+	return (i);
+}

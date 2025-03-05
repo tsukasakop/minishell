@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/05 18:43:36 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/05 19:09:32 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,15 +109,23 @@ void			free_heredocs(t_heredoc *hd);
 void			free_redirects(t_redirect *redir);
 void			free_simple_cmds(t_simple_cmd *scmd_list);
 void			free_ecmds(char **ecmds);
-int				ft_isspace(int c);
+int				ft_isifs(int c);
 int				get_redir_length(char *scmd_text);
 int				get_redirect_from_fd(char *cmds_text, int i);
 char			*get_redirect_path(char *redir_symbol, char *next_word);
+size_t			get_token_length(char *scmd_text);
 void			handle_heredoc(t_redirect **redir, t_heredoc **hd_list, \
 				char *eof, int from_fd);
 char			*has_redirect(char *word);
 t_simple_cmd	*load_simple_cmd(t_text_list *text_list, t_heredoc **hd_list);
 t_text_list		*new_struct_text_list(char *str, size_t len);
+void			parse_redirects(t_redirect **redir, t_heredoc **hd_list, \
+								char *word, char *next_word);
+size_t			parse_general_token(char *scmd_text);
+size_t			parse_number_redir_token(char *scmd_text);
+void			parse_redirects(t_redirect **redir, t_heredoc **hd, \
+								char *word, char *next_word);
+size_t			skip_quote_text(char *scmd_text, char quote);
 void			parse_redirects(t_redirect **redir, t_heredoc **hd_list, \
 								char *word, char *next_word);
 t_simple_cmd	*pipe2scmd_list(const char *cmd_line, t_heredoc **hd_list);
