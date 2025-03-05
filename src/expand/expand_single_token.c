@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:15:39 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/05 14:17:34 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/05 15:09:06 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	**expand_single_token(char *orig)
 				}
 				// curから次の'\"', '$',"前までをbufferにjoinする
 				// curを次の'\"', '$', の位置にセット
-				next_cur = ft_strchr_mul(cur, (char[2]){'\"', '$'}, 2);
+				next_cur = ft_strchr_mul(cur, (char [2]){'\"', '$'}, 2);
 				buffer = ft_strnjoin(buffer, cur, next_cur - cur);
 				cur = next_cur;
 			}
@@ -110,7 +110,7 @@ char	**expand_single_token(char *orig)
 				}
 				// var_curの次のIFS文字か'\0'までをbufferにjoinする
 				// var_curを次のIFS文字か'\0'の位置にセット
-				next_cur = ft_strchr_mul(var_cur, (char[4]){' ', '\t', '\n',
+				next_cur = ft_strchr_mul(var_cur, (char [4]){' ', '\t', '\n',
 						'\0'}, 4);
 				buffer = ft_strnjoin(buffer, var_cur, next_cur - var_cur);
 				var_cur = next_cur;
@@ -119,7 +119,7 @@ char	**expand_single_token(char *orig)
 			continue ;
 		}
 		// curから次の'\"', '\'', '$', '\0'前までをbufferにjoinする
-		next_cur = ft_strchr_mul(cur, (char[4]){'\"', '\'', '$', '\0'}, 4);
+		next_cur = ft_strchr_mul(cur, (char [4]){'\"', '\'', '$', '\0'}, 4);
 		buffer = ft_strnjoin(buffer, cur, next_cur - cur);
 		// curを次の'\"', '\'', '$', '\0'の位置にセット
 		cur = next_cur;
