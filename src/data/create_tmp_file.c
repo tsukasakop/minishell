@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:43:09 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/04 16:44:07 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/05 17:43:40 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,18 @@ char	*create_tmp_file(void)
 	int		fd;
 
 	count = 0;
-	while (1)
+	filename = NULL;
+	num = NULL;
+	fd = -1;
+	while (fd == -1)
 	{
+		free(num);
+		free(filename);
 		num = ft_itoa(count++);
 		filename = ft_strjoin("/tmp/heredoc_", num);
-		free(num);
-		if (access(filename, F_OK) != 0)
-		{
-			fd = open(filename, O_CREAT | O_EXCL, 0600);
-			if (fd != -1)
-			{
-				close(fd);
-				return (filename);
-			}
-		}
-		free(filename);
+		fd = open(filename, O_CREAT | O_EXCL, 0600);
 	}
+	free(num);
+	close(fd);
+	return (filename);
 }
