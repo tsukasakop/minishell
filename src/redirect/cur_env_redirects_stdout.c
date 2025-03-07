@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 03:50:49 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/06 04:24:10 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/07 19:31:28 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	cur_env_redirects_stdout(t_redirect *redir)
 	int	oldfd;
 	int	newfd;
 
+	newfd = redir->from_fd;
 	if (redir->type == REDIR_OUT)
 	{
 		oldfd = open(redir->path, O_WRONLY | O_TRUNC | O_CREAT, 0644);
@@ -37,9 +38,12 @@ int	cur_env_redirects_stdout(t_redirect *redir)
 	}
 	else
 		return (-1);
-	newfd = redir->from_fd;
 	if (dup2(oldfd, newfd) < 0)
+	{
+		close(oldfd);
 		return (perror_return(ft_itoa(newfd), -1));
-	close(oldfd);
+	}
+	if (oldfd != newfd)
+		close(oldfd);
 	return (0);
 }

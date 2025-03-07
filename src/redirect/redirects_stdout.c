@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 14:13:32 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/02 22:03:47 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/07 18:35:16 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ void	redirects_stdout(t_redirect *redir)
 	newfd = redir->from_fd;
 	if (dup2(oldfd, newfd) < 0)
 		perror_exit(NULL);
-	close(oldfd);
+	if (oldfd != newfd)
+		close(oldfd);
 }
