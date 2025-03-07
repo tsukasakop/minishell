@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/05 03:43:44 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/07 20:09:10 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <ft_stdio.h>
 # include <ft_string.h>
 # include <ft_stdlib.h>
+# include <ft_unistd.h>
 # include <libft.h>
 
 /* library */
@@ -97,28 +98,40 @@ int				builtin_unset(char **argv);
 const char		*get_path(const char *ecmds);
 
 /* data function */
-void			add_struct_heredoc(t_heredoc **hd, char *eof, char *path);
+void			add_struct_heredoc(t_heredoc **hd_list, char *eof, char *path);
 void			add_struct_redirect(t_redirect **redir, int type, \
 				int from_fd, char *path);
 void			add_struct_text_list(t_text_list **head, t_text_list *new);
-t_simple_cmd	*fill_struct_simple_cmd(char **scmd_texts);
+char			*create_tmp_file(void);
+t_simple_cmd	*fill_struct_simple_cmd(char **scmd_texts, t_heredoc **hd_list);
 char			**fill_ecmds(t_text_list *scmds, int wc);
 void			free_text_list(t_text_list *scmds);
 void			free_heredocs(t_heredoc *hd);
 void			free_redirects(t_redirect *redir);
 void			free_simple_cmds(t_simple_cmd *scmd_list);
 void			free_ecmds(char **ecmds);
-int				ft_isspace(int c);
+int				ft_isifs(int c);
 int				get_redir_length(char *scmd_text);
 int				get_redirect_from_fd(char *cmds_text, int i);
 char			*get_redirect_path(char *redir_symbol, char *next_word);
+size_t			get_token_length(char *scmd_text);
+void			handle_heredoc(t_redirect **redir, t_heredoc **hd_list, \
+				char *eof, int from_fd);
 char			*has_redirect(char *word);
-t_simple_cmd	*load_simple_cmd(t_text_list *text_list);
+t_simple_cmd	*load_simple_cmd(t_text_list *text_list, t_heredoc **hd_list);
 t_text_list		*new_struct_text_list(char *str, size_t len);
+void			parse_redirects(t_redirect **redir, t_heredoc **hd_list, \
+								char *word, char *next_word);
+size_t			parse_general_token(char *scmd_text);
+size_t			parse_number_redir_token(char *scmd_text);
 void			parse_redirects(t_redirect **redir, t_heredoc **hd, \
 								char *word, char *next_word);
 t_simple_cmd	*pipe2scmd_list(const char *cmd_line);
 void			syntax_error_handle(char *msg);
+size_t			skip_quote_text(char *scmd_text, char quote);
+void			parse_redirects(t_redirect **redir, t_heredoc **hd_list, \
+								char *word, char *next_word);
+t_simple_cmd	*pipe2scmd_list(const char *cmd_line, t_heredoc **hd_list);
 t_text_list		*tokenizer_scmd_text(char *scmd_text);
 int				validate_redirect_syntax(t_text_list *cur);
 
@@ -132,6 +145,9 @@ void			expand_ecmds(t_text_list *text_list);
 unsigned char	*get_exit_status_p(void);
 unsigned char	get_exit_status(void);
 void			set_exit_status(unsigned char st);
+void			append_str(char ***store, char *orig);
+char			**expand_single_token(char *orig);
+size_t			namelen(char *str);
 
 /* main function */
 unsigned char	eval_pipe(const char *cmd_line, char **envp);
@@ -170,5 +186,9 @@ void			set_signal(int signal);
 /* utils */
 void			close_fds_no_stdio(int *fds, size_t size);
 void			perror_exit(char *msg);
+void			free_null_terminated_array(void **arr);
+char			*ft_strchr_mul(const char *s, char *targets, size_t target_len);
+char			*ft_strnjoin(char *s1, char *s2, size_t s2_len);
+size_t			null_terminated_array_len(void **arr);
 
 #endif

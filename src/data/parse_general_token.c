@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_struct_heredoc.c                               :+:      :+:    :+:   */
+/*   parse_general_token.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 22:34:48 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/04 15:58:49 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/05 02:31:34 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/05 02:36:08 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:add_struct_heredoc
+ * Function:parse_general_token
  * ----------------------------
- * Fill t_heredoc with data
+ * Returns the length of a general token, handling quotes properly.
  */
-void	add_struct_heredoc(t_heredoc **hd_list, char *eof, char *path)
+size_t	parse_general_token(char *scmd_text)
 {
-	t_heredoc	*new;
-	t_heredoc	*tmp;
+	size_t	i;
 
-	new = malloc(sizeof(t_heredoc));
-	if (!new)
-		return ;
-	new->eof = ft_strdup(eof);
-	new->path = ft_strdup(path);
-	new->next = NULL;
-	if (*hd_list == NULL)
-		*hd_list = new;
-	else
+	i = 0;
+	while (scmd_text[i] && !ft_isifs(scmd_text[i]) && \
+	scmd_text[i] != '>' && scmd_text[i] != '<')
 	{
-		tmp = *hd_list;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
+		if (scmd_text[i] == '"' || scmd_text[i] == '\'')
+			i += skip_quote_text(&scmd_text[i], scmd_text[i]);
+		else
+			i++;
 	}
+	return (i);
 }
