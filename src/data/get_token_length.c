@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_struct_heredoc.c                               :+:      :+:    :+:   */
+/*   get_token_length.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 22:34:48 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/04 15:58:49 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/05 00:38:24 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/05 02:31:41 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:add_struct_heredoc
+ * Function:
  * ----------------------------
- * Fill t_heredoc with data
+ * Returns the length of a token,
+ * considering redirections and IFS(' ', '\t', '\n').
  */
-void	add_struct_heredoc(t_heredoc **hd_list, char *eof, char *path)
+size_t	get_token_length(char *scmd_text)
 {
-	t_heredoc	*new;
-	t_heredoc	*tmp;
-
-	new = malloc(sizeof(t_heredoc));
-	if (!new)
-		return ;
-	new->eof = ft_strdup(eof);
-	new->path = ft_strdup(path);
-	new->next = NULL;
-	if (*hd_list == NULL)
-		*hd_list = new;
-	else
-	{
-		tmp = *hd_list;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
-	}
+	if (scmd_text[0] == '>' || scmd_text[0] == '<')
+		return (get_redir_length(scmd_text));
+	if (ft_isdigit(scmd_text[0]))
+		return (parse_number_redir_token(scmd_text));
+	return (parse_general_token(scmd_text));
 }

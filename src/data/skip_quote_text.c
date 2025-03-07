@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_struct_heredoc.c                               :+:      :+:    :+:   */
+/*   skip_quote_text.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 22:34:48 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/04 15:58:49 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/05 02:30:12 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/05 02:34:57 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:add_struct_heredoc
+ * Function:skip_quote_text
  * ----------------------------
- * Fill t_heredoc with data
+ * Skips quoted text.
+ * Returns its length, including the closing quote.
  */
-void	add_struct_heredoc(t_heredoc **hd_list, char *eof, char *path)
+size_t	skip_quote_text(char *scmd_text, char quote)
 {
-	t_heredoc	*new;
-	t_heredoc	*tmp;
+	size_t	i;
 
-	new = malloc(sizeof(t_heredoc));
-	if (!new)
-		return ;
-	new->eof = ft_strdup(eof);
-	new->path = ft_strdup(path);
-	new->next = NULL;
-	if (*hd_list == NULL)
-		*hd_list = new;
-	else
-	{
-		tmp = *hd_list;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
-	}
+	i = 1;
+	while (scmd_text[i] && scmd_text[i] != quote)
+		i++;
+	if (scmd_text[i] == quote)
+		i++;
+	return (i);
 }
