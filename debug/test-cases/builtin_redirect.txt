@@ -22,15 +22,15 @@ cat /tmp/file4
 < /tmp/file1 cd
 pwd
 
-#プロンプトがbashと異なるが、無視してOK
+pwd 3>/tmp/file5 4>/tmp/file5 5>/tmp/file5
+cat /tmp/file5
+
 echo -n hello world > /tmp/file5
 cat /tmp/file5
 
-#プロンプトがbashと異なるが、無視してOK
-echo 3000>/tmp/file5
-cat /tmp/file5
+echo 30000>/tmp/file6
+cat /tmp/file6
 
-#プロンプトがbashと異なるが、無視してOK
 echo < /tmp/no_exist_file
 
-rm /tmp/file1 /tmp/file2 /tmp/file3 /tmp/file4 /tmp/file5 /tmp/no_exist_file
+rm /tmp/file1 /tmp/file2 /tmp/file3 /tmp/file4 /tmp/file5 /tmp/file6
