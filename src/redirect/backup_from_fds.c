@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 03:46:43 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/07 19:30:31 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/08 04:05:51 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,17 @@ int	*backup_from_fds(t_redirect *redir, int fd_count)
 	while (cur)
 	{
 		keep_fds[i * 2] = cur->from_fd;
-		if (isatty(cur->from_fd))
-			keep_fds[i * 2 + 1] = dup(cur->from_fd);
-		else
-			keep_fds[i * 2 + 1] = cur->from_fd;
+		keep_fds[i * 2 + 1] = dup(cur->from_fd);
+		if (keep_fds[i * 2 + 1] == -1)
+		{
+			if (errno == EBADF)
+				keep_fds[i * 2 + 1] = cur->from_fd;
+			else
+			{
+				perror(ft_itoa(cur->from_fd));
+				return (NULL);
+			}
+		}
 		cur = cur->next;
 		i++;
 	}

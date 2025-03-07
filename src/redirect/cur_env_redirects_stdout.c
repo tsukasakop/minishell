@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 03:50:49 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/07 19:31:28 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/08 03:25:10 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,13 @@ int	cur_env_redirects_stdout(t_redirect *redir)
 	}
 	else
 		return (-1);
+	if (oldfd == newfd)
+		return (0);
 	if (dup2(oldfd, newfd) < 0)
 	{
 		close(oldfd);
 		return (perror_return(ft_itoa(newfd), -1));
 	}
-	if (oldfd != newfd)
-		close(oldfd);
+	close(oldfd);
 	return (0);
 }
