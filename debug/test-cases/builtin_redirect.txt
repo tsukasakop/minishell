@@ -1,22 +1,22 @@
 pwd > /tmp/file1
 cat /tmp/file1
 
-export 42=FT  0>/tmp/file2
+export 42=FT 0>/tmp/file2
 cat /tmp/file2
 
-export 42=FT  1>/tmp/file2
+export 42=FT 1>/tmp/file2
 cat /tmp/file2
 
-export 42=FT  2>/tmp/file2
+export 42=FT 2>/tmp/file2
 cat /tmp/file2
 
-export 42=FT  2>/tmp/file2 1>/tmp/file2
+export 42=FT 2>/tmp/file2 1>/tmp/file2
 cat /tmp/file2
 
-export FT=42  2>/tmp/file3 1>/tmp/file3
+export FT=42 2>/tmp/file3 1>/tmp/file3
 cat /tmp/file3
 
-unset FT  2>/tmp/file4 1>/tmp/file4
+unset FT 2>/tmp/file4 1>/tmp/file4
 cat /tmp/file4
 
 < /tmp/file1 cd
