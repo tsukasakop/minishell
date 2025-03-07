@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/07 20:12:16 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/07 20:17:41 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 
 /* macro */
 # define PROMPT "minishell$ "
-# define SHELL_NAME "minishell: "
+# define SHELL_NAME "bash: "
 # define ERR_HEREDOC "%swarning: here-document delimited by end-of-file (wanted `%s')\n"
 
 /* struct */

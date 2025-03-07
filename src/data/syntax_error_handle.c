@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 03:42:24 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/05 03:49:15 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/07 20:19:56 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@
 void	syntax_error_handle(char *msg)
 {
 	write(2, SHELL_NAME, ft_strlen(SHELL_NAME));
-	ft_fprintf(ft_stderr(), "syntax error near unexpected token `%s`\n", msg);
+	ft_fprintf(ft_stderr(), "syntax error near unexpected token `%s'\n", msg);
 }
