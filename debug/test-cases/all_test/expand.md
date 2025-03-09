@@ -6,8 +6,12 @@
 	""pwd""
 	echo "a    a"
 	echo "$HOME"
-### エラー
 	"echo $HOME"
+	echo "42 | ls -l"
+### エラー
+- `"`
+	→ bash: syntax error near unexpected token `"'にする
+
 
 
 ## シングル
@@ -15,9 +19,12 @@
 	echo ''pwd''
 	echo 'a    a'
  	echo '$HOME'
-### エラー
 	'echo $HOME'
 	'"pwd"'
+	echo '42 | ls -l'
+### エラー
+- `'`
+	→ bash: syntax error near unexpected token `''にする
 
 ## 環境変数
 	$_

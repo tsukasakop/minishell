@@ -1,8 +1,13 @@
 
 # シンタックスエラー
-- `ls | "" | cat`
-	→bash: : command not found
-
+- `echo  42 | | cat`
+	→ bash: syntax error near unexpected token `|'
+- `echo  42 | | | cat`
+	→ bash: syntax error near unexpected token `|'
+- `| ls`
+	→ bash: syntax error near unexpected token `|'
+- `echo  42 | || cat`
+	→ bash: syntax error near unexpected token `||'
 
 ## bashでは入力待ち
 - `|`
