@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/07 19:57:35 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/08 04:41:56 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 
 /* macro */
 # define PROMPT "minishell$ "
-# define SHELL_NAME "minishell: "
+# define SHELL_NAME "bash: "
 # define ERR_HEREDOC "%swarning: here-document delimited by end-of-file (wanted `%s')\n"
 
 /* struct */
@@ -126,11 +126,13 @@ size_t			parse_general_token(char *scmd_text);
 size_t			parse_number_redir_token(char *scmd_text);
 void			parse_redirects(t_redirect **redir, t_heredoc **hd, \
 								char *word, char *next_word);
+void			syntax_error_handle(char *msg);
 size_t			skip_quote_text(char *scmd_text, char quote);
 void			parse_redirects(t_redirect **redir, t_heredoc **hd_list, \
 								char *word, char *next_word);
 t_simple_cmd	*pipe2scmd_list(const char *cmd_line, t_heredoc **hd_list);
 t_text_list		*tokenizer_scmd_text(char *scmd_text);
+bool			is_validate_redirect_syntax(t_text_list *cur);
 
 /* env function */
 bool			is_valid_identifier(char *string);

@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/05 19:08:25 by tkondo           ###   ########.fr        #
+#    Updated: 2025/03/08 04:42:24 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,8 @@ TARGET =\
 	data/ft_isifs\
 	data/get_redir_length\
 	data/new_struct_text_list\
+	data/syntax_error_handle\
+	data/is_validate_redirect_syntax\
 	data/get_token_length\
 	data/parse_general_token\
 	data/parse_number_redir_token\
