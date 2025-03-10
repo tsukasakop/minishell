@@ -57,8 +57,6 @@
 	cd /
 	cd ..
 ```
-- 権限系
-
 - 実行権限なくしてからcd
 ```bash
 	mkdir hoge

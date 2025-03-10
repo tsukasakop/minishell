@@ -7,6 +7,7 @@
 	sleep 3 | ls
 	ls | sleep 3
 	echo hello world | tr 'a-z' 'A-Z'
+	yes | head -n 10000000 | wc -l
 	cat minishell | xxd | tail
 ```bash
 echo 42Tokyo > hoge

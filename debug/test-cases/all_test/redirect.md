@@ -6,7 +6,7 @@
 	echo Hello >out
 	echo Hello>out
 
-- ファイル
+- バイナリを読み込む
 	< minishell cat | xxd | tail
 	< infile cat | xxd | tail
 ## > 出力
@@ -26,6 +26,8 @@ echo 42 > out
 chmod -w out
 echo 42 > out
 ```
+
+
 ## < 入力
 	cat < in
 ```bash

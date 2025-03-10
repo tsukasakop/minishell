@@ -34,3 +34,4 @@
 	export test="ls -l"
 	$test
 ```
+	echo $NOEXIST
