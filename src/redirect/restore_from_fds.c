@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 03:47:21 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/07 19:34:03 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/10 16:22:52 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	restore_from_fds(int *keep_fds, int fd_count)
 {
 	int	i;
 
-	i = 0;
-	while (i < fd_count)
+	i = fd_count - 1;
+	while (i >= 0)
 	{
 		dup2(keep_fds[i * 2 +1], keep_fds[i * 2]);
 		close(keep_fds[i * 2 +1]);
-		i++;
+		i--;
 	}
 	free(keep_fds);
 }

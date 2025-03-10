@@ -1,27 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   apply_redirects.c                                  :+:      :+:    :+:   */
+/*   handle_redirects.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/06 03:52:03 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/10 18:41:15 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/06 03:46:43 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/10 18:47:07 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:apply_redirects
+ * Function:handle_redirects
  * ----------------------------
- * In the parent process, Apply redirections.
+ * Set fd for redirection.
  */
-int	apply_redirects(t_redirect *redir, int *keep_fds, int index)
+int	*handle_redirects(t_redirect *redir, int fd_count)
 {
-	if (backup_from_fds(redir, keep_fds, index) == -1)
-		return (-1);
-	if (cur_env_connect_redirects(redir) == -1)
-		return (-1);
-	return (0);
+	t_redirect	*cur;
+	int			i;
+	int			*keep_fds;
+
+	cur = redir;
+	keep_fds = malloc(sizeof(int) * fd_count * 2);
+	if (!keep_fds)
+	{
+		perror_return(NULL, -1);
+		return (NULL);
+	}
+	i = 0;
+	while (cur)
+	{
+		if (apply_redirects(cur, keep_fds, i) == -1)
+		{
+			restore_from_fds(keep_fds, i);
+			return (NULL);
+		}
+		cur = cur->next;
+		i++;
+	}
+	return (keep_fds);
 }
