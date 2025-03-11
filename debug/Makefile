@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/03 12:49:05 by tkondo           ###   ########.fr        #
+#    Updated: 2025/03/11 15:14:49 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,6 +125,30 @@ else
 	lldb $(NAME) -o "settings set target.input-path $(ARG)"
 endif
 
+#ビルドしてlldb上で実行、マージ先との差分のある関数にbreak pointをsetする
+lldb-diff: all
+ifeq ($(strip $(ARG)),)
+	lldb $(NAME) \
+	-o "$$(gh pr diff --name-only | grep '^src' | awk -F'[\./]' '{printf "br s -n %s\n", $$3}')"
+	-o "r"
+else
+	lldb $(NAME) -o "settings set target.input-path $(ARG)" \
+	-o "$$(gh pr diff --name-only | grep '^src' | awk -F'[\./]' '{printf "br s -n %s\n", $$3}')" \
+	-o "r"
+endif
+
+#ビルドしてlldb上で実行、分岐元ブランチとの差分のある関数にbreak pointをsetする
+lldb-diff-mb: all
+ifeq ($(strip $(ARG)),)
+	lldb $(NAME) \
+	-o "$$(git diff "$$(git show-branch | grep '*' | grep -v $$(git rev-parse --abbrev-ref HEAD) | head -1 | awk -F'[]~^[]' '{print $$2}')" --name-only | grep '^src' | awk -F'[\./]' '{printf "br s -n %s\n", $$3}')"
+	-o "r"
+else
+	lldb $(NAME) -o "settings set target.input-path $(ARG)" \
+	-o "$$(git diff "$$(git show-branch | grep '*' | grep -v $$(git rev-parse --abbrev-ref HEAD) | head -1 | awk -F'[]~^[]' '{print $$2}')" --name-only | grep '^src' | awk -F'[\./]' '{printf "br s -n %s\n", $$3}')"
+	-o "r"
+endif
+
 #ビルドしてテストを実行
 test: all
 ifeq ($(strip $(ARG)),)
@@ -140,7 +164,7 @@ $(NAME): $(LIB_FT) $(LIB_DEBUG)
 	$(CC) $(OBJ_MAIN) -o $(NAME) $(LIB_DIR) $(LFLAGS)
 
 $(LIB_FT):
-	@make -C $(ROOT_DIR)/libft
+	@make -C $(ROOT_DIR)/libft dev
 
 $(LIB_DEBUG): $(OBJS)
 	$(AR) rcs $@ $?

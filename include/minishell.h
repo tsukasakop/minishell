@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/05 19:09:32 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/10 18:27:11 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void			add_struct_redirect(t_redirect **redir, int type, \
 void			add_struct_text_list(t_text_list **head, t_text_list *new);
 char			*create_tmp_file(void);
 t_simple_cmd	*fill_struct_simple_cmd(char **scmd_texts, t_heredoc **hd_list);
-char			**fill_ecmds(t_text_list *scmds, int wc);
+char			**fill_ecmds(t_text_list *scmds);
 void			free_text_list(t_text_list *scmds);
 void			free_heredocs(t_heredoc *hd);
 void			free_redirects(t_redirect *redir);
@@ -137,7 +137,7 @@ void			load_variable_assignment(char *string, char **name, char **value);
 bool			register_env(char *string);
 
 /* expand function */
-void			expand_ecmds(t_text_list *text_list);
+void			expand_ecmds(t_text_list **text_list);
 unsigned char	*get_exit_status_p(void);
 unsigned char	get_exit_status(void);
 void			set_exit_status(unsigned char st);

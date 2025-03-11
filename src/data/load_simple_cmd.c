@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/05 18:16:10 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/11 20:04:12 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
  */
 t_simple_cmd	*load_simple_cmd(t_text_list *text_list, t_heredoc **hd_list)
 {
-	size_t				wc;
-	t_simple_cmd		*scmd_list;
-	int					len;
-	t_text_list			*cur;
+	t_simple_cmd	*scmd_list;
+	int				len;
+	t_text_list		*cur;
+	t_text_list		**reg;
 
 	scmd_list = malloc(sizeof(t_simple_cmd));
 	if (!scmd_list)
@@ -36,30 +36,43 @@ t_simple_cmd	*load_simple_cmd(t_text_list *text_list, t_heredoc **hd_list)
 	scmd_list->ecmds = NULL;
 	scmd_list->redir = NULL;
 	scmd_list->next = NULL;
-	wc = 0;
-	cur = text_list;
-	//Todo;リダイレクトを構造体に格納する&text_listから削除するwhile
+	// Todo;リダイレクトを構造体に格納する&text_listから削除するwhile
+	reg = &text_list;
+	cur = *reg;
 	while (cur)
 	{
 		if (has_redirect(cur->text) != NULL)
 		{
 			if (cur->next)
-				parse_redirects(&scmd_list->redir, hd_list, cur->text, cur->next->text);
+				parse_redirects(&scmd_list->redir, hd_list, cur->text,
+					cur->next->text);
 			else
 				parse_redirects(&scmd_list->redir, hd_list, cur->text, NULL);
-			//ToDo:リダイレクトを含む文字列の最後の字が記号かいなか関数分けする？
+			// ToDo:リダイレクトを含む文字列の最後の字が記号かいなか関数分けする？
 			len = ft_strlen(cur->text);
-			if (cur->next && \
-				(cur->text[len - 1] == '>' || cur->text[len - 1] == '<'))
-				cur = cur->next;
+			if (cur->next && (cur->text[len - 1] == '>' || cur->text[len
+						- 1] == '<'))
+			{
+				*reg = cur->next;
+				free(cur->text);
+				free(cur);
+				cur = *reg;
+			}
+			*reg = cur->next;
+			free(cur->text);
+			free(cur);
+			cur = *reg;
 		}
 		else
-			wc++;
-		cur = cur->next;
+		{
+			reg = &cur->next;
+			cur = *reg;
+		}
 	}
-	//ToDo:リダイレクトを除いたクォート処理・環境変数展開を、expand_ecmdsで行う。
-	expand_ecmds(text_list);
-	scmd_list->ecmds = fill_ecmds(text_list, wc);
+	// ToDo:リダイレクトを除いたクォート処理・環境変数展開を、expand_ecmdsで行う。
+	expand_ecmds(&text_list);
+	// WIP: remove wc
+	scmd_list->ecmds = fill_ecmds(text_list);
 	if (!scmd_list->ecmds)
 		return (NULL);
 	return (scmd_list);
