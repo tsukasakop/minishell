@@ -8,19 +8,22 @@
 	echo "$HOME"
 	"echo $HOME"
 	echo "42 | ls -l"
+	echo "''quart''"
+	echo "'"quart"'"
 ### エラー
 - `"`
 	→ bash: syntax error near unexpected token `"'にする
 
 
-
 ## シングル
+	'"pwd"'
 	echo 'pwd'
 	echo ''pwd''
+	echo '""quart""'
+	echo '"'quart'"'
 	echo 'a    a'
  	echo '$HOME'
 	'echo $HOME'
-	'"pwd"'
 	echo '42 | ls -l'
 ### エラー
 - `'`
