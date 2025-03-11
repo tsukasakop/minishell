@@ -157,6 +157,8 @@ ls | grep out
 	→ bash: syntax error near unexpected token `newline'にする
 - `<<<`
 	→ bash: syntax error near unexpected token `<'にする
+- `>>>`
+	→ bash: syntax error near unexpected token `>'にする
 
 - echo test >| out
 	→ bash: syntax error near unexpected token `newline'にする
@@ -166,4 +168,5 @@ ls | grep out
 bash-5.1$ cat <<EOF <<
 1
 EOF
+#→ls /tmp | grep heredoc_ | wc -lで、tmpにヒアドクのファイルがないか確認
 ```
