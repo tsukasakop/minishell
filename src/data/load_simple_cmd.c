@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/08 04:41:19 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/13 03:07:55 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ t_simple_cmd	*load_simple_cmd(t_text_list *text_list, t_heredoc **hd_list)
 	//Todo;リダイレクトを構造体に格納する&text_listから削除するwhile
 	while (cur)
 	{
-		if (has_redirect(cur->text) != NULL)
+		len = ft_strlen(cur->text);
+		if (cur->text[len - 1] == '>' || cur->text[len - 1] == '<')
 		{
 			if (!is_validate_redirect_syntax(cur))
 				return (NULL);
@@ -49,11 +50,7 @@ t_simple_cmd	*load_simple_cmd(t_text_list *text_list, t_heredoc **hd_list)
 				parse_redirects(&scmd_list->redir, hd_list, cur->text, cur->next->text);
 			else
 				parse_redirects(&scmd_list->redir, hd_list, cur->text, NULL);
-			//ToDo:リダイレクトを含む文字列の最後の字が記号かいなか関数分けする？
-			len = ft_strlen(cur->text);
-			if (cur->next && \
-				(cur->text[len - 1] == '>' || cur->text[len - 1] == '<'))
-				cur = cur->next;
+			cur = cur->next;
 		}
 		else
 			wc++;

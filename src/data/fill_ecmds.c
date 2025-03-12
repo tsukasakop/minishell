@@ -33,14 +33,9 @@ char	**fill_ecmds(t_text_list *scmds, int wc)
 	cur = scmds;
 	while (cur)
 	{
-		if (has_redirect(cur->text) != NULL)
-		{
-			//ToDo:リダイレクトを含む文字列の最後もの字が記号かいなか関数分けする？
-			len = ft_strlen(cur->text);
-			if (cur->next && \
-				(cur->text[len - 1] == '>' || cur->text[len - 1] == '<'))
-				cur = cur->next;
-		}
+		len = ft_strlen(cur->text);
+		if (cur->text[len - 1] == '>' || cur->text[len - 1] == '<')
+			cur = cur->next;
 		else
 		{
 			ecmds[j] = ft_strdup(cur->text);

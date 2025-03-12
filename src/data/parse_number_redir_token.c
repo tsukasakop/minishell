@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 02:31:14 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/05 02:37:51 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/13 02:49:23 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,7 @@ size_t	parse_number_redir_token(char *scmd_text)
 		i++;
 	redir_len = get_redir_length(&scmd_text[i]);
 	if (redir_len != 0)
-		i += redir_len;
+		return (i + redir_len);
 	else
-	{
-		while (scmd_text[i] && !ft_isifs(scmd_text[i]) && \
-				scmd_text[i] != '>' && scmd_text[i] != '<')
-			i++;
-	}
-	return (i);
+		return (parse_general_token(scmd_text));
 }
