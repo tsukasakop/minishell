@@ -9,6 +9,17 @@
 - `echo  42 | || cat`
 	→ bash: syntax error near unexpected token `||'
 
+
+- cat << <<EOF
+	→ bash: syntax error near unexpected token `<<'
+```bash
+bash-5.1$ cat <<EOF <<
+1
+EOF
+```
+	ヒアドクの入力を行った後に、以下のエラー分が出て、catは実行されない
+	→ bash: syntax error near unexpected token `newline'
+
 ## bashでは入力待ち
 - `|`
 	→ bash: syntax error near unexpected token `|'にする
