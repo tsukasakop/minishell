@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/13 17:43:27 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/13 18:11:17 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ t_simple_cmd	*load_simple_cmd(t_text_list *text_list, t_heredoc **hd_list)
 			if (!is_validate_redirect_syntax(cur))
 				return (NULL);
 			if (cur->next)
+				// TODO: 単体のリダイレクとしかないので、ポインタを渡さずに処理する
+				// redir = token2redir(cur->text, cur->next->text);
+				// lst_addlast(scmd_list->redir, redir);
 				parse_redirects(&scmd_list->redir, hd_list, cur->text,
 					cur->next->text);
 			//TODO: バリデーションでチェック済みなので削除する
