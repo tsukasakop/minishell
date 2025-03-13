@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:15:39 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/11 20:06:10 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/13 22:22:59 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,29 +46,23 @@ char	**expand_single_token(char *orig)
 	cur = orig;
 	while (*cur)
 	{
-		// 2a. シングルクオーとの場合
 		if (*cur == '\'')
 		{
 			cur++;
-			// 対応するシングルクオーとがない場合
 			if (ft_strchr(cur, '\'') == NULL)
 			{
 				printf("not closed quote\n");
 				free(buffer);
 				return (NULL);
 			}
-			// 2a1. curから次の'\''前までをbufferにjoinする
 			next_cur = ft_strchr(cur, '\'');
 			buffer = ft_strnjoin(buffer, cur, next_cur - cur);
-			// 2a2.  curを次の'\''の次の位置にセット
 			cur = next_cur + 1;
 			continue ;
 		}
-		// 2b. ダブルクオーとの場合
 		else if (*cur == '\"')
 		{
 			cur++;
-			// 対応するクオーとがない場合error
 			if (ft_strchr(cur, '\"') == NULL)
 			{
 				printf("not closed quote\n");
@@ -77,10 +71,8 @@ char	**expand_single_token(char *orig)
 			}
 			while (*cur != '\"')
 			{
-				// 2b2a. $の場合
 				if (*cur == '$')
 				{
-					//変数名を展開してbufferにjoinする
 					name_len = namelen(cur + 1);
 					if (name_len == 0)
 					{
@@ -95,12 +87,9 @@ char	**expand_single_token(char *orig)
 						var_len = ft_strlen(var);
 						buffer = ft_strnjoin(buffer, var, var_len);
 					}
-					// curを変数名の次の位置にセット
 					cur += 1 + name_len;
 					continue ;
 				}
-				// curから次の'\"', '$',"前までをbufferにjoinする
-				// curを次の'\"', '$', の位置にセット
 				next_cur = ft_strchr_mul(cur, "\"$", 2);
 				buffer = ft_strnjoin(buffer, cur, next_cur - cur);
 				cur = next_cur;
@@ -108,10 +97,8 @@ char	**expand_single_token(char *orig)
 			buffer = ft_strnjoin(buffer, "", 0);
 			cur++;
 		}
-		// 2c. ＄の場合
 		else if (*cur == '$')
 		{
-			// 2c1. 展開結果をvarに一時保存する
 			name_len = namelen(cur + 1);
 			name = ft_strndup(cur + 1, name_len);
 			if (!(name && name[0]))
@@ -127,22 +114,17 @@ char	**expand_single_token(char *orig)
 			var_cur = var;
 			while (*var_cur)
 			{
-				// 2c3a. 分割文字の場合
 				if (*var_cur == ' ' || *var_cur == '\t' || *var_cur == '\n')
 				{
-					// 2c3a1.  bufferをfixedの末尾に挿入
 					if (buffer != NULL)
 					{
 						append_str(&fixed, buffer);
-						// printf("%s\n", buffer);
 						free(buffer);
 						buffer = NULL;
 					}
 					var_cur++;
 					continue ;
 				}
-				// var_curの次のIFS文字か'\0'までをbufferにjoinする
-				// var_curを次のIFS文字か'\0'の位置にセット
 				next_cur = ft_strchr_mul(var_cur, (char [4]){' ', '\t', '\n',
 						'\0'}, 4);
 				buffer = ft_strnjoin(buffer, var_cur, next_cur - var_cur);
@@ -151,10 +133,8 @@ char	**expand_single_token(char *orig)
 		}
 		else
 		{
-			// curから次の'\"', '\'', '$', '\0'前までをbufferにjoinする
 			next_cur = ft_strchr_mul(cur, (char [4]){'\"', '\'', '$', '\0'}, 4);
 			buffer = ft_strnjoin(buffer, cur, next_cur - cur);
-			// curを次の'\"', '\'', '$', '\0'の位置にセット
 			cur = next_cur;
 		}
 	}
