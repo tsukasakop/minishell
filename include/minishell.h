@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/14 02:03:00 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/14 02:14:20 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ void			expand_double_quote(char **cur_p, char **buf_p);
 void			expand_single_quote(char **cur_p, char **buf_p);
 char			*read_bare_string(char **cur_p, char *ends, size_t ends_len);
 void			read_bare_string_m(char **cur_p, char **buf_p, char *ends,
-				size_t ends_len);
+					size_t ends_len);
 char			*read_variable_m(char **cur_p, char **buf_p);
 
 /* main function */

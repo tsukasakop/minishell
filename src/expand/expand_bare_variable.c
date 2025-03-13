@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:48:13 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/14 01:48:18 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/14 02:14:10 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	expand_bare_variable(char **cur_p, char **buf_p, char ***fixed_p)
 			var++;
 		}
 		else
-			read_bare_string_m(&var, buf_p, (char[4]){' ', '\t', '\n', '\0'},
+			read_bare_string_m(&var, buf_p, (char [4]){' ', '\t', '\n', '\0'},
 				4);
 	}
 }
