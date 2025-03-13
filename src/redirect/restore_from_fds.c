@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirects_stdin.c                                  :+:      :+:    :+:   */
+/*   restore_from_fds.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/24 14:14:20 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/08 03:24:58 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/06 03:47:21 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/10 16:22:52 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:redirects_stdin
+ * Function:restore_from_fds
  * ----------------------------
- * Set from_fd to the fd of path.
+ * Restores original file descriptors from the saved backup.
  */
-void	redirects_stdin(t_redirect *redir)
+void	restore_from_fds(int *keep_fds, int fd_count)
 {
-	int	oldfd;
-	int	newfd;
+	int	i;
 
-	newfd = redir->from_fd;
-	oldfd = open(redir->path, O_RDONLY);
-	if (oldfd == -1)
-		perror_exit((char *)redir->path);
-	if (oldfd == newfd)
-		return ;
-	if (dup2(oldfd, newfd) < 0)
+	i = fd_count - 1;
+	while (i >= 0)
 	{
-		close(oldfd);
-		perror_exit(NULL);
+		dup2(keep_fds[i * 2 +1], keep_fds[i * 2]);
+		close(keep_fds[i * 2 +1]);
+		i--;
 	}
-	close(oldfd);
+	free(keep_fds);
 }
