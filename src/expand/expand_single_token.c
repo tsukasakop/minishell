@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:15:39 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/13 22:22:59 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/13 22:23:38 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,6 @@ char	**expand_single_token(char *orig)
 		if (*cur == '\'')
 		{
 			cur++;
-			if (ft_strchr(cur, '\'') == NULL)
-			{
-				printf("not closed quote\n");
-				free(buffer);
-				return (NULL);
-			}
 			next_cur = ft_strchr(cur, '\'');
 			buffer = ft_strnjoin(buffer, cur, next_cur - cur);
 			cur = next_cur + 1;
@@ -63,12 +57,6 @@ char	**expand_single_token(char *orig)
 		else if (*cur == '\"')
 		{
 			cur++;
-			if (ft_strchr(cur, '\"') == NULL)
-			{
-				printf("not closed quote\n");
-				free(buffer);
-				return (NULL);
-			}
 			while (*cur != '\"')
 			{
 				if (*cur == '$')
