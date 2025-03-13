@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/14 01:59:28 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/14 03:47:04 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,12 +187,8 @@ bool			write_heredocs(t_heredoc *hd);
 int				apply_redirects(t_redirect *redir, int *keep_fds, int index);
 int				backup_from_fds(t_redirect *redir, int *keep_fds, int i);
 int				*handle_redirects(t_redirect *redir, int fd_count);
-void			connect_redirects(t_redirect *redir);
-int				cur_env_connect_redirects(t_redirect *redir);
-int				cur_env_redirects_stdin(t_redirect *redir);
-int				cur_env_redirects_stdout(t_redirect *redir);
-void			redirects_stdin(t_redirect *redir);
-void			redirects_stdout(t_redirect *redir);
+int				connect_redirect(t_redirect *redir);
+int				redirect_with_oflags(t_redirect *redir, int o_flags);
 void			resolve_redirects(int stdio[2], t_redirect *redir);
 void			restore_from_fds(int *keep_fds, int fd_count);
 
