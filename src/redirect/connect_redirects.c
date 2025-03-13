@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   connect_redirects_path.c                           :+:      :+:    :+:   */
+/*   connect_redirects.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,11 +13,11 @@
 #include <minishell.h>
 
 /*
- * Function:connect_redirects_path
+ * Function:connect_redirects
  * ----------------------------
  * Parse redirect type and perform redirection processing.
  */
-void	connect_redirects_path(t_redirect *redir)
+void	connect_redirects(t_redirect *redir)
 {
 	if (redir->type == REDIR_IN)
 		redirects_stdin(redir);

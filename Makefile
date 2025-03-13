@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/08 04:42:24 by miyuu            ###   ########.fr        #
+#    Updated: 2025/03/10 19:15:44 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,12 +91,21 @@ TARGET =\
 	read/write_until_eof\
 	read/write_until_eof_on_chproc\
 	redirect/resolve_redirects\
-	redirect/connect_redirects_path\
+	redirect/connect_redirects\
 	redirect/redirects_stdin\
 	redirect/redirects_stdout\
+	redirect/apply_redirects\
+	redirect/backup_from_fds\
+	redirect/handle_redirects\
+	redirect/cur_env_connect_redirects\
+	redirect/cur_env_redirects_stdin\
+	redirect/cur_env_redirects_stdout\
+	redirect/restore_from_fds\
 	signal/at_sigint\
 	utils/close_fds_no_stdio\
 	utils/perror_exit\
+	utils/ft_redirect_lstsize\
+	utils/perror_return\
 	utils/free_null_terminated_arrar\
 	utils/ft_strchr_mul\
 	utils/ft_strnjoin\

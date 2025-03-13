@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirects_stdin.c                                  :+:      :+:    :+:   */
+/*   apply_redirects.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/24 14:14:20 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/08 03:24:58 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/06 03:52:03 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/10 18:41:15 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:redirects_stdin
+ * Function:apply_redirects
  * ----------------------------
- * Set from_fd to the fd of path.
+ * In the parent process, Apply redirections.
  */
-void	redirects_stdin(t_redirect *redir)
+int	apply_redirects(t_redirect *redir, int *keep_fds, int index)
 {
-	int	oldfd;
-	int	newfd;
-
-	newfd = redir->from_fd;
-	oldfd = open(redir->path, O_RDONLY);
-	if (oldfd == -1)
-		perror_exit((char *)redir->path);
-	if (oldfd == newfd)
-		return ;
-	if (dup2(oldfd, newfd) < 0)
-	{
-		close(oldfd);
-		perror_exit(NULL);
-	}
-	close(oldfd);
+	if (backup_from_fds(redir, keep_fds, index) == -1)
+		return (-1);
+	if (cur_env_connect_redirects(redir) == -1)
+		return (-1);
+	return (0);
 }
