@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:15:39 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/13 22:30:58 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/13 22:40:01 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,48 @@ void	read_single_quote(char **cur_p, char** buf_p)
 	next_cur = ft_strchr(*cur_p, '\'');
 	*buf_p = ft_strnjoin(*buf_p, *cur_p, next_cur - *cur_p);
 	*cur_p = next_cur + 1;
+}
+
+void	read_double_quote(char **cur_p, char** buf_p)
+{
+	char *cur;
+	char *buffer;
+	char *next_cur;
+	char *name;
+	char *var;
+	size_t name_len;
+	size_t var_len;
+
+	cur = *cur_p;
+	buffer = *buf_p;
+	cur++;
+	while (*cur != '\"')
+	{
+		if (*cur == '$')
+		{
+			name_len = namelen(cur + 1);
+			if (name_len == 0)
+			{
+				buffer = ft_strnjoin(buffer, "$", 1);
+				cur++;
+				continue ;
+			}
+			name = ft_strndup(cur + 1, name_len);
+			var = ft_getenv(name);
+			if (var)
+			{
+				var_len = ft_strlen(var);
+				buffer = ft_strnjoin(buffer, var, var_len);
+			}
+			cur += 1 + name_len;
+			continue ;
+		}
+		next_cur = ft_strchr_mul(cur, "\"$", 2);
+		buffer = ft_strnjoin(buffer, cur, next_cur - cur);
+		cur = next_cur;
+	}
+	*buf_p = ft_strnjoin(buffer, "", 0);
+	*cur_p = cur + 1;
 }
 
 /*
@@ -49,7 +91,6 @@ char	**expand_single_token(char *orig)
 	char	*var;
 	char	*var_cur;
 	size_t	name_len;
-	size_t	var_len;
 
 	buffer = NULL;
 	fixed = ft_calloc(sizeof(char *), 1);
@@ -63,34 +104,8 @@ char	**expand_single_token(char *orig)
 		}
 		else if (*cur == '\"')
 		{
-			cur++;
-			while (*cur != '\"')
-			{
-				if (*cur == '$')
-				{
-					name_len = namelen(cur + 1);
-					if (name_len == 0)
-					{
-						buffer = ft_strnjoin(buffer, "$", 1);
-						cur++;
-						continue ;
-					}
-					name = ft_strndup(cur + 1, name_len);
-					var = ft_getenv(name);
-					if (var)
-					{
-						var_len = ft_strlen(var);
-						buffer = ft_strnjoin(buffer, var, var_len);
-					}
-					cur += 1 + name_len;
-					continue ;
-				}
-				next_cur = ft_strchr_mul(cur, "\"$", 2);
-				buffer = ft_strnjoin(buffer, cur, next_cur - cur);
-				cur = next_cur;
-			}
-			buffer = ft_strnjoin(buffer, "", 0);
-			cur++;
+			read_double_quote(&cur, &buffer);
+			continue ;
 		}
 		else if (*cur == '$')
 		{
