@@ -6,11 +6,21 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:15:39 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/14 00:08:40 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/14 00:21:46 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+char *dup_name(char *cur)
+{
+	size_t len;
+	char *str;
+
+	len = namelen(cur);
+	str = ft_strndup(cur, len);
+	return str;
+}
 
 char *read_bare_string(char **cur_p, char *ends, size_t ends_len)
 {
@@ -53,32 +63,26 @@ void	expand_double_quote(char **cur_p, char** buf_p)
 	char *buffer;
 	char *name;
 	char *var;
-	size_t name_len;
-	size_t var_len;
 
-	cur = *cur_p;
 	buffer = *buf_p;
 	cur++;
 	while (*cur != '\"')
 	{
 		if (*cur == '$')
 		{
-			name_len = namelen(cur + 1);
-			if (name_len == 0)
+			cur++;
+			name = dup_name(cur);
+			if (ft_strlen(name) == 0)
 			{
 				buffer = ft_strnjoin(buffer, "$", 1);
-				cur++;
+				free(name);
 				continue ;
 			}
-			name = ft_strndup(cur + 1, name_len);
 			var = ft_getenv(name);
 			if (var)
-			{
-				var_len = ft_strlen(var);
-				buffer = ft_strnjoin(buffer, var, var_len);
-			}
-			cur += 1 + name_len;
-			continue ;
+				buffer = ft_strnjoin(buffer, var, ft_strlen(var));
+			cur += ft_strlen(name);
+			free(name);
 		}
 		else
 			read_bare_string_m(&cur, &buffer, "\"$", 2);
