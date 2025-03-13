@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/13 18:11:17 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/13 19:51:21 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ t_simple_cmd	*load_simple_cmd(t_text_list *text_list, t_heredoc **hd_list)
 	scmd_list->ecmds = NULL;
 	scmd_list->redir = NULL;
 	scmd_list->next = NULL;
-
 	// Todo;リダイレクトを構造体に格納する&text_listから削除するwhile
 	// scmd_list->redir = extract_redirect_m(&text_list);
 	reg = &text_list;
@@ -78,7 +77,6 @@ t_simple_cmd	*load_simple_cmd(t_text_list *text_list, t_heredoc **hd_list)
 			cur = *reg;
 		}
 	}
-
 	expand_ecmds(&text_list);
 	scmd_list->ecmds = fill_ecmds(text_list);
 	if (!scmd_list->ecmds)
