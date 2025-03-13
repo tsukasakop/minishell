@@ -14,6 +14,10 @@
 	echo -n hello world
 	echo -n -n -n hello world
 	echo -n hello world -n -n
+	echo -nnn
+	echo -nnn HELLO
+	echo -nnn  -n HELLO
+	echo -nnnnnnnnnnnnnnnnnnnnnnnnnn HELLO -n
 
 ## env
 	env
