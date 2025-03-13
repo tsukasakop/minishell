@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/11 20:14:01 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/13 14:11:50 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ t_simple_cmd	*load_simple_cmd(t_text_list *text_list, t_heredoc **hd_list)
 				parse_redirects(&scmd_list->redir, hd_list, cur->text, NULL);
 			// ToDo:リダイレクトを含む文字列の最後の字が記号かいなか関数分けする？
 			len = ft_strlen(cur->text);
-			if (cur->next && (cur->text[len - 1] == '>' || cur->text[len
-					- 1] == '<'))
+			if (cur->next
+				&& (cur->text[len - 1] == '>'
+					|| cur->text[len - 1] == '<'))
 			{
 				*reg = cur->next;
 				free(cur->text);
