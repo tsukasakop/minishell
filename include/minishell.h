@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/14 01:53:37 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/14 01:59:28 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,6 @@ int				get_redirect_from_fd(char *cmds_text);
 size_t			get_token_length(char *scmd_text);
 void			handle_heredoc(t_redirect **redir, t_heredoc **hd_list, \
 				char *eof, int from_fd);
-char			*get_redirect_type(char *word);
 t_redirect_type	get_redirect_type(char *word);
 t_simple_cmd	*load_simple_cmd(t_text_list *text_list, t_heredoc **hd_list);
 t_text_list		*new_struct_text_list(char *str, size_t len);
