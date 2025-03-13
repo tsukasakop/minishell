@@ -6,14 +6,13 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:15:39 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/13 22:57:42 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/13 23:11:44 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-
-void	read_bare_string(char **cur_p, char** buf_p)
+void	expand_bare_string(char **cur_p, char** buf_p)
 {
 	char *next_cur;
 
@@ -22,7 +21,7 @@ void	read_bare_string(char **cur_p, char** buf_p)
 	*cur_p = next_cur;
 }
 
-void	read_single_quote(char **cur_p, char** buf_p)
+void	expand_single_quote(char **cur_p, char** buf_p)
 {
 	char *next_cur;
 
@@ -32,7 +31,7 @@ void	read_single_quote(char **cur_p, char** buf_p)
 	*cur_p = next_cur + 1;
 }
 
-void	read_double_quote(char **cur_p, char** buf_p)
+void	expand_double_quote(char **cur_p, char** buf_p)
 {
 	char *cur;
 	char *buffer;
@@ -74,7 +73,7 @@ void	read_double_quote(char **cur_p, char** buf_p)
 	*cur_p = cur + 1;
 }
 
-void	read_bare_variable(char **cur_p, char **buf_p, char ***fixed_p)
+void	expand_bare_variable(char **cur_p, char **buf_p, char ***fixed_p)
 {
 	char *cur;
 	char *buffer;
@@ -153,13 +152,13 @@ char	**expand_single_token(char *orig)
 	while (*cur)
 	{
 		if (*cur == '\'')
-			read_single_quote(&cur, &buffer);
+			expand_single_quote(&cur, &buffer);
 		else if (*cur == '\"')
-			read_double_quote(&cur, &buffer);
+			expand_double_quote(&cur, &buffer);
 		else if (*cur == '$')
-			read_bare_variable(&cur, &buffer, &fixed);
+			expand_bare_variable(&cur, &buffer, &fixed);
 		else
-			read_bare_string(&cur, &buffer);
+			expand_bare_string(&cur, &buffer);
 	}
 	if (buffer != NULL)
 		append_str(&fixed, buffer);
