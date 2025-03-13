@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:15:39 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/13 22:54:04 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/13 22:57:42 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,25 +153,13 @@ char	**expand_single_token(char *orig)
 	while (*cur)
 	{
 		if (*cur == '\'')
-		{
 			read_single_quote(&cur, &buffer);
-			continue ;
-		}
 		else if (*cur == '\"')
-		{
 			read_double_quote(&cur, &buffer);
-			continue ;
-		}
 		else if (*cur == '$')
-		{
 			read_bare_variable(&cur, &buffer, &fixed);
-			continue;
-		}
 		else
-		{
 			read_bare_string(&cur, &buffer);
-			continue;
-		}
 	}
 	if (buffer != NULL)
 		append_str(&fixed, buffer);
