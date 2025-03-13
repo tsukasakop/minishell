@@ -6,11 +6,21 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:15:39 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/13 22:49:24 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/13 22:54:04 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+
+void	read_bare_string(char **cur_p, char** buf_p)
+{
+	char *next_cur;
+
+	next_cur = ft_strchr_mul(*cur_p, (char [4]){'\"', '\'', '$', '\0'}, 4);
+	*buf_p = ft_strnjoin(*buf_p, *cur_p, next_cur - *cur_p);
+	*cur_p = next_cur;
+}
 
 void	read_single_quote(char **cur_p, char** buf_p)
 {
@@ -136,7 +146,6 @@ char	**expand_single_token(char *orig)
 	char	*buffer;
 	char	**fixed;
 	char	*cur;
-	char	*next_cur;
 
 	buffer = NULL;
 	fixed = ft_calloc(sizeof(char *), 1);
@@ -160,9 +169,8 @@ char	**expand_single_token(char *orig)
 		}
 		else
 		{
-			next_cur = ft_strchr_mul(cur, (char [4]){'\"', '\'', '$', '\0'}, 4);
-			buffer = ft_strnjoin(buffer, cur, next_cur - cur);
-			cur = next_cur;
+			read_bare_string(&cur, &buffer);
+			continue;
 		}
 	}
 	if (buffer != NULL)
