@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:15:39 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/14 00:21:46 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/14 01:44:38 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,28 @@ void	read_bare_string_m(char **cur_p, char** buf_p, char *ends, size_t ends_len)
 	*buf_p = tmp;
 }
 
+char *read_variable_m(char **cur_p, char **buf_p)
+{
+	char *name;
+	char *value;
+	char *tmp;
+
+	(*cur_p)++;
+	name = dup_name(*cur_p);
+	if (name == NULL || ft_strlen(name) == 0)
+	{
+		free(name);
+		tmp = ft_strnjoin(*buf_p, "$", 1);
+		free(*buf_p);
+		*buf_p = tmp;
+		return NULL;
+	}
+	*cur_p += ft_strlen(name);
+	value = ft_getenv(name);
+	free(name);
+	return value;
+}
+
 void	expand_bare_string(char **cur_p, char** buf_p)
 {
 	read_bare_string_m(cur_p, buf_p, (char [4]){'\"', '\'', '$', '\0'}, 4);
@@ -59,82 +81,48 @@ void	expand_single_quote(char **cur_p, char** buf_p)
 
 void	expand_double_quote(char **cur_p, char** buf_p)
 {
-	char *cur;
-	char *buffer;
-	char *name;
 	char *var;
+	char *tmp;
 
-	buffer = *buf_p;
-	cur++;
-	while (*cur != '\"')
+	(*cur_p)++;
+	while (**cur_p != '\"')
 	{
-		if (*cur == '$')
+		if (**cur_p == '$')
 		{
-			cur++;
-			name = dup_name(cur);
-			if (ft_strlen(name) == 0)
-			{
-				buffer = ft_strnjoin(buffer, "$", 1);
-				free(name);
-				continue ;
-			}
-			var = ft_getenv(name);
-			if (var)
-				buffer = ft_strnjoin(buffer, var, ft_strlen(var));
-			cur += ft_strlen(name);
-			free(name);
+			var = read_variable_m(cur_p, buf_p);
+			if (!var)
+				continue;
+			tmp = ft_strnjoin(*buf_p, var, ft_strlen(var));
+			free(*buf_p);
+			*buf_p = tmp;
 		}
 		else
-			read_bare_string_m(&cur, &buffer, "\"$", 2);
+			read_bare_string_m(cur_p, &*buf_p, "\"$", 2);
 	}
-	*buf_p = ft_strnjoin(buffer, "", 0);
-	*cur_p = cur + 1;
+	tmp = ft_strnjoin(*buf_p, "", 0);
+	free(*buf_p);
+	*buf_p = tmp;
+	(*cur_p)++;
 }
 
 void	expand_bare_variable(char **cur_p, char **buf_p, char ***fixed_p)
 {
-	char *cur;
-	char *buffer;
 	char *name;
 	char *var;
-	char *var_cur;
-	size_t name_len;
 
-	cur = *cur_p;
-	buffer = *buf_p;
-	name_len = namelen(cur + 1);
-	name = ft_strndup(cur + 1, name_len);
-	if (!(name && name[0]))
+	var = read_variable_m(cur_p, buf_p);
+	while (var && *var)
 	{
-		*buf_p = ft_strnjoin(buffer, "$", 1);
-		*cur_p += 1;
-		return;
-	}
-	cur += 1 + name_len;
-	var = ft_getenv(name);
-	if (var == NULL)
-	{
-		*cur_p = cur;
-		return;
-	}
-	var_cur = var;
-	while (*var_cur)
-	{
-		if (*var_cur == ' ' || *var_cur == '\t' || *var_cur == '\n')
+		if (ft_isifs(*var))
 		{
-			if (buffer != NULL)
-			{
-				append_str(fixed_p, buffer);
-				free(buffer);
-				buffer = NULL;
-			}
-			var_cur++;
+			if (*buf_p != NULL)
+				append_str(fixed_p, *buf_p);
+			*buf_p = NULL;
+			var++;
 		}
 		else
-			read_bare_string_m(&var_cur, &buffer, (char [4]){' ', '\t', '\n', '\0'}, 4);
+			read_bare_string_m(&var, buf_p, (char [4]){' ', '\t', '\n', '\0'}, 4);
 	}
-	*buf_p = buffer;
-	*cur_p = cur;
 }
 
 /*
