@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/10 19:15:44 by miyuu            ###   ########.fr        #
+#    Updated: 2025/03/14 02:07:28 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,14 @@ TARGET =\
 	env/is_valid_identifier\
 	env/load_variable_assignment\
 	env/register_env\
+	env/dup_name\
+	expand/expand_bare_string\
+	expand/expand_bare_variable\
+	expand/expand_double_quote\
+	expand/expand_single_quote\
+	expand/read_bare_string\
+	expand/read_bare_string_m\
+	expand/read_variable_m\
 	expand/expand_ecmds\
 	expand/get_exit_status\
 	expand/get_exit_status_p\

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/13 18:54:37 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/14 02:03:00 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,7 @@ bool			is_validate_redirect_syntax(t_text_list *cur);
 bool			is_valid_identifier(char *string);
 void			load_variable_assignment(char *string, char **name, char **value);
 bool			register_env(char *string);
+char			*dup_name(char *cur);
 
 /* expand function */
 void			expand_ecmds(t_text_list **text_list);
@@ -167,6 +168,14 @@ void			set_exit_status(unsigned char st);
 void			append_str(char ***store, char *orig);
 char			**expand_single_token(char *orig);
 size_t			namelen(char *str);
+void			expand_bare_string(char **cur_p, char **buf_p);
+void			expand_bare_variable(char **cur_p, char **buf_p, char ***fixed_p);
+void			expand_double_quote(char **cur_p, char **buf_p);
+void			expand_single_quote(char **cur_p, char **buf_p);
+char			*read_bare_string(char **cur_p, char *ends, size_t ends_len);
+void			read_bare_string_m(char **cur_p, char **buf_p, char *ends,
+				size_t ends_len);
+char			*read_variable_m(char **cur_p, char **buf_p);
 
 /* main function */
 unsigned char	eval_pipe(const char *cmd_line, char **envp);
