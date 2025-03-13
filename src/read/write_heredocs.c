@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:18:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/27 14:39:48 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/13 18:51:56 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
  *
  * Returns false if falure on write heredocs, otherwise true
  * TODO: エラー出力
+ * TODO: 単体で処理する
  */
 bool	write_heredocs(t_heredoc *hd_list)
 {

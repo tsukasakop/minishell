@@ -1,0 +1,156 @@
+./scripts/show-argv.sh ""
+./scripts/show-argv.sh ''
+./scripts/show-argv.sh
+./scripts/show-argv.sh "$+"
+
+echo $%$+$,$.$/$:$=$^$~
+echo "$%$+$,$.$/$:$=$^$~"
+
+echo $WORD $WORD
+echo $WORD$WORD
+echo $WORD+$WORD
+export WORD=""
+echo $WORD $WORD
+echo $WORD$WORD
+echo $WORD+$WORD
+
+export WORD="aiueo"
+./scripts/show-argv.sh "$WORD"
+./scripts/show-argv.sh '$WORD'
+./scripts/show-argv.sh $WORD
+./scripts/show-argv.sh -+="$WORD"=+-
+./scripts/show-argv.sh -+='$WORD'=+-
+./scripts/show-argv.sh -+=$WORD=+-
+./scripts/show-argv.sh -+="$WORD"
+./scripts/show-argv.sh -+='$WORD'
+./scripts/show-argv.sh -+=$WORD
+./scripts/show-argv.sh "$WORD"=+-
+./scripts/show-argv.sh '$WORD'=+-
+./scripts/show-argv.sh $WORD=+-
+
+export WORD="   123"
+./scripts/show-argv.sh "$WORD"
+./scripts/show-argv.sh '$WORD'
+./scripts/show-argv.sh $WORD
+./scripts/show-argv.sh -+="$WORD"=+-
+./scripts/show-argv.sh -+='$WORD'=+-
+./scripts/show-argv.sh -+=$WORD=+-
+./scripts/show-argv.sh -+="$WORD"
+./scripts/show-argv.sh -+='$WORD'
+./scripts/show-argv.sh -+=$WORD
+./scripts/show-argv.sh "$WORD"=+-
+./scripts/show-argv.sh '$WORD'=+-
+./scripts/show-argv.sh $WORD=+-
+
+export WORD="%!   "
+./scripts/show-argv.sh "$WORD"
+./scripts/show-argv.sh '$WORD'
+./scripts/show-argv.sh $WORD
+./scripts/show-argv.sh -+="$WORD"=+-
+./scripts/show-argv.sh -+='$WORD'=+-
+./scripts/show-argv.sh -+=$WORD=+-
+./scripts/show-argv.sh -+="$WORD"
+./scripts/show-argv.sh -+='$WORD'
+./scripts/show-argv.sh -+=$WORD
+./scripts/show-argv.sh "$WORD"=+-
+./scripts/show-argv.sh '$WORD'=+-
+./scripts/show-argv.sh $WORD=+-
+
+export WORD="    aiueo    "
+./scripts/show-argv.sh "$WORD"
+./scripts/show-argv.sh '$WORD'
+./scripts/show-argv.sh $WORD
+./scripts/show-argv.sh -+="$WORD"=+-
+./scripts/show-argv.sh -+='$WORD'=+-
+./scripts/show-argv.sh -+=$WORD=+-
+./scripts/show-argv.sh -+="$WORD"
+./scripts/show-argv.sh -+='$WORD'
+./scripts/show-argv.sh -+=$WORD
+./scripts/show-argv.sh "$WORD"=+-
+./scripts/show-argv.sh '$WORD'=+-
+./scripts/show-argv.sh $WORD=+-
+
+export WORD="    aiueo    1234"
+./scripts/show-argv.sh "$WORD"
+./scripts/show-argv.sh '$WORD'
+./scripts/show-argv.sh $WORD
+./scripts/show-argv.sh -+="$WORD"=+-
+./scripts/show-argv.sh -+='$WORD'=+-
+./scripts/show-argv.sh -+=$WORD=+-
+./scripts/show-argv.sh -+="$WORD"
+./scripts/show-argv.sh -+='$WORD'
+./scripts/show-argv.sh -+=$WORD
+./scripts/show-argv.sh "$WORD"=+-
+./scripts/show-argv.sh '$WORD'=+-
+./scripts/show-argv.sh $WORD=+-
+
+export WORD="1234    aiueo    "
+./scripts/show-argv.sh "$WORD"
+./scripts/show-argv.sh '$WORD'
+./scripts/show-argv.sh $WORD
+./scripts/show-argv.sh -+="$WORD"=+-
+./scripts/show-argv.sh -+='$WORD'=+-
+./scripts/show-argv.sh -+=$WORD=+-
+./scripts/show-argv.sh -+="$WORD"
+./scripts/show-argv.sh -+='$WORD'
+./scripts/show-argv.sh -+=$WORD
+./scripts/show-argv.sh "$WORD"=+-
+./scripts/show-argv.sh '$WORD'=+-
+./scripts/show-argv.sh $WORD=+-
+
+export WORD=" 1234    aiueo    "
+./scripts/show-argv.sh "$WORD"
+./scripts/show-argv.sh '$WORD'
+./scripts/show-argv.sh $WORD
+./scripts/show-argv.sh -+="$WORD"=+-
+./scripts/show-argv.sh -+='$WORD'=+-
+./scripts/show-argv.sh -+=$WORD=+-
+./scripts/show-argv.sh -+="$WORD"
+./scripts/show-argv.sh -+='$WORD'
+./scripts/show-argv.sh -+=$WORD
+./scripts/show-argv.sh "$WORD"=+-
+./scripts/show-argv.sh '$WORD'=+-
+./scripts/show-argv.sh $WORD=+-
+
+export WORD="   1234    aiueo    "
+./scripts/show-argv.sh "$WORD"
+./scripts/show-argv.sh '$WORD'
+./scripts/show-argv.sh $WORD
+./scripts/show-argv.sh -+="$WORD"=+-
+./scripts/show-argv.sh -+='$WORD'=+-
+./scripts/show-argv.sh -+=$WORD=+-
+./scripts/show-argv.sh -+="$WORD"
+./scripts/show-argv.sh -+='$WORD'
+./scripts/show-argv.sh -+=$WORD
+./scripts/show-argv.sh "$WORD"=+-
+./scripts/show-argv.sh '$WORD'=+-
+./scripts/show-argv.sh $WORD=+-
+
+export WORD=""
+./scripts/show-argv.sh "$WORD"
+./scripts/show-argv.sh '$WORD'
+./scripts/show-argv.sh $WORD
+./scripts/show-argv.sh -+="$WORD"=+-
+./scripts/show-argv.sh -+='$WORD'=+-
+./scripts/show-argv.sh -+=$WORD=+-
+./scripts/show-argv.sh -+="$WORD"
+./scripts/show-argv.sh -+='$WORD'
+./scripts/show-argv.sh -+=$WORD
+./scripts/show-argv.sh "$WORD"=+-
+./scripts/show-argv.sh '$WORD'=+-
+./scripts/show-argv.sh $WORD=+-
+
+export WORD="     "
+./scripts/show-argv.sh "$WORD"
+./scripts/show-argv.sh '$WORD'
+./scripts/show-argv.sh $WORD
+./scripts/show-argv.sh -+="$WORD"=+-
+./scripts/show-argv.sh -+='$WORD'=+-
+./scripts/show-argv.sh -+=$WORD=+-
+./scripts/show-argv.sh -+="$WORD"
+./scripts/show-argv.sh -+='$WORD'
+./scripts/show-argv.sh -+=$WORD
+./scripts/show-argv.sh "$WORD"=+-
+./scripts/show-argv.sh '$WORD'=+-
+./scripts/show-argv.sh $WORD=+-
+./scripts/show-argv.sh "$WORD""$WORD"

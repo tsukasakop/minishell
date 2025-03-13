@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:30:10 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/07 19:58:02 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/13 19:26:42 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
  * int stdio_fd[2]: are fds to be redirect from stdio
  * int next_in_fd: is fd to be close on child process
  * char **envp: string if envp
+ * TODO; bool	execute_simple_cmd(t_simple_cmd *scmd_list, t_execute_session session)
  */
 bool	execute_simple_cmd(const t_simple_cmd *scmd_list, int stdio_fd[2],
 		int next_in_fd, char **envp)

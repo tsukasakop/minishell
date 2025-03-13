@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/10 19:16:23 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/13 18:54:37 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,36 @@
 # define ERR_HEREDOC "%swarning: here-document delimited by end-of-file (wanted `%s')\n"
 
 /* struct */
-typedef struct s_simple_cmd		t_simple_cmd;
-typedef struct s_redirect		t_redirect;
-typedef struct s_text_list		t_text_list;
-typedef struct s_heredoc		t_heredoc;
-typedef enum e_redirect_type
+typedef struct s_execute_session	t_execute_session;
+typedef struct s_simple_cmd			t_simple_cmd;
+typedef struct s_redirect			t_redirect;
+typedef struct s_text_list			t_text_list;
+typedef struct s_heredoc			t_heredoc;
+typedef enum e_redirect_type		t_redirect_type;
+typedef enum e_execute_env			t_execute_env;
+
+enum e_redirect_type
 {
 	REDIR_IN,
+	REDIR_HEREDOC,
 	REDIR_OUT,
-	REDIR_APPEND
-}			t_redirect_type;
+	REDIR_APPEND,
+	NONE
+};
+
+enum e_execute_env
+{
+	ENV_CURRENT,
+	ENV_INDEPENDENT
+};
+
+struct				s_execute_session
+{
+	t_simple_cmd	*scmd;
+	t_execute_env	env;
+	int				stdio_fd[2];
+	int				next_in_fd;
+};
 
 struct				s_simple_cmd
 {
@@ -81,7 +101,7 @@ struct				s_heredoc
 };
 
 /* global variable */
-extern volatile unsigned char	g_signal;
+extern volatile unsigned char		g_signal;
 
 /* builtin function */
 bool			is_builtin(char *ecmd);
@@ -104,7 +124,7 @@ void			add_struct_redirect(t_redirect **redir, int type, \
 void			add_struct_text_list(t_text_list **head, t_text_list *new);
 char			*create_tmp_file(void);
 t_simple_cmd	*fill_struct_simple_cmd(char **scmd_texts, t_heredoc **hd_list);
-char			**fill_ecmds(t_text_list *scmds, int wc);
+char			**fill_ecmds(t_text_list *scmds);
 void			free_text_list(t_text_list *scmds);
 void			free_heredocs(t_heredoc *hd);
 void			free_redirects(t_redirect *redir);
@@ -140,7 +160,7 @@ void			load_variable_assignment(char *string, char **name, char **value);
 bool			register_env(char *string);
 
 /* expand function */
-void			expand_ecmds(t_text_list *text_list);
+void			expand_ecmds(t_text_list **text_list);
 unsigned char	*get_exit_status_p(void);
 unsigned char	get_exit_status(void);
 void			set_exit_status(unsigned char st);

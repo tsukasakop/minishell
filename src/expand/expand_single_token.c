@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:15:39 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/05 15:09:06 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/11 20:06:10 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,18 @@
  * Function:
  * ----------------------------
  *  expand single token text into string array.
+ *  Returns
+ *  	NULL:
+ *  		failed process (not closed quote, or malloc failed)
+ *  	return_value[0] == NULL:
+ *  		expanded but no token exits.
+ *  		this occurs on expandng empty string without double quotes.
+ *  	return_value[1] == NULL:
+ *  		general case. expanded to 1 token.
+ *  	return_value[>=2] == NULL:
+ *  		expanded to more than 1 token, by expanding variable without quotes.
+ *
+ *
  */
 char	**expand_single_token(char *orig)
 {
@@ -27,6 +39,7 @@ char	**expand_single_token(char *orig)
 	char	*var;
 	char	*var_cur;
 	size_t	name_len;
+	size_t	var_len;
 
 	buffer = NULL;
 	fixed = ft_calloc(sizeof(char *), 1);
@@ -52,7 +65,7 @@ char	**expand_single_token(char *orig)
 			continue ;
 		}
 		// 2b. ダブルクオーとの場合
-		if (*cur == '\"')
+		else if (*cur == '\"')
 		{
 			cur++;
 			// 対応するクオーとがない場合error
@@ -65,32 +78,52 @@ char	**expand_single_token(char *orig)
 			while (*cur != '\"')
 			{
 				// 2b2a. $の場合
-				while (*cur == '$')
+				if (*cur == '$')
 				{
 					//変数名を展開してbufferにjoinする
-					name_len = namelen(++cur);
-					name = ft_strndup(cur, name_len);
-					buffer = ft_strjoin(buffer, ft_getenv(name));
+					name_len = namelen(cur + 1);
+					if (name_len == 0)
+					{
+						buffer = ft_strnjoin(buffer, "$", 1);
+						cur++;
+						continue ;
+					}
+					name = ft_strndup(cur + 1, name_len);
+					var = ft_getenv(name);
+					if (var)
+					{
+						var_len = ft_strlen(var);
+						buffer = ft_strnjoin(buffer, var, var_len);
+					}
 					// curを変数名の次の位置にセット
-					cur += name_len;
+					cur += 1 + name_len;
+					continue ;
 				}
 				// curから次の'\"', '$',"前までをbufferにjoinする
 				// curを次の'\"', '$', の位置にセット
-				next_cur = ft_strchr_mul(cur, (char [2]){'\"', '$'}, 2);
+				next_cur = ft_strchr_mul(cur, "\"$", 2);
 				buffer = ft_strnjoin(buffer, cur, next_cur - cur);
 				cur = next_cur;
 			}
+			buffer = ft_strnjoin(buffer, "", 0);
 			cur++;
-			continue ;
 		}
 		// 2c. ＄の場合
-		if (*cur == '$')
+		else if (*cur == '$')
 		{
 			// 2c1. 展開結果をvarに一時保存する
-			name_len = namelen(++cur);
-			name = ft_strndup(cur, name_len);
-			cur += name_len;
+			name_len = namelen(cur + 1);
+			name = ft_strndup(cur + 1, name_len);
+			if (!(name && name[0]))
+			{
+				buffer = ft_strnjoin(buffer, "$", 1);
+				cur++;
+				continue ;
+			}
+			cur += 1 + name_len;
 			var = ft_getenv(name);
+			if (var == NULL)
+				continue ;
 			var_cur = var;
 			while (*var_cur)
 			{
@@ -115,14 +148,15 @@ char	**expand_single_token(char *orig)
 				buffer = ft_strnjoin(buffer, var_cur, next_cur - var_cur);
 				var_cur = next_cur;
 			}
-			// 2c3b
-			continue ;
 		}
-		// curから次の'\"', '\'', '$', '\0'前までをbufferにjoinする
-		next_cur = ft_strchr_mul(cur, (char [4]){'\"', '\'', '$', '\0'}, 4);
-		buffer = ft_strnjoin(buffer, cur, next_cur - cur);
-		// curを次の'\"', '\'', '$', '\0'の位置にセット
-		cur = next_cur;
+		else
+		{
+			// curから次の'\"', '\'', '$', '\0'前までをbufferにjoinする
+			next_cur = ft_strchr_mul(cur, (char [4]){'\"', '\'', '$', '\0'}, 4);
+			buffer = ft_strnjoin(buffer, cur, next_cur - cur);
+			// curを次の'\"', '\'', '$', '\0'の位置にセット
+			cur = next_cur;
+		}
 	}
 	if (buffer != NULL)
 		append_str(&fixed, buffer);
