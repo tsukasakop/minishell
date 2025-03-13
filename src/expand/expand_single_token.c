@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:15:39 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/13 22:40:01 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/13 22:49:24 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,56 @@ void	read_double_quote(char **cur_p, char** buf_p)
 	*cur_p = cur + 1;
 }
 
+void	read_bare_variable(char **cur_p, char **buf_p, char ***fixed_p)
+{
+	char *cur;
+	char *buffer;
+	char *next_cur;
+	char *name;
+	char *var;
+	char *var_cur;
+	size_t name_len;
+
+	cur = *cur_p;
+	buffer = *buf_p;
+	name_len = namelen(cur + 1);
+	name = ft_strndup(cur + 1, name_len);
+	if (!(name && name[0]))
+	{
+		*buf_p = ft_strnjoin(buffer, "$", 1);
+		*cur_p += 1;
+		return;
+	}
+	cur += 1 + name_len;
+	var = ft_getenv(name);
+	if (var == NULL)
+	{
+		*cur_p = cur;
+		return;
+	}
+	var_cur = var;
+	while (*var_cur)
+	{
+		if (*var_cur == ' ' || *var_cur == '\t' || *var_cur == '\n')
+		{
+			if (buffer != NULL)
+			{
+				append_str(fixed_p, buffer);
+				free(buffer);
+				buffer = NULL;
+			}
+			var_cur++;
+			continue ;
+		}
+		next_cur = ft_strchr_mul(var_cur, (char [4]){' ', '\t', '\n',
+				'\0'}, 4);
+		buffer = ft_strnjoin(buffer, var_cur, next_cur - var_cur);
+		var_cur = next_cur;
+	}
+	*buf_p = buffer;
+	*cur_p = cur;
+}
+
 /*
  * Function:
  * ----------------------------
@@ -85,12 +135,8 @@ char	**expand_single_token(char *orig)
 {
 	char	*buffer;
 	char	**fixed;
-	char	*name;
 	char	*cur;
 	char	*next_cur;
-	char	*var;
-	char	*var_cur;
-	size_t	name_len;
 
 	buffer = NULL;
 	fixed = ft_calloc(sizeof(char *), 1);
@@ -109,37 +155,8 @@ char	**expand_single_token(char *orig)
 		}
 		else if (*cur == '$')
 		{
-			name_len = namelen(cur + 1);
-			name = ft_strndup(cur + 1, name_len);
-			if (!(name && name[0]))
-			{
-				buffer = ft_strnjoin(buffer, "$", 1);
-				cur++;
-				continue ;
-			}
-			cur += 1 + name_len;
-			var = ft_getenv(name);
-			if (var == NULL)
-				continue ;
-			var_cur = var;
-			while (*var_cur)
-			{
-				if (*var_cur == ' ' || *var_cur == '\t' || *var_cur == '\n')
-				{
-					if (buffer != NULL)
-					{
-						append_str(&fixed, buffer);
-						free(buffer);
-						buffer = NULL;
-					}
-					var_cur++;
-					continue ;
-				}
-				next_cur = ft_strchr_mul(var_cur, (char [4]){' ', '\t', '\n',
-						'\0'}, 4);
-				buffer = ft_strnjoin(buffer, var_cur, next_cur - var_cur);
-				var_cur = next_cur;
-			}
+			read_bare_variable(&cur, &buffer, &fixed);
+			continue;
 		}
 		else
 		{
