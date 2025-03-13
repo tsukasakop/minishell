@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/13 18:03:12 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/13 18:54:37 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,27 @@ typedef struct s_redirect			t_redirect;
 typedef struct s_text_list			t_text_list;
 typedef struct s_heredoc			t_heredoc;
 typedef enum e_redirect_type		t_redirect_type;
+typedef enum e_execute_env			t_execute_env;
+
+enum e_redirect_type
+{
+	REDIR_IN,
+	REDIR_HEREDOC,
+	REDIR_OUT,
+	REDIR_APPEND,
+	NONE
+};
+
+enum e_execute_env
+{
+	ENV_CURRENT,
+	ENV_INDEPENDENT
+};
 
 struct				s_execute_session
 {
 	t_simple_cmd	*scmd;
-	t_env			env;
+	t_execute_env	env;
 	int				stdio_fd[2];
 	int				next_in_fd;
 };
@@ -82,15 +98,6 @@ struct				s_heredoc
 	char			*eof;
 	char			*path;
 	t_heredoc		*next;
-};
-
-enum e_redirect_type
-{
-	REDIR_IN,
-	REDIR_HEREDOC,
-	REDIR_OUT,
-	REDIR_APPEND,
-	NONE
 };
 
 /* global variable */
