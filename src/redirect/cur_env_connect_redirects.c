@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirects_stdin.c                                  :+:      :+:    :+:   */
+/*   cur_env_connect_redirects.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/24 14:14:20 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/08 03:24:58 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/06 03:48:50 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/06 04:24:41 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:redirects_stdin
+ * Function:cur_env_connect_redirects
  * ----------------------------
- * Set from_fd to the fd of path.
+ * In the parent process, Parse redirect type and perform redirection processing.
  */
-void	redirects_stdin(t_redirect *redir)
+int	cur_env_connect_redirects(t_redirect *redir)
 {
-	int	oldfd;
-	int	newfd;
-
-	newfd = redir->from_fd;
-	oldfd = open(redir->path, O_RDONLY);
-	if (oldfd == -1)
-		perror_exit((char *)redir->path);
-	if (oldfd == newfd)
-		return ;
-	if (dup2(oldfd, newfd) < 0)
-	{
-		close(oldfd);
-		perror_exit(NULL);
-	}
-	close(oldfd);
+	if (redir->type == REDIR_IN)
+		return (cur_env_redirects_stdin(redir));
+	else if (redir->type == REDIR_OUT || \
+			redir->type == REDIR_APPEND)
+		return (cur_env_redirects_stdout(redir));
+	return (-1);
 }

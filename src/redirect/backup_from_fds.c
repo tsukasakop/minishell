@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirects_stdin.c                                  :+:      :+:    :+:   */
+/*   backup_from_fds.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/24 14:14:20 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/08 03:24:58 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/10 18:27:58 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/10 18:45:09 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:redirects_stdin
+ * Function:backup_from_fds
  * ----------------------------
- * Set from_fd to the fd of path.
+ * Saves from_fd and their duplicates into an array.
  */
-void	redirects_stdin(t_redirect *redir)
+int	backup_from_fds(t_redirect *redir, int *keep_fds, int i)
 {
-	int	oldfd;
-	int	newfd;
-
-	newfd = redir->from_fd;
-	oldfd = open(redir->path, O_RDONLY);
-	if (oldfd == -1)
-		perror_exit((char *)redir->path);
-	if (oldfd == newfd)
-		return ;
-	if (dup2(oldfd, newfd) < 0)
+	keep_fds[i * 2] = redir->from_fd;
+	keep_fds[i * 2 + 1] = dup(redir->from_fd);
+	if (keep_fds[i * 2 + 1] == -1)
 	{
-		close(oldfd);
-		perror_exit(NULL);
+		if (errno == EBADF)
+			keep_fds[i * 2 + 1] = redir->from_fd;
+		else
+		{
+			perror(ft_itoa(redir->from_fd));
+			return (-1);
+		}
 	}
-	close(oldfd);
+	return (0);
 }

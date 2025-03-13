@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/08 04:41:56 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/10 19:16:23 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,10 +169,17 @@ bool			write_until_eof_on_chproc(int fd, const char *hd_eof);
 bool			write_heredocs(t_heredoc *hd);
 
 /* redirect function */
-void			connect_redirects_path(t_redirect *redir);
+int				apply_redirects(t_redirect *redir, int *keep_fds, int index);
+int				backup_from_fds(t_redirect *redir, int *keep_fds, int i);
+int				*handle_redirects(t_redirect *redir, int fd_count);
+void			connect_redirects(t_redirect *redir);
+int				cur_env_connect_redirects(t_redirect *redir);
+int				cur_env_redirects_stdin(t_redirect *redir);
+int				cur_env_redirects_stdout(t_redirect *redir);
 void			redirects_stdin(t_redirect *redir);
 void			redirects_stdout(t_redirect *redir);
 void			resolve_redirects(int stdio[2], t_redirect *redir);
+void			restore_from_fds(int *keep_fds, int fd_count);
 
 /* signal function */
 void			at_sigint(int signal);
@@ -184,7 +191,9 @@ void			set_signal(int signal);
 
 /* utils */
 void			close_fds_no_stdio(int *fds, size_t size);
+int				ft_redirect_lstsize(t_redirect *lst);
 void			perror_exit(char *msg);
+int				perror_return(char *msg, int status);
 void			free_null_terminated_array(void **arr);
 char			*ft_strchr_mul(const char *s, char *targets, size_t target_len);
 char			*ft_strnjoin(char *s1, char *s2, size_t s2_len);

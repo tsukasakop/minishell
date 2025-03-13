@@ -1,37 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirects_stdin.c                                  :+:      :+:    :+:   */
+/*   handle_redirects.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/24 14:14:20 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/08 03:24:58 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/06 03:46:43 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/10 18:47:07 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:redirects_stdin
+ * Function:handle_redirects
  * ----------------------------
- * Set from_fd to the fd of path.
+ * Set fd for redirection.
  */
-void	redirects_stdin(t_redirect *redir)
+int	*handle_redirects(t_redirect *redir, int fd_count)
 {
-	int	oldfd;
-	int	newfd;
+	t_redirect	*cur;
+	int			i;
+	int			*keep_fds;
 
-	newfd = redir->from_fd;
-	oldfd = open(redir->path, O_RDONLY);
-	if (oldfd == -1)
-		perror_exit((char *)redir->path);
-	if (oldfd == newfd)
-		return ;
-	if (dup2(oldfd, newfd) < 0)
+	cur = redir;
+	keep_fds = malloc(sizeof(int) * fd_count * 2);
+	if (!keep_fds)
 	{
-		close(oldfd);
-		perror_exit(NULL);
+		perror_return(NULL, -1);
+		return (NULL);
 	}
-	close(oldfd);
+	i = 0;
+	while (cur)
+	{
+		if (apply_redirects(cur, keep_fds, i) == -1)
+		{
+			restore_from_fds(keep_fds, i);
+			return (NULL);
+		}
+		cur = cur->next;
+		i++;
+	}
+	return (keep_fds);
 }

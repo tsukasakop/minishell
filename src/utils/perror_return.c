@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirects_stdin.c                                  :+:      :+:    :+:   */
+/*   perror_return.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/24 14:14:20 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/08 03:24:58 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/06 02:13:01 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/06 02:17:52 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:redirects_stdin
+ * Function:perror_return
  * ----------------------------
- * Set from_fd to the fd of path.
+ * Prints an error message with the shell name.
+ * But the shell does not exit.
  */
-void	redirects_stdin(t_redirect *redir)
+int	perror_return(char *msg, int status)
 {
-	int	oldfd;
-	int	newfd;
-
-	newfd = redir->from_fd;
-	oldfd = open(redir->path, O_RDONLY);
-	if (oldfd == -1)
-		perror_exit((char *)redir->path);
-	if (oldfd == newfd)
-		return ;
-	if (dup2(oldfd, newfd) < 0)
-	{
-		close(oldfd);
-		perror_exit(NULL);
-	}
-	close(oldfd);
+	write(2, SHELL_NAME, ft_strlen(SHELL_NAME));
+	perror(msg);
+	return (status);
 }
