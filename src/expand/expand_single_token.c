@@ -6,11 +6,21 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:15:39 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/13 22:23:38 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/13 22:30:58 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+void	read_single_quote(char **cur_p, char** buf_p)
+{
+	char *next_cur;
+
+	*cur_p += 1;
+	next_cur = ft_strchr(*cur_p, '\'');
+	*buf_p = ft_strnjoin(*buf_p, *cur_p, next_cur - *cur_p);
+	*cur_p = next_cur + 1;
+}
 
 /*
  * Function:
@@ -48,10 +58,7 @@ char	**expand_single_token(char *orig)
 	{
 		if (*cur == '\'')
 		{
-			cur++;
-			next_cur = ft_strchr(cur, '\'');
-			buffer = ft_strnjoin(buffer, cur, next_cur - cur);
-			cur = next_cur + 1;
+			read_single_quote(&cur, &buffer);
 			continue ;
 		}
 		else if (*cur == '\"')
