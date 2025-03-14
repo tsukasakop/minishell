@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_struct_redirect.c                              :+:      :+:    :+:   */
+/*   add_redir_list_last.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 22:35:12 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/14 23:27:14 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/15 01:08:25 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/15 01:09:23 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:add_struct_redirect
+ * Function:add_redir_list_last
  * ----------------------------
- * Fill t_redirect with data.
- *
- * char *path = File path.
- * int type = The type of redirect (input, output, append).
+ * Add new_redir to the end of redir_list.
  */
-t_redirect	*add_struct_redirect(int type, int from_fd, char *path)
+void	add_redir_list_last(t_redirect **redir_list, t_redirect *new_redir)
 {
-	t_redirect	*new;
+	t_redirect	*tmp;
 
-	new = malloc(sizeof(t_redirect));
-	if (!new)
-		return (NULL);
-	new->type = type;
-	new->from_fd = from_fd;
-	new->path = ft_strdup(path);
-	new->next = NULL;
-	return (new);
+	if (!new_redir)
+		return ;
+	if (*redir_list == NULL)
+		*redir_list = new_redir;
+	else
+	{
+		tmp = *redir_list;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new_redir;
+	}
 }

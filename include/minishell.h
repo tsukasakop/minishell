@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/14 04:23:34 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/15 01:11:15 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,7 @@ const char		*get_path(const char *ecmds);
 
 /* data function */
 void			add_struct_heredoc(t_heredoc **hd_list, char *eof, char *path);
-void			add_struct_redirect(t_redirect **redir, int type, \
-				int from_fd, char *path);
+t_redirect		*add_struct_redirect(int type, int from_fd, char *path);
 void			add_struct_text_list(t_text_list **head, t_text_list *new);
 char			*create_tmp_file(void);
 t_simple_cmd	*fill_struct_simple_cmd(char **scmd_texts, t_heredoc **hd_list);
@@ -134,8 +133,7 @@ int				ft_isifs(int c);
 int				get_redir_length(char *scmd_text);
 int				get_redirect_from_fd(char *cmds_text);
 size_t			get_token_length(char *scmd_text);
-void			handle_heredoc(t_redirect **redir, t_heredoc **hd_list, \
-				char *eof, int from_fd);
+t_redirect		*handle_heredoc(t_heredoc **hd_list, char *eof, int from_fd);
 t_redirect_type	get_redirect_type(char *word);
 t_simple_cmd	*load_simple_cmd(t_text_list *text_list, t_heredoc **hd_list);
 t_text_list		*new_struct_text_list(char *str, size_t len);
@@ -143,8 +141,8 @@ size_t			parse_general_token(char *scmd_text);
 size_t			parse_number_redir_token(char *scmd_text);
 void			syntax_error_handle(char *msg);
 size_t			skip_quote_text(char *scmd_text, char quote);
-void			parse_redirects(t_redirect **redir, t_heredoc **hd_list, \
-								char *word, char *path);
+void			add_redir_list_last(t_redirect **redir_list, t_redirect *new_redir);
+t_redirect		*token2redir(char *word, char *path, t_heredoc **hd_list);
 t_simple_cmd	*pipe2scmd_list(const char *cmd_line, t_heredoc **hd_list);
 t_text_list		*tokenizer_scmd_text(char *scmd_text);
 bool			is_validate_redirect_syntax(t_text_list *cur);
@@ -181,8 +179,7 @@ void			flush_prompt(void);
 char			*get_input(void);
 void			write_until_eof(int fd, const char *hd_eof);
 bool			write_until_eof_on_chproc(int fd, const char *hd_eof);
-// bool			write_heredocs(t_heredoc *hd);
-bool	write_heredoc(char *eof, char *path);
+bool			write_heredoc(char *eof, char *path);
 
 /* redirect function */
 int				apply_redirects(t_redirect *redir, int *keep_fds, int index);

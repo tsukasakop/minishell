@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/14 01:42:16 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/15 00:22:11 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_simple_cmd	*load_simple_cmd(t_text_list *text_list, t_heredoc **hd_list)
 	int				len;
 	t_text_list		*cur;
 	t_text_list		**reg;
+	t_redirect		*redir;
 
 	scmd_list = malloc(sizeof(t_simple_cmd));
 	if (!scmd_list)
@@ -46,15 +47,14 @@ t_simple_cmd	*load_simple_cmd(t_text_list *text_list, t_heredoc **hd_list)
 		{
 			if (!is_validate_redirect_syntax(cur))
 				return (NULL);
-			if (cur->next)
-				// TODO: 単体のリダイレクとしかないので、ポインタを渡さずに処理する
-				// redir = token2redir(cur->text, cur->next->text);
-				// lst_addlast(scmd_list->redir, redir);
-				parse_redirects(&scmd_list->redir, hd_list, cur->text,
-					cur->next->text);
-			//TODO: バリデーションでチェック済みなので削除する
-			else
-				parse_redirects(&scmd_list->redir, hd_list, cur->text, NULL);
+			redir = token2redir(cur->text, cur->next->text, hd_list);
+			if (!redir)
+			{
+				free_text_list(text_list);
+				//TODO:free(scmd_list);
+				return (NULL);
+			}
+			add_redir_list_last(&scmd_list->redir, redir);
 			// ToDo:リダイレクトを含む文字列の最後の字が記号かいなか関数分けする？
 			len = ft_strlen(cur->text);
 			if (cur->next
