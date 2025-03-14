@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:45:35 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/13 18:52:07 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/14 04:30:32 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ void	handle_heredoc(t_redirect **redir, t_heredoc **hd_list, \
 	char	*path;
 
 	path = create_tmp_file();
-	//TODO: write_heredocする
+	if (!write_heredoc(eof, path))
+		return ;
+	//TODO: write_heredocが失敗した場合の処理を考える
 	//TODO: ヒアどく構造体は使わない、リダイレクト構造体はリターンする
 	add_struct_heredoc(hd_list, eof, path);
 	add_struct_redirect(redir, REDIR_IN, from_fd, path);

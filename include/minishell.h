@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/14 03:47:04 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/14 04:23:34 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,8 @@ void			flush_prompt(void);
 char			*get_input(void);
 void			write_until_eof(int fd, const char *hd_eof);
 bool			write_until_eof_on_chproc(int fd, const char *hd_eof);
-bool			write_heredocs(t_heredoc *hd);
+// bool			write_heredocs(t_heredoc *hd);
+bool	write_heredoc(char *eof, char *path);
 
 /* redirect function */
 int				apply_redirects(t_redirect *redir, int *keep_fds, int index);
