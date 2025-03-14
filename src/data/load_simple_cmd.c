@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/15 00:22:11 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/15 02:03:45 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_simple_cmd	*load_simple_cmd(t_text_list *text_list, t_heredoc **hd_list)
 	t_text_list		**reg;
 	t_redirect		*redir;
 
+	(void)hd_list;
 	scmd_list = malloc(sizeof(t_simple_cmd));
 	if (!scmd_list)
 	{
@@ -47,7 +48,7 @@ t_simple_cmd	*load_simple_cmd(t_text_list *text_list, t_heredoc **hd_list)
 		{
 			if (!is_validate_redirect_syntax(cur))
 				return (NULL);
-			redir = token2redir(cur->text, cur->next->text, hd_list);
+			redir = token2redir(cur->text, cur->next->text);
 			if (!redir)
 			{
 				free_text_list(text_list);

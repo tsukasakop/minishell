@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/15 01:09:40 by miyuu            ###   ########.fr        #
+#    Updated: 2025/03/15 01:59:48 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,9 +40,7 @@ TARGET =\
 	command/get_path\
 	data/free_redirects\
 	data/free_simple_cmds\
-	data/add_struct_heredoc\
 	data/free_text_list\
-	data/free_heredocs\
 	data/free_ecmds\
 	data/get_redirect_type\
 	data/fill_ecmds\

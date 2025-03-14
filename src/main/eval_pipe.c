@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/14 04:24:03 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/15 01:59:12 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ unsigned char	eval_pipe(const char *cmd_line, char **envp)
 		cur = cur->next;
 	}
 	// TODO: del_pipe(pipe);
-	free_heredocs(hd_list);
+	// free_heredocs(hd_list);
 	free_simple_cmds((t_simple_cmd *)cur);
 	// TODO: ->free_simple_cmds((t_simple_cmd *)scmd_list);
 	close_fds_no_stdio((int [3]){stdio_fd[0], stdio_fd[1], next_in_fd}, 3);
