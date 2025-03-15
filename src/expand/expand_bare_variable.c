@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:48:13 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/14 02:14:10 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/15 12:48:39 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
  * Function: expand_bare_variable
  * ----------------------------
+ *  read variable on cur_p, and store it on buf_p and fixed_p
  */
 void	expand_bare_variable(char **cur_p, char **buf_p, char ***fixed_p)
 {

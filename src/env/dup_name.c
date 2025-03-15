@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 02:02:28 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/14 02:02:31 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/15 12:46:55 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 /*
  * Function: dup_name
  * ----------------------------
+ *  get name sring from cur
+ *  return value should be free
  */
 char	*dup_name(char *cur)
 {

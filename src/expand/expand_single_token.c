@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:15:39 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/14 01:54:43 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/15 12:50:07 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@
  *  		general case. expanded to 1 token.
  *  	return_value[>=2] == NULL:
  *  		expanded to more than 1 token, by expanding variable without quotes.
- *
- *
  */
 char	**expand_single_token(char *orig)
 {

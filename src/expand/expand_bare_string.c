@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:50:56 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/14 01:51:04 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/15 12:47:49 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
  * Function: expand_bare_string
  * ----------------------------
+ *  read characters from cur_p, and store it on buf_p.
  */
 void	expand_bare_string(char **cur_p, char **buf_p)
 {

@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:50:05 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/14 01:50:08 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/15 12:50:00 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
  * Function: expand_single_quote
  * ----------------------------
+ *  read string within single quote and storre it on buf_p
  */
 void	expand_single_quote(char **cur_p, char **buf_p)
 {

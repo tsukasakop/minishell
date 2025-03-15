@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:52:33 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/14 01:52:35 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/15 12:51:09 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
  * Function: read_bare_string
  * ----------------------------
+ *  return string from cur_p, ends by any character on ends variable
  */
 char	*read_bare_string(char **cur_p, char *ends, size_t ends_len)
 {

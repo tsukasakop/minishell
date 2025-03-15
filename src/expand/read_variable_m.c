@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:51:45 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/14 01:51:48 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/15 12:52:38 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 /*
  * Function: read_variable_m
  * ----------------------------
+ *  read variable from cur_p, and return vaiable value
+ *  if no name. $ sign append on buf_p
  */
 char	*read_variable_m(char **cur_p, char **buf_p)
 {

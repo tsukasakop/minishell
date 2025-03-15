@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:49:04 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/14 01:49:06 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/15 12:49:35 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
  * Function: expand_double_quote
  * ----------------------------
+ *  read string and vaiable on double quote and store it on buf_p
  */
 void	expand_double_quote(char **cur_p, char **buf_p)
 {
