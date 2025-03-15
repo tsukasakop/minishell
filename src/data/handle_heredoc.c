@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:45:35 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/15 02:45:26 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/15 18:27:16 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ t_redirect	*handle_heredoc(char *eof, int from_fd)
 	t_redirect	*redir;
 
 	path = create_tmp_file();
-	if (!write_heredocs(eof, path))
+	if (!write_heredoc(eof, path))
 		return (NULL);
-	//TODO: write_heredocsが失敗した場合の処理を考える
+	//TODO: write_heredocが失敗した場合の処理を考える
 	redir = add_struct_redirect(REDIR_IN, from_fd, path);
 	return (redir);
 }

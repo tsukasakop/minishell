@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/15 01:59:48 by miyuu            ###   ########.fr        #
+#    Updated: 2025/03/15 18:27:29 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,7 +85,7 @@ TARGET =\
 	pipe/wait_status\
 	read/flush_prompt\
 	read/get_input\
-	read/write_heredocs\
+	read/write_heredoc\
 	read/write_until_eof\
 	read/write_until_eof_on_chproc\
 	redirect/resolve_redirects\
