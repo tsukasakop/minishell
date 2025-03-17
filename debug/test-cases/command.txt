@@ -32,13 +32,64 @@ no_exist
 chmod +x /tmp/minishell_cmd/print_hello
 
 -- 存在するディレクトリ
-/tmp/minishell_cmd
-./tmp/minishell_cmd
+mkdir /tmp/hoge
+/tmp/hoge
+./tmp/hoge
+/hoge
+./hoge
 
 -- ディレクトリの権限を削除
+chmod 000 /tmp/hoge
+/tmp/hoge
+./tmp/hoge
+/hoge
+./hoge
+
+chmod 777 /tmp/hoge
+rm -r /tmp/hoge
+
+-カレントディレクトリを移動した時
+$HOME
+..//$HOME
+cd /
+$HOME
+..//$HOME
+
+
+-PATHを削除せずに、カレントディレクトリの権限を無くした時
+cd /tmp/minishell_cmd
+pwd
+ls
+/bin/ls
 chmod 000 /tmp/minishell_cmd
-/tmp/minishell_cmd
-./tmp/minishell_cmd
+ls
+/bin/ls
+chmod 777 /tmp/minishell_cmd
+
+
+-PATHを削除した場合
+unset PATH
+echo "42"
+ls
+/bin/ls
+/bin/ls | /usr/bin/wc
+cd /bin
+pwd
+ls
+
+-- PATHを削除し、カレントディレクトリの権限を無くした時
+cd /tmp/minishell_cmd
+pwd
+print_hello
+chmod 000 /tmp/minishell_cmd
+print_hello
+/tmp/minishell_cmd/print_hello
+./tmp/minishell_cmd/print_hello
+
+ls
+date
+/bin/ls | /usr/bin/wc
+/bin/cat | /bin/ls
 
 chmod 777 /tmp/minishell_cmd
 rm -r /tmp/minishell_cmd
