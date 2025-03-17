@@ -9,14 +9,17 @@ aaaaa
 ./scripts
 $HOME
 
+- 自作コマンドを作成
 mkdir /tmp/minishell_cmd
 cp scripts/print_hello /tmp/minishell_cmd
 export PATH=/tmp/minishell_cmd:$PATH
 
+-- 実行権限あり
 chmod 755 /tmp/minishell_cmd/print_hello
 print_hello
 /tmp/minishell_cmd/print_hello
 
+-- 実行権限を削除
 chmod -x /tmp/minishell_cmd/print_hello
 print_hello
 /tmp/minishell_cmd/print_hello
@@ -25,5 +28,14 @@ no_exist
 /tmp/minishell_cmd/no_exist
 
 chmod +x /tmp/minishell_cmd/print_hello
+
+-- 存在するディレクトリ
+/tmp/minishell_cmd
+./tmp/minishell_cmd
+
+-- ディレクトリの権限を削除
+chmod 000 /tmp/minishell_cmd
+/tmp/minishell_cmd
+./tmp/minishell_cmd
 
 rm -r /tmp/minishell_cmd
