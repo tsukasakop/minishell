@@ -1,0 +1,29 @@
+ls
+ls -0
+
+aaaaa
+/aaaaa
+./aa/aa
+./
+../
+./scripts
+$HOME
+
+mkdir /tmp/minishell_cmd
+cp scripts/print_hello /tmp/minishell_cmd
+export PATH=/tmp/minishell_cmd:$PATH
+
+chmod 755 /tmp/minishell_cmd/print_hello
+print_hello
+/tmp/minishell_cmd/print_hello
+
+chmod -x /tmp/minishell_cmd/print_hello
+print_hello
+/tmp/minishell_cmd/print_hello
+
+no_exist
+/tmp/minishell_cmd/no_exist
+
+chmod +x /tmp/minishell_cmd/print_hello
+
+rm -r /tmp/minishell_cmd
