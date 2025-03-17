@@ -64,7 +64,7 @@ echo Hello 100>/tmp/file6 99>/tmp/file6 98>/tmp/file6 97>/tmp/file6 96>/tmp/file
 cat /tmp/file6
 
 
-#以下、エラーのプロンプト部分がbashと異なる
+- 以下、エラーのプロンプト部分がbashと異なる
 echo 10000>/tmp/file6
 cat /tmp/file6
 

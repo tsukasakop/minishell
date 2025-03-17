@@ -69,7 +69,6 @@ $HOME
 
 -PATHを削除せずに、カレントディレクトリの権限を無くした時
 cd /tmp/minishell_cmd
-pwd
 ls
 /bin/ls
 chmod 000 /tmp/minishell_cmd
@@ -90,7 +89,6 @@ ls
 
 -- PATHを削除し、カレントディレクトリの権限を無くした時
 cd /tmp/minishell_cmd
-pwd
 print_hello
 chmod 000 /tmp/minishell_cmd
 ./
