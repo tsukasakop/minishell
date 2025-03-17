@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/17 13:50:03 by tkondo           ###   ########.fr        #
+#    Updated: 2025/03/17 18:42:56 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,6 @@ TARGET =\
 	data/add_struct_redirect\
 	data/get_redirect_from_fd\
 	data/token2redir\
-	data/fill_struct_simple_cmd\
 	data/load_simple_cmd\
 	data/pipe2scmd_list\
 	data/tokenizer_scmd_text\
