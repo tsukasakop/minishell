@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:42:38 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/17 19:42:41 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/18 08:34:20 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ bool	extract_redirect(t_text_list **token_p, t_redirect **redir_p)
 	t_redirect	*redir;
 	t_text_list	**token_addr;
 
+	*redir_p = NULL;
 	token_addr = token_p;
 	while (*token_addr)
 	{
