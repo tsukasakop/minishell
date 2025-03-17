@@ -6,36 +6,48 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 15:19:38 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/17 19:58:10 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/17 20:33:56 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <_ft_unistd.h>
 #include <ft_stdlib.h>
 
-static const char	*find_path(const char *name)
+static char	*create_path(char *dir, const char *name)
 {
 	char	*tmp;
 	char	*path;
-	char	**dirs;
+
+	tmp = ft_strjoin(dir, "/");
+	path = ft_strjoin(tmp, name);
+	free(tmp);
+	return (path);
+}
+
+static char	*get_cwd_exec_path(const char *name)
+{
 	char	*cur_dir;
+	char	*path;
+
+	cur_dir = getcwd(NULL, 0);
+	if (!cur_dir)
+		return (NULL);
+	path = create_path(cur_dir, name);
+	free(cur_dir);
+	return (path);
+}
+
+static const char	*find_path(const char *name)
+{
+	char	*path;
+	char	**dirs;
 
 	if (ft_getenv("PATH") == NULL)
-	{
-		cur_dir = getcwd(NULL, 0);
-		if (!cur_dir)
-			return (NULL);
-		tmp = ft_strjoin(cur_dir, "/");
-		path = ft_strjoin(tmp, name);
-		free(cur_dir);
-		return (path);
-	}
+		return ((const char *)get_cwd_exec_path(name));
 	dirs = ft_split(ft_getenv("PATH"), ':');
 	while (dirs && *dirs)
 	{
-		tmp = ft_strjoin(*dirs, "/");
-		path = ft_strjoin(tmp, name);
-		free(tmp);
+		path = create_path(*dirs, name);
 		if (access(path, F_OK) == 0)
 		{
 			while (*dirs)
