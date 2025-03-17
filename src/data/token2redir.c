@@ -1,40 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_struct_heredoc.c                               :+:      :+:    :+:   */
+/*   token2redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 22:34:48 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/04 15:58:49 by miyuu            ###   ########.fr       */
+/*   Created: 2025/02/22 22:35:26 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/15 01:55:41 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:add_struct_heredoc
+ * Function:token2redir
  * ----------------------------
- * Fill t_heredoc with data
+ * parse the data to be filled in the structure for each redirection symbol.
  */
-void	add_struct_heredoc(t_heredoc **hd_list, char *eof, char *path)
+t_redirect	*token2redir(char *word, char *path)
 {
-	t_heredoc	*new;
-	t_heredoc	*tmp;
+	t_redirect_type	redir_type;
+	int				from_fd;
+	t_redirect		*redir;
 
-	new = malloc(sizeof(t_heredoc));
-	if (!new)
-		return ;
-	new->eof = ft_strdup(eof);
-	new->path = ft_strdup(path);
-	new->next = NULL;
-	if (*hd_list == NULL)
-		*hd_list = new;
+	redir_type = get_redirect_type(word);
+	from_fd = get_redirect_from_fd(word);
+	if (redir_type == REDIR_HEREDOC)
+		redir = handle_heredoc(path, from_fd);
 	else
-	{
-		tmp = *hd_list;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
-	}
+		redir = add_struct_redirect(redir_type, from_fd, path);
+	return (redir);
 }

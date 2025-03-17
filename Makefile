@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/14 02:07:28 by tkondo           ###   ########.fr        #
+#    Updated: 2025/03/17 13:50:03 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,16 +40,13 @@ TARGET =\
 	command/get_path\
 	data/free_redirects\
 	data/free_simple_cmds\
-	data/add_struct_heredoc\
 	data/free_text_list\
-	data/free_heredocs\
 	data/free_ecmds\
-	data/has_redirect\
+	data/get_redirect_type\
 	data/fill_ecmds\
 	data/add_struct_redirect\
 	data/get_redirect_from_fd\
-	data/get_redirect_path\
-	data/parse_redirects\
+	data/token2redir\
 	data/fill_struct_simple_cmd\
 	data/load_simple_cmd\
 	data/pipe2scmd_list\
@@ -59,13 +56,14 @@ TARGET =\
 	data/get_redir_length\
 	data/new_struct_text_list\
 	data/syntax_error_handle\
-	data/is_validate_redirect_syntax\
+	data/is_valid_redirect_syntax\
 	data/get_token_length\
 	data/parse_general_token\
 	data/parse_number_redir_token\
 	data/skip_quote_text\
 	data/create_tmp_file\
 	data/handle_heredoc\
+	data/add_redir_list_last\
 	env/is_valid_identifier\
 	env/load_variable_assignment\
 	env/register_env\
@@ -95,19 +93,15 @@ TARGET =\
 	pipe/wait_status\
 	read/flush_prompt\
 	read/get_input\
-	read/write_heredocs\
+	read/write_heredoc\
 	read/write_until_eof\
 	read/write_until_eof_on_chproc\
 	redirect/resolve_redirects\
-	redirect/connect_redirects\
-	redirect/redirects_stdin\
-	redirect/redirects_stdout\
 	redirect/apply_redirects\
 	redirect/backup_from_fds\
 	redirect/handle_redirects\
-	redirect/cur_env_connect_redirects\
-	redirect/cur_env_redirects_stdin\
-	redirect/cur_env_redirects_stdout\
+	redirect/connect_redirect\
+	redirect/redirect_with_oflags\
 	redirect/restore_from_fds\
 	signal/at_sigint\
 	utils/close_fds_no_stdio\

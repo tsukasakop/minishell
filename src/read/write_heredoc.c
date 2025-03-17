@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_heredocs.c                                    :+:      :+:    :+:   */
+/*   write_heredocs.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 22:34:30 by miyuu             #+#    #+#             */
-/*   Updated: 2025/02/27 16:12:50 by miyuu            ###   ########.fr       */
+/*   Created: 2025/02/26 16:18:21 by tkondo            #+#    #+#             */
+/*   Updated: 2025/03/15 18:27:01 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:add_struct_heredoc
+ * Function:
  * ----------------------------
- * free memory of t_heredoc
+ *  write heredoc by using hd_list info
+ *
+ * Returns false if falure on write heredoc, otherwise true
+ * TODO: エラー出力
+ * TODO: 単体で処理する
  */
-void	free_heredocs(t_heredoc *hd)
+bool	write_heredoc(char *eof, char *path)
 {
-	t_heredoc	*tmp;
+	int	fd;
 
-	while (hd)
+	if (path == NULL)
+		return (true);
+	fd = open(path, O_WRONLY | O_TRUNC | O_CREAT, 0644);
+	if (fd == -1)
+		return (false);
+	if (!write_until_eof_on_chproc(fd, eof))
 	{
-		tmp = hd;
-		free(hd->eof);
-		free(hd->path);
-		hd = hd->next;
-		free(tmp);
+		close(fd);
+		return (false);
 	}
+	if (close(fd) == -1)
+		return (false);
+	return (true);
 }
