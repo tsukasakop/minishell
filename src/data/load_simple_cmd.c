@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/17 19:45:08 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/17 20:27:39 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ t_simple_cmd	*load_simple_cmd(t_text_list *text_list)
 	scmd_list->next = NULL;
 	if (!extract_redirect(&text_list, &(scmd_list->redir)))
 		return (NULL);
-	expand_ecmds(&text_list);
-	scmd_list->ecmds = fill_ecmds(text_list);
+	scmd_list->ecmds = token2ecmds(text_list);
 	if (!scmd_list->ecmds)
 		return (NULL);
 	return (scmd_list);

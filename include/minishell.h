@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/17 19:48:40 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/17 20:30:13 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,6 @@ const char		*get_path(const char *ecmds);
 t_redirect		*add_struct_redirect(int type, int from_fd, char *path);
 void			add_struct_text_list(t_text_list **head, t_text_list *new);
 char			*create_tmp_file(void);
-char			**fill_ecmds(t_text_list *scmds);
 void			free_text_list(t_text_list *scmds);
 void			free_redirects(t_redirect *redir);
 void			free_simple_cmds(t_simple_cmd *scmd_list);
@@ -144,6 +143,7 @@ t_simple_cmd	*pipe2scmd_list(const char *cmd_line);
 t_text_list		*tokenizer_scmd_text(char *scmd_text);
 bool			is_valid_redirect_syntax(t_text_list *cur);
 bool			extract_redirect(t_text_list **token_p, t_redirect **redir_p);
+char			**token2ecmds(t_text_list *tokens);
 
 /* env function */
 bool			is_valid_identifier(char *string);
@@ -152,7 +152,6 @@ bool			register_env(char *string);
 char			*dup_name(char *cur);
 
 /* expand function */
-void			expand_ecmds(t_text_list **text_list);
 unsigned char	*get_exit_status_p(void);
 unsigned char	get_exit_status(void);
 void			set_exit_status(unsigned char st);
@@ -214,5 +213,6 @@ void			free_null_terminated_array(void **arr);
 char			*ft_strchr_mul(const char *s, char *targets, size_t target_len);
 char			*ft_strnjoin(char *s1, char *s2, size_t s2_len);
 size_t			null_terminated_array_len(void **arr);
+void			**null_terminated_array_join(void **dst, void **src);
 
 #endif
