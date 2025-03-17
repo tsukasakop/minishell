@@ -6,16 +6,17 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:34:22 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/17 17:34:41 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/17 18:43:22 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:sssssssssssss
+ * Function:is_directory
  * ----------------------------
- *
+ * Determines if it is a directory.
+ * If it is a directory, returns 1.
  */
 int	is_directory(char *path)
 {

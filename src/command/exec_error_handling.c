@@ -6,16 +6,17 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:35:11 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/17 17:35:19 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/17 18:41:21 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:sssssssssssss
+ * Function:exec_error_handling
  * ----------------------------
- *
+ * Error handling if command execution fails.
+ * err_num: The errno set on execve failure.
  */
 int	exec_error_handling(char *path, int status, int err_num)
 {

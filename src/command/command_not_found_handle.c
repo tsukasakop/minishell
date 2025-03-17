@@ -6,16 +6,17 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:35:27 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/17 17:35:39 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/17 18:42:23 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:sssssssssssss
+ * Function:command_not_found_handle
  * ----------------------------
- *
+ * command_not_found error output.
+ * Returns exit status 127.
  */
 int	command_not_found_handle(char *cmd)
 {
