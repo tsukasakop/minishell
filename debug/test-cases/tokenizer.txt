@@ -1,0 +1,15 @@
+echo Hello 1">"out
+echo Hello 1 ">" out
+echo Hello 1">" out
+echo Hello 1 ">"out
+
+echo Hello 1'>'out
+echo Hello 1 '>' out
+echo Hello 1'>' out
+echo Hello 1 '>'out
+
+echo 1">out"
+echo ">out"
+
+echo 1">     out"
+echo ">     out"
