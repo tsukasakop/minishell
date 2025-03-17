@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/17 20:30:13 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/18 08:41:46 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ typedef struct s_execute_session	t_execute_session;
 typedef struct s_simple_cmd			t_simple_cmd;
 typedef struct s_redirect			t_redirect;
 typedef struct s_text_list			t_text_list;
-typedef struct s_heredoc			t_heredoc;
 typedef enum e_redirect_type		t_redirect_type;
 typedef enum e_execute_env			t_execute_env;
 
@@ -91,13 +90,6 @@ struct				s_text_list
 	char			*text;
 	t_text_list		*prev;
 	t_text_list		*next;
-};
-
-struct				s_heredoc
-{
-	char			*eof;
-	char			*path;
-	t_heredoc		*next;
 };
 
 /* global variable */
