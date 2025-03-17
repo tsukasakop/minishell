@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   apply_redirects.c                                  :+:      :+:    :+:   */
+/*   dup_name.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/06 03:52:03 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/14 03:46:08 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/14 02:02:28 by tkondo            #+#    #+#             */
+/*   Updated: 2025/03/15 12:46:55 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:apply_redirects
+ * Function: dup_name
  * ----------------------------
- * In the parent process, Apply redirections.
+ *  get name sring from cur
+ *  return value should be free
  */
-int	apply_redirects(t_redirect *redir, int *keep_fds, int index)
+char	*dup_name(char *cur)
 {
-	if (backup_from_fds(redir, keep_fds, index) == -1)
-		return (-1);
-	if (connect_redirect(redir) == -1)
-		return (-1);
-	return (0);
+	size_t	len;
+	char	*str;
+
+	len = namelen(cur);
+	str = ft_strndup(cur, len);
+	return (str);
 }

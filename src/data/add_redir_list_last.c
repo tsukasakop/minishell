@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_redirect_path.c                                :+:      :+:    :+:   */
+/*   add_redir_list_last.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/28 22:51:33 by miyuu             #+#    #+#             */
-/*   Updated: 2025/02/28 22:58:24 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/15 01:08:25 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/15 01:09:23 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:get_redirect_path
+ * Function:add_redir_list_last
  * ----------------------------
- * Finds and returns the redirect path.
+ * Add new_redir to the end of redir_list.
  */
-char	*get_redirect_path(char *redir_symbol, char *next_word)
+void	add_redir_list_last(t_redirect **redir_list, t_redirect *new_redir)
 {
-	char	*next;
-	size_t	len;
-	char	*path;
+	t_redirect	*tmp;
 
-	while (*redir_symbol && (*redir_symbol == '>' || *redir_symbol == '<'))
-		redir_symbol++;
-	if (!*redir_symbol)
-		return (next_word);
-	next = has_redirect(redir_symbol);
-	if (!next)
-		return (redir_symbol);
-	len = next - redir_symbol;
-	path = ft_strndup(redir_symbol, len);
-	return (path);
+	if (!new_redir)
+		return ;
+	if (*redir_list == NULL)
+		*redir_list = new_redir;
+	else
+	{
+		tmp = *redir_list;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new_redir;
+	}
 }
