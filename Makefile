@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/17 18:42:56 by tkondo           ###   ########.fr        #
+#    Updated: 2025/03/17 19:47:59 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ TARGET =\
 	data/free_text_list\
 	data/free_ecmds\
 	data/get_redirect_type\
+	data/extract_redirect\
 	data/fill_ecmds\
 	data/add_struct_redirect\
 	data/get_redirect_from_fd\
