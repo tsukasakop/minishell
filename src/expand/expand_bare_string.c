@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   connect_redirects.c                           :+:      :+:    :+:   */
+/*   expand_bare_string.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/24 14:13:07 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/02 22:04:14 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/14 01:50:56 by tkondo            #+#    #+#             */
+/*   Updated: 2025/03/15 12:47:49 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:connect_redirects
+ * Function: expand_bare_string
  * ----------------------------
- * Parse redirect type and perform redirection processing.
+ *  read characters from cur_p, and store it on buf_p.
  */
-void	connect_redirects(t_redirect *redir)
+void	expand_bare_string(char **cur_p, char **buf_p)
 {
-	if (redir->type == REDIR_IN)
-		redirects_stdin(redir);
-	else if (redir->type == REDIR_OUT || \
-			redir->type == REDIR_APPEND)
-		redirects_stdout(redir);
+	read_bare_string_m(cur_p, buf_p, (char [4]){'\"', '\'', '$', '\0'}, 4);
 }

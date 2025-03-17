@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_heredocs.c                                    :+:      :+:    :+:   */
+/*   expand_single_quote.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 22:34:30 by miyuu             #+#    #+#             */
-/*   Updated: 2025/02/27 16:12:50 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/14 01:50:05 by tkondo            #+#    #+#             */
+/*   Updated: 2025/03/15 12:50:00 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:add_struct_heredoc
+ * Function: expand_single_quote
  * ----------------------------
- * free memory of t_heredoc
+ *  read string within single quote and storre it on buf_p
  */
-void	free_heredocs(t_heredoc *hd)
+void	expand_single_quote(char **cur_p, char **buf_p)
 {
-	t_heredoc	*tmp;
-
-	while (hd)
-	{
-		tmp = hd;
-		free(hd->eof);
-		free(hd->path);
-		hd = hd->next;
-		free(tmp);
-	}
+	*cur_p += 1;
+	read_bare_string_m(cur_p, buf_p, "\'", 1);
+	*cur_p += 1;
 }

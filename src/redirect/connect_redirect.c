@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   apply_redirects.c                                  :+:      :+:    :+:   */
+/*   connect_redirect.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/06 03:52:03 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/14 03:46:08 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/06 03:48:50 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/14 03:16:59 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:apply_redirects
+ * Function:connect_redirect
  * ----------------------------
- * In the parent process, Apply redirections.
+ * In the parent process, Parse redirect type and perform redirection processing.
+ * TODO: merge connect_redirect
  */
-int	apply_redirects(t_redirect *redir, int *keep_fds, int index)
+int	connect_redirect(t_redirect *redir)
 {
-	if (backup_from_fds(redir, keep_fds, index) == -1)
+	int		o_flags;
+
+	if (redir->type == REDIR_IN || redir->type == REDIR_HEREDOC)
+		o_flags = O_RDONLY;
+	else if (redir->type == REDIR_OUT)
+		o_flags = O_WRONLY | O_TRUNC | O_CREAT;
+	else if (redir->type == REDIR_APPEND)
+		o_flags = O_WRONLY | O_APPEND | O_CREAT;
+	else
 		return (-1);
-	if (connect_redirect(redir) == -1)
-		return (-1);
-	return (0);
+	return (redirect_with_oflags(redir, o_flags));
 }

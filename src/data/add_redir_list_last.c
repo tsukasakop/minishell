@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cur_env_connect_redirects.c                        :+:      :+:    :+:   */
+/*   add_redir_list_last.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/06 03:48:50 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/06 04:24:41 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/15 01:08:25 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/15 01:09:23 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:cur_env_connect_redirects
+ * Function:add_redir_list_last
  * ----------------------------
- * In the parent process, Parse redirect type and perform redirection processing.
+ * Add new_redir to the end of redir_list.
  */
-int	cur_env_connect_redirects(t_redirect *redir)
+void	add_redir_list_last(t_redirect **redir_list, t_redirect *new_redir)
 {
-	if (redir->type == REDIR_IN)
-		return (cur_env_redirects_stdin(redir));
-	else if (redir->type == REDIR_OUT || \
-			redir->type == REDIR_APPEND)
-		return (cur_env_redirects_stdout(redir));
-	return (-1);
+	t_redirect	*tmp;
+
+	if (!new_redir)
+		return ;
+	if (*redir_list == NULL)
+		*redir_list = new_redir;
+	else
+	{
+		tmp = *redir_list;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new_redir;
+	}
 }

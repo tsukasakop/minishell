@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_redirect_path.c                                :+:      :+:    :+:   */
+/*   get_redirect_type.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/28 22:51:33 by miyuu             #+#    #+#             */
-/*   Updated: 2025/02/28 22:58:24 by miyuu            ###   ########.fr       */
+/*   Created: 2025/02/22 22:35:46 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/17 13:32:20 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:get_redirect_path
+ * Function:get_redirect_type
  * ----------------------------
- * Finds and returns the redirect path.
+ * Returns the type of the redirection symbol.
  */
-char	*get_redirect_path(char *redir_symbol, char *next_word)
+t_redirect_type	get_redirect_type(char *word)
 {
-	char	*next;
 	size_t	len;
-	char	*path;
 
-	while (*redir_symbol && (*redir_symbol == '>' || *redir_symbol == '<'))
-		redir_symbol++;
-	if (!*redir_symbol)
-		return (next_word);
-	next = has_redirect(redir_symbol);
-	if (!next)
-		return (redir_symbol);
-	len = next - redir_symbol;
-	path = ft_strndup(redir_symbol, len);
-	return (path);
+	if (!word)
+		return (REDIR_NONE);
+	len = ft_strlen(word);
+	if (len >= 2 && ft_strncmp(word + len - 2, "<<", 2) == 0)
+		return (REDIR_HEREDOC);
+	else if (len >= 2 && ft_strncmp(word + len - 2, ">>", 2) == 0)
+		return (REDIR_APPEND);
+	else if (word[len - 1] == '<')
+		return (REDIR_IN);
+	else if (word[len - 1] == '>')
+		return (REDIR_OUT);
+	return (REDIR_NONE);
 }
