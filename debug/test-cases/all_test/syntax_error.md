@@ -81,3 +81,7 @@ EOF
 ```bash
 	./syntax_error.sh: line 5: syntax error: unexpected end of file
 ```
+
+## 色々
+- `>> 1>>`
+	→ bash: syntax error near unexpected token `1'
