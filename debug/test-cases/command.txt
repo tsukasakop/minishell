@@ -18,6 +18,7 @@ export PATH=/tmp/minishell_cmd:$PATH
 chmod 755 /tmp/minishell_cmd/print_hello
 print_hello
 /tmp/minishell_cmd/print_hello
+/print_hello
 
 -- 実行権限を削除
 chmod -x /tmp/minishell_cmd/print_hello
@@ -26,6 +27,7 @@ print_hello
 
 no_exist
 /tmp/minishell_cmd/no_exist
+/print_hello
 
 chmod +x /tmp/minishell_cmd/print_hello
 
@@ -38,4 +40,5 @@ chmod 000 /tmp/minishell_cmd
 /tmp/minishell_cmd
 ./tmp/minishell_cmd
 
+chmod 777 /tmp/minishell_cmd
 rm -r /tmp/minishell_cmd
