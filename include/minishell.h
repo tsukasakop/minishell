@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/17 13:32:21 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/17 13:38:01 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ void			add_redir_list_last(t_redirect **redir_list, t_redirect *new_redir);
 t_redirect		*token2redir(char *word, char *path);
 t_simple_cmd	*pipe2scmd_list(const char *cmd_line, t_heredoc **hd_list);
 t_text_list		*tokenizer_scmd_text(char *scmd_text);
-bool			is_validate_redirect_syntax(t_text_list *cur);
+bool			is_valid_redirect_syntax(t_text_list *cur);
 
 /* env function */
 bool			is_valid_identifier(char *string);

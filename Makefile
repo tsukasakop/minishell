@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/15 18:27:29 by miyuu            ###   ########.fr        #
+#    Updated: 2025/03/17 13:38:01 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ TARGET =\
 	data/get_redir_length\
 	data/new_struct_text_list\
 	data/syntax_error_handle\
-	data/is_validate_redirect_syntax\
+	data/is_valid_redirect_syntax\
 	data/get_token_length\
 	data/parse_general_token\
 	data/parse_number_redir_token\

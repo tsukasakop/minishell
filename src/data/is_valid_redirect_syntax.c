@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_validate_redirect_syntax.c                      :+:      :+:    :+:   */
+/*   is_valid_redirect_syntax.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,12 +13,12 @@
 #include <minishell.h>
 
 /*
- * Function:is_validate_redirect_syntax
+ * Function:is_valid_redirect_syntax
  * ----------------------------
  * Checks if a redirection token has a valid next token.
  * If it doesn't, prints an error.
  */
-bool	is_validate_redirect_syntax(t_text_list *cur)
+bool	is_valid_redirect_syntax(t_text_list *cur)
 {
 	if (cur->next == NULL || get_redirect_type(cur->next->text) != REDIR_NONE)
 	{

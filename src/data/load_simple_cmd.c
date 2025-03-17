@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/17 13:32:20 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/17 13:38:02 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_simple_cmd	*load_simple_cmd(t_text_list *text_list, t_heredoc **hd_list)
 	{
 		if (get_redirect_type(cur->text) != REDIR_NONE)
 		{
-			if (!is_validate_redirect_syntax(cur))
+			if (!is_valid_redirect_syntax(cur))
 				return (NULL);
 			redir = token2redir(cur->text, cur->next->text);
 			if (!redir)
