@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 03:42:47 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/14 01:43:04 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/17 13:32:20 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  */
 bool	is_validate_redirect_syntax(t_text_list *cur)
 {
-	if (cur->next == NULL || get_redirect_type(cur->next->text) != NONE)
+	if (cur->next == NULL || get_redirect_type(cur->next->text) != REDIR_NONE)
 	{
 		if (cur->next == NULL)
 			syntax_error_handle("newline");

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/15 18:27:10 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/17 13:32:21 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ enum e_redirect_type
 	REDIR_HEREDOC,
 	REDIR_OUT,
 	REDIR_APPEND,
-	NONE
+	REDIR_NONE
 };
 
 enum e_execute_env

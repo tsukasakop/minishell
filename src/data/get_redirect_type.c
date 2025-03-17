@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:35:46 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/14 01:52:47 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/17 13:32:20 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_redirect_type	get_redirect_type(char *word)
 	size_t	len;
 
 	if (!word)
-		return (NONE);
+		return (REDIR_NONE);
 	len = ft_strlen(word);
 	if (len >= 2 && ft_strncmp(word + len - 2, "<<", 2) == 0)
 		return (REDIR_HEREDOC);
@@ -32,5 +32,5 @@ t_redirect_type	get_redirect_type(char *word)
 		return (REDIR_IN);
 	else if (word[len - 1] == '>')
 		return (REDIR_OUT);
-	return (NONE);
+	return (REDIR_NONE);
 }
