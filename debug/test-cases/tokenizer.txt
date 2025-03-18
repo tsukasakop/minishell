@@ -1,15 +1,41 @@
 echo Hello 1">"out
+cat out
 echo Hello 1 ">" out
+cat out
 echo Hello 1">" out
+cat out
 echo Hello 1 ">"out
+cat out
 
 echo Hello 1'>'out
+cat out
 echo Hello 1 '>' out
+cat out
 echo Hello 1'>' out
+cat out
 echo Hello 1 '>'out
+cat out
 
 echo 1">out"
+cat out
 echo ">out"
+cat out
 
 echo 1">     out"
+cat out
 echo ">     out"
+cat out
+
+echo Hello "1>out"
+cat out
+echo Hello "1>"out
+cat out
+echo Hello 1">out"
+cat out
+
+echo Hello 1"'>out'">>out
+echo Hello 1"'out>'">>out
+echo Hello 1"'out>'">>out
+
+
+rm out
