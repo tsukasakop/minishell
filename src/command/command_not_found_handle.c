@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_simple_cmd.c                                  :+:      :+:    :+:   */
+/*   command_not_found_handle.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/18 18:24:20 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/17 17:35:27 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/17 18:42:23 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:
+ * Function:command_not_found_handle
  * ----------------------------
- *
- * Parses a simple command and returns a t_simple_cmd
- * containing redirections and ecmds.
+ * command_not_found error output.
+ * Returns exit status 127.
  */
-t_simple_cmd	*load_simple_cmd(t_text_list *text_list)
+int	command_not_found_handle(char *cmd)
 {
-	t_simple_cmd	*scmd_list;
+	char	*error_msg;
 
-	scmd_list = malloc(sizeof(t_simple_cmd));
-	if (!scmd_list)
-		return (NULL);
-	scmd_list->next = NULL;
-	if (!extract_redirect(&text_list, &(scmd_list->redir)))
-		return (NULL);
-	scmd_list->ecmds = token2ecmds(text_list);
-	if (!scmd_list->ecmds)
-		return (NULL);
-	return (scmd_list);
+	error_msg = ": command not found\n";
+	write(2, SHELL_NAME, ft_strlen(SHELL_NAME));
+	write(2, cmd, ft_strlen(cmd));
+	write(2, error_msg, ft_strlen(error_msg));
+	return (127);
 }

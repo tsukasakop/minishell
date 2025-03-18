@@ -1,0 +1,117 @@
+ls
+ls -0
+
+aaaaa
+/aaaaa
+./aa/aa
+./
+../
+./scripts
+$HOME
+
+- 自作コマンドを作成
+mkdir /tmp/minishell_cmd
+cp scripts/print_hello /tmp/minishell_cmd
+export PATH=/tmp/minishell_cmd:$PATH
+
+-- 実行権限あり
+chmod 755 /tmp/minishell_cmd/print_hello
+print_hello
+.print_hello
+./print_hello
+/print_hello
+tmp/minishell_cmd/print_hello
+/tmp/minishell_cmd/print_hello
+./tmp/minishell_cmd/print_hello
+
+
+-- 実行権限を削除
+chmod -x /tmp/minishell_cmd/print_hello
+print_hello
+.print_hello
+./print_hello
+/print_hello
+tmp/minishell_cmd/print_hello
+/tmp/minishell_cmd/print_hello
+./tmp/minishell_cmd/print_hello
+
+
+no_exist
+/tmp/minishell_cmd/no_exist
+/print_hello
+
+chmod +x /tmp/minishell_cmd/print_hello
+
+-- 存在するディレクトリ
+mkdir /tmp/hoge
+/tmp/hoge
+./tmp/hoge
+/hoge
+./hoge
+
+-- ディレクトリの権限を削除
+chmod 000 /tmp/hoge
+/tmp/hoge
+./tmp/hoge
+/hoge
+./hoge
+
+chmod 777 /tmp/hoge
+rm -r /tmp/hoge
+
+-カレントディレクトリを移動した時
+$HOME
+..//$HOME
+cd /
+$HOME
+..//$HOME
+
+
+-PATHを削除せずに、カレントディレクトリの権限を無くした時
+cd /tmp/minishell_cmd
+ls
+/bin/ls
+chmod 000 /tmp/minishell_cmd
+ls
+/bin/ls
+chmod 777 /tmp/minishell_cmd
+
+
+-PATHを削除した場合
+unset PATH
+echo "42"
+ls
+/bin/ls
+/bin/ls | /usr/bin/wc
+cd /bin
+pwd
+ls
+
+-- PATHを削除し、カレントディレクトリの権限を無くした時
+cd /tmp/minishell_cmd
+print_hello
+chmod 000 /tmp/minishell_cmd
+./
+print_hello
+/tmp/minishell_cmd/print_hello
+./tmp/minishell_cmd/print_hello
+
+-- PATHを削除し、自作コマンドを作成の権限を無くした時
+chmod 777 /tmp/minishell_cmd
+cd /tmp/minishell_cmd
+print_hello
+chmod -x /tmp/minishell_cmd/print_hello
+print_hello
+./print_hello
+/print_hello
+.print_hello
+/tmp/minishell_cmd/print_hello
+./tmp/minishell_cmd/print_hello
+
+ls
+date
+/bin/ls | /usr/bin/wc
+/bin/cat | /bin/ls
+
+chmod 777 /tmp/minishell_cmd
+rm -r /tmp/minishell_cmd

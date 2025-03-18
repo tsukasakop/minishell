@@ -14,7 +14,7 @@ yes | head -c 10000 | wc -c > /tmp/file3
 < /tmp/file4 cat
 < /tmp/file5 cat
 
-## 以下のテストケースは、bashとエラー分の先頭が異なる
+- 以下のテストケースは、bashとエラー分の先頭が異なる
 < /tmp/no_exist_file
 /bin/echo testcase_4 > /tmp/no_exist_file
 < /tmp/no_exist_file cat
@@ -22,7 +22,7 @@ yes | head -c 10000 | wc -c > /tmp/file3
 rm /tmp/no_exist_file
 rm /tmp/file1 /tmp/file2 /tmp/file3 /tmp/file4 /tmp/file5
 
-## 以下、リダイレクトの左に数字があるver
+- 以下、リダイレクトの左に数字があるver
 /bin/echo 42 Tokyo 1>/tmp/file1
 cat /tmp/file1
 
