@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:30:10 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/13 19:26:42 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/17 17:35:59 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ bool	execute_simple_cmd(const t_simple_cmd *scmd_list, int stdio_fd[2],
 {
 	const char	*path;
 	int			chpid;
+	int			status;
 
 	chpid = fork();
 	if (chpid)
@@ -44,9 +45,8 @@ bool	execute_simple_cmd(const t_simple_cmd *scmd_list, int stdio_fd[2],
 	if (is_builtin(scmd_list->ecmds[0]))
 		ft_exit(execute_builtin(scmd_list->ecmds, envp));
 	path = get_path(scmd_list->ecmds[0]);
-	// TODO: replace execvp to execve
-	ft_execvp(path, scmd_list->ecmds);
+	status = ft_execvp(path, scmd_list->ecmds);
+	ft_exit(exec_error_handling((char *)path, status, errno));
 	(void)envp;
-	ft_exit(1);
 	return (false);
 }

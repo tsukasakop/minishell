@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/17 13:50:27 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/17 17:37:47 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # include <readline/readline.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <sys/stat.h>
 
 /* macro */
 # define PROMPT "minishell$ "
@@ -115,6 +116,8 @@ int				builtin_export(char **argv);
 int				builtin_unset(char **argv);
 
 /* command function */
+int				command_not_found_handle(char *cmd);
+int				exec_error_handling(char *path, int status, int err_num);
 const char		*get_path(const char *ecmds);
 
 /* data function */
@@ -214,5 +217,6 @@ void			free_null_terminated_array(void **arr);
 char			*ft_strchr_mul(const char *s, char *targets, size_t target_len);
 char			*ft_strnjoin(char *s1, char *s2, size_t s2_len);
 size_t			null_terminated_array_len(void **arr);
+int				is_directory(char *path);
 
 #endif

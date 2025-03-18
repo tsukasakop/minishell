@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/17 13:50:03 by tkondo           ###   ########.fr        #
+#    Updated: 2025/03/17 17:38:33 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,8 @@ TARGET =\
 	builtin/builtin_unset\
 	builtin/is_builtin\
 	command/get_path\
+	command/exec_error_handling\
+	command/command_not_found_handle\
 	data/free_redirects\
 	data/free_simple_cmds\
 	data/free_text_list\
@@ -112,6 +114,7 @@ TARGET =\
 	utils/ft_strchr_mul\
 	utils/ft_strnjoin\
 	utils/null_terminatted_array_len\
+	utils/is_directory\
 	signal/set_handlers_for_prompt\
 	signal/set_handlers_default\
 	signal/set_handlers_for_process\
