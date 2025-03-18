@@ -37,5 +37,14 @@ echo Hello 1"'>out'">>out
 echo Hello 1"'out>'">>out
 echo Hello 1"'out>'">>out
 
-
 rm out
+
+- パイプのトーカナイザー
+
+echo "Hello | ls"
+echo 'Hello | ls' | cat
+
+echo "Hello "|"    |"  cat
+echo "Hello "|"    |"  cat
+echo "Hello "|cat
+
