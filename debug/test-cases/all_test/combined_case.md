@@ -6,9 +6,11 @@
 
 
 # コマンド&リダイレクト
-./ 2>tmp/file1
-ls 2>tmp/file1
-ll 2>tmp/file1
+./ 2>/tmp/file1
+ls 2>/tmp/file1
+ll 2>/tmp/file1
+o>/tmp/file1
+< /dev/stdin cat | cat | ls > /dev/stdout
 
 # ヒアドクとエラー
 
