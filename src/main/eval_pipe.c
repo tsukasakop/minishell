@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/15 18:27:26 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/17 19:46:09 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,10 @@ unsigned char	eval_pipe(const char *cmd_line, char **envp)
 	t_simple_cmd		*cur;
 	int					stdio_fd[2];
 	int					next_in_fd;
-	t_heredoc			*hd_list;
 
 	// TODO: scmd_list = init_scmd_list(cmd_line);
 	// rename pipe2scmd_list to init_scmd_list
-	hd_list = NULL;
-	scmd_list = pipe2scmd_list(cmd_line, &hd_list);
+	scmd_list = pipe2scmd_list(cmd_line);
 	// TODO: session = init_session();
 	stdio_fd[0] = STDIN_FILENO;
 	stdio_fd[1] = STDOUT_FILENO;

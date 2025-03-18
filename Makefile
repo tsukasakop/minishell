@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/17 17:38:33 by miyuu            ###   ########.fr        #
+#    Updated: 2025/03/18 12:58:29 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,11 +45,10 @@ TARGET =\
 	data/free_text_list\
 	data/free_ecmds\
 	data/get_redirect_type\
-	data/fill_ecmds\
+	data/extract_redirect\
 	data/add_struct_redirect\
 	data/get_redirect_from_fd\
 	data/token2redir\
-	data/fill_struct_simple_cmd\
 	data/load_simple_cmd\
 	data/pipe2scmd_list\
 	data/tokenizer_scmd_text\
@@ -66,6 +65,7 @@ TARGET =\
 	data/create_tmp_file\
 	data/handle_heredoc\
 	data/add_redir_list_last\
+	data/token2ecmds\
 	env/is_valid_identifier\
 	env/load_variable_assignment\
 	env/register_env\
@@ -77,7 +77,6 @@ TARGET =\
 	expand/read_bare_string\
 	expand/read_bare_string_m\
 	expand/read_variable_m\
-	expand/expand_ecmds\
 	expand/get_exit_status\
 	expand/get_exit_status_p\
 	expand/set_exit_status\
@@ -114,6 +113,7 @@ TARGET =\
 	utils/ft_strchr_mul\
 	utils/ft_strnjoin\
 	utils/null_terminatted_array_len\
+	utils/null_terminated_array_join\
 	utils/is_directory\
 	signal/set_handlers_for_prompt\
 	signal/set_handlers_default\
