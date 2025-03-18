@@ -3,31 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 15:19:38 by tkondo            #+#    #+#             */
-/*   Updated: 2025/01/04 15:30:16 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/17 20:33:56 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <_ft_unistd.h>
 #include <ft_stdlib.h>
 
-static const char	*find_path(const char *name)
+static char	*create_path(char *dir, const char *name)
 {
 	char	*tmp;
+	char	*path;
+
+	tmp = ft_strjoin(dir, "/");
+	path = ft_strjoin(tmp, name);
+	free(tmp);
+	return (path);
+}
+
+static char	*get_cwd_exec_path(const char *name)
+{
+	char	*cur_dir;
+	char	*path;
+
+	cur_dir = getcwd(NULL, 0);
+	if (!cur_dir)
+		return (NULL);
+	path = create_path(cur_dir, name);
+	free(cur_dir);
+	return (path);
+}
+
+static const char	*find_path(const char *name)
+{
 	char	*path;
 	char	**dirs;
 
 	if (ft_getenv("PATH") == NULL)
-		return (NULL);
+		return ((const char *)get_cwd_exec_path(name));
 	dirs = ft_split(ft_getenv("PATH"), ':');
 	while (dirs && *dirs)
 	{
-		tmp = ft_strjoin(*dirs, "/");
-		path = ft_strjoin(tmp, name);
-		free(tmp);
-		if (access(path, X_OK) == 0)
+		path = create_path(*dirs, name);
+		if (access(path, F_OK) == 0)
 		{
 			while (*dirs)
 				free(*dirs++);
@@ -49,7 +70,7 @@ int	ft_execvp(const char *path, char *const argv[])
 		return (execve(path, argv, NULL));
 	abs_path = find_path(path);
 	if (abs_path == NULL)
-		return (-1);
+		return (127);
 	ret = execve(abs_path, argv, NULL);
 	free((void *)abs_path);
 	return (ret);
