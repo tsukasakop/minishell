@@ -1,117 +1,202 @@
 ls
+echo $?
 ls -0
+echo $?
 
 aaaaa
+echo $?
 /aaaaa
+echo $?
 ./aa/aa
+echo $?
 ./
+echo $?
 ../
+echo $?
 ./scripts
+echo $?
 $HOME
+echo $?
 
 - 自作コマンドを作成
 mkdir /tmp/minishell_cmd
+echo $?
 cp scripts/print_hello /tmp/minishell_cmd
+echo $?
 export PATH=/tmp/minishell_cmd:$PATH
+echo $?
 
 -- 実行権限あり
 chmod 755 /tmp/minishell_cmd/print_hello
+echo $?
 print_hello
+echo $?
 .print_hello
+echo $?
 ./print_hello
+echo $?
 /print_hello
+echo $?
 tmp/minishell_cmd/print_hello
+echo $?
 /tmp/minishell_cmd/print_hello
+echo $?
 ./tmp/minishell_cmd/print_hello
+echo $?
 
 
 -- 実行権限を削除
 chmod -x /tmp/minishell_cmd/print_hello
+echo $?
 print_hello
+echo $?
 .print_hello
+echo $?
 ./print_hello
+echo $?
 /print_hello
+echo $?
 tmp/minishell_cmd/print_hello
+echo $?
 /tmp/minishell_cmd/print_hello
+echo $?
 ./tmp/minishell_cmd/print_hello
+echo $?
 
 
 no_exist
+echo $?
 /tmp/minishell_cmd/no_exist
+echo $?
 /print_hello
+echo $?
 
 chmod +x /tmp/minishell_cmd/print_hello
+echo $?
 
 -- 存在するディレクトリ
 mkdir /tmp/hoge
+echo $?
 /tmp/hoge
+echo $?
 ./tmp/hoge
+echo $?
 /hoge
+echo $?
 ./hoge
+echo $?
 
 -- ディレクトリの権限を削除
 chmod 000 /tmp/hoge
+echo $?
 /tmp/hoge
+echo $?
 ./tmp/hoge
+echo $?
 /hoge
+echo $?
 ./hoge
+echo $?
 
 chmod 777 /tmp/hoge
+echo $?
 rm -r /tmp/hoge
+echo $?
 
 -カレントディレクトリを移動した時
 $HOME
+echo $?
 ..//$HOME
+echo $?
 cd /
+echo $?
 $HOME
+echo $?
 ..//$HOME
-
+echo $?
 
 -PATHを削除せずに、カレントディレクトリの権限を無くした時
 cd /tmp/minishell_cmd
+echo $?
 ls
+echo $?
 /bin/ls
+echo $?
 chmod 000 /tmp/minishell_cmd
+echo $?
 ls
+echo $?
 /bin/ls
+echo $?
 chmod 777 /tmp/minishell_cmd
-
+echo $?
 
 -PATHを削除した場合
 unset PATH
+echo $?
 echo "42"
+echo $?
 ls
+echo $?
 /bin/ls
+echo $?
 /bin/ls | /usr/bin/wc
+echo $?
 cd /bin
+echo $?
 pwd
+echo $?
 ls
+echo $?
 
 -- PATHを削除し、カレントディレクトリの権限を無くした時
 cd /tmp/minishell_cmd
+echo $?
 print_hello
+echo $?
 chmod 000 /tmp/minishell_cmd
+echo $?
 ./
+echo $?
 print_hello
+echo $?
 /tmp/minishell_cmd/print_hello
+echo $?
 ./tmp/minishell_cmd/print_hello
+echo $?
 
 -- PATHを削除し、自作コマンドを作成の権限を無くした時
 chmod 777 /tmp/minishell_cmd
+echo $?
 cd /tmp/minishell_cmd
+echo $?
 print_hello
+echo $?
 chmod -x /tmp/minishell_cmd/print_hello
+echo $?
 print_hello
+echo $?
 ./print_hello
+echo $?
 /print_hello
+echo $?
 .print_hello
+echo $?
 /tmp/minishell_cmd/print_hello
+echo $?
 ./tmp/minishell_cmd/print_hello
+echo $?
 
 ls
+echo $?
 date
+echo $?
 /bin/ls | /usr/bin/wc
+echo $?
 /bin/cat | /bin/ls
+echo $?
 
 chmod 777 /tmp/minishell_cmd
+echo $?
 rm -r /tmp/minishell_cmd
+echo $?
