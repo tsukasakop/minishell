@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:14:53 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/05 14:14:56 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/19 10:06:48 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	append_str(char ***store, char *orig)
 		*store = NULL;
 		return ;
 	}
-	memcpy(tmp, *store, sizeof(char *) * len);
+	ft_memcpy(tmp, *store, sizeof(char *) * len);
 	dup = ft_strdup(orig);
 	if (dup == NULL)
 	{
