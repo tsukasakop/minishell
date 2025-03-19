@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmdline2_pipeline.c                                :+:      :+:    :+:   */
+/*   append_str2_pipeline.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/18 23:10:52 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/19 19:55:20 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/19 19:39:17 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/19 19:55:56 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:cmdline2_pipeline
+ * Function:append_str2_pipeline
  * ----------------------------
- * Returns a pipeline that separates cmd_line with pipes.
+ * Extracts len size of text from start.
+ * And appends it to the pipeline.
  */
-char	**cmdline2_pipeline(const char *cmd_line)
+void	append_str2_pipeline(char ***pipeline, const char *text, \
+								size_t start, size_t len)
 {
-	char	**pipeline;
+	char	*sub;
 
-	if (!is_valid_pipe_syntax(cmd_line))
-	{
-		syntax_error_handle("|");
-		return (NULL);
-	}
-	pipeline = fill_pipeline(cmd_line);
-	return (pipeline);
+	sub = ft_substr(text, start, len);
+	if (sub)
+		append_str(pipeline, sub);
+	free(sub);
 }

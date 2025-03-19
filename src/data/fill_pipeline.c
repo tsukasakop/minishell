@@ -1,31 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmdline2_pipeline.c                                :+:      :+:    :+:   */
+/*   fill_pipeline.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/18 23:10:52 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/19 19:55:20 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/19 19:39:29 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/19 19:46:57 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:cmdline2_pipeline
+ * Function:fill_pipeline
  * ----------------------------
- * Returns a pipeline that separates cmd_line with pipes.
+ * Split cmd_line with a pipe('|') and fill it in pipeline
  */
-char	**cmdline2_pipeline(const char *cmd_line)
+char	**fill_pipeline(const char *cmd_line)
 {
 	char	**pipeline;
+	size_t	i;
+	size_t	len;
 
-	if (!is_valid_pipe_syntax(cmd_line))
-	{
-		syntax_error_handle("|");
+	len = 0;
+	i = 0;
+	pipeline = ft_calloc(sizeof(char *), 1);
+	if (!pipeline)
 		return (NULL);
+	while (cmd_line[i])
+	{
+		i += skip_whitespace(&cmd_line[i]);
+		if (!cmd_line[i])
+			break ;
+		len = get_tokenize_pipe_length(&cmd_line[i]);
+		append_str2_pipeline(&pipeline, cmd_line, i, len);
+		i += len;
+		if (cmd_line[i] == '|')
+			i++;
 	}
-	pipeline = fill_pipeline(cmd_line);
 	return (pipeline);
 }

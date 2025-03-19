@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmdline2_pipeline.c                                :+:      :+:    :+:   */
+/*   get_tokenize_pipe_length.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/18 23:10:52 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/19 19:55:20 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/19 19:38:26 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/19 19:53:40 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:cmdline2_pipeline
+ * Function:get_tokenize_pipe_length
  * ----------------------------
- * Returns a pipeline that separates cmd_line with pipes.
+ * Returns the length of the string tokenized by the pipe.
  */
-char	**cmdline2_pipeline(const char *cmd_line)
+size_t	get_tokenize_pipe_length(const char *cmd_line)
 {
-	char	**pipeline;
+	size_t	len;
+	size_t	i;
 
-	if (!is_valid_pipe_syntax(cmd_line))
+	len = 0;
+	while (cmd_line[len] && cmd_line[len] != '|')
 	{
-		syntax_error_handle("|");
-		return (NULL);
+		if (cmd_line[len] == '"' || cmd_line[len] == '\'')
+			len += skip_quote_text((char *)&cmd_line[len], cmd_line[len]);
+		else
+			len++;
 	}
-	pipeline = fill_pipeline(cmd_line);
-	return (pipeline);
+	return (len);
 }

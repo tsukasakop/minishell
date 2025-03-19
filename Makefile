@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/18 23:13:16 by miyuu            ###   ########.fr        #
+#    Updated: 2025/03/19 19:48:52 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,6 +67,11 @@ TARGET =\
 	data/add_redir_list_last\
 	data/token2ecmds\
 	data/cmdline2_pipeline\
+	data/append_str2_pipeline\
+	data/fill_pipeline\
+	data/get_tokenize_pipe_length\
+	data/is_valid_pipe_syntax\
+	data/skip_whitespace\
 	env/is_valid_identifier\
 	env/load_variable_assignment\
 	env/register_env\
