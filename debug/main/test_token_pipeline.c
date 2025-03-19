@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 00:28:12 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/19 00:46:22 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/19 16:30:03 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,18 @@ int	main(void)
 		"echo \"Hello | World\"",
 		"echo 'Hello | World' | cat",
 		"echo \"Hello | | World\"",
+		"echo \"      Hello | |\"|    ls",
+		"\"|||||\"|ls",
 		"ls |",
 		"| ls",
-		"ls -l || echo 'error'",
-		"echo \"      Hello | |\"|    ls",
+		"|",
+		"     |    ",
+		"ls    | ",
+		"ls || cat",
+		"ls |  | cat",
+		"l|l|l|",
+		"       ",
+		"",
 		NULL
 	};
 
