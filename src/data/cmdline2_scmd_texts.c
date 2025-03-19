@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmdline2_pipeline.c                                :+:      :+:    :+:   */
+/*   cmdline2_scmd_texts.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,19 +13,19 @@
 #include <minishell.h>
 
 /*
- * Function:cmdline2_pipeline
+ * Function:cmdline2_scmd_texts
  * ----------------------------
  * Returns a pipeline that separates cmd_line with pipes.
  */
-char	**cmdline2_pipeline(const char *cmd_line)
+char	**cmdline2_scmd_texts(const char *cmd_line)
 {
-	char	**pipeline;
+	char	**scmd_texts;
 
 	if (!is_valid_pipe_syntax(cmd_line))
 	{
 		syntax_error_handle("|");
 		return (NULL);
 	}
-	pipeline = fill_pipeline(cmd_line);
-	return (pipeline);
+	scmd_texts = fill_scmd_texts(cmd_line);
+	return (scmd_texts);
 }

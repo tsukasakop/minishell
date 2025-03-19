@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   append_str2_pipeline.c                             :+:      :+:    :+:   */
+/*   append_str2_scmd_texts.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,18 +13,18 @@
 #include <minishell.h>
 
 /*
- * Function:append_str2_pipeline
+ * Function:append_str2_scmd_texts
  * ----------------------------
  * Extracts len size of text from start.
  * And appends it to the pipeline.
  */
-void	append_str2_pipeline(char ***pipeline, const char *text, \
+void	append_str2_scmd_texts(char ***scmd_texts, const char *text, \
 								size_t start, size_t len)
 {
 	char	*sub;
 
 	sub = ft_substr(text, start, len);
 	if (sub)
-		append_str(pipeline, sub);
+		append_str(scmd_texts, sub);
 	free(sub);
 }

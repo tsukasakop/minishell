@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/19 19:49:18 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/20 00:00:05 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,9 +139,8 @@ t_text_list		*tokenizer_scmd_text(char *scmd_text);
 bool			is_valid_redirect_syntax(t_text_list *cur);
 bool			extract_redirect(t_text_list **token_p, t_redirect **redir_p);
 char			**token2ecmds(t_text_list *tokens);
-char			**cmdline2_pipeline(const char *cmd_line);
-char			**cmdline2_pipeline(const char *cmd_line);
-void			append_str2_pipeline(char ***pipeline, const char *text, \
+char			**cmdline2_scmd_texts(const char *cmd_line);
+void			append_str2_scmd_texts(char ***pipeline, const char *text, \
 								size_t start, size_t len);
 char			**fill_pipeline(const char *cmd_line);
 size_t			get_tokenize_pipe_length(const char *cmd_line);

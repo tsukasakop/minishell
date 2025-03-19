@@ -6,14 +6,14 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 00:28:12 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/19 23:17:07 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/19 23:58:27 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-char	**cmdline2_pipeline(const char *cmd_line);
+char	**cmdline2_scmd_texts(const char *cmd_line);
 
 void	print_pipeline(char **pipeline)
 {
@@ -62,7 +62,7 @@ int	main(void)
 	while (test_cases[i])
 	{
 		printf("\nTest case: \"%s\"\n", test_cases[i]);
-		char **pipeline = cmdline2_pipeline(test_cases[i]);
+		char **pipeline = cmdline2_scmd_texts(test_cases[i]);
 		print_pipeline(pipeline);
 
 		if (pipeline)

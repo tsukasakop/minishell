@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:23:38 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/18 23:11:58 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/19 23:58:27 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,19 @@
  */
 t_simple_cmd	*init_scmd_list(const char *cmd_line)
 {
-	char			**pipeline;
+	char			**scmd_texts;
 	size_t			i;
 	t_simple_cmd	*scmd_list;
 	t_simple_cmd	**new_scmd_addr;
 	t_text_list		*tokens;
 
-	pipeline = cmdline2_pipeline(cmd_line);
+	scmd_texts = cmdline2_scmd_texts(cmd_line);
 	i = 0;
 	scmd_list = NULL;
 	new_scmd_addr = &scmd_list;
-	while (pipeline && pipeline[i])
+	while (scmd_texts && scmd_texts[i])
 	{
-		tokens = tokenizer_scmd_text(pipeline[i]);
+		tokens = tokenizer_scmd_text(scmd_texts[i]);
 		if (!tokens)
 			return (NULL);
 		*new_scmd_addr = load_simple_cmd(tokens);
