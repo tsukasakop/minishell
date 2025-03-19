@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 19:38:26 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/19 19:53:40 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/19 23:10:44 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 size_t	get_tokenize_pipe_length(const char *cmd_line)
 {
 	size_t	len;
-	size_t	i;
 
 	len = 0;
 	while (cmd_line[len] && cmd_line[len] != '|')
