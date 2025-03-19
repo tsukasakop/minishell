@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/18 12:58:29 by tkondo           ###   ########.fr        #
+#    Updated: 2025/03/19 17:21:50 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,7 @@ TARGET =\
 	data/handle_heredoc\
 	data/add_redir_list_last\
 	data/token2ecmds\
+	data/token2path\
 	env/is_valid_identifier\
 	env/load_variable_assignment\
 	env/register_env\
