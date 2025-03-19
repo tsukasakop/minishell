@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:23:38 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/17 19:45:23 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/20 08:47:37 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_simple_cmd	*pipe2scmd_list(const char *cmd_line)
 		if (!tokens)
 			return (NULL);
 		*new_scmd_addr = load_simple_cmd(tokens);
-		if (!new_scmd_addr)
+		if (!*new_scmd_addr)
 			return (NULL);
 		new_scmd_addr = &((*new_scmd_addr)->next);
 		i++;

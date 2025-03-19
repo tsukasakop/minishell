@@ -52,6 +52,10 @@ ls
 echo $?
 ls
 
+-- テスト5: 変数がset されていないかつpipeの途中
+unset UNSET
+echo | >$UNSET | echo
+
 -- テスト用ディレクトリを削除
 cd -
 rm -r "$TMP_DIR"
