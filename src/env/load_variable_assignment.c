@@ -31,14 +31,12 @@ void	load_variable_assignment(char *string, char **name, char **value)
 		return ;
 	if (!is_valid_identifier(*name))
 	{
-		free(*name);
 		*name = NULL;
 		return ;
 	}
 	*value = ft_strdup(sep + 1);
 	if (*value == NULL)
 	{
-		free(*name);
 		*name = NULL;
 	}
 }

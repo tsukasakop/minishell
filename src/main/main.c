@@ -27,7 +27,6 @@ int	main(int argc, char **argv, char **envp)
 		input = get_input();
 		last_status = eval_cmd_line(input, envp);
 		set_exit_status(last_status);
-		free(input);
 	}
 	return (0);
 }

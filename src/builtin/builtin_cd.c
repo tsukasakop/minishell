@@ -50,7 +50,6 @@ int	builtin_cd(char **argv)
 	}
 	if (argv[0] && ft_strcmp(argv[0], "-") == 0)
 		ft_printf("%s\n", next_dir);
-	free(old_dir);
 	old_dir = cur_dir;
 	return (0);
 }

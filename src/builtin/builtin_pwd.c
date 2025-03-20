@@ -26,6 +26,5 @@ int	builtin_pwd(char **argv)
 	cwd = getcwd(NULL, 0);
 	if (cwd)
 		ft_printf("%s\n", cwd);
-	free(cwd);
 	return (cwd == NULL);
 }

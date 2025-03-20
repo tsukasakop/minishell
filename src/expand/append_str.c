@@ -35,13 +35,11 @@ void	append_str(char ***store, char *orig)
 	dup = ft_strdup(orig);
 	if (dup == NULL)
 	{
-		free(tmp);
 		free_null_terminated_array((void **)*store);
 		*store = NULL;
 		return ;
 	}
 	tmp[len] = dup;
 	tmp[len + 1] = NULL;
-	free(*store);
 	*store = tmp;
 }

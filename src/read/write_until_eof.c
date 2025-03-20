@@ -37,8 +37,5 @@ void	write_until_eof(int fd, const char *hd_eof)
 		if (ft_strcmp(line, hd_eof) == 0)
 			break ;
 		ft_fprintf(file, "%s\n", line);
-		free(line);
 	}
-	free(line);
-	free(file);
 }
