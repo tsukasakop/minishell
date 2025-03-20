@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/20 13:37:35 by miyuu            ###   ########.fr        #
+#    Updated: 2025/03/20 15:21:10 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ TARGET =\
 	data/fill_scmd_texts\
 	data/get_tokenize_pipe_length\
 	data/is_valid_pipe_syntax\
-	data/skip_whitespace\
+	data/len_between_ifs\
 	env/is_valid_identifier\
 	env/load_variable_assignment\
 	env/register_env\
