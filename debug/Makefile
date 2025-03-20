@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/11 15:14:49 by tkondo           ###   ########.fr        #
+#    Updated: 2025/03/20 16:26:10 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ OBJ_DIR = $(OUT_DIR)/bin
 
 OBJ_MAIN = $(OBJ_DIR)/main/main$(OBJ_EXT)
 ROOT_DIR = ..
+ROOT_NAME = $(ROOT_DIR)/minishell
 SRC_DIR = $(ROOT_DIR)/src
 
 RL_DIR = $(shell brew --prefix readline)
@@ -57,6 +58,13 @@ LFLAGS = \
 	-L$(OUT_DIR) -ldebug \
 	-L$(ROOT_DIR)/libft -lft \
 	-L$(RL_DIR)/lib -lreadline \
+
+# ---------- Valgrind ---------- #
+
+VALGRIND = valgrind
+VFLAG = \
+	--leak-chek=full\
+#	--show-leak-kinds=all\
 
 # ---------- Argument ---------- #
 
@@ -107,6 +115,15 @@ ifeq ($(strip $(ARG)),)
 	@$(NAME)
 else
 	@$(NAME) <$(ARG)
+endif
+
+#valgrind上で実行
+valgrind:
+	@make -C $(ROOT_DIR) -s all
+ifeq ($(strip $(ARG)),)
+	@$(VALGRIND) $(VALG_FLAG) $(ROOT_NAME)
+else
+	@$(VALGRIND) $(VALG_FLAG) $(ROOT_NAME) <$(ARG)
 endif
 
 #bashをminishell風にして実行
@@ -164,7 +181,7 @@ $(NAME): $(LIB_FT) $(LIB_DEBUG)
 	$(CC) $(OBJ_MAIN) -o $(NAME) $(LIB_DIR) $(LFLAGS)
 
 $(LIB_FT):
-	@make -C $(ROOT_DIR)/libft dev
+	@make -C $(ROOT_DIR)/libft
 
 $(LIB_DEBUG): $(OBJS)
 	$(AR) rcs $@ $?
