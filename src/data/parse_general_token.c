@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 02:31:34 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/05 02:36:08 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/20 15:27:28 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ size_t	parse_general_token(char *scmd_text)
 	scmd_text[i] != '>' && scmd_text[i] != '<')
 	{
 		if (scmd_text[i] == '"' || scmd_text[i] == '\'')
-			i += skip_quote_text(&scmd_text[i], scmd_text[i]);
+			i += outerlen_between_quote(&scmd_text[i], scmd_text[i]);
 		else
 			i++;
 	}

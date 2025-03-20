@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/20 15:21:10 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/20 15:27:28 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ t_text_list		*new_struct_text_list(char *str, size_t len);
 size_t			parse_general_token(char *scmd_text);
 size_t			parse_number_redir_token(char *scmd_text);
 void			syntax_error_handle(char *msg);
-size_t			skip_quote_text(char *scmd_text, char quote);
+size_t			outerlen_between_quote(char *scmd_text, char quote);
 void			add_redir_list_last(t_redirect **redir_list, t_redirect *new_redir);
 t_redirect		*token2redir(char *word, char *path);
 t_simple_cmd	*init_scmd_list(const char *cmd_line);
