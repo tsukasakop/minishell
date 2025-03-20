@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_number_redir_token.c                         :+:      :+:    :+:   */
+/*   append_str2_scmd_texts.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 02:31:14 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/13 02:49:23 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/19 19:39:17 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/19 19:55:56 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:parse_number_redir_token
+ * Function:append_str2_scmd_texts
  * ----------------------------
- * Returns the length of the token that starts with a digit.
- * If there is a redirection symbol, it will split there.
+ * Extracts len size of text from start.
+ * And appends it to the pipeline.
  */
-size_t	parse_number_redir_token(char *scmd_text)
+void	append_str2_scmd_texts(char ***scmd_texts, const char *text, \
+								size_t start, size_t len)
 {
-	size_t	i;
-	int		redir_len;
+	char	*sub;
 
-	i = 0;
-	while (ft_isdigit(scmd_text[i]))
-		i++;
-	redir_len = get_redir_length(&scmd_text[i]);
-	if (redir_len != 0)
-		return (i + redir_len);
-	else
-		return (parse_general_token(scmd_text));
+	sub = ft_substr(text, start, len);
+	if (sub)
+		append_str(scmd_texts, sub);
+	free(sub);
 }

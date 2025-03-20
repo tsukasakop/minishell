@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   skip_quote_text.c                                  :+:      :+:    :+:   */
+/*   outerlen_between_quote.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,12 +13,12 @@
 #include <minishell.h>
 
 /*
- * Function:skip_quote_text
+ * Function:outerlen_between_quote
  * ----------------------------
  * Skips quoted text.
  * Returns its length, including the closing quote.
  */
-size_t	skip_quote_text(char *scmd_text, char quote)
+size_t	outerlen_between_quote(char *scmd_text, char quote)
 {
 	size_t	i;
 

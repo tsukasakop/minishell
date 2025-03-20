@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_number_redir_token.c                         :+:      :+:    :+:   */
+/*   fill_scmd_texts.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 02:31:14 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/13 02:49:23 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/19 19:39:29 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/20 00:00:05 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:parse_number_redir_token
+ * Function:fill_scmd_texts
  * ----------------------------
- * Returns the length of the token that starts with a digit.
- * If there is a redirection symbol, it will split there.
+ * Split cmd_line with a pipe('|') and fill it in pipeline
  */
-size_t	parse_number_redir_token(char *scmd_text)
+char	**fill_scmd_texts(const char *cmd_line)
 {
+	char	**scmd_texts;
+	size_t	token_len;
 	size_t	i;
-	int		redir_len;
 
+	scmd_texts = ft_calloc(sizeof(char *), 1);
+	if (!scmd_texts)
+		return (NULL);
+	token_len = 0;
 	i = 0;
-	while (ft_isdigit(scmd_text[i]))
-		i++;
-	redir_len = get_redir_length(&scmd_text[i]);
-	if (redir_len != 0)
-		return (i + redir_len);
-	else
-		return (parse_general_token(scmd_text));
+	while (cmd_line[i])
+	{
+		token_len = get_tokenize_pipe_length(&cmd_line[i]);
+		append_str2_scmd_texts(&scmd_texts, cmd_line, i, token_len);
+		i += token_len;
+		if (cmd_line[i] == '|')
+			i++;
+	}
+	return (scmd_texts);
 }

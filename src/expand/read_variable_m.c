@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:51:45 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/15 12:52:38 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/18 14:57:33 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ char	*read_variable_m(char **cur_p, char **buf_p)
 	char	*tmp;
 
 	(*cur_p)++;
+	if (**cur_p == '?')
+	{
+		(*cur_p)++;
+		return (ft_itoa((int)get_exit_status()));
+	}
 	name = dup_name(*cur_p);
 	if (name == NULL || ft_strlen(name) == 0)
 	{

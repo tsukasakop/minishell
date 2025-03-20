@@ -1,0 +1,61 @@
+-- テスト用ディレクトリを作成
+export 'TMP_DIR=/tmp/test-expand-redirect'
+rm -r "$TMP_DIR"
+mkdir -p "$TMP_DIR"
+cd "$TMP_DIR"
+
+-- テスト1: 通常の変数の場合
+export VAR="variable"
+>$VAR
+echo $?
+ls
+>"$VAR"
+echo $?
+ls
+>'$VAR'
+echo $?
+ls
+
+-- テスト2: 変数の展開結果が複数になる場合
+export MUL="first second"
+>$MUL
+echo $?
+ls
+>"$MUL"
+echo $?
+ls
+>'$MUL'
+echo $?
+ls
+
+-- テスト3: 変数が空文字列の場合
+export EMPTY=
+>$EMPTY
+echo $?
+ls
+>"$EMPTY"
+echo $?
+ls
+>'$EMPTY'
+echo $?
+ls
+
+-- テスト4: 変数がsetされていない場合
+unset UNSET
+>$UNSET
+echo $?
+ls
+>"$UNSET"
+echo $?
+ls
+>'$UNSET'
+echo $?
+ls
+
+-- テスト5: 変数がset されていないかつpipeの途中
+unset UNSET
+echo | >$UNSET | echo
+
+-- テスト用ディレクトリを削除
+cd -
+rm -r "$TMP_DIR"

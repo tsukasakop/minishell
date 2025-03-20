@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_number_redir_token.c                         :+:      :+:    :+:   */
+/*   cmdline2_scmd_texts.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 02:31:14 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/13 02:49:23 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/18 23:10:52 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/20 17:26:21 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:parse_number_redir_token
+ * Function:cmdline2_scmd_texts
  * ----------------------------
- * Returns the length of the token that starts with a digit.
- * If there is a redirection symbol, it will split there.
+ * Returns a pipeline that separates cmd_line with pipes.
  */
-size_t	parse_number_redir_token(char *scmd_text)
+char	**cmdline2_scmd_texts(const char *cmd_line)
 {
-	size_t	i;
-	int		redir_len;
+	char	**scmd_texts;
 
-	i = 0;
-	while (ft_isdigit(scmd_text[i]))
-		i++;
-	redir_len = get_redir_length(&scmd_text[i]);
-	if (redir_len != 0)
-		return (i + redir_len);
-	else
-		return (parse_general_token(scmd_text));
+	if (!is_valid_pipe_syntax(cmd_line))
+	{
+		syntax_error_handle("|");
+		return (NULL);
+	}
+	scmd_texts = fill_scmd_texts(cmd_line);
+	return (scmd_texts);
 }

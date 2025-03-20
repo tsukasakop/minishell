@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/18 12:58:43 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/20 17:24:54 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,14 +131,23 @@ t_text_list		*new_struct_text_list(char *str, size_t len);
 size_t			parse_general_token(char *scmd_text);
 size_t			parse_number_redir_token(char *scmd_text);
 void			syntax_error_handle(char *msg);
-size_t			skip_quote_text(char *scmd_text, char quote);
+size_t			outerlen_between_quote(char *scmd_text, char quote);
 void			add_redir_list_last(t_redirect **redir_list, t_redirect *new_redir);
 t_redirect		*token2redir(char *word, char *path);
-t_simple_cmd	*pipe2scmd_list(const char *cmd_line);
+t_simple_cmd	*init_scmd_list(const char *cmd_line);
 t_text_list		*tokenizer_scmd_text(char *scmd_text);
 bool			is_valid_redirect_syntax(t_text_list *cur);
 bool			extract_redirect(t_text_list **token_p, t_redirect **redir_p);
 char			**token2ecmds(t_text_list *tokens);
+char			**cmdline2_scmd_texts(const char *cmd_line);
+void			append_str2_scmd_texts(char ***pipeline, const char *text, \
+								size_t start, size_t len);
+char			**fill_scmd_texts(const char *cmd_line);
+size_t			get_tokenize_pipe_length(const char *cmd_line);
+bool			is_valid_pipe_syntax(const char *cmd_line);
+size_t			len_head_ifs(const char *cmd_line);
+char			*token2path(char *token);
+size_t			getnum_scmd_texts_token(const char *cmd_line);
 
 /* env function */
 bool			is_valid_identifier(char *string);

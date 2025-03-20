@@ -1,34 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_number_redir_token.c                         :+:      :+:    :+:   */
+/*   is_valid_pipe_syntax.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 02:31:14 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/13 02:49:23 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/19 19:39:04 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/20 17:23:35 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:parse_number_redir_token
+ * Function:is_valid_pipe_syntax
  * ----------------------------
- * Returns the length of the token that starts with a digit.
- * If there is a redirection symbol, it will split there.
+ * Pipe syntax error validation.
  */
-size_t	parse_number_redir_token(char *scmd_text)
+bool	is_valid_pipe_syntax(const char *cmd_line)
 {
+	size_t	token_num;
+	size_t	num;
+	char	head_char;
 	size_t	i;
-	int		redir_len;
 
+	token_num = getnum_scmd_texts_token(cmd_line);
+	if (token_num == 1)
+		return (true);
 	i = 0;
-	while (ft_isdigit(scmd_text[i]))
-		i++;
-	redir_len = get_redir_length(&scmd_text[i]);
-	if (redir_len != 0)
-		return (i + redir_len);
-	else
-		return (parse_general_token(scmd_text));
+	num = 0;
+	while (token_num > num)
+	{
+		head_char = cmd_line[i + len_head_ifs(&cmd_line[i])];
+		if (head_char == '|' || head_char == '\0')
+			return (false);
+		i += get_tokenize_pipe_length(&cmd_line[i]) + 1;
+		num++;
+	}
+	return (true);
 }
