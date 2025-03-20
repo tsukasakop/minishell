@@ -56,7 +56,7 @@ echo "nested 'quotes' | are tricky" | cat
 
 - シンタックスエラー
 |
-ls      "  "
+|ls      "  "
 "  "|"|  "
 | ls
 ls |      | cat
