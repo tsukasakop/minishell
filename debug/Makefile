@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/20 16:26:10 by tkondo           ###   ########.fr        #
+#    Updated: 2025/03/20 16:30:06 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,9 +121,9 @@ endif
 valgrind:
 	@make -C $(ROOT_DIR) -s all
 ifeq ($(strip $(ARG)),)
-	@$(VALGRIND) $(VALG_FLAG) $(ROOT_NAME)
+	@$(VALGRIND) $(VFLAG) $(ROOT_NAME)
 else
-	@$(VALGRIND) $(VALG_FLAG) $(ROOT_NAME) <$(ARG)
+	@$(VALGRIND) $(VFLAG) $(ROOT_NAME) <$(ARG)
 endif
 
 #bashをminishell風にして実行
