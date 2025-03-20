@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/20 00:00:05 by miyuu            ###   ########.fr        #
+#    Updated: 2025/03/20 13:37:35 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ TARGET =\
 	data/token2ecmds\
 	data/cmdline2_scmd_texts\
 	data/append_str2_scmd_texts\
-	data/fill_pipeline\
+	data/fill_scmd_texts\
 	data/get_tokenize_pipe_length\
 	data/is_valid_pipe_syntax\
 	data/skip_whitespace\
