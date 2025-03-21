@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 11:19:40 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/21 13:26:20 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/21 14:52:05 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ int	ft_setenv(const char *name, const char *value, int overwrite)
 	t_htbl	*p;
 	char *dup_name;
 	char *dup_value;
+	char *past_value;
 
-	if (!overwrite && ft_getenv(name) != NULL)
+	past_value = ft_getenv(name);
+	if (!overwrite && past_value != NULL)
 		return (-1);
 	p = _getenvp();
 	if (p == NULL)
@@ -42,6 +44,7 @@ int	ft_setenv(const char *name, const char *value, int overwrite)
 		return -1;
 	}
 	htadd(*p, dup_name, (void *)dup_value);
+	free(past_value);
 	return (0);
 }
 
