@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 12:39:47 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/05 19:08:48 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/13 02:44:04 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	print_list(t_text_list *head)
 	int i =0;
 	for (t_text_list *cur = head; cur; cur = cur->next)
 	{
-		printf("[%d] = \"%s\"\n", i, cur->text);
+		printf("[%d] = %s\n", i, cur->text);
 		/*
 		printf("\"%s\"", cur->text);
 		if (cur->next)
@@ -60,6 +60,13 @@ int	main(void)
 		"echo $PATH",
 		"export 42=FT",	//数字が来た時のバグ対象
 		"env | grep 42tokyo",	//数字が来た時のバグ対象
+		"echo \">\"",
+		"echo 42 1\">\"out",
+		"echo 42 1\'>\'out",
+		"echo \'>>>\'",
+		"echo \'>>>\'>>",
+		"echo 42 1>\">>\"",
+		"echo 42 >\'>>\'100>",
 		NULL
 	};
 

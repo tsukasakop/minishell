@@ -1,0 +1,67 @@
+echo Hello 1">"out
+cat out
+echo Hello 1 ">" out
+cat out
+echo Hello 1">" out
+cat out
+echo Hello 1 ">"out
+cat out
+
+echo Hello 1'>'out
+cat out
+echo Hello 1 '>' out
+cat out
+echo Hello 1'>' out
+cat out
+echo Hello 1 '>'out
+cat out
+
+echo 1">out"
+cat out
+echo ">out"
+cat out
+
+echo 1">     out"
+cat out
+echo ">     out"
+cat out
+
+echo Hello "1>out"
+cat out
+echo Hello "1>"out
+cat out
+echo Hello 1">out"
+cat out
+
+echo Hello 1"'>out'">>out
+echo Hello 1"'out>'">>out
+echo Hello 1"'out>'">>out
+
+rm out
+
+- パイプのトーカナイザー
+echo "Hello | ls"
+echo 'Hello | ls' | cat
+echo "Hello "|"    |"  cat
+ls |  | cat
+echo "Hello "|cat
+echo '"quoted | pipe"' | cat
+"ls -l" | "cat" | "wc -l"
+echo '| this is not a pipe' | cat
+echo hello | world | cat
+echo 'escaped \| pipe' | tr -d '\'
+echo "  hello   " | sed 's/ //g'
+cat   file.txt  |  grep "test"
+echo "nested 'quotes' | are tricky" | cat
+
+- シンタックスエラー
+|
+|ls      "  "
+"  "|"|  "
+| ls
+ls |      | cat
+ls |  "  "    | cat
+"|||||"|ls
+l|l|l
+"         "
+          | ls

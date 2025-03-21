@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_number_redir_token.c                         :+:      :+:    :+:   */
+/*   get_tokenize_pipe_length.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 02:31:14 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/13 02:49:23 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/19 19:38:26 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/20 15:27:28 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:parse_number_redir_token
+ * Function:get_tokenize_pipe_length
  * ----------------------------
- * Returns the length of the token that starts with a digit.
- * If there is a redirection symbol, it will split there.
+ * Returns the length of the string tokenized by the pipe.
  */
-size_t	parse_number_redir_token(char *scmd_text)
+size_t	get_tokenize_pipe_length(const char *cmd_line)
 {
-	size_t	i;
-	int		redir_len;
+	size_t	len;
 
-	i = 0;
-	while (ft_isdigit(scmd_text[i]))
-		i++;
-	redir_len = get_redir_length(&scmd_text[i]);
-	if (redir_len != 0)
-		return (i + redir_len);
-	else
-		return (parse_general_token(scmd_text));
+	len = 0;
+	while (cmd_line[len] && cmd_line[len] != '|')
+	{
+		if (cmd_line[len] == '"' || cmd_line[len] == '\'')
+			len += outerlen_between_quote((char *)&cmd_line[len], cmd_line[len]);
+		else
+			len++;
+	}
+	return (len);
 }

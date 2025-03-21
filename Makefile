@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/19 17:21:50 by tkondo           ###   ########.fr        #
+#    Updated: 2025/03/20 17:25:06 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ TARGET =\
 	data/get_redirect_from_fd\
 	data/token2redir\
 	data/load_simple_cmd\
-	data/pipe2scmd_list\
+	data/init_scmd_list\
 	data/tokenizer_scmd_text\
 	data/add_struct_text_list\
 	data/ft_isifs\
@@ -61,12 +61,19 @@ TARGET =\
 	data/get_token_length\
 	data/parse_general_token\
 	data/parse_number_redir_token\
-	data/skip_quote_text\
+	data/outerlen_between_quote\
 	data/create_tmp_file\
 	data/handle_heredoc\
 	data/add_redir_list_last\
 	data/token2ecmds\
+	data/cmdline2_scmd_texts\
+	data/append_str2_scmd_texts\
+	data/fill_scmd_texts\
+	data/get_tokenize_pipe_length\
+	data/is_valid_pipe_syntax\
+	data/len_head_ifs\
 	data/token2path\
+	data/getnum_scmd_texts_token\
 	env/is_valid_identifier\
 	env/load_variable_assignment\
 	env/register_env\
