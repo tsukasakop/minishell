@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/20 16:31:06 by tkondo           ###   ########.fr        #
+#    Updated: 2025/03/21 18:54:59 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,8 +62,12 @@ LFLAGS = \
 # ---------- Valgrind ---------- #
 
 VALGRIND = valgrind
+SUPP_FILE = ignore_readline.supp
 VFLAG = \
 	--leak-check=full\
+	--track-origins=yes\
+	--suppressions=$(SUPP_FILE)\
+	--show-error-list=yes\
 #	--show-leak-kinds=all\
 
 # ---------- Argument ---------- #
