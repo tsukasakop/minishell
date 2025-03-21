@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 14:08:39 by tkondo            #+#    #+#             */
-/*   Updated: 2024/12/19 17:05:46 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/21 12:41:21 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,20 @@
 t_memory_manager	*ft_mmnew(void)
 {
 	t_memory_manager	*(*_mmnew)(void);
-
 	_mmnew = ft_bnnew;
 	return ((t_memory_manager *)_mmnew());
 }
 
-int	ft_mmadd(t_memory_manager *mm, void *ptr)
+void	*ft_mmadd(t_memory_manager *mm, void *ptr)
 {
 	int	(*_mmadd)(t_memory_manager *, void *);
 
 	_mmadd = ft_bnadd;
 	if (!mm)
-		return (0);
-	return (_mmadd(mm, ptr));
+		return (NULL);
+	if (!_mmadd(mm, ptr))
+		return (NULL);
+	return (ptr);
 }
 
 void	*ft_mmmalloc(t_memory_manager *mm, size_t size)
