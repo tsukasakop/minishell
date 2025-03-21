@@ -31,7 +31,7 @@ void	append_str(char ***store, char *orig)
 		return ;
 	}
 	ft_memcpy(tmp, *store, sizeof(char *) * len);
-	dup = ft_strdup(orig);
+	dup = ft_g_mmadd(ft_strdup(orig));
 	if (dup == NULL)
 	{
 		*store = NULL;

@@ -34,7 +34,7 @@ void	load_variable_assignment(char *string, char **name, char **value)
 		*name = NULL;
 		return ;
 	}
-	*value = ft_strdup(sep + 1);
+	*value = ft_g_mmadd(ft_strdup(sep + 1));
 	if (*value == NULL)
 	{
 		*name = NULL;

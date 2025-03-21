@@ -30,6 +30,6 @@ char	*get_input(void)
 	if (input)
 		add_history(input);
 	else
-		input = ft_strdup("exit");
+		input = ft_g_mmadd(ft_strdup("exit"));
 	return (input);
 }
