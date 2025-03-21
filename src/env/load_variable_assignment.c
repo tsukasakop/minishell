@@ -26,7 +26,7 @@ void	load_variable_assignment(char *string, char **name, char **value)
 	sep = ft_strchr(string, '=');
 	if (sep == NULL)
 		return ;
-	*name = ft_strndup(string, sep - string);
+	*name = ft_g_mmadd(ft_strndup(string, sep - string));
 	if (*name == NULL)
 		return ;
 	if (!is_valid_identifier(*name))
