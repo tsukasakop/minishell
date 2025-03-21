@@ -36,7 +36,7 @@ int	builtin_cd(char **argv)
 		return (1);
 	}
 	if (argv[0] == NULL || ft_strcmp(argv[0], "~") == 0)
-		next_dir = getenv("HOME");
+		next_dir = ft_getenv("HOME");
 	else if (ft_strcmp(argv[0], "-") == 0)
 		next_dir = old_dir;
 	else
@@ -45,11 +45,13 @@ int	builtin_cd(char **argv)
 	if (chdir(next_dir) == -1)
 	{
 		ft_fprintf(ft_stderr(), "bash: cd: %s: ", next_dir);
+		free(cur_dir);
 		perror(NULL);
 		return (1);
 	}
 	if (argv[0] && ft_strcmp(argv[0], "-") == 0)
 		ft_printf("%s\n", next_dir);
+	free(old_dir);
 	old_dir = cur_dir;
 	return (0);
 }
