@@ -31,7 +31,7 @@ char	*create_tmp_file(void)
 	while (fd == -1)
 	{
 		num = ft_g_mmadd(ft_itoa(count++));
-		filename = ft_strjoin("/tmp/heredoc_", num);
+		filename = ft_g_mmadd(ft_strjoin("/tmp/heredoc_", num));
 		fd = open(filename, O_CREAT | O_EXCL, 0600);
 	}
 	close(fd);
