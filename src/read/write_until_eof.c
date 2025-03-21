@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:18:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/27 13:33:17 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/21 17:31:49 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,5 @@ void	write_until_eof(int fd, const char *hd_eof)
 			break ;
 		ft_fprintf(file, "%s\n", line);
 	}
+	free(file);
 }
