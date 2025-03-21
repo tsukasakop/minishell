@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 01:25:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/01/04 14:16:10 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/21 18:40:58 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@ static void	htnodedel(t_htnode *htnode, void (*del)(t_htnode *))
 {
 	if (del)
 		del(htnode);
-	free(htnode);
+	else
+	{
+		free((void *)htnode->key);
+		free((void *)htnode);
+	}
 }
 
 void	htdelone(t_htnode **ht, const char *key, void (*del)(t_htnode *))
