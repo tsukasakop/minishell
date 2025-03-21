@@ -15,7 +15,9 @@ o>/tmp/file1
 # ヒアドクとエラー
 
 # コマンド&展開
+```
 $HOME
+```
 
 # その他
 ```bash
@@ -23,3 +25,11 @@ $HOME
 exit
 ```
 norminette
+
+## リダイレクト&展開
+```bash
+export VAR=
+echo Hello >$VAR
+```
+<<"EOF"
+<<'EOF'
