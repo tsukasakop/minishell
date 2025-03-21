@@ -34,7 +34,7 @@ char	**expand_single_token(char *orig)
 	char	*cur;
 
 	buffer = NULL;
-	fixed = ft_calloc(sizeof(char *), 1);
+	fixed = ft_g_mmcalloc(sizeof(char *), 1);
 	cur = orig;
 	while (*cur)
 	{
