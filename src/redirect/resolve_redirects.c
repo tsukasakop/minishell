@@ -35,5 +35,4 @@ void	resolve_redirects(int stdio[2], t_redirect *redir)
 			ft_exit(1);
 		cur = cur->next;
 	}
-	free_redirects(redir);
 }

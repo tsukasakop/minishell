@@ -27,7 +27,6 @@ void	append_str(char ***store, char *orig)
 	tmp = ft_g_mmmalloc(sizeof(char *) * (len + 2));
 	if (tmp == NULL)
 	{
-		free_null_terminated_array((void **)*store);
 		*store = NULL;
 		return ;
 	}
@@ -35,7 +34,6 @@ void	append_str(char ***store, char *orig)
 	dup = ft_strdup(orig);
 	if (dup == NULL)
 	{
-		free_null_terminated_array((void **)*store);
 		*store = NULL;
 		return ;
 	}
