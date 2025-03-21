@@ -35,7 +35,7 @@ int	redirect_with_oflags(t_redirect *redir, int o_flags)
 	if (dup2(oldfd, newfd) < 0)
 	{
 		close(oldfd);
-		return (perror_return(ft_itoa(newfd), -1));
+		return (perror_return(ft_g_mmadd(ft_itoa(newfd), -1)));
 	}
 	close(oldfd);
 	return (0);
