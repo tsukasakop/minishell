@@ -24,7 +24,7 @@ void	append_str(char ***store, char *orig)
 	char	*dup;
 
 	len = null_terminated_array_len((void **)*store);
-	tmp = malloc(sizeof(char *) * (len + 2));
+	tmp = ft_g_mmmalloc(sizeof(char *) * (len + 2));
 	if (tmp == NULL)
 	{
 		free_null_terminated_array((void **)*store);

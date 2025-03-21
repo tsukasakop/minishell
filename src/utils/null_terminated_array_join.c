@@ -28,7 +28,7 @@ void	**null_terminated_array_join(void **dst, void **src)
 
 	dstlen = null_terminated_array_len(dst);
 	srclen = null_terminated_array_len(src);
-	ptr = malloc(sizeof(void *) * (dstlen + srclen + 1));
+	ptr = ft_g_mmmalloc(sizeof(void *) * (dstlen + srclen + 1));
 	if (ptr == NULL)
 		return (NULL);
 	i = 0;

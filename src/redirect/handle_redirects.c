@@ -24,7 +24,7 @@ int	*handle_redirects(t_redirect *redir, int fd_count)
 	int			*keep_fds;
 
 	cur = redir;
-	keep_fds = malloc(sizeof(int) * fd_count * 2);
+	keep_fds = ft_g_mmmalloc(sizeof(int) * fd_count * 2);
 	if (!keep_fds)
 	{
 		perror_return(NULL, -1);
