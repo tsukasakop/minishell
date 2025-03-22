@@ -6,13 +6,13 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:52:53 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/22 13:37:48 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/22 13:42:39 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-typedef enum e_error		t_error_type;
+typedef enum e_error_type		t_error_type;
 enum e_error_type
 {
 	NOERR,
