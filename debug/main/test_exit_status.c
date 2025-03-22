@@ -6,14 +6,14 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:52:53 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/22 02:59:20 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/22 13:37:48 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-typedef enum e_error		t_error;
-enum e_error
+typedef enum e_error		t_error_type;
+enum e_error_type
 {
 	NOERR,
 	ERR_PERROR, //bad fdの時→1 No such→1
@@ -23,7 +23,7 @@ enum e_error
 	ERR_NOCMD//127
 };
 
-const char	*get_error_name(t_error err)
+const char	*get_error_name(t_error_type err)
 {
 	static const	char *error_names[] = {
 		"NOERR",
@@ -36,7 +36,7 @@ const char	*get_error_name(t_error err)
 	return (error_names[err]);
 }
 
-unsigned char	t_error_check(t_error	st_error)
+unsigned char	t_error_check(t_error_type	st_error)
 {
 	if (st_error == NOERR)
 		return (0);
@@ -53,7 +53,7 @@ unsigned char	t_error_check(t_error	st_error)
 	return (0);
 }
 
-void	error_set_exitstatus(t_error err)
+void	error_set_exitstatus(t_error_type err)
 {
 	unsigned char	exit_status;
 
@@ -61,24 +61,24 @@ void	error_set_exitstatus(t_error err)
 	set_exit_status(exit_status);
 }
 
-t_error	*get_error_enum_p(void)
+t_error_type	*get_error_enum_p(void)
 {
-	static t_error	p;
+	static t_error_type	p;
 
 	return (&p);
 }
 
-t_error	get_error_enum(void)
+t_error_type	get_error_enum(void)
 {
-	t_error	*st_ptr;
+	t_error_type	*st_ptr;
 
 	st_ptr = get_error_enum_p();
 	return (*st_ptr);
 }
 
-void	set_error_enum(t_error st)
+void	set_error_enum(t_error_type st)
 {
-	t_error	*st_ptr;
+	t_error_type	*st_ptr;
 
 	st_ptr = get_error_enum_p();
 	*st_ptr = st;
@@ -90,9 +90,9 @@ int	main(void)
 	char cmd_line[] = "$?";
 	char *cur_p;
 	char *exit_status;
-	t_error	get_enum;
+	t_error_type	get_enum;
 
-	for (t_error err = NOERR; err <= ERR_NOCMD; err++)
+	for (t_error_type err = NOERR; err <= ERR_NOCMD; err++)
 	{
 		set_error_enum(err);
 		get_enum = get_error_enum();
