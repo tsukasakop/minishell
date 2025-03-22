@@ -21,10 +21,10 @@ t_text_list	*new_struct_text_list(char *str, size_t len)
 {
 	t_text_list	*node;
 
-	node = malloc(sizeof(t_text_list));
+	node = ft_g_mmmalloc(sizeof(t_text_list));
 	if (!node)
 		return (NULL);
-	node->text = ft_strndup(str, len);
+	node->text = ft_g_mmadd(ft_strndup(str, len));
 	node->prev = NULL;
 	node->next = NULL;
 	return (node);

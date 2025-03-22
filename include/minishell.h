@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/22 18:17:33 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/22 19:17:47 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <ft_string.h>
 # include <ft_stdlib.h>
 # include <ft_unistd.h>
+# include <ft_memory.h>
 # include <libft.h>
 
 /* library */

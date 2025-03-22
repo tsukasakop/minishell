@@ -24,8 +24,6 @@ void	free_simple_cmds(t_simple_cmd *scmd_list)
 	while (scmd_list)
 	{
 		tmp = scmd_list;
-		free_ecmds(scmd_list->ecmds);
-		free_redirects(scmd_list->redir);
 		scmd_list = scmd_list->next;
 		free(tmp);
 	}

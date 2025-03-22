@@ -24,24 +24,20 @@ void	append_str(char ***store, char *orig)
 	char	*dup;
 
 	len = null_terminated_array_len((void **)*store);
-	tmp = malloc(sizeof(char *) * (len + 2));
+	tmp = ft_g_mmmalloc(sizeof(char *) * (len + 2));
 	if (tmp == NULL)
 	{
-		free_null_terminated_array((void **)*store);
 		*store = NULL;
 		return ;
 	}
 	ft_memcpy(tmp, *store, sizeof(char *) * len);
-	dup = ft_strdup(orig);
+	dup = ft_g_mmadd(ft_strdup(orig));
 	if (dup == NULL)
 	{
-		free(tmp);
-		free_null_terminated_array((void **)*store);
 		*store = NULL;
 		return ;
 	}
 	tmp[len] = dup;
 	tmp[len + 1] = NULL;
-	free(*store);
 	*store = tmp;
 }

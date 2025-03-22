@@ -31,14 +31,12 @@ void	expand_double_quote(char **cur_p, char **buf_p)
 			if (!var)
 				continue ;
 			tmp = ft_strnjoin(*buf_p, var, ft_strlen(var));
-			free(*buf_p);
 			*buf_p = tmp;
 		}
 		else
 			read_bare_string_m(cur_p, &*buf_p, "\"$", 2);
 	}
 	tmp = ft_strnjoin(*buf_p, "", 0);
-	free(*buf_p);
 	*buf_p = tmp;
 	(*cur_p)++;
 }

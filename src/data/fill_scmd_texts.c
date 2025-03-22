@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_scmd_texts.c                                    :+:      :+:    :+:   */
+/*   fill_scmd_texts.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 19:39:29 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/20 00:00:05 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/21 13:00:41 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	**fill_scmd_texts(const char *cmd_line)
 	size_t	token_len;
 	size_t	i;
 
-	scmd_texts = ft_calloc(sizeof(char *), 1);
+	scmd_texts = ft_g_mmcalloc(sizeof(char *), 1);
 	if (!scmd_texts)
 		return (NULL);
 	token_len = 0;

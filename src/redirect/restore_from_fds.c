@@ -28,5 +28,4 @@ void	restore_from_fds(int *keep_fds, int fd_count)
 		close(keep_fds[i * 2 +1]);
 		i--;
 	}
-	free(keep_fds);
 }

@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:05:23 by tkondo            #+#    #+#             */
-/*   Updated: 2024/12/19 22:20:49 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/21 12:37:20 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_memory_manager	**ft_g_mmget_p(void)
 	return (&mm);
 }
 
-int	ft_g_mmadd(void *ptr)
+void	*ft_g_mmadd(void *ptr)
 {
 	t_memory_manager	**mm;
 

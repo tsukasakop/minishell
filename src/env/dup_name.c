@@ -24,6 +24,6 @@ char	*dup_name(char *cur)
 	char	*str;
 
 	len = namelen(cur);
-	str = ft_strndup(cur, len);
+	str = ft_g_mmadd(ft_strndup(cur, len));
 	return (str);
 }

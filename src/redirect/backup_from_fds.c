@@ -27,7 +27,7 @@ int	backup_from_fds(t_redirect *redir, int *keep_fds, int i)
 			keep_fds[i * 2 + 1] = redir->from_fd;
 		else
 		{
-			perror(ft_itoa(redir->from_fd));
+			perror(ft_g_mmadd(ft_itoa(redir->from_fd)));
 			return (-1);
 		}
 	}
