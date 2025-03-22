@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:04:20 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/22 14:57:16 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/22 15:28:20 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	main(int argc, char **argv, char **envp)
 		input = get_input();
 		last_status = eval_cmd_line(input, envp);
 		set_exit_status(last_status);
-		// set_error_enum(NOERR);
 		free(input);
 	}
 	return (0);
