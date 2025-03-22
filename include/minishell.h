@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/22 13:39:20 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/22 18:17:33 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,8 @@ bool			is_valid_pipe_syntax(const char *cmd_line);
 size_t			len_head_ifs(const char *cmd_line);
 char			*token2path(char *token);
 size_t			getnum_scmd_texts_token(const char *cmd_line);
+char			*validate_cmd_line_syntax(const char *cmd_line);
+bool			is_valid_quote_syntax(const char *cmd_line, char target_quote);
 
 /* env function */
 bool			is_valid_identifier(char *string);

@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   outerlen_between_quote.c                           :+:      :+:    :+:   */
+/*   validate_cmd_line_syntax.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 02:30:12 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/22 14:37:45 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/21 19:21:12 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/22 14:40:45 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:outerlen_between_quote
+ * Function:validate_cmd_line_syntax
  * ----------------------------
- * Skips quoted text.
- * Returns its length, including the closing quote.
+ * Validates cmd_line for syntax errors.
+ * If there is an error, the target string is returned.
+ * if there is no error, NULL is returned.
  */
-size_t	outerlen_between_quote(char *scmd_text, char quote)
+char	*validate_cmd_line_syntax(const char *cmd_line)
 {
-	size_t	i;
-
-	i = 1;
-	while (scmd_text[i] && scmd_text[i] != quote)
-		i++;
-	if (scmd_text[i] == quote)
-		i++;
-	return (i);
+	if (!is_valid_pipe_syntax(cmd_line))
+		return ("|");
+	if (!is_valid_quote_syntax(cmd_line, '"'))
+		return ("\"");
+	if (!is_valid_quote_syntax(cmd_line, '\''))
+		return ("'");
+	return (NULL);
 }

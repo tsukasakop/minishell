@@ -54,7 +54,7 @@ echo "  hello   " | sed 's/ //g'
 cat   file.txt  |  grep "test"
 echo "nested 'quotes' | are tricky" | cat
 
-- シンタックスエラー
+- パイプのシンタックスエラー
 |
 |ls      "  "
 "  "|"|  "
@@ -65,3 +65,11 @@ ls |  "  "    | cat
 l|l|l
 "         "
           | ls
+
+- クォートまわり
+ "   "  " "  " " ""
+|'
+|"
+|'   "
+"Hello " | "|"Hello " | "
+0""    \t""""           777'''''''       ''''""""""                 '''\0
