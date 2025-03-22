@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/22 13:38:07 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/22 15:03:03 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ unsigned char	eval_pipe(const char *cmd_line, char **envp)
 
 	scmd_list = init_scmd_list(cmd_line);
 	t_error_type	get_enum = get_error_enum();
-	// printf("Error: %-10s → err_enum: %3d exit_status: %d\n", get_error_name(get_enum), get_enum, t_error_check(get_enum));
-	if (get_enum != NOERR)
+	printf("Error: %-10s → err_enum: %3d exit_status: %d\n", get_error_name(get_enum), get_enum, t_error_check(get_enum));
+	if (!scmd_list)
 		return (t_error_check(get_enum));
 	// TODO: session = init_session();
 	stdio_fd[0] = STDIN_FILENO;
