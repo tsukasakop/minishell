@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/20 17:25:06 by miyuu            ###   ########.fr        #
+#    Updated: 2025/03/22 13:25:12 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -123,6 +123,7 @@ TARGET =\
 	utils/null_terminatted_array_len\
 	utils/null_terminated_array_join\
 	utils/is_directory\
+	utils/set_error_enum\
 	signal/set_handlers_for_prompt\
 	signal/set_handlers_default\
 	signal/set_handlers_for_process\

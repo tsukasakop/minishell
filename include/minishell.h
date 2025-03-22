@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/20 17:24:54 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/22 13:39:20 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_redirect			t_redirect;
 typedef struct s_text_list			t_text_list;
 typedef enum e_redirect_type		t_redirect_type;
 typedef enum e_execute_env			t_execute_env;
+typedef enum e_error_type				t_error_type;
 
 enum e_redirect_type
 {
@@ -61,6 +62,16 @@ enum e_execute_env
 {
 	ENV_CURRENT,
 	ENV_INDEPENDENT
+};
+
+enum e_error_type
+{
+	NOERR,
+	ERR_PERROR, //bad fdの時→1 No such→1
+	ERR_NOFILE, //親プロでのredirの時→1
+	ERR_AMBRDIR, //1
+	ERR_SYNTAX, //2
+	ERR_NOCMD//127
 };
 
 struct				s_execute_session
@@ -219,5 +230,9 @@ char			*ft_strnjoin(char *s1, char *s2, size_t s2_len);
 size_t			null_terminated_array_len(void **arr);
 void			**null_terminated_array_join(void **dst, void **src);
 int				is_directory(char *path);
+
+t_error_type	*get_error_enum_p(void);
+t_error_type	get_error_enum(void);
+void			set_error_enum(t_error_type st);
 
 #endif
