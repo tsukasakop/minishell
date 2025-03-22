@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 19:20:48 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/21 19:22:42 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/22 14:42:15 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * Quote(' or ") syntax error validation.
  */
 
-bool	is_valid_quote_syntax(const char *cmd_line, char *err_quote)
+bool	is_valid_quote_syntax(const char *cmd_line, char target_quote)
 {
 	size_t	i;
 	char	quote;
@@ -32,12 +32,9 @@ bool	is_valid_quote_syntax(const char *cmd_line, char *err_quote)
 			quote = cmd_line[i];
 			quote_len = outerlen_between_quote((char *)&cmd_line[i], quote);
 			i += quote_len;
-			if (quote_len == 1 || cmd_line[i - 1] != quote)
-			{
-				err_quote[0] = quote;
-				err_quote[1] = '\0';
+			if (quote == target_quote && \
+				(quote_len == 1 || !(cmd_line[i - 1] == quote)))
 				return (false);
-			}
 		}
 		else
 			i++;

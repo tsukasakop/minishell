@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 19:21:12 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/21 19:24:35 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/22 14:40:45 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
  */
 char	*validate_cmd_line_syntax(const char *cmd_line)
 {
-	static char	err_quote[2];
-
 	if (!is_valid_pipe_syntax(cmd_line))
 		return ("|");
-	if (!is_valid_quote_syntax(cmd_line, err_quote))
-		return (err_quote);
+	if (!is_valid_quote_syntax(cmd_line, '"'))
+		return ("\"");
+	if (!is_valid_quote_syntax(cmd_line, '\''))
+		return ("'");
 	return (NULL);
 }
