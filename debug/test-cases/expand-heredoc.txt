@@ -1,0 +1,55 @@
+export word=aiueo
+export SINGLE=single
+export EMPTY=
+export MULTIPLE='first     second'
+unset NONE
+
+cat <<''
+$ONELINE
+
+cat <<""
+$EMPTY
+
+cat <<'word'
+$MULTIPLE
+word
+
+cat <<"$word"
+$NONE
+$word
+
+cat <<$word
+$SINGLE
+$word
+
+cat <<wo''rd
+$EMPTY
+word
+
+cat <<w"or"d
+$MULTIPLE
+word
+
+cat <<word
+$SINGLE
+word
+
+cat <<word
+$EMPTY
+word
+
+cat <<word
+$MULTIPLE
+word
+
+cat <<word
+$NONE
+word
+
+cat <<aiueo
+$word
+aiueo
+
+cat <<$word
+$word
+
