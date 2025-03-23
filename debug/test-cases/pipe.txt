@@ -1,2 +1,4 @@
 ls . | wc -l
+echo $?
 cat | cat | ls
+echo $?

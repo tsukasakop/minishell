@@ -1,6 +1,12 @@
 export AAA="123"
+echo $?
 echo $AAA
+echo $?
 export BBB="654      $AAA       456"
+echo $?
 echo $BBB
+echo $?
 export BBB="$BBB 789"
+echo $?
 echo "$BBB aaa"
+echo $?

@@ -2,12 +2,14 @@ cat <<EOF
 aiueo
 test
 EOF
+echo $?
 
 cat <<EOF | ls
 aiueo
 kakikukeko
 aaaa
 EOF
+echo $?
 
 cat <<EOF | ls | cat <<EOF
 this
@@ -20,6 +22,7 @@ hangry
 tenya
 ikitai
 EOF
+echo $?
 
 cat <<EOF <<EEE <<EOF
 aiueo
@@ -33,9 +36,12 @@ OEF
 EOF
 EEE
 EOF
+echo $?
 
 cat <<    EOF
 EOF
+echo $?
 
 < out | cat <<EOF
 EOF
+echo $?

@@ -1,28 +1,56 @@
 pwd
+echo $?
 cd -
+echo $?
 pwd
+echo $?
 cd .
+echo $?
 pwd
+echo $?
 cd -
+echo $?
 pwd
+echo $?
 cd ..
+echo $?
 pwd
+echo $?
 cd -
+echo $?
 pwd
+echo $?
 cd -
+echo $?
 pwd
+echo $?
 cd /tmp
+echo $?
 pwd
+echo $?
 cd
+echo $?
 pwd
+echo $?
 cd /tmp
+echo $?
 cd ~
+echo $?
 pwd
+echo $?
 cd /tmp
+echo $?
 touch file
+echo $?
 cd file
+echo $?
 cd /not/exit/path
+echo $?
 cd
+echo $?
 cd /
+echo $?
 cd - | pwd
+echo $?
 pwd
+echo $?
