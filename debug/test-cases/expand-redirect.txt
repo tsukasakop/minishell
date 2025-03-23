@@ -18,7 +18,6 @@ ls
 
 -- テスト2: 変数の展開結果が複数になる場合
 export MUL="first second"
--- 以下が、終了ステータスが違う
 >$MUL
 echo $?
 ls
@@ -31,7 +30,6 @@ ls
 
 -- テスト3: 変数が空文字列の場合
 export EMPTY=
--- 以下が、終了ステータスが違う
 >$EMPTY
 echo $?
 ls
@@ -44,7 +42,6 @@ ls
 
 -- テスト4: 変数がsetされていない場合
 unset UNSET
--- 以下が、終了ステータスが違う
 >$UNSET
 echo $?
 ls

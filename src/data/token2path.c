@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token2path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 17:14:37 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/20 09:00:47 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/23 19:04:01 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char	*token2path(char *token)
 	if (null_terminated_array_len((void **)expanded) != 1)
 	{
 		ft_fprintf(ft_stderr(), "bash: %s: ambiguous redirect\n", token);
+		set_error_enum(ERR_AMBRDIR);
 		return (NULL);
 	}
 	return (expanded[0]);
