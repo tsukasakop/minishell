@@ -27,7 +27,7 @@
 
 ## env
 ### 正常
-#### ※ 通常→`_=`の結果が異なる
+#### ※ 通常 → `_=`の結果が異なる
 	env
 #### !! 引数あり → 課題要件につき、envの結果が出力されれば良い
 	env aaaaaa
@@ -36,14 +36,20 @@
 
 ## export
 ### 正常
-#### - 通常
+#### ※ 通常 → 出力されるじゅんばんが違う(本来はABC順)、`declare -x `とvalueに`""`がない
 	export
 #### - 環境変数の設定
 	export VAR=val
 #### - valueにスペースを含む
-	export VAR="Hello      World"
+	export VAR="Hello World"
 #### - valueが数字
 	export NUM=1234567
+#### - ダブルクォート + valueに複数のスペース
+	export VAR="Hello      World"
+#### - ダブルクォート + valueに変数がある
+	export WITH_VAR="Is $VAR ."
+#### - シングルクォート + valueに変数がある
+	export WITH_VAR='Is $VAR .'
 #### - valueが空
 	export Empty=
 #### - nameに数字が含まれる場合
@@ -75,6 +81,25 @@
 	unset VAR=val
 	unset test1 test2 test3
 
+#### - PWDを削除した後の変数状況
+```bash
+	unset PWD
+	echo $PWD
+	env | grep PWD=
+	export | grep PWD=
+	cd .
+	echo $PWD
+	env | grep PWD=
+	export | grep PWD=
+```
+```bash
+	export aa=hello
+	unset aa=
+	env | grep aa=
+	unset aa
+	env | grep aa=
+```
+
 ## cd
 ### 正常
 	cd .
@@ -86,6 +111,13 @@
 	cd /tmp
 	cd $PWD
 	cd $OLDPWD
+#### 環境変数PWDの更新
+```
+	unset PWD
+	echo $PWD
+	cd .
+	echo $PWD
+```
 
 ### エラー
 - 存在しない系

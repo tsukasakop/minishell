@@ -10,6 +10,14 @@
 	echo "42 | ls -l"
 	echo "''quart''"
 	echo "'"quart"'"
+#### ダブルクォートを展開すると変数名になる場合
+	echo $PAT"H"
+```bash
+	export VAR="Hello      World"
+	echo $VAR
+	echo "$VAR"
+	echo \'$VAR\'
+```
 ### エラー
 - `"`
 	→ bash: syntax error near unexpected token `"'にする
