@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_single_token.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:15:39 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/15 12:50:07 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/24 02:52:20 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ char	**expand_single_token(char *orig)
 
 	buffer = NULL;
 	fixed = ft_g_mmcalloc(sizeof(char *), 1);
+	if (!fixed)
+	{
+		//TODO:SET errno
+		return (perror_return_null(NULL));
+	}
 	cur = orig;
 	while (*cur)
 	{

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 19:39:29 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/21 13:00:41 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/24 03:00:17 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ char	**fill_scmd_texts(const char *cmd_line)
 
 	scmd_texts = ft_g_mmcalloc(sizeof(char *), 1);
 	if (!scmd_texts)
-		return (NULL);
+	{
+		//TODO:SET errno
+		return (perror_return_null(NULL));
+	}
 	token_len = 0;
 	i = 0;
 	while (cmd_line[i])
