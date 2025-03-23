@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/22 15:31:43 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/23 17:16:18 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,8 @@ const char	*get_error_name(t_error_type err)
 	static const	char *error_names[] = {
 		"NOERR",
 		"ERR_PERROR",
-		"ERR_NOFILE",
 		"ERR_AMBRDIR",
 		"ERR_SYNTAX",
-		"ERR_NOCMD",
 	};
 	return (error_names[err]);
 }
@@ -40,14 +38,10 @@ unsigned char	t_error_check(t_error_type	st_error)
 		return (0);
 	else if (st_error == ERR_PERROR)
 		return (1);
-	else if (st_error == ERR_NOFILE)
-		return (1);
 	else if (st_error == ERR_AMBRDIR)
 		return (1);
 	else if (st_error == ERR_SYNTAX)
 		return (2);
-	else if (st_error == ERR_NOCMD)
-		return (127);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:52:53 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/22 13:42:39 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/23 17:16:44 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ enum e_error_type
 {
 	NOERR,
 	ERR_PERROR, //bad fdの時→1 No such→1
-	ERR_NOFILE, //親プロでのredirの時→1
 	ERR_AMBRDIR, //1
 	ERR_SYNTAX, //2
-	ERR_NOCMD//127
 };
 
 const char	*get_error_name(t_error_type err)
@@ -28,10 +26,8 @@ const char	*get_error_name(t_error_type err)
 	static const	char *error_names[] = {
 		"NOERR",
 		"ERR_PERROR",
-		"ERR_NOFILE",
 		"ERR_AMBRDIR",
 		"ERR_SYNTAX",
-		"ERR_NOCMD",
 	};
 	return (error_names[err]);
 }
@@ -42,14 +38,10 @@ unsigned char	t_error_check(t_error_type	st_error)
 		return (0);
 	else if (st_error == ERR_PERROR)
 		return (1);
-	else if (st_error == ERR_NOFILE)
-		return (1);
 	else if (st_error == ERR_AMBRDIR)
 		return (1);
 	else if (st_error == ERR_SYNTAX)
 		return (2);
-	else if (st_error == ERR_NOCMD)
-		return (127);
 	return (0);
 }
 
@@ -92,7 +84,7 @@ int	main(void)
 	char *exit_status;
 	t_error_type	get_enum;
 
-	for (t_error_type err = NOERR; err <= ERR_NOCMD; err++)
+	for (t_error_type err = NOERR; err <= ERR_SYNTAX; err++)
 	{
 		set_error_enum(err);
 		get_enum = get_error_enum();

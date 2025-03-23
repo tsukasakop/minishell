@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/23 16:21:41 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/23 17:16:04 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,8 @@ enum e_error_type
 {
 	NOERR,
 	ERR_PERROR, //bad fdの時→1 No such→1
-	ERR_NOFILE, //親プロでのredirの時→1
 	ERR_AMBRDIR, //1
 	ERR_SYNTAX, //2
-	ERR_NOCMD//127
 };
 
 struct				s_execute_session
