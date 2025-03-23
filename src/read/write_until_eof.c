@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:18:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/23 14:02:07 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/23 14:51:33 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,15 @@ void	write_until_eof(int fd, const char *raw_eof)
 	while (true)
 	{
 		line = ft_g_mmadd(readline("> "));
+		if (line && ft_strcmp(line, hd_eof) == 0)
+			break ;
+		if (line && !has_quote)
+			line = ft_g_mmadd(expand_heredoc_line(line));
 		if (line == NULL)
 		{
 			ft_fprintf(ft_stderr(), ERR_HEREDOC, SHELL_NAME, hd_eof);
 			break ;
 		}
-		if (ft_strcmp(line, hd_eof) == 0)
-			break ;
 		ft_fprintf(file, "%s\n", line);
 	}
 	free(file);
