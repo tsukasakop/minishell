@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/21 19:25:49 by miyuu            ###   ########.fr        #
+#    Updated: 2025/03/23 15:00:24 by tkondo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,6 +93,7 @@ TARGET =\
 	expand/append_str\
 	expand/expand_single_token\
 	expand/namelen\
+	expand/expand_heredoc_line\
 	main/eval_pipe\
 	main/eval_cmd_line\
 	main/execute_simple_cmd\
@@ -107,6 +108,7 @@ TARGET =\
 	read/write_heredoc\
 	read/write_until_eof\
 	read/write_until_eof_on_chproc\
+	read/dup_without_quote\
 	redirect/resolve_redirects\
 	redirect/apply_redirects\
 	redirect/backup_from_fds\
