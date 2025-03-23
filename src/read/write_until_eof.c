@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:18:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/21 19:13:41 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/23 14:02:07 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,16 @@
  * fd: file descriptor to write
  * hd_eof: string represent end
  */
-void	write_until_eof(int fd, const char *hd_eof)
+void	write_until_eof(int fd, const char *raw_eof)
 {
-	char	*line;
-	t_file	*file;
+	const char	*hd_eof;
+	char		*line;
+	bool		has_quote;
+	t_file		*file;
 
 	file = ft_fd2file(fd);
+	has_quote = ft_strchr_mul(raw_eof, "\'\"", 2) != NULL;
+	hd_eof = ft_g_mmadd(dup_without_quote(raw_eof));
 	while (true)
 	{
 		line = ft_g_mmadd(readline("> "));
