@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_exit_status.c                                 :+:      :+:    :+:   */
+/*   test_set_my_errno.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:52:53 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/23 17:16:44 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/23 18:59:33 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-typedef enum e_error_type		t_error_type;
-enum e_error_type
-{
-	NOERR,
-	ERR_PERROR, //bad fdの時→1 No such→1
-	ERR_AMBRDIR, //1
-	ERR_SYNTAX, //2
-};
+// typedef enum e_error_type		t_error_type;
+// enum e_error_type
+// {
+// 	NOERR,
+// 	ERR_PERROR, //bad fdの時→1 No such→1
+// 	ERR_AMBRDIR, //1
+// 	ERR_SYNTAX, //2
+// };
 
 const char	*get_error_name(t_error_type err)
 {
