@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 01:20:53 by tkondo            #+#    #+#             */
-/*   Updated: 2024/12/31 02:09:54 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/21 18:13:37 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_htnode	*htnodenew(const char *key, void *val)
 	p = (t_htnode *)ft_calloc(sizeof(t_htnode), 1);
 	if (!p)
 		return (NULL);
-	p->key = key;
+	p->key = ft_strdup(key);
 	p->val = val;
 	return (p);
 }

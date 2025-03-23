@@ -28,19 +28,16 @@ char	*read_variable_m(char **cur_p, char **buf_p)
 	if (**cur_p == '?')
 	{
 		(*cur_p)++;
-		return (ft_itoa((int)get_exit_status()));
+		return (ft_g_mmadd(ft_itoa((int)get_exit_status())));
 	}
 	name = dup_name(*cur_p);
 	if (name == NULL || ft_strlen(name) == 0)
 	{
-		free(name);
 		tmp = ft_strnjoin(*buf_p, "$", 1);
-		free(*buf_p);
 		*buf_p = tmp;
 		return (NULL);
 	}
 	*cur_p += ft_strlen(name);
 	value = ft_getenv(name);
-	free(name);
 	return (value);
 }

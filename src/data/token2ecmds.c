@@ -39,6 +39,6 @@ char	**token2ecmds(t_text_list *tokens)
 		cur_token = cur_token->next;
 	}
 	if (expanded == NULL)
-		expanded = ft_calloc(sizeof(char **), 1);
+		expanded = ft_g_mmcalloc(sizeof(char **), 1);
 	return (expanded);
 }

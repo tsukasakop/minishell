@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:18:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/27 13:33:17 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/21 19:13:41 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	write_until_eof(int fd, const char *hd_eof)
 	file = ft_fd2file(fd);
 	while (true)
 	{
-		line = readline("> ");
+		line = ft_g_mmadd(readline("> "));
 		if (line == NULL)
 		{
 			ft_fprintf(ft_stderr(), ERR_HEREDOC, SHELL_NAME, hd_eof);
@@ -37,8 +37,6 @@ void	write_until_eof(int fd, const char *hd_eof)
 		if (ft_strcmp(line, hd_eof) == 0)
 			break ;
 		ft_fprintf(file, "%s\n", line);
-		free(line);
 	}
-	free(line);
 	free(file);
 }

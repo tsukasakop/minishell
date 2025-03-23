@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:51:45 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/03 17:15:00 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/21 17:13:15 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,18 @@
 int	builtin_env(char **argv)
 {
 	char	**envp;
-	char	**envp_bak;
+	size_t	i;
 
 	(void)argv;
 	envp = ft_getenvp();
 	if (envp == NULL)
 		return (1);
-	envp_bak = envp;
-	while (*envp != NULL)
+	i = 0;
+	while (envp[i] != NULL)
 	{
-		ft_printf("%s\n", *envp);
-		free(*envp);
-		envp++;
+		ft_printf("%s\n", envp[i]);
+		i++;
 	}
-	free(envp_bak);
+	free_null_terminated_array((void **)envp);
 	return (0);
 }

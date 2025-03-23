@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/20 17:24:54 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/22 15:13:24 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <ft_string.h>
 # include <ft_stdlib.h>
 # include <ft_unistd.h>
+# include <ft_memory.h>
 # include <libft.h>
 
 /* library */
@@ -148,6 +149,8 @@ bool			is_valid_pipe_syntax(const char *cmd_line);
 size_t			len_head_ifs(const char *cmd_line);
 char			*token2path(char *token);
 size_t			getnum_scmd_texts_token(const char *cmd_line);
+char			*validate_cmd_line_syntax(const char *cmd_line);
+bool			is_valid_quote_syntax(const char *cmd_line, char target_quote);
 
 /* env function */
 bool			is_valid_identifier(char *string);

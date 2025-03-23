@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:49:32 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/27 23:13:10 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/21 18:47:44 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ char	*get_input(void)
 		ft_fprintf(ft_stderr(), "\n");
 	set_signal(0);
 	set_handlers_for_prompt();
-	input = readline(PROMPT);
+	input = ft_g_mmadd(readline(PROMPT));
 	set_handlers_for_process();
 	if (input)
 		add_history(input);
 	else
-		input = ft_strdup("exit");
+		input = ft_g_mmadd(ft_strdup("exit"));
 	return (input);
 }

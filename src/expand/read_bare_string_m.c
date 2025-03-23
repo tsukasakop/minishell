@@ -25,7 +25,5 @@ void	read_bare_string_m(char **cur_p, char **buf_p, char *ends,
 
 	read = read_bare_string(cur_p, ends, ends_len);
 	tmp = ft_strnjoin(*buf_p, read, ft_strlen(read));
-	free(read);
-	free(*buf_p);
 	*buf_p = tmp;
 }

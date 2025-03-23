@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   backup_from_fds.c                                  :+:      :+:    :+:   */
+/*   validate_cmd_line_syntax.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 18:27:58 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/10 18:45:09 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/21 19:21:12 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/22 14:40:45 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:backup_from_fds
+ * Function:validate_cmd_line_syntax
  * ----------------------------
- * Saves from_fd and their duplicates into an array.
+ * Validates cmd_line for syntax errors.
+ * If there is an error, the target string is returned.
+ * if there is no error, NULL is returned.
  */
-int	backup_from_fds(t_redirect *redir, int *keep_fds, int i)
+char	*validate_cmd_line_syntax(const char *cmd_line)
 {
-	keep_fds[i * 2] = redir->from_fd;
-	keep_fds[i * 2 + 1] = dup(redir->from_fd);
-	if (keep_fds[i * 2 + 1] == -1)
-	{
-		if (errno == EBADF)
-			keep_fds[i * 2 + 1] = redir->from_fd;
-		else
-		{
-			perror(ft_g_mmadd(ft_itoa(redir->from_fd)));
-			return (-1);
-		}
-	}
-	return (0);
+	if (!is_valid_pipe_syntax(cmd_line))
+		return ("|");
+	if (!is_valid_quote_syntax(cmd_line, '"'))
+		return ("\"");
+	if (!is_valid_quote_syntax(cmd_line, '\''))
+		return ("'");
+	return (NULL);
 }

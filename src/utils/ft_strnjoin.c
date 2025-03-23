@@ -26,7 +26,7 @@ char	*ft_strnjoin(char *s1, char *s2, size_t s2_len)
 	s1_len = 0;
 	if (s1 != NULL)
 		s1_len = ft_strlen(s1);
-	joined = malloc(sizeof(char) * (s1_len + s2_len + 1));
+	joined = ft_g_mmmalloc(sizeof(char) * (s1_len + s2_len + 1));
 	if (joined == NULL)
 		return (NULL);
 	ft_memcpy(joined, s1, s1_len);

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 15:19:38 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/17 20:33:56 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/21 16:49:59 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,27 +37,41 @@ static char	*get_cwd_exec_path(const char *name)
 	return (path);
 }
 
+static void	free_dirs(char **dirs)
+{
+	size_t	i;
+
+	i = 0;
+	while(dirs && dirs[i])
+	{
+		free(dirs[i]);
+		i++;
+	}
+	free(dirs);
+}
+
 static const char	*find_path(const char *name)
 {
 	char	*path;
 	char	**dirs;
+	size_t	i;
 
 	if (ft_getenv("PATH") == NULL)
 		return ((const char *)get_cwd_exec_path(name));
 	dirs = ft_split(ft_getenv("PATH"), ':');
-	while (dirs && *dirs)
+	i = 0;
+	while (dirs && dirs[i])
 	{
-		path = create_path(*dirs, name);
+		path = create_path(dirs[i], name);
 		if (access(path, F_OK) == 0)
 		{
-			while (*dirs)
-				free(*dirs++);
+			free_dirs(dirs);
 			return ((const char *)path);
 		}
 		free(path);
-		free(*dirs);
-		dirs++;
+		i++;
 	}
+	free_dirs(dirs);
 	return (NULL);
 }
 
