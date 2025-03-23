@@ -34,8 +34,6 @@ bool	register_env(char *string)
 		return (false);
 	}
 	success = ft_setenv(name, value, true) != -1;
-	free(name);
-	free(value);
 	if (!success)
 		perror_exit(NULL);
 	return (success);

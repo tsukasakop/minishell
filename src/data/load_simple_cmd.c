@@ -23,7 +23,7 @@ t_simple_cmd	*load_simple_cmd(t_text_list *text_list)
 {
 	t_simple_cmd	*scmd_list;
 
-	scmd_list = malloc(sizeof(t_simple_cmd));
+	scmd_list = ft_g_mmmalloc(sizeof(t_simple_cmd));
 	if (!scmd_list)
 		return (NULL);
 	scmd_list->next = NULL;

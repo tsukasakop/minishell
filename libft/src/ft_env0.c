@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 11:21:31 by tkondo            #+#    #+#             */
-/*   Updated: 2025/01/04 12:37:02 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/21 18:39:36 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	_delenv(t_htnode *n)
 {
 	free((void *)n->key);
 	free((void *)n->val);
+	free((void *)n);
 }
 
 int	ft_initenv(char **envp)

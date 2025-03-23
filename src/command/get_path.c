@@ -22,5 +22,5 @@
 const char	*get_path(const char *ecmd)
 {
 	// TODO: resolve path if it has not slash
-	return (ft_strdup(ecmd));
+	return (ft_g_mmadd(ft_strdup(ecmd)));
 }

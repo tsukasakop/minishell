@@ -43,7 +43,6 @@ unsigned char	eval_pipe(const char *cmd_line, char **envp)
 			&next_in_fd))
 		{
 			// TODO: break;
-			free_simple_cmds((t_simple_cmd *)scmd_list);
 			close_fds_no_stdio(stdio_fd, 2);
 			close_fds_no_stdio(&next_in_fd, 1);
 		}
@@ -51,7 +50,6 @@ unsigned char	eval_pipe(const char *cmd_line, char **envp)
 		cur = cur->next;
 	}
 	// TODO: del_pipe(pipe);
-	free_simple_cmds((t_simple_cmd *)cur);
 	// TODO: ->free_simple_cmds((t_simple_cmd *)scmd_list);
 	close_fds_no_stdio((int [3]){stdio_fd[0], stdio_fd[1], next_in_fd}, 3);
 	return (wait_status());

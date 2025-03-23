@@ -1,42 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_double_quote.c                              :+:      :+:    :+:   */
+/*   expand_heredoc_line.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/14 01:49:04 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/15 12:49:35 by tkondo           ###   ########.fr       */
+/*   Created: 2025/03/23 14:50:41 by tkondo            #+#    #+#             */
+/*   Updated: 2025/03/23 14:51:14 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function: expand_double_quote
+ * Function: expand_heredoc_line
  * ----------------------------
- *  read string and vaiable on double quote and store it on buf_p
+ *  expand string for heredoc line
  */
-void	expand_double_quote(char **cur_p, char **buf_p)
+char	*expand_heredoc_line(const char *raw_line)
 {
+	char	*expanded;
 	char	*var;
-	char	*tmp;
 
-	(*cur_p)++;
-	while (**cur_p != '\"')
+	expanded = ft_g_mmadd(ft_strdup(""));
+	if (!expanded)
+		return (NULL);
+	while (*raw_line)
 	{
-		if (**cur_p == '$')
+		if (*raw_line == '$')
 		{
-			var = read_variable_m(cur_p, buf_p);
+			var = read_variable_m((char **)&raw_line, &expanded);
 			if (!var)
 				continue ;
-			tmp = ft_strnjoin(*buf_p, var, ft_strlen(var));
-			*buf_p = tmp;
+			expanded = ft_strnjoin(expanded, var, ft_strlen(var));
+			if (!expanded)
+				break ;
 		}
 		else
-			read_bare_string_m(cur_p, &*buf_p, "\"$", 2);
+			read_bare_string_m((char **)&raw_line, &expanded, "$\0", 2);
 	}
-	tmp = ft_strnjoin(*buf_p, "", 0);
-	*buf_p = tmp;
-	(*cur_p)++;
+	return (expanded);
 }

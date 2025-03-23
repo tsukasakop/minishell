@@ -30,13 +30,10 @@ char	*create_tmp_file(void)
 	fd = -1;
 	while (fd == -1)
 	{
-		free(num);
-		free(filename);
-		num = ft_itoa(count++);
-		filename = ft_strjoin("/tmp/heredoc_", num);
+		num = ft_g_mmadd(ft_itoa(count++));
+		filename = ft_g_mmadd(ft_strjoin("/tmp/heredoc_", num));
 		fd = open(filename, O_CREAT | O_EXCL, 0600);
 	}
-	free(num);
 	close(fd);
 	return (filename);
 }

@@ -23,7 +23,7 @@ char	*read_bare_string(char **cur_p, char *ends, size_t ends_len)
 	char	*buffer;
 
 	next_cur = ft_strchr_mul(*cur_p, ends, ends_len);
-	buffer = ft_strndup(*cur_p, next_cur - *cur_p);
+	buffer = ft_g_mmadd(ft_strndup(*cur_p, next_cur - *cur_p));
 	*cur_p = next_cur;
 	return (buffer);
 }

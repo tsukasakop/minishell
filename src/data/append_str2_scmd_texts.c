@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   append_str2_scmd_texts.c                             :+:      :+:    :+:   */
+/*   append_str2_scmd_texts.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 19:39:17 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/19 19:55:56 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/21 13:07:26 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ void	append_str2_scmd_texts(char ***scmd_texts, const char *text, \
 {
 	char	*sub;
 
-	sub = ft_substr(text, start, len);
+	sub = ft_g_mmadd(ft_substr(text, start, len));
 	if (sub)
 		append_str(scmd_texts, sub);
-	free(sub);
 }
