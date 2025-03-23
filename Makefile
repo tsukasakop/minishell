@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/24 01:36:34 by miyuu            ###   ########.fr        #
+#    Updated: 2025/03/24 01:45:05 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,6 +121,7 @@ TARGET =\
 	utils/perror_exit\
 	utils/ft_redirect_lstsize\
 	utils/perror_return_num\
+	utils/perror_return_null\
 	utils/free_null_terminated_arrar\
 	utils/ft_strchr_mul\
 	utils/ft_strnjoin\

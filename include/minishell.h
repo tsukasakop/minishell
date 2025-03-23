@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/24 01:36:34 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/24 01:44:24 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,6 +227,7 @@ void			close_fds_no_stdio(int *fds, size_t size);
 int				ft_redirect_lstsize(t_redirect *lst);
 void			perror_exit(char *msg);
 int				perror_return_num(char *msg, int num);
+void			*perror_return_null(char *msg);
 void			free_null_terminated_array(void **arr);
 char			*ft_strchr_mul(const char *s, char *targets, size_t target_len);
 char			*ft_strnjoin(char *s1, char *s2, size_t s2_len);
