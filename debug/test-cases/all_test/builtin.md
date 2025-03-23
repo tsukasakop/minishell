@@ -1,40 +1,73 @@
 
 ## ビルドイン
-### エラー
-	/echo 42
-	.echo 42
-	eecho
-
 ## echo
 ### 正常
-	echo
-	echo -n
-	echo hello world
+#### - 通常
+    echo
+#### - 文字列の出力
+	echo HELLO
+#### - 複数の引数
+	echo HELLO WORLD
+#### - 引数の間に複数のスペースがある
 	echo a    a
-	echo -n hello world
-	echo -n -n -n hello world
-	echo -n hello world -n -n
+#### - オプションあり(引数なし)
+	echo -n
+#### - オプション + 複数の引数
+	echo -n HELLO
+#### - オプションが複数回指定されているケース → `HELLO WORLD`
+	echo -n -n -n HELLO WORLD
+#### - オプションが引数の途中にある → `HELLO -n WORLD -n`
+	echo -n HELLO -n WORLD -n
+#### ※ オプションが連続するケース(引数なし)
 	echo -nnn
+#### ※ オプションが連続するケース(引数あり) → `HELLO`
 	echo -nnn HELLO
+#### ※ -nnn と -n の混在 → `HELLO`
 	echo -nnn  -n HELLO
-	echo -nnnnnnnnnnnnnnnnnnnnnnnnnn HELLO -n
 
 ## env
+### 正常
+#### ※ 通常→`_=`の結果が異なる
 	env
+#### !! 引数あり → 課題要件につき、envの結果が出力されれば良い
+	env aaaaaa
+#### !! 引数あり(複数) → 課題要件につき、envの結果が出力されれば良い
+	env aaaaaa bbbbb cccc
 
 ## export
 ### 正常
+#### - 通常
 	export
+#### - 環境変数の設定
 	export VAR=val
+#### - valueにスペースを含む
 	export VAR="Hello      World"
-	export $aaa
+#### - valueが数字
+	export NUM=1234567
+#### - valueが空
+	export Empty=
+#### - nameに数字が含まれる場合
+	export FT42=Hello
+#### - 複数の変数を一括で設定
 	export test1=hello test2=world test3=42tokyo
+#### - 引数が空
+	export $aaa
+#### - 既存の変数を変更
+	export VAR=test
+#### - nameだけ設定
+	export AAA
 
 ### エラー
+#### - nameが数字の場合 → `not a valid identifier`　、 exit status → 1
 	export 42=val
+#### - nameが数字で始まる場合 → `not a valid identifier`　、 exit status → 1
 	export 42FT=val
 	export FT%=val
 	export $
+#### - 設定値が空白の場合 → `not a valid identifier`　、 exit status → 1
+	export "   "
+#### - 途中でエラーが起きる場合 → `not a valid identifier`　、 exit status → 1、エラー対象以外の変数は設定される
+	export num=1234567 str=hello c=a 42=tokyo test=yes
 
 ## unset
 	unset
