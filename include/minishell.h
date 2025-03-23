@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/22 19:17:47 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/23 16:21:41 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,7 @@ char			*read_bare_string(char **cur_p, char *ends, size_t ends_len);
 void			read_bare_string_m(char **cur_p, char **buf_p, char *ends,
 					size_t ends_len);
 char			*read_variable_m(char **cur_p, char **buf_p);
+char			*expand_heredoc_line(const char *raw_line);
 
 /* main function */
 unsigned char	eval_pipe(const char *cmd_line, char **envp);
@@ -204,6 +205,7 @@ char			*get_input(void);
 void			write_until_eof(int fd, const char *hd_eof);
 bool			write_until_eof_on_chproc(int fd, const char *hd_eof);
 bool			write_heredoc(char *eof, char *path);
+char			*dup_without_quote(const char *hd_eof);
 
 /* redirect function */
 int				apply_redirects(t_redirect *redir, int *keep_fds, int index);
