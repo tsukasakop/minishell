@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:15:39 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/24 14:46:29 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/24 18:37:49 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ char	**expand_single_token(char *orig)
 	cur = orig;
 	while (*cur)
 	{
+		//TODO:expand_bare_variable関数以外は、返り値や引数の値でエラーチェックできない。
+		//なので。errnoでmalloc失敗を確認する→expand_bare_variable関数もerrnoチェックでいいのでは？
+		// errno = 0;
 		if (*cur == '\'')
 			expand_single_quote(&cur, &buffer);
 		else if (*cur == '\"')
@@ -55,6 +58,8 @@ char	**expand_single_token(char *orig)
 		}
 		else
 			expand_bare_string(&cur, &buffer);
+		// if (errno == ENOMEM)
+			// return (NULL);
 	}
 	if (buffer != NULL)
 	{

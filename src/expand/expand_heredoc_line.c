@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_heredoc_line.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 14:50:41 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/23 14:51:14 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/24 18:23:36 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,27 @@ char	*expand_heredoc_line(const char *raw_line)
 
 	expanded = ft_g_mmadd(ft_strdup(""));
 	if (!expanded)
-		return (NULL);
+	{
+		//TODO:SET errno
+		return (perror_return_null(NULL));
+	}
 	while (*raw_line)
 	{
 		if (*raw_line == '$')
 		{
 			var = read_variable_m((char **)&raw_line, &expanded);
+			// TODO:read_variable_m関数内のmalloc失敗時の処理を考える
+			//NULLに意味を持ってる場合、errnoでエラー判定する
+			// if (var == NULL && errno == ENOMEM)
+				// return (NULL);
 			if (!var)
 				continue ;
 			expanded = ft_strnjoin(expanded, var, ft_strlen(var));
 			if (!expanded)
-				break ;
+			{
+				// TODO:SET errno
+				return (perror_return_null(NULL));
+			}
 		}
 		else
 			read_bare_string_m((char **)&raw_line, &expanded, "$\0", 2);

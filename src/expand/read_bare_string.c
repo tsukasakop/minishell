@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_bare_string.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:52:33 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/15 12:51:09 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/24 15:48:08 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ char	*read_bare_string(char **cur_p, char *ends, size_t ends_len)
 
 	next_cur = ft_strchr_mul(*cur_p, ends, ends_len);
 	buffer = ft_g_mmadd(ft_strndup(*cur_p, next_cur - *cur_p));
+	if (!buffer)
+	{
+		//TODO:SET errno
+		return (perror_return_null(NULL));
+	}
 	*cur_p = next_cur;
 	return (buffer);
 }

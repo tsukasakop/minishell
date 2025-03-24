@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   write_until_eof.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:18:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/23 14:51:33 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/24 17:30:01 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,38 @@ void	write_until_eof(int fd, const char *raw_eof)
 	file = ft_fd2file(fd);
 	has_quote = ft_strchr_mul(raw_eof, "\'\"", 2) != NULL;
 	hd_eof = ft_g_mmadd(dup_without_quote(raw_eof));
+	//TODO: malloc失敗時の処理考える。return (false);にする？
+	// if (hd_eof == NULL)
+	// {
+		// 	TODO:SET errno
+		// 	perror(NULL);
+		// return (false);
+	// }
 	while (true)
 	{
+		errno = 0;
 		line = ft_g_mmadd(readline("> "));
+		//TODO: malloc失敗時の処理考える。return (false);にする？
+		// if (line == NULL && errno == ENOMEM)
+		// {
+		// 	TODO:SET errno
+		// 	perror(NULL);
+		// 	return (false);
+		// }
 		if (line && ft_strcmp(line, hd_eof) == 0)
 			break ;
 		if (line && !has_quote)
+		{
 			line = ft_g_mmadd(expand_heredoc_line(line));
+			//TODO: malloc失敗時の処理考える。return (false);にする？
+			// if (line == NULL && errno == ENOMEM)
+			// {
+			// 	// TODO:SET errno
+			// 	perror(NULL);
+			// 	return (false);
+			// 	break ;
+			// }
+		}
 		if (line == NULL)
 		{
 			ft_fprintf(ft_stderr(), ERR_HEREDOC, SHELL_NAME, hd_eof);
