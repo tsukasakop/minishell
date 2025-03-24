@@ -2,32 +2,43 @@
 ## ビルドイン
 ## echo
 ### 正常
+引数ある | ない
+	文字列　| 一文字
+	数字 | 文字列
+オプションある | ない
+	オプションが複数 | 一文字
+	文字列の間に亜
+
 #### - 通常
     echo
-#### - 文字列の出力
+#### - 文字列
 	echo HELLO
+#### - 一文字
+	echo F
 #### - 複数の引数
 	echo HELLO WORLD
 #### - 引数の間に複数のスペースがある
-	echo a    a
+	echo HELLO          WORLD
 #### - オプションあり(引数なし)
 	echo -n
 #### - オプション + 複数の引数
 	echo -n HELLO
+#### - オプションが引数の途中にある → `HELLO -n WORLD`
+	echo HELLO -n WORLD
+#### - オプションが引数の途中にある → `HELLO WORLD -n`
+	echo HELLO WORLD -n
 #### - オプションが複数回指定されているケース → `HELLO WORLD`
 	echo -n -n -n HELLO WORLD
-#### - オプションが引数の途中にある → `HELLO -n WORLD -n`
-	echo -n HELLO -n WORLD -n
 #### ※ オプションが連続するケース(引数なし)
-	echo -nnn
+	echo -nnnnnnnnn
 #### ※ オプションが連続するケース(引数あり) → `HELLO`
-	echo -nnn HELLO
+	echo -nnnnnnnnn HELLO
 #### ※ -nnn と -n の混在 → `HELLO`
-	echo -nnn  -n HELLO
+	echo -nnnnnnnnn  -n HELLO
 
 ## env
 ### 正常
-#### ※ 通常 → `_=`の結果が異なる
+#### ※ 通常
 	env
 #### !! 引数あり → 課題要件につき、envの結果が出力されれば良い
 	env aaaaaa
@@ -36,31 +47,28 @@
 
 ## export
 ### 正常
-#### ※ 通常 → 出力されるじゅんばんが違う(本来はABC順)、`declare -x `とvalueに`""`がない
-	export
-#### - 環境変数の設定
+#### ※ 通常 引数なし | 引数あり | 複数
+	* export  → 出力される順番が違う(本来はABC順)、`declare -x `とvalueに`""`がない
 	export VAR=val
-#### - valueにスペースを含む
+	export test1=hello test2=world test3=42tokyo
+#### - valueにスペースを含む | 複数のスペース
 	export VAR="Hello World"
-#### - valueが数字
-	export NUM=1234567
-#### - ダブルクォート + valueに複数のスペース
 	export VAR="Hello      World"
-#### - ダブルクォート + valueに変数がある
-	export WITH_VAR="Is $VAR ."
-#### - シングルクォート + valueに変数がある
-	export WITH_VAR='Is $VAR .'
+#### - valueが数字 | 文字 | 記号
+	export NUM=1234567
+#### - valueに変数がある + クォートなし | ダブルクォート | シングルクォート
+	export WITH_VAR=$VAR
+	export WITH_VAR="$VAR"
+	export WITH_VAR='$VAR'
 #### - valueが空
 	export Empty=
 #### - nameに数字が含まれる場合
 	export FT42=Hello
-#### - 複数の変数を一括で設定
-	export test1=hello test2=world test3=42tokyo
 #### - 引数が空
 	export $aaa
 #### - 既存の変数を変更
 	export VAR=test
-#### - nameだけ設定
+#### ※ nameだけ設定 → 課題要件につき、bashを挙動を変えている
 	export AAA
 
 ### エラー
@@ -68,18 +76,30 @@
 	export 42=val
 #### - nameが数字で始まる場合 → `not a valid identifier`　、 exit status → 1
 	export 42FT=val
+#### - ??????
 	export FT%=val
-	export $
 #### - 設定値が空白の場合 → `not a valid identifier`　、 exit status → 1
 	export "   "
 #### - 途中でエラーが起きる場合 → `not a valid identifier`　、 exit status → 1、エラー対象以外の変数は設定される
 	export num=1234567 str=hello c=a 42=tokyo test=yes
 
 ## unset
+#### - 引数なし
 	unset
+#### - = なし
 	unset VAR
+#### - = あり
+	unset VAR=
+#### - nameとvalueの組み合わせ
 	unset VAR=val
+#### - 存在するnameとvalueの組み合わせ
+	unset aa=hello
+#### - 存在するnameとvalueの組み合わせ + name= のみ + nameのみ
+	unset aa=hello aa= aa
+#### - 複数削除
 	unset test1 test2 test3
+#### - 存在しない環境変数
+	unset no_exist
 
 #### - PWDを削除した後の変数状況
 ```bash
