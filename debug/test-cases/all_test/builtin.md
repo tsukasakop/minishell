@@ -11,28 +11,32 @@
 
 #### - 通常
     echo
-#### - 文字列
-	echo HELLO
-#### - 一文字
+#### - 一文字 | 文字列
 	echo F
-#### - 複数の引数
+	echo HELLO
+#### - 数字 | 負の値　| INT_MAX + 1 | LONG_MAX + 1
+	echo 0123456789
+	echo -0123456789
+	echo 2147483648
+
+#### - 複数の引数 | ３つ以上の引数 | 引数の間に複数のスペースがある
 	echo HELLO WORLD
-#### - 引数の間に複数のスペースがある
+	echo HELLO WORLD 42Tokyo 
 	echo HELLO          WORLD
-#### - オプションあり(引数なし)
-	echo -n
-#### - オプション + 複数の引数
+#### - オプションあり 引数あり | なし
 	echo -n HELLO
-#### - オプションが引数の途中にある → `HELLO -n WORLD`
+	echo -n
+#### - オプションが引数の 前 | 真ん中 | 最後
+	echo -n HELLO WORLD
 	echo HELLO -n WORLD
-#### - オプションが引数の途中にある → `HELLO WORLD -n`
 	echo HELLO WORLD -n
 #### - オプションが複数回指定されているケース → `HELLO WORLD`
 	echo -n -n -n HELLO WORLD
-#### ※ オプションが連続するケース(引数なし)
-	echo -nnnnnnnnn
-#### ※ オプションが連続するケース(引数あり) → `HELLO`
+#### - `-｀が連続
+	echo ------n HELLO WORLD
+#### ※ オプションが連続で　引数あり　| 引数なし
 	echo -nnnnnnnnn HELLO
+	echo -nnnnnnnnn
 #### ※ -nnn と -n の混在 → `HELLO`
 	echo -nnnnnnnnn  -n HELLO
 
@@ -47,7 +51,7 @@
 
 ## export
 ### 正常
-#### ※ 通常 引数なし | 引数あり | 複数
+#### ※ 引数なし | 引数あり | 複数
 	* export  → 出力される順番が違う(本来はABC順)、`declare -x `とvalueに`""`がない
 	export VAR=val
 	export test1=hello test2=world test3=42tokyo
@@ -56,6 +60,8 @@
 	export VAR="Hello      World"
 #### - valueが数字 | 文字 | 記号
 	export NUM=1234567
+	export TEXT=Hello
+	export TEXT=!!%%
 #### - valueに変数がある + クォートなし | ダブルクォート | シングルクォート
 	export WITH_VAR=$VAR
 	export WITH_VAR="$VAR"
