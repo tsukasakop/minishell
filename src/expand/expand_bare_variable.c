@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_bare_variable.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:48:13 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/15 12:48:39 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/24 14:39:13 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ void	expand_bare_variable(char **cur_p, char **buf_p, char ***fixed_p)
 		if (ft_isifs(*var))
 		{
 			if (*buf_p != NULL)
+			{
 				append_str(fixed_p, *buf_p);
+				if (!fixed_p)
+					return ;
+			}
 			*buf_p = NULL;
 			var++;
 		}

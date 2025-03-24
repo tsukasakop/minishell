@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 19:39:29 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/24 03:00:17 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/24 14:13:07 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ char	**fill_scmd_texts(const char *cmd_line)
 	{
 		token_len = get_tokenize_pipe_length(&cmd_line[i]);
 		append_str2_scmd_texts(&scmd_texts, cmd_line, i, token_len);
+		if (!scmd_texts)
+			return (NULL);
 		i += token_len;
 		if (cmd_line[i] == '|')
 			i++;

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:43:09 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/05 17:43:40 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/24 14:49:30 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,17 @@ char	*create_tmp_file(void)
 	while (fd == -1)
 	{
 		num = ft_g_mmadd(ft_itoa(count++));
+		if (!num)
+		{
+			//TODO:SET errno
+			return (perror_return_null(NULL));
+		}
 		filename = ft_g_mmadd(ft_strjoin("/tmp/heredoc_", num));
+		if (!filename)
+		{
+			//TODO:SET errno
+			return (perror_return_null(NULL));
+		}
 		fd = open(filename, O_CREAT | O_EXCL, 0600);
 	}
 	close(fd);
