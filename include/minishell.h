@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/25 19:09:16 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/03/26 04:13:31 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_redirect			t_redirect;
 typedef struct s_text_list			t_text_list;
 typedef enum e_redirect_type		t_redirect_type;
 typedef enum e_execute_env			t_execute_env;
-typedef enum e_error_type				t_error_type;
+typedef enum e_error_type			t_error_type;
 
 enum e_redirect_type
 {
@@ -68,9 +68,9 @@ enum e_execute_env
 enum e_error_type
 {
 	NOERR,
-	ERR_PERROR, //bad fdの時→1 No such→1
-	ERR_AMBRDIR, //1
-	ERR_SYNTAX, //2
+	ERR_PERROR,
+	ERR_AMBRDIR,
+	ERR_SYNTAX,
 };
 
 struct				s_execute_session
@@ -238,5 +238,6 @@ void			perror_with_shellname(char *msg);
 t_error_type	*get_error_type_p(void);
 t_error_type	get_error_type(void);
 void			set_error_type(t_error_type st);
+void			handle_each_err_type(t_error_type err_type, char *str);
 
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+         #
+#    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/25 19:08:27 by mfunakos         ###   ########.fr        #
+#    Updated: 2025/03/26 04:11:41 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -130,6 +130,7 @@ TARGET =\
 	utils/is_directory\
 	utils/set_error_type\
 	utils/perror_with_shellname\
+	utils/handle_each_err_type\
 	signal/set_handlers_for_prompt\
 	signal/set_handlers_default\
 	signal/set_handlers_for_process\

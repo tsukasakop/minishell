@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   eval_pipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/25 19:09:15 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/03/26 04:11:07 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,6 @@
  * const char *cmd_line: string to do as a command
  * char **envp: string of envp
  */
-
-const char	*get_error_name(t_error_type err)
-{
-	static const	char *error_names[] = {
-		"NOERR",
-		"ERR_PERROR",
-		"ERR_AMBRDIR",
-		"ERR_SYNTAX",
-	};
-	return (error_names[err]);
-}
-
 unsigned char	t_error_check(t_error_type	st_error)
 {
 	if (st_error == NOERR)
@@ -45,14 +33,6 @@ unsigned char	t_error_check(t_error_type	st_error)
 	return (0);
 }
 
-void	error_set_exitstatus(t_error_type err)
-{
-	unsigned char	exit_status;
-
-	exit_status = t_error_check(err);
-	set_exit_status(exit_status);
-}
-
 unsigned char	eval_pipe(const char *cmd_line, char **envp)
 {
 	const t_simple_cmd	*scmd_list;
@@ -63,7 +43,6 @@ unsigned char	eval_pipe(const char *cmd_line, char **envp)
 	set_error_type(NOERR);
 	scmd_list = init_scmd_list(cmd_line);
 	t_error_type	get_enum = get_error_type();
-	// printf("Error: %-10s → err_enum: %3d exit_status: %d\n", get_error_name(get_enum), get_enum, t_error_check(get_enum));
 	if (!scmd_list)
 		return (t_error_check(get_enum));
 	// TODO: session = init_session();

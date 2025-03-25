@@ -6,19 +6,15 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 03:47:11 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/26 04:06:36 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/26 04:12:56 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:
+ * Function:handle_each_err_type
  * ----------------------------
- *  read input and write it on given fd until it is hd_eof or empty line
- *
- * fd: file descriptor to write
- * hd_eof: string represent end
  */
 void	handle_each_err_type(t_error_type err_type, char *str)
 {
