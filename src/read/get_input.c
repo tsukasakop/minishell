@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:49:32 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/25 23:03:05 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/26 02:15:37 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
  * Function:
  * ----------------------------
  *  Get input via prompt, and returns input
- * //TODO: get_input関数で、malloc失敗したらどうする？終了ステータスセットする必要あるのか？
  */
 char	*get_input(void)
 {

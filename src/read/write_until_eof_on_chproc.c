@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:18:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/24 02:49:25 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/26 03:13:03 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ bool	write_until_eof_on_chproc(int fd, const char *hd_eof)
 	if (pid == 0)
 	{
 		set_handlers_for_heredoc();
+		errno = 0;
 		write_until_eof(fd, hd_eof);
-		//write_until_eofが(mallocなどで)失敗した場合の処理を考える。write_until_eofの返り値で考える?
+		if (errno == ENOMEM)
+			ft_exit(1);
 		exit(0);
 	}
 	waitpid(pid, &stat, 0);

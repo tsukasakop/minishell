@@ -26,9 +26,6 @@ bool	is_valid_redirect_syntax(t_text_list *cur)
 			syntax_error_handle("newline");
 		else
 			syntax_error_handle(cur->next->text);
-		//ToDO；終了ステータスどうする？exitできないから設定できない。
-		//いっそ子プロセスまで実行させて、pathがNULLだったらシンタックスにする？
-		//でも`ls -l > out>`みたいに、シンタックスエラーになるとき、outは作られないから子プロセス生成前にやるのか
 		return (false);
 	}
 	return (true);
