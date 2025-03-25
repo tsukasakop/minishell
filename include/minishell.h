@@ -6,7 +6,7 @@
 /*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/25 18:31:46 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/03/25 19:09:16 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,8 +235,8 @@ size_t			null_terminated_array_len(void **arr);
 void			**null_terminated_array_join(void **dst, void **src);
 int				is_directory(char *path);
 void			perror_with_shellname(char *msg);
-t_error_type	*get_error_enum_p(void);
-t_error_type	get_error_enum(void);
-void			set_error_enum(t_error_type st);
+t_error_type	*get_error_type_p(void);
+t_error_type	get_error_type(void);
+void			set_error_type(t_error_type st);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_set_my_errno.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:52:53 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/23 18:59:33 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/25 19:09:15 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,26 +53,26 @@ void	error_set_exitstatus(t_error_type err)
 	set_exit_status(exit_status);
 }
 
-t_error_type	*get_error_enum_p(void)
+t_error_type	*get_error_type_p(void)
 {
 	static t_error_type	p;
 
 	return (&p);
 }
 
-t_error_type	get_error_enum(void)
+t_error_type	get_error_type(void)
 {
 	t_error_type	*st_ptr;
 
-	st_ptr = get_error_enum_p();
+	st_ptr = get_error_type_p();
 	return (*st_ptr);
 }
 
-void	set_error_enum(t_error_type st)
+void	set_error_type(t_error_type st)
 {
 	t_error_type	*st_ptr;
 
-	st_ptr = get_error_enum_p();
+	st_ptr = get_error_type_p();
 	*st_ptr = st;
 }
 
@@ -86,8 +86,8 @@ int	main(void)
 
 	for (t_error_type err = NOERR; err <= ERR_SYNTAX; err++)
 	{
-		set_error_enum(err);
-		get_enum = get_error_enum();
+		set_error_type(err);
+		get_enum = get_error_type();
 
 		cur_p = cmd_line;
 		if (get_enum != NOERR)

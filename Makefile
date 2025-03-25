@@ -6,7 +6,7 @@
 #    By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/25 18:32:06 by mfunakos         ###   ########.fr        #
+#    Updated: 2025/03/25 19:08:27 by mfunakos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -128,7 +128,7 @@ TARGET =\
 	utils/null_terminatted_array_len\
 	utils/null_terminated_array_join\
 	utils/is_directory\
-	utils/set_error_enum\
+	utils/set_error_type\
 	utils/perror_with_shellname\
 	signal/set_handlers_for_prompt\
 	signal/set_handlers_default\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_redirect.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:42:38 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/22 14:49:44 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/25 19:08:27 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	extract_redirect(t_text_list **token_p, t_redirect **redir_p)
 		{
 			if (!is_valid_redirect_syntax(*token_addr))
 			{
-				set_error_enum(ERR_SYNTAX);
+				set_error_type(ERR_SYNTAX);
 				return (false);
 			}
 			redir = token2redir((*token_addr)->text, (*token_addr)->next->text);
