@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:48:13 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/24 18:23:06 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/25 22:50:52 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,11 @@ void	expand_bare_variable(char **cur_p, char **buf_p, char ***fixed_p)
 	char	*var;
 
 	var = read_variable_m(cur_p, buf_p);
-	// TODO:read_variable_m関数内のmalloc失敗時の処理を考える
-	//NULLに意味を持ってる場合、errnoでエラー判定する
-	// if (var == NULL && errno == ENOMEM)
-	// {
-	// 	*fixed_p = NULL;
-	// 	return ;
-	// }
+	if (var == NULL && errno == ENOMEM)
+	{
+		*fixed_p = NULL;
+		return ;
+	}
 	while (var && *var)
 	{
 		if (ft_isifs(*var))

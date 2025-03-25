@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:52:13 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/24 18:32:08 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/25 22:39:13 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	read_bare_string_m(char **cur_p, char **buf_p, char *ends,
 	if (tmp == NULL)
 	{
 		//TODO:SET errno
+		perror_with_shellname(NULL);
 		return ;
 	}
 	*buf_p = tmp;

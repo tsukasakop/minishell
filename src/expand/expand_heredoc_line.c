@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 14:50:41 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/24 18:23:36 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/25 23:00:54 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,10 @@ char	*expand_heredoc_line(const char *raw_line)
 	{
 		if (*raw_line == '$')
 		{
+			errno = 0;
 			var = read_variable_m((char **)&raw_line, &expanded);
-			// TODO:read_variable_m関数内のmalloc失敗時の処理を考える
-			//NULLに意味を持ってる場合、errnoでエラー判定する
-			// if (var == NULL && errno == ENOMEM)
-				// return (NULL);
+			if (var == NULL && errno == ENOMEM)
+				return (NULL);
 			if (!var)
 				continue ;
 			expanded = ft_strnjoin(expanded, var, ft_strlen(var));
