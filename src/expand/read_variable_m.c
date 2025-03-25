@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:51:45 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/24 14:45:39 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/26 02:07:17 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*read_variable_m(char **cur_p, char **buf_p)
 		tmp = ft_g_mmadd(ft_itoa((int)get_exit_status()));
 		if (!tmp)
 		{
-			//TODO:SET errno
+			set_error_type(ERR_PERROR);
 			return (perror_return_null(NULL));
 		}
 		return (tmp);
@@ -42,7 +42,7 @@ char	*read_variable_m(char **cur_p, char **buf_p)
 		tmp = ft_strnjoin(*buf_p, "$", 1);
 		if (!tmp)
 		{
-			//TODO:SET errno
+			set_error_type(ERR_PERROR);
 			return (perror_return_null(NULL));
 		}
 		*buf_p = tmp;

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:49:04 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/25 22:55:29 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/26 02:06:01 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	expand_double_quote(char **cur_p, char **buf_p)
 			tmp = ft_strnjoin(*buf_p, var, ft_strlen(var));
 			if (var == NULL)
 			{
-				//TODO:SET errno
+				set_error_type(ERR_PERROR);
 				perror_with_shellname(NULL);
 				return ;
 			}

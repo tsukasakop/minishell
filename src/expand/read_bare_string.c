@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:52:33 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/24 15:48:08 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/26 02:07:13 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*read_bare_string(char **cur_p, char *ends, size_t ends_len)
 	buffer = ft_g_mmadd(ft_strndup(*cur_p, next_cur - *cur_p));
 	if (!buffer)
 	{
-		//TODO:SET errno
+		set_error_type(ERR_PERROR);
 		return (perror_return_null(NULL));
 	}
 	*cur_p = next_cur;

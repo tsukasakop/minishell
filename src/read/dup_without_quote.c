@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 14:00:50 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/24 02:54:41 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/26 02:07:32 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*dup_without_quote(const char *hd_eof)
 	copy = ft_g_mmmalloc(sizeof(char) * (ft_strlen(hd_eof) + 1));
 	if (copy == NULL)
 	{
-		//TODO:SET errno
+		set_error_type(ERR_PERROR);
 		return (perror_return_null(NULL));
 	}
 	copy_head = copy;

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/24 02:55:03 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/26 02:06:46 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_simple_cmd	*load_simple_cmd(t_text_list *text_list)
 	scmd_list = ft_g_mmmalloc(sizeof(t_simple_cmd));
 	if (!scmd_list)
 	{
-		//TODO:SET errno
+		set_error_type(ERR_PERROR);
 		return (perror_return_null(NULL));
 	}
 	scmd_list->next = NULL;
