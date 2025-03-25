@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 20:36:46 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/26 02:06:54 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/26 04:00:24 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ char	**token2ecmds(t_text_list *tokens)
 		expanded = ft_g_mmcalloc(sizeof(char **), 1);
 		if (expanded == NULL)
 		{
-			set_error_type(ERR_PERROR);
-			return (perror_return_null(NULL));
+			handle_each_err_type(ERR_PERROR, NULL);
+			return (NULL);
 		}
 	}
 	return (expanded);

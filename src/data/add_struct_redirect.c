@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:35:12 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/26 02:06:17 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/26 03:58:37 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ t_redirect	*add_struct_redirect(int type, int from_fd, char *path)
 	new = ft_g_mmmalloc(sizeof(t_redirect));
 	if (!new)
 	{
-		set_error_type(ERR_PERROR);
-		return (perror_return_null(NULL));
+		handle_each_err_type(ERR_PERROR, NULL);
+		return (NULL);
 	}
 	new->type = type;
 	new->from_fd = from_fd;

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 19:39:29 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/26 02:06:42 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/26 03:59:21 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ char	**fill_scmd_texts(const char *cmd_line)
 	scmd_texts = ft_g_mmcalloc(sizeof(char *), 1);
 	if (!scmd_texts)
 	{
-		set_error_type(ERR_PERROR);
-		return (perror_return_null(NULL));
+		handle_each_err_type(ERR_PERROR, NULL);
+		return (NULL);
 	}
 	token_len = 0;
 	i = 0;

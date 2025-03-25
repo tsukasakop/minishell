@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 20:27:04 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/26 02:08:23 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/26 04:03:55 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	**null_terminated_array_join(void **dst, void **src)
 	ptr = ft_g_mmmalloc(sizeof(void *) * (dstlen + srclen + 1));
 	if (ptr == NULL)
 	{
-		set_error_type(ERR_PERROR);
-		return (perror_return_null(NULL));
+		handle_each_err_type(ERR_PERROR, NULL);
+		return (NULL);
 	}
 	i = 0;
 	while (i < dstlen)

@@ -23,9 +23,9 @@ bool	is_valid_redirect_syntax(t_text_list *cur)
 	if (cur->next == NULL || get_redirect_type(cur->next->text) != REDIR_NONE)
 	{
 		if (cur->next == NULL)
-			syntax_error_handle("newline");
+			handle_each_err_type(ERR_SYNTAX, "newline");
 		else
-			syntax_error_handle(cur->next->text);
+			handle_each_err_type(ERR_SYNTAX, cur->next->text);
 		return (false);
 	}
 	return (true);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmdline2_scmd_texts.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 23:10:52 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/25 19:08:27 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/03/26 03:56:52 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ char	**cmdline2_scmd_texts(const char *cmd_line)
 	error_msg = validate_cmd_line_syntax(cmd_line);
 	if (error_msg)
 	{
-		syntax_error_handle(error_msg);
-		set_error_type(ERR_SYNTAX);
+		handle_each_err_type(ERR_SYNTAX, error_msg);
 		return (NULL);
 	}
 	scmd_texts = fill_scmd_texts(cmd_line);

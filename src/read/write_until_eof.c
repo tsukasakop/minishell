@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:18:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/26 02:34:21 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/26 04:03:28 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ void	write_until_eof(int fd, const char *raw_eof)
 		line = ft_g_mmadd(readline("> "));
 		if (line == NULL && errno == ENOMEM)
 		{
-			set_error_type(ERR_PERROR);
-			perror_with_shellname(NULL);
+			handle_each_err_type(ERR_PERROR, NULL);
 			return ;
 		}
 		if (line && ft_strcmp(line, hd_eof) == 0)

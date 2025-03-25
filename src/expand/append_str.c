@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:14:53 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/26 02:05:35 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/26 04:01:30 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ void	append_str(char ***store, char *orig)
 	tmp = ft_g_mmmalloc(sizeof(char *) * (len + 2));
 	if (tmp == NULL)
 	{
-		set_error_type(ERR_PERROR);
-		perror_with_shellname(NULL);
+		handle_each_err_type(ERR_PERROR, NULL);
 		*store = NULL;
 		return ;
 	}
@@ -36,8 +35,7 @@ void	append_str(char ***store, char *orig)
 	dup = ft_g_mmadd(ft_strdup(orig));
 	if (dup == NULL)
 	{
-		set_error_type(ERR_PERROR);
-		perror_with_shellname(NULL);
+		handle_each_err_type(ERR_PERROR, NULL);
 		*store = NULL;
 		return ;
 	}
