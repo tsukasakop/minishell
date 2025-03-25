@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   append_str.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:14:53 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/24 14:29:33 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/25 18:56:25 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	append_str(char ***store, char *orig)
 	if (tmp == NULL)
 	{
 		//TODO:SET errno
-		perror(NULL);
+		perror_with_shellname(NULL);
 		*store = NULL;
 		return ;
 	}
@@ -37,7 +37,7 @@ void	append_str(char ***store, char *orig)
 	if (dup == NULL)
 	{
 		//TODO:SET errno
-		perror(NULL);
+		perror_with_shellname(NULL);
 		*store = NULL;
 		return ;
 	}

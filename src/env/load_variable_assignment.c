@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_variable_assignment.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:54:33 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/24 15:32:58 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/25 18:55:52 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	load_variable_assignment(char *string, char **name, char **value)
 	if (*name == NULL)
 	{
 		//TODO:SET errno
-		perror(NULL);
+		perror_with_shellname(NULL);
 		return ;
 	}
 	if (!is_valid_identifier(*name))
@@ -42,7 +42,7 @@ void	load_variable_assignment(char *string, char **name, char **value)
 	if (*value == NULL)
 	{
 		//TODO:SET errno
-		perror(NULL);
+		perror_with_shellname(NULL);
 		*name = NULL;
 	}
 }
