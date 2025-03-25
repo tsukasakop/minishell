@@ -46,7 +46,7 @@ int	builtin_cd(char **argv)
 	{
 		ft_fprintf(ft_stderr(), "bash: cd: %s: ", next_dir);
 		free(cur_dir);
-		perror_with_shellname(NULL);
+		perror(NULL);
 		return (1);
 	}
 	if (argv[0] && ft_strcmp(argv[0], "-") == 0)
