@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:52:53 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/26 14:52:55 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/26 15:22:58 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,19 @@ int	main(void)
 		// エラーなし
 		"echo \"Hello, World!\"",
 
-		// 変数展開
+		// エラーなし リダイレクトによるopenのエラーは子プロセス内で行うため、errnoによるエラーはなし
+		"< no_exist cat",
+
+		// ambiguous redirect
 		"echo Hello >$aa",
 
-		// リダイレクト
+		// リダイレクト  syntax error
 		"echo Hello 1> ",
 
-		// クォートが閉じられていないエラーケース
+		// クォート  syntax error
 		"echo \"Unclosed double quote",
 
-		// パイプ
+		// パイプ  syntax error
 		"echo Hello | cat | ",
 
 		NULL
