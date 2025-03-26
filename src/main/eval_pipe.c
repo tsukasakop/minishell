@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/26 04:11:07 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/26 14:43:03 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,6 @@
  * const char *cmd_line: string to do as a command
  * char **envp: string of envp
  */
-unsigned char	t_error_check(t_error_type	st_error)
-{
-	if (st_error == NOERR)
-		return (0);
-	else if (st_error == ERR_PERROR)
-		return (1);
-	else if (st_error == ERR_AMBRDIR)
-		return (1);
-	else if (st_error == ERR_SYNTAX)
-		return (2);
-	return (0);
-}
-
 unsigned char	eval_pipe(const char *cmd_line, char **envp)
 {
 	const t_simple_cmd	*scmd_list;
@@ -42,9 +29,8 @@ unsigned char	eval_pipe(const char *cmd_line, char **envp)
 
 	set_error_type(NOERR);
 	scmd_list = init_scmd_list(cmd_line);
-	t_error_type	get_enum = get_error_type();
 	if (!scmd_list)
-		return (t_error_check(get_enum));
+		return (exitstatus_each_err_type(get_error_type()));
 	// TODO: session = init_session();
 	stdio_fd[0] = STDIN_FILENO;
 	stdio_fd[1] = STDOUT_FILENO;

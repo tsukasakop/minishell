@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_each_err_type.c                             :+:      :+:    :+:   */
+/*   exitstatus_each_err_type                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 03:47:11 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/26 13:30:57 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/26 14:37:32 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/26 14:38:35 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 #include <minishell.h>
 
 /*
- * Function:handle_each_err_type
+ * Function:exitstatus_each_err_type
  * ----------------------------
- * Set t_error_type and output errors for each err_type.
+ * Returns the exit status for each err_type.
  */
-void	handle_each_err_type(t_error_type err_type, char *str)
+unsigned char	exitstatus_each_err_type(t_error_type	err_type)
 {
-	set_error_type(err_type);
 	if (err_type == NOERR)
-		return ;
+		return (0);
 	else if (err_type == ERR_PERROR)
-		perror_with_shellname(str);
+		return (1);
 	else if (err_type == ERR_AMBRDIR)
-		ft_fprintf(ft_stderr(), "bash: %s: ambiguous redirect\n", str);
+		return (1);
 	else if (err_type == ERR_SYNTAX)
-		syntax_error_handle(str);
+		return (2);
+	return (0);
 }
