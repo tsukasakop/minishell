@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/26 14:41:05 by miyuu            ###   ########.fr        #
+#    Updated: 2025/03/26 15:18:20 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -130,6 +130,8 @@ TARGET =\
 	utils/null_terminated_array_join\
 	utils/is_directory\
 	utils/set_error_type\
+	utils/get_error_type\
+	utils/get_error_type_p\
 	utils/perror_with_shellname\
 	utils/handle_each_err_type\
 	signal/set_handlers_for_prompt\

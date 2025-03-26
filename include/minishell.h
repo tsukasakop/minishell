@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/26 14:40:51 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/26 15:19:19 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,8 +237,9 @@ void			**null_terminated_array_join(void **dst, void **src);
 int				is_directory(char *path);
 void			perror_with_shellname(char *msg);
 t_error_type	*get_error_type_p(void);
+void			set_error_type(t_error_type err_type);
 t_error_type	get_error_type(void);
-void			set_error_type(t_error_type st);
+t_error_type	*get_error_type_p(void);
 void			handle_each_err_type(t_error_type err_type, char *str);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_error_type.c                                   :+:      :+:    :+:   */
+/*   get_error_type_p.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/22 13:22:20 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/26 15:19:47 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/26 15:13:07 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/26 15:14:20 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 /*
  * Function:
  * ----------------------------
- * Set error_type.
- * t_error_type err_type: error_type
+ *  Provide pointer where error_type.
  */
-void	set_error_type(t_error_type err_type)
+t_error_type	*get_error_type_p(void)
 {
-	t_error_type	*err_ptr;
+	static t_error_type	p;
 
-	err_ptr = get_error_type_p();
-	*err_ptr = err_type;
+	return (&p);
 }
