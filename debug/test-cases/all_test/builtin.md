@@ -153,32 +153,39 @@
 
 ## pwd
 ### 正常
-#### - 引数なし | あり
+#### - 引数あり | なし | 複数
+	pwd /tmp
     pwd
-	pwd ./debug
-#### 移動後
+	pwd /tmp /home
+
+#### 移動後 0回 | 1回 | 2回 | 戻る
+	cd .
+	pwd
 	cd ../
 	pwd
+	cd /home
 	cd /tmp
 	pwd
-#### - PWDを削除した後の変数状況
+	cd /home
+	pwd
+
+#### - PWDを削除 直後 | 移動後
 ```bash
 	unset PWD
-	echo $PWD
-	env | grep PWD=
-	export | grep PWD=
-	cd .
-	echo $PWD
-	env | grep PWD=
-	export | grep PWD=
+	pwd
+	cd ../
+	pwd
 ```
+#### - OLDPWDを削除 直後 | 移動後
 ```bash
-	export aa=hello
-	unset aa=
-	env | grep aa=
-	unset aa
-	env | grep aa=
+	unset OLDPWD
+	pwd
+	cd ../
+	pwd
 ```
+
+#### - カレントディレクトリの権限削除 000 | -r |  -x | -w
+	pwd
 
 ## cd
 ### 正常
