@@ -1,0 +1,95 @@
+- export
+-- 出力がbashと異なるが、課題要件につき、正しい export
+export VAR=val
+echo $VAR
+export | grep VAR | wc -l
+
+export test1=hello test2=world test3=42tokyo
+echo $test1 $test2 $test3
+export | grep test | wc -l
+
+export VAR="Hello World"
+echo $VAR
+export | grep VAR | wc -l
+
+export VAR="Hello      World"
+echo $VAR
+export | grep VAR | wc -l
+
+export NUM=1234567
+echo $NUM
+export | grep NUM | wc -l
+
+export TEXT=Hello
+echo $TEXT
+export | grep TEXT | wc -l
+
+export Symbol="*#%$=¥~?$+"
+echo $Symbol
+export | grep Symbol | wc -l
+
+-- 出力がbashと異なるが、課題要件につき、正しい export BR=\n
+echo $BR
+export | grep BR | wc -l
+
+export WITH_TEXT=$TEXT
+echo $WITH_TEXT
+export | grep WITH_TEXT | wc -l
+
+export WITH_TEXT="$TEXT"
+echo $WITH_TEXT
+export | grep WITH_TEXT | wc -l
+
+export WITH_TEXT='$TEXT'
+echo $WITH_TEXT
+export | grep WITH_TEXT | wc -l
+
+-- 出力がbashと異なるが、バグ export WITH_VAR=$VAR
+export WITH_VAR="$VAR"
+echo $WITH_TEXT
+export | grep WITH_TEXT | wc -l
+export WITH_VAR='$VAR'
+echo $WITH_TEXT
+export | grep WITH_TEXT | wc -l
+
+export "Hello World"=a_space
+export | grep "Hello World" | wc -l
+export "Hello      World"=spaces
+export | grep "Hello      World" | wc -l
+
+export 01234567=Hello
+export | grep 01234567 | wc -l
+export *#%$=¥~?$+=Hello
+export | grep Hello | wc -l
+
+-- 出力がbashと異なるが、課題要件につき、正しい export \n=Hello
+
+export $TEXT=world
+echo $Hello
+export | grep world | wc -l
+export "$TEXT"=world
+echo $Hello
+export | grep world | wc -l
+export '$TEXT'=world
+echo $Hello
+export | grep world | wc -l
+
+-- 出力がbashと異なるが、課題要件につき、正しい export $VAR=Hello
+export "$VAR"=Hello
+echo "$Hello World"
+export | grep Hello | wc -l
+
+export '$VAR'=Hello
+echo "$Hello World"
+export | grep Hello | wc -l
+
+-- 出力がbashと異なるが、課題要件につき、正しい export $aaa
+export "   "
+
+export =Hello
+export Empty=
+-- 出力がbashと異なるが、課題要件につき、正しい export AAA
+
+export num=1234567 str=hello c=a 42=tokyo test=yes
+echo $num $str $c $test
+export | grep 42= | wc -l

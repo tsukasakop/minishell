@@ -1,0 +1,34 @@
+- ビルドイン echo
+echo
+
+echo F
+echo HELLO
+
+echo 0123456789
+echo -0123456789
+echo 2147483648
+echo -2147483649
+echo 9223372036854775808
+echo -9223372036854775809
+
+echo HELLO WORLD
+echo HELLO WORLD 42Tokyo shinjuku
+echo HELLO          WORLD
+
+-- 出力がbashと異なるが、課題要件につき、正しい echo \n \t \0
+echo 0x00 0x01 0x02 0x03 0x04 0x05 0x06 0x07 0x08 0x09 0x0A 0x0B 0x0C 0x0D 0x0E 0x0F 0x7F
+
+echo -n HELLO
+echo -n
+
+echo -n HELLO WORLD
+echo HELLO -n WORLD
+echo HELLO WORLD -n
+
+echo -n -n -n HELLO WORLD
+
+echo ------n HELLO WORLD
+
+--出力がbashと異なるが、課題要件につき、正しい echo -nnnnnnnnn HELLO
+--出力がbashと異なるが、課題要件につき、正しい echo -nnnnnnnnn
+--出力がbashと異なるが、課題要件につき、正しい echo -nnnnnnnnn  -n HELLO
