@@ -40,11 +40,11 @@
 #### - `-｀が連続
 	echo ------n HELLO WORLD
 
-#### ※ オプションが連続で　引数あり　| 引数なし
+#### !! オプションが連続で　引数あり　| 引数なし
 	echo -nnnnnnnnn HELLO
 	echo -nnnnnnnnn
 
-#### ※ -nnn と -n の混在 → `HELLO`
+#### !! -nnn と -n の混在 → `HELLO`
 	echo -nnnnnnnnn  -n HELLO
 
 ## env
@@ -120,20 +120,36 @@
 ## unset
 #### - 引数なし
 	unset
+
 #### - `=` あり | `=` なし
 	unset VAR=
 	unset VAR
-#### - 存在しないname
+
+#### - 存在するname | 存在しないname |　既存のname
+	unset VAR
 	unset no_exist
+	unset HOME
+
 #### - 存在するnameとvalue | 存在するnameと存在しないvalue | 存在しないnameと存在するvalue | 存在しないnameと存在しないvalue
 	unset VAR=test
 	unset VAR=aaa
 	unset noexist=test
 	unset noexist=nono
-#### - 複数削除 | 存在するnameとvalueの組み合わせ + name= のみ + nameのみ
-	unset test1 test2 test3
-	unset VAR=test VAR= VAR
 
+#### - 複数削除
+	unset test1 test2 test3
+
+#### - 存在するnameとvalueの組み合わせ + name= のみ + nameのみ
+	unset test1=hello test2= test3
+
+#### - 変数展開後、nameが 1個 | 2個
+	export cc=aa
+	unset $cc
+	export cc="aa bb"
+	unset $cc
+
+#### ※ 読み込み専用の変数 → ビルドインコマンドであるreadonlyでしか、設定・一覧の表示ができず、minishell内では実質扱えないので、bashと挙動を変える
+	unset UID
 
 ## pwd
 ### 正常

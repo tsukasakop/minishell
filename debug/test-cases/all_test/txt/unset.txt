@@ -1,0 +1,50 @@
+unset
+
+export VAR=Hello
+unset VAR=
+env | sort | grep VAR
+unset VAR
+env | sort | grep VAR
+
+export VAR=Hello
+env | sort | grep -e VAR -e no_exist -e HOME
+env | wc -l
+unset VAR
+unset no_exist
+unset HOEM
+env | sort | grep -e VAR -e no_exist -e HOME
+env | wc -l
+
+
+export VAR=Hello
+unset VAR=Hello
+env | sort | grep VAR
+export VAR=Hello
+unset VAR=aaa
+env | sort | grep VAR
+export VAR=Hello
+unset noexist=Hello
+env | sort | grep Hello
+unset noexist=nono
+env | sort | grep noexist
+
+
+export test1=hello test2=world test3=42tokyo
+unset test1 test2 test3
+env | sort | grep test
+
+export test1=HELLO test2=WORLD test3=42TOKYO
+unset test1=HELLO test2= test3
+env | sort | grep test
+
+export aa=HELLO
+export bb=aa
+unset $bb
+env | sort | grep -e aa -e bb
+
+export aa=hello
+export bb=world
+export cc="aa bb"
+env | sort | grep -e aa -e bb -e cc
+unset $cc
+env | sort | grep -e aa -e bb -e cc
