@@ -9,6 +9,9 @@
 	echo hello world | tr 'a-z' 'A-Z'
 	yes | head -n 10000000 | wc -l
 	cat minishell | xxd | tail
+#### 大量にパイプが繋がっている場合 + リダイレクトあり | なし
+	ls | cat | cat | .... | cat | ls
+	echo Hello | cat | cat | .... | cat >out
 ```bash
 echo 42Tokyo > hoge
 cat hoge | xxd | tail
