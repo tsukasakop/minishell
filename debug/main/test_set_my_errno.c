@@ -3,23 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   test_set_my_errno.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:52:53 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/25 19:09:15 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/03/26 14:52:55 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-// typedef enum e_error_type		t_error_type;
-// enum e_error_type
-// {
-// 	NOERR,
-// 	ERR_PERROR, //bad fdの時→1 No such→1
-// 	ERR_AMBRDIR, //1
-// 	ERR_SYNTAX, //2
-// };
+volatile unsigned char	g_signal = 0;
 
 const char	*get_error_name(t_error_type err)
 {
@@ -32,75 +25,55 @@ const char	*get_error_name(t_error_type err)
 	return (error_names[err]);
 }
 
-unsigned char	t_error_check(t_error_type	st_error)
-{
-	if (st_error == NOERR)
-		return (0);
-	else if (st_error == ERR_PERROR)
-		return (1);
-	else if (st_error == ERR_AMBRDIR)
-		return (1);
-	else if (st_error == ERR_SYNTAX)
-		return (2);
-	return (0);
-}
-
-void	error_set_exitstatus(t_error_type err)
-{
-	unsigned char	exit_status;
-
-	exit_status = t_error_check(err);
-	set_exit_status(exit_status);
-}
-
-t_error_type	*get_error_type_p(void)
-{
-	static t_error_type	p;
-
-	return (&p);
-}
-
-t_error_type	get_error_type(void)
-{
-	t_error_type	*st_ptr;
-
-	st_ptr = get_error_type_p();
-	return (*st_ptr);
-}
-
-void	set_error_type(t_error_type st)
-{
-	t_error_type	*st_ptr;
-
-	st_ptr = get_error_type_p();
-	*st_ptr = st;
-}
-
-
 int	main(void)
 {
 	char cmd_line[] = "$?";
-	char *cur_p;
-	char *exit_status;
+	char			*cur_p;
+	char 			*echo_status;
 	t_error_type	get_enum;
+	unsigned char	last_status;
+	const t_simple_cmd *scmd_list;
+	size_t	i = 0;
 
-	for (t_error_type err = NOERR; err <= ERR_SYNTAX; err++)
+	char *test_cases[] = {
+		// エラーなし
+		"echo \"Hello, World!\"",
+
+		// 変数展開
+		"echo Hello >$aa",
+
+		// リダイレクト
+		"echo Hello 1> ",
+
+		// クォートが閉じられていないエラーケース
+		"echo \"Unclosed double quote",
+
+		// パイプ
+		"echo Hello | cat | ",
+
+		NULL
+	};
+
+	while (test_cases[i])
 	{
-		set_error_type(err);
+		printf("\nTest case: \"%s\"\n", test_cases[i]);
+
+		set_error_type(NOERR);
+		scmd_list = init_scmd_list(test_cases[i]);
+
 		get_enum = get_error_type();
+		last_status = exitstatus_each_err_type(get_enum);
+		set_exit_status(last_status);
 
 		cur_p = cmd_line;
-		if (get_enum != NOERR)
-		{
-			error_set_exitstatus(get_enum);
-			exit_status = read_variable_m(&cur_p, NULL);
-			printf("Error: %-10s → err_enum: %3d exit_status: %s\n", get_error_name(get_enum), get_enum, exit_status);
-		}
+		echo_status = read_variable_m(&cur_p, NULL);
+		if (scmd_list == NULL)
+			printf("Error: \x1b[32m%-10s\x1b[39m → err_enum: \x1b[32m%3d\x1b[39m last_status: \x1b[32m%c\x1b[39m echo $?: \x1b[32m%s\x1b[39m\n", get_error_name(get_enum), get_enum, last_status, echo_status);
 		else
-		{
-			exit_status = read_variable_m(&cur_p, NULL);
-			printf("NOError: %-10s → err_enum: %3d exit_status: %s\n", get_error_name(get_enum), get_enum, exit_status);
-		}
+			printf("NOError: \x1b[32m%-10s\x1b[39m → err_enum: \x1b[32m%3d\x1b[39m last_status: \x1b[32m%c\x1b[39m echo $?: \x1b[32m%s\x1b[39m\n", get_error_name(get_enum), get_enum, last_status, echo_status);
+
+		i++;
 	}
+
 	return (0);
 }
