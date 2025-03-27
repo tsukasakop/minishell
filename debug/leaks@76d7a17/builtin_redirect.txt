@@ -1,0 +1,219 @@
+Script started on 2025-03-27 17:23:29+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="123" LINES="35"]
+==50244== Memcheck, a memory error detector
+==50244== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==50244== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==50244== Command: ../minishell
+==50244== 
+minishell$ pwd > /tmp/file1
+minishell$ echo $?
+0
+minishell$ cat /tmp/file1
+/home/mfunakos/Desktop/42cursus/minishell/miyushell/debug
+minishell$ 
+minishell$ export 42=FT 0>/tmp/file2
+bash: export: `42=FT': not a valid identifier
+minishell$ echo $?
+1
+minishell$ cat /tmp/file2
+minishell$ 
+minishell$ export 42=FT 1>/tmp/file2
+bash: export: `42=FT': not a valid identifier
+minishell$ echo $?
+1
+minishell$ cat /tmp/file2
+minishell$ 
+minishell$ export 42=FT 2>/tmp/file2
+minishell$ echo $?
+1
+minishell$ cat /tmp/file2
+bash: export: `42=FT': not a valid identifier
+minishell$ 
+minishell$ export 42=FT 2>/tmp/file2 1>/tmp/file2
+minishell$ echo $?
+1
+minishell$ cat /tmp/file2
+bash: export: `42=FT': not a valid identifier
+minishell$ 
+minishell$ export FT=42 2>/tmp/file3 1>/tmp/file3
+minishell$ echo $?
+0
+minishell$ cat /tmp/file3
+minishell$ 
+minishell$ unset FT 2>/tmp/file4 1>/tmp/file4
+minishell$ echo $?
+0
+minishell$ cat /tmp/file4
+minishell$ 
+minishell$ < /tmp/file1 cd
+minishell$ echo $?
+0
+minishell$ pwd
+/home/mfunakos
+minishell$ 
+minishell$ pwd 3>/tmp/file5 4>/tmp/file5 5>/tmp/file5
+/home/mfunakos
+minishell$ echo $?
+0
+minishell$ cat /tmp/file5
+minishell$ 
+minishell$ echo -n hello world > /tmp/file5
+minishell$ echo $?
+0
+minishell$ cat /tmp/file5
+hello worldminishell$ 
+minishell$ echo Hello 1>/tmp/file5
+minishell$ echo $?
+0
+minishell$ cat /tmp/file5
+Hello
+minishell$ echo Hello 1>/tmp/file5 2>/tmp/file5 3>/tmp/file5
+minishell$ echo $?
+0
+minishell$ cat /tmp/file5
+Hello
+minishell$ echo Hello 3>/tmp/file5 2>/tmp/file5 1>/tmp/file5
+minishell$ echo $?
+0
+minishell$ cat /tmp/file5
+Hello
+minishell$ echo Hello 2>/tmp/file5 1>/tmp/file5 3>/tmp/file5
+minishell$ echo $?
+0
+minishell$ cat /tmp/file5
+Hello
+minishell$ echo Hello 1>/tmp/file5 3>/tmp/file5 2>/tmp/file5
+minishell$ echo $?
+0
+minishell$ cat /tmp/file5
+Hello
+minishell$ echo Hello --1>/tmp/file5 2>/tmp/file5 3>/tmp/file5 Word
+minishell$ echo $?
+0
+minishell$ cat /tmp/file5
+Hello --1 Word
+minishell$ 
+minishell$ rm /tmp/file1 /tmp/file2 /tmp/file3 /tmp/file4 /tmp/file5
+minishell$ 
+minishell$ 
+minishell$ echo Hello 1>/tmp/file1
+minishell$ echo $?
+0
+minishell$ cat /tmp/file1
+Hello
+minishell$ echo Hello 1>/tmp/file1 2>/tmp/file2 3>/tmp/file3
+minishell$ echo $?
+0
+minishell$ cat /tmp/file1 /tmp/file2 /tmp/file3
+Hello
+minishell$ echo Hello 3>/tmp/file1 2>/tmp/file2 1>/tmp/file3
+minishell$ echo $?
+0
+minishell$ cat /tmp/file1 /tmp/file2 /tmp/file3
+Hello
+minishell$ echo Hello 2>/tmp/file1 1>/tmp/file2 3>/tmp/file3
+minishell$ echo $?
+0
+minishell$ cat /tmp/file1 /tmp/file2 /tmp/file3
+Hello
+minishell$ echo Hello 1>/tmp/file1 3>/tmp/file2 2>/tmp/file3
+minishell$ echo $?
+0
+minishell$ cat /tmp/file1 /tmp/file2 /tmp/file3
+Hello
+minishell$ echo Hello --1>/tmp/file1 2>/tmp/file2 3>/tmp/file3 Word
+minishell$ echo $?
+0
+minishell$ cat /tmp/file1 /tmp/file2 /tmp/file3
+Hello --1 Word
+minishell$ 
+minishell$ echo Hello 0>/tmp/file5 1>/tmp/file5 2>/tmp/file5 3>/tmp/file5 4>/tmp/file5 5>/tmp/file5 6>/tmp/file5 7>/tmp/file5 8>/tmp/file5 9>/tmp/file5 10>/tmp/file5 11>/tmp/file5 12>/tmp/file5 13>/tmp/file5 14>/tmp/file5 15>/tmp/file5 16>/tmp/file5 17>/tmp/file5 18>/tmp/file5 19>/tmp/file5 20>/tmp/file5 21>/tmp/file5 22>/tmp/file5 23>/tmp/file5 24>/tmp/file5 25>/tmp/file5 26>/tmp/file5 27>/tmp/file5 28>/tmp/file5 29>/tmp/file5 30>/tmp/file5 31>/tmp/file5 32>/tmp/file5 33>/tmp/file5 34>/tmp/file5 35>/tmp/file5 36>/tmp/file5 37>/tmp/file5 38>/tmp/file5 39>/tmp/file5 40>/tmp/file5 41>/tmp/file5 42>/tmp/file5 43>/tmp/file5 44>/tmp/file5 45>/tmp/file5 46>/tmp/file5 47>/tmp/file5 48>/tmp/file5 49>/tmp/file5 50>/tmp/file5 51>/tmp/file5 52>/tmp/file5 53>/tmp/file5 54>/tmp/file5 55>/tmp/file5 56>/tmp/file5 57>/tmp/file5 58>/tmp/file5 59>/tmp/file5 60>/tmp/file5 61>/tmp/file5 62>/tmp/file5 63>/tmp/file5 64>/tmp/file5 65>/tmp/file5 66>/tmp/file5 67>/tmp/file5 68>/tmp/file5 69>/tmp/file5 70>/tmp/file5 71>/tmp/file5 72>/tmp/file5 73>/tmp/file5 74>/tmp/file5 75>/tmp/file5 76>/tmp/file5 77>/tmp/file5 78>/tmp/file5 79>/tmp/file5 80>/tmp/file5 81>/tmp/file5 82>/tmp/file5 83>/tmp/file5 84>/tmp/file5 85>/tmp/file5 86>/tmp/file5 87>/tmp/file5 88>/tmp/file5 89>/tmp/file5 90>/tmp/file5 91>/tmp/file5 92>/tmp/file5 93>/tmp/file5 94>/tmp/file5 95>/tmp/file5 96>/tmp/file5 97>/tmp/file5 98>/tmp/file5 99>/tmp/file5 100>/tmp/file5
+minishell$ echo $?
+0
+minishell$ cat /tmp/file5
+Hello
+minishell$ 
+minishell$ echo Hello 100>/tmp/file6 99>/tmp/file6 98>/tmp/file6 97>/tmp/file6 96>/tmp/file6 95>/tmp/file6 94>/tmp/file6 93>/tmp/file6 92>/tmp/file6 91>/tmp/file6 90>/tmp/file6 89>/tmp/file6 88>/tmp/file6 87>/tmp/file6 86>/tmp/file6 85>/tmp/file6 84>/tmp/file6 83>/tmp/file6 82>/tmp/file6 81>/tmp/file6 80>/tmp/file6 79>/tmp/file6 78>/tmp/file6 77>/tmp/file6 76>/tmp/file6 75>/tmp/file6 74>/tmp/file6 73>/tmp/file6 72>/tmp/file6 71>/tmp/file6 70>/tmp/file6 69>/tmp/file6 68>/tmp/file6 67>/tmp/file6 66>/tmp/file6 65>/tmp/file6 64>/tmp/file6 63>/tmp/file6 62>/tmp/file6 61>/tmp/file6 60>/tmp/file6 59>/tmp/file6 58>/tmp/file6 57>/tmp/file6 56>/tmp/file6 55>/tmp/file6 54>/tmp/file6 53>/tmp/file6 52>/tmp/file6 51>/tmp/file6 50>/tmp/file6 49>/tmp/file6 48>/tmp/file6 47>/tmp/file6 46>/tmp/file6 45>/tmp/file6 44>/tmp/file6 43>/tmp/file6 42>/tmp/file6 41>/tmp/file6 40>/tmp/file6 39>/tmp/file6 38>/tmp/file6 37>/tmp/file6 36>/tmp/file6 35>/tmp/file6 34>/tmp/file6 33>/tmp/file6 32>/tmp/file6 31>/tmp/file6 30>/tmp/file6 29>/tmp/file6 28>/tmp/file6 27>/tmp/file6 26>/tmp/file6 25>/tmp/file6 24>/tmp/file6 23>/tmp/file6 22>/tmp/file6 21>/tmp/file6 20>/tmp/file6 19>/tmp/file6 18>/tmp/file6 17>/tmp/file6 16>/tmp/file6 15>/tmp/file6 14>/tmp/file6 13>/tmp/file6 12>/tmp/file6 11>/tmp/file6 10>/tmp/file6 9>/tmp/file6 8>/tmp/file6 7>/tmp/file6 6>/tmp/file6 5>/tmp/file6 4>/tmp/file6 3>/tmp/file6 2>/tmp/file6 1>/tmp/file6 0>/tmp/file6
+minishell$ echo $?
+0
+minishell$ cat /tmp/file6
+Hello
+minishell$ 
+minishell$ 
+minishell$ - 以下、エラーのプロンプト部分がbashと異なる
+bash: -: command not found
+==50269== 
+==50269== HEAP SUMMARY:
+==50269==     in use at exit: 221,375 bytes in 496 blocks
+==50269==   total heap usage: 6,798 allocs, 6,302 frees, 802,639 bytes allocated
+==50269== 
+==50269== LEAK SUMMARY:
+==50269==    definitely lost: 0 bytes in 0 blocks
+==50269==    indirectly lost: 0 bytes in 0 blocks
+==50269==      possibly lost: 0 bytes in 0 blocks
+==50269==    still reachable: 221,375 bytes in 496 blocks
+==50269==         suppressed: 0 bytes in 0 blocks
+==50269== Reachable blocks (those to which a pointer was found) are not shown.
+==50269== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50269== 
+==50269== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo 10000>/tmp/file6
+==50244== Warning: invalid file descriptor 10000 in syscall dup2()
+bash: 10000: Bad file descriptor
+minishell$ echo $?
+1
+minishell$ cat /tmp/file6
+minishell$ 
+minishell$ echo Hello 4000>file6
+==50244== Warning: invalid file descriptor 4000 in syscall dup2()
+bash: 4000: Bad file descriptor
+minishell$ echo $?
+1
+minishell$ cat /tmp/file6
+minishell$ 
+minishell$ echo Hello 0>file6 5000>file6
+==50244== Warning: invalid file descriptor 5000 in syscall dup2()
+bash: 5000: Bad file descriptor
+minishell$ echo $?
+1
+minishell$ cat /tmp/file6
+minishell$ 
+minishell$ echo Hello 0>file6 6000>file6 3>file6
+==50244== Warning: invalid file descriptor 6000 in syscall dup2()
+bash: 6000: Bad file descriptor
+minishell$ echo $?
+1
+minishell$ cat /tmp/file6
+minishell$ 
+minishell$ echo 0>file6 7000>file6 3>file6 Hello
+==50244== Warning: invalid file descriptor 7000 in syscall dup2()
+bash: 7000: Bad file descriptor
+minishell$ echo $?
+1
+minishell$ cat /tmp/file6
+minishell$ 
+minishell$ echo < /tmp/no_exist_file
+bash: /tmp/no_exist_file: No such file or directory
+minishell$ echo $?
+1
+minishell$ 
+minishell$ rm /tmp/file1 /tmp/file2 /tmp/file3 /tmp/file4 /tmp/file5 /tmp/file6
+rm: cannot remove '/tmp/file4': No such file or directory
+minishell$ exit
+==50244== 
+==50244== HEAP SUMMARY:
+==50244==     in use at exit: 222,613 bytes in 568 blocks
+==50244==   total heap usage: 7,621 allocs, 7,053 frees, 892,749 bytes allocated
+==50244== 
+==50244== LEAK SUMMARY:
+==50244==    definitely lost: 0 bytes in 0 blocks
+==50244==    indirectly lost: 0 bytes in 0 blocks
+==50244==      possibly lost: 0 bytes in 0 blocks
+==50244==    still reachable: 222,613 bytes in 568 blocks
+==50244==         suppressed: 0 bytes in 0 blocks
+==50244== Reachable blocks (those to which a pointer was found) are not shown.
+==50244== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50244== 
+==50244== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+make: *** [Makefile:127: valgrind] Error 1
+
+Script done on 2025-03-27 17:23:30+09:00 [COMMAND_EXIT_CODE="2"]

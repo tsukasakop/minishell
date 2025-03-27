@@ -1,0 +1,287 @@
+Script started on 2025-03-27 17:23:45+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="123" LINES="35"]
+==50319== Memcheck, a memory error detector
+==50319== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==50319== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==50319== Command: ../minishell
+==50319== 
+minishell$ export word=aiueo
+minishell$ export SINGLE=single
+minishell$ export EMPTY=
+minishell$ export MULTIPLE='first     second'
+minishell$ unset NONE
+minishell$ 
+minishell$ cat <<''
+> $ONELINE
+> 
+==50320== 
+==50320== HEAP SUMMARY:
+==50320==     in use at exit: 208,524 bytes in 243 blocks
+==50320==   total heap usage: 1,163 allocs, 920 frees, 268,619 bytes allocated
+==50320== 
+==50320== LEAK SUMMARY:
+==50320==    definitely lost: 0 bytes in 0 blocks
+==50320==    indirectly lost: 0 bytes in 0 blocks
+==50320==      possibly lost: 0 bytes in 0 blocks
+==50320==    still reachable: 208,524 bytes in 243 blocks
+==50320==         suppressed: 0 bytes in 0 blocks
+==50320== Reachable blocks (those to which a pointer was found) are not shown.
+==50320== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50320== 
+==50320== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+$ONELINE
+minishell$ cat <<""
+> $EMPTY
+> 
+==50322== 
+==50322== HEAP SUMMARY:
+==50322==     in use at exit: 208,569 bytes in 246 blocks
+==50322==   total heap usage: 1,358 allocs, 1,112 frees, 272,617 bytes allocated
+==50322== 
+==50322== LEAK SUMMARY:
+==50322==    definitely lost: 0 bytes in 0 blocks
+==50322==    indirectly lost: 0 bytes in 0 blocks
+==50322==      possibly lost: 0 bytes in 0 blocks
+==50322==    still reachable: 208,569 bytes in 246 blocks
+==50322==         suppressed: 0 bytes in 0 blocks
+==50322== Reachable blocks (those to which a pointer was found) are not shown.
+==50322== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50322== 
+==50322== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+$EMPTY
+minishell$ cat <<'word'
+> $MULTIPLE
+> word
+==50324== 
+==50324== HEAP SUMMARY:
+==50324==     in use at exit: 208,618 bytes in 249 blocks
+==50324==   total heap usage: 1,556 allocs, 1,307 frees, 276,699 bytes allocated
+==50324== 
+==50324== LEAK SUMMARY:
+==50324==    definitely lost: 0 bytes in 0 blocks
+==50324==    indirectly lost: 0 bytes in 0 blocks
+==50324==      possibly lost: 0 bytes in 0 blocks
+==50324==    still reachable: 208,618 bytes in 249 blocks
+==50324==         suppressed: 0 bytes in 0 blocks
+==50324== Reachable blocks (those to which a pointer was found) are not shown.
+==50324== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50324== 
+==50324== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+$MULTIPLE
+minishell$ 
+minishell$ cat <<"$word"
+> $NONE
+> $word
+==50326== 
+==50326== HEAP SUMMARY:
+==50326==     in use at exit: 208,705 bytes in 255 blocks
+==50326==   total heap usage: 1,764 allocs, 1,509 frees, 282,902 bytes allocated
+==50326== 
+==50326== LEAK SUMMARY:
+==50326==    definitely lost: 0 bytes in 0 blocks
+==50326==    indirectly lost: 0 bytes in 0 blocks
+==50326==      possibly lost: 0 bytes in 0 blocks
+==50326==    still reachable: 208,705 bytes in 255 blocks
+==50326==         suppressed: 0 bytes in 0 blocks
+==50326== Reachable blocks (those to which a pointer was found) are not shown.
+==50326== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50326== 
+==50326== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+$NONE
+minishell$ 
+minishell$ cat <<$word
+> $SINGLE
+> $word
+==50328== 
+==50328== HEAP SUMMARY:
+==50328==     in use at exit: 208,790 bytes in 261 blocks
+==50328==   total heap usage: 1,977 allocs, 1,716 frees, 289,131 bytes allocated
+==50328== 
+==50328== LEAK SUMMARY:
+==50328==    definitely lost: 0 bytes in 0 blocks
+==50328==    indirectly lost: 0 bytes in 0 blocks
+==50328==      possibly lost: 0 bytes in 0 blocks
+==50328==    still reachable: 208,790 bytes in 261 blocks
+==50328==         suppressed: 0 bytes in 0 blocks
+==50328== Reachable blocks (those to which a pointer was found) are not shown.
+==50328== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50328== 
+==50328== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+single
+minishell$ 
+minishell$ cat <<wo''rd
+> $EMPTY
+> word
+==50330== 
+==50330== HEAP SUMMARY:
+==50330==     in use at exit: 208,876 bytes in 267 blocks
+==50330==   total heap usage: 2,186 allocs, 1,919 frees, 295,353 bytes allocated
+==50330== 
+==50330== LEAK SUMMARY:
+==50330==    definitely lost: 0 bytes in 0 blocks
+==50330==    indirectly lost: 0 bytes in 0 blocks
+==50330==      possibly lost: 0 bytes in 0 blocks
+==50330==    still reachable: 208,876 bytes in 267 blocks
+==50330==         suppressed: 0 bytes in 0 blocks
+==50330== Reachable blocks (those to which a pointer was found) are not shown.
+==50330== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50330== 
+==50330== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+$EMPTY
+minishell$ 
+minishell$ cat <<w"or"d
+> $MULTIPLE
+> word
+==50332== 
+==50332== HEAP SUMMARY:
+==50332==     in use at exit: 208,962 bytes in 273 blocks
+==50332==   total heap usage: 2,400 allocs, 2,127 frees, 301,613 bytes allocated
+==50332== 
+==50332== LEAK SUMMARY:
+==50332==    definitely lost: 0 bytes in 0 blocks
+==50332==    indirectly lost: 0 bytes in 0 blocks
+==50332==      possibly lost: 0 bytes in 0 blocks
+==50332==    still reachable: 208,962 bytes in 273 blocks
+==50332==         suppressed: 0 bytes in 0 blocks
+==50332== Reachable blocks (those to which a pointer was found) are not shown.
+==50332== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50332== 
+==50332== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+$MULTIPLE
+minishell$ 
+minishell$ cat <<word
+> $SINGLE
+> word
+==50334== 
+==50334== HEAP SUMMARY:
+==50334==     in use at exit: 209,046 bytes in 279 blocks
+==50334==   total heap usage: 2,619 allocs, 2,340 frees, 307,890 bytes allocated
+==50334== 
+==50334== LEAK SUMMARY:
+==50334==    definitely lost: 0 bytes in 0 blocks
+==50334==    indirectly lost: 0 bytes in 0 blocks
+==50334==      possibly lost: 0 bytes in 0 blocks
+==50334==    still reachable: 209,046 bytes in 279 blocks
+==50334==         suppressed: 0 bytes in 0 blocks
+==50334== Reachable blocks (those to which a pointer was found) are not shown.
+==50334== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50334== 
+==50334== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+single
+minishell$ 
+minishell$ cat <<word
+> $EMPTY
+> word
+==50336== 
+==50336== HEAP SUMMARY:
+==50336==     in use at exit: 209,130 bytes in 285 blocks
+==50336==   total heap usage: 2,837 allocs, 2,552 frees, 314,167 bytes allocated
+==50336== 
+==50336== LEAK SUMMARY:
+==50336==    definitely lost: 0 bytes in 0 blocks
+==50336==    indirectly lost: 0 bytes in 0 blocks
+==50336==      possibly lost: 0 bytes in 0 blocks
+==50336==    still reachable: 209,130 bytes in 285 blocks
+==50336==         suppressed: 0 bytes in 0 blocks
+==50336== Reachable blocks (those to which a pointer was found) are not shown.
+==50336== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50336== 
+==50336== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+minishell$ 
+minishell$ cat <<word
+> $MULTIPLE
+> word
+==50338== 
+==50338== HEAP SUMMARY:
+==50338==     in use at exit: 209,214 bytes in 291 blocks
+==50338==   total heap usage: 3,057 allocs, 2,766 frees, 320,493 bytes allocated
+==50338== 
+==50338== LEAK SUMMARY:
+==50338==    definitely lost: 0 bytes in 0 blocks
+==50338==    indirectly lost: 0 bytes in 0 blocks
+==50338==      possibly lost: 0 bytes in 0 blocks
+==50338==    still reachable: 209,214 bytes in 291 blocks
+==50338==         suppressed: 0 bytes in 0 blocks
+==50338== Reachable blocks (those to which a pointer was found) are not shown.
+==50338== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50338== 
+==50338== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+first     second
+minishell$ 
+minishell$ cat <<word
+> $NONE
+> word
+==50340== 
+==50340== HEAP SUMMARY:
+==50340==     in use at exit: 209,298 bytes in 297 blocks
+==50340==   total heap usage: 3,278 allocs, 2,981 frees, 326,791 bytes allocated
+==50340== 
+==50340== LEAK SUMMARY:
+==50340==    definitely lost: 0 bytes in 0 blocks
+==50340==    indirectly lost: 0 bytes in 0 blocks
+==50340==      possibly lost: 0 bytes in 0 blocks
+==50340==    still reachable: 209,298 bytes in 297 blocks
+==50340==         suppressed: 0 bytes in 0 blocks
+==50340== Reachable blocks (those to which a pointer was found) are not shown.
+==50340== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50340== 
+==50340== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+minishell$ 
+minishell$ cat <<aiueo
+> $word
+> aiueo
+==50342== 
+==50342== HEAP SUMMARY:
+==50342==     in use at exit: 209,383 bytes in 303 blocks
+==50342==   total heap usage: 3,503 allocs, 3,200 frees, 333,146 bytes allocated
+==50342== 
+==50342== LEAK SUMMARY:
+==50342==    definitely lost: 0 bytes in 0 blocks
+==50342==    indirectly lost: 0 bytes in 0 blocks
+==50342==      possibly lost: 0 bytes in 0 blocks
+==50342==    still reachable: 209,383 bytes in 303 blocks
+==50342==         suppressed: 0 bytes in 0 blocks
+==50342== Reachable blocks (those to which a pointer was found) are not shown.
+==50342== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50342== 
+==50342== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+aiueo
+minishell$ 
+minishell$ cat <<$word
+> $word
+==50344== 
+==50344== HEAP SUMMARY:
+==50344==     in use at exit: 209,468 bytes in 309 blocks
+==50344==   total heap usage: 3,708 allocs, 3,399 frees, 335,025 bytes allocated
+==50344== 
+==50344== LEAK SUMMARY:
+==50344==    definitely lost: 0 bytes in 0 blocks
+==50344==    indirectly lost: 0 bytes in 0 blocks
+==50344==      possibly lost: 0 bytes in 0 blocks
+==50344==    still reachable: 209,468 bytes in 309 blocks
+==50344==         suppressed: 0 bytes in 0 blocks
+==50344== Reachable blocks (those to which a pointer was found) are not shown.
+==50344== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50344== 
+==50344== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ 
+minishell$ exit
+==50319== 
+==50319== HEAP SUMMARY:
+==50319==     in use at exit: 209,523 bytes in 312 blocks
+==50319==   total heap usage: 3,747 allocs, 3,435 frees, 341,697 bytes allocated
+==50319== 
+==50319== LEAK SUMMARY:
+==50319==    definitely lost: 0 bytes in 0 blocks
+==50319==    indirectly lost: 0 bytes in 0 blocks
+==50319==      possibly lost: 0 bytes in 0 blocks
+==50319==    still reachable: 209,523 bytes in 312 blocks
+==50319==         suppressed: 0 bytes in 0 blocks
+==50319== Reachable blocks (those to which a pointer was found) are not shown.
+==50319== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50319== 
+==50319== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+make: 'test-cases/expand-heredoc.txt' is up to date.
+
+Script done on 2025-03-27 17:23:46+09:00 [COMMAND_EXIT_CODE="0"]

@@ -1,0 +1,714 @@
+Script started on 2025-03-27 17:23:56+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="123" LINES="35"]
+==50784== Memcheck, a memory error detector
+==50784== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==50784== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==50784== Command: ../minishell
+==50784== 
+minishell$ echo Hello 1">"out
+Hello 1>out
+minishell$ echo $?
+0
+minishell$ cat out
+cat: out: No such file or directory
+minishell$ echo $?
+1
+minishell$ echo Hello 1 ">" out
+Hello 1 > out
+minishell$ echo $?
+0
+minishell$ cat out
+cat: out: No such file or directory
+minishell$ echo $?
+1
+minishell$ echo Hello 1">" out
+Hello 1> out
+minishell$ echo $?
+0
+minishell$ cat out
+cat: out: No such file or directory
+minishell$ echo $?
+1
+minishell$ echo Hello 1 ">"out
+Hello 1 >out
+minishell$ echo $?
+0
+minishell$ cat out
+cat: out: No such file or directory
+minishell$ echo $?
+1
+minishell$ 
+minishell$ echo Hello 1'>'out
+Hello 1>out
+minishell$ echo $?
+0
+minishell$ cat out
+cat: out: No such file or directory
+minishell$ echo $?
+1
+minishell$ echo Hello 1 '>' out
+Hello 1 > out
+minishell$ echo $?
+0
+minishell$ cat out
+cat: out: No such file or directory
+minishell$ echo $?
+1
+minishell$ echo Hello 1'>' out
+Hello 1> out
+minishell$ echo $?
+0
+minishell$ cat out
+cat: out: No such file or directory
+minishell$ echo $?
+1
+minishell$ echo Hello 1 '>'out
+Hello 1 >out
+minishell$ echo $?
+0
+minishell$ cat out
+cat: out: No such file or directory
+minishell$ echo $?
+1
+minishell$ 
+minishell$ echo 1">out"
+1>out
+minishell$ echo $?
+0
+minishell$ cat out
+cat: out: No such file or directory
+minishell$ echo $?
+1
+minishell$ echo ">out"
+>out
+minishell$ echo $?
+0
+minishell$ cat out
+cat: out: No such file or directory
+minishell$ echo $?
+1
+minishell$ 
+minishell$ echo 1">     out"
+1>     out
+minishell$ echo $?
+0
+minishell$ cat out
+cat: out: No such file or directory
+minishell$ echo $?
+1
+minishell$ echo ">     out"
+>     out
+minishell$ echo $?
+0
+minishell$ cat out
+cat: out: No such file or directory
+minishell$ echo $?
+1
+minishell$ 
+minishell$ echo Hello "1>out"
+Hello 1>out
+minishell$ echo $?
+0
+minishell$ cat out
+cat: out: No such file or directory
+minishell$ echo $?
+1
+minishell$ echo Hello "1>"out
+Hello 1>out
+minishell$ echo $?
+0
+minishell$ cat out
+cat: out: No such file or directory
+minishell$ echo $?
+1
+minishell$ echo Hello 1">out"
+Hello 1>out
+minishell$ echo $?
+0
+minishell$ cat out
+cat: out: No such file or directory
+minishell$ echo $?
+1
+minishell$ 
+minishell$ echo Hello 1"'>out'">>out
+minishell$ echo $?
+0
+minishell$ echo Hello 1"'out>'">>out
+minishell$ echo $?
+0
+minishell$ echo Hello 1"'out>'">>out
+minishell$ echo $?
+0
+minishell$ 
+minishell$ rm out
+minishell$ 
+minishell$ - パイプのトーカナイザー
+bash: -: command not found
+==50801== 
+==50801== HEAP SUMMARY:
+==50801==     in use at exit: 211,670 bytes in 447 blocks
+==50801==   total heap usage: 4,288 allocs, 3,841 frees, 753,668 bytes allocated
+==50801== 
+==50801== LEAK SUMMARY:
+==50801==    definitely lost: 0 bytes in 0 blocks
+==50801==    indirectly lost: 0 bytes in 0 blocks
+==50801==      possibly lost: 0 bytes in 0 blocks
+==50801==    still reachable: 211,670 bytes in 447 blocks
+==50801==         suppressed: 0 bytes in 0 blocks
+==50801== Reachable blocks (those to which a pointer was found) are not shown.
+==50801== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50801== 
+==50801== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo "Hello | ls"
+Hello | ls
+minishell$ echo $?
+0
+minishell$ echo 'Hello | ls' | cat
+Hello | ls
+==50802== 
+==50802== HEAP SUMMARY:
+==50802==     in use at exit: 211,828 bytes in 456 blocks
+==50802==   total heap usage: 4,401 allocs, 3,945 frees, 774,008 bytes allocated
+==50802== 
+==50802== LEAK SUMMARY:
+==50802==    definitely lost: 0 bytes in 0 blocks
+==50802==    indirectly lost: 0 bytes in 0 blocks
+==50802==      possibly lost: 0 bytes in 0 blocks
+==50802==    still reachable: 211,828 bytes in 456 blocks
+==50802==         suppressed: 0 bytes in 0 blocks
+==50802== Reachable blocks (those to which a pointer was found) are not shown.
+==50802== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50802== 
+==50802== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+0
+minishell$ echo "Hello "|"    |"  cat
+bash:     |: command not found
+==50804== 
+==50804== HEAP SUMMARY:
+==50804==     in use at exit: 211,935 bytes in 462 blocks
+==50804==   total heap usage: 4,498 allocs, 4,036 frees, 783,604 bytes allocated
+==50804== 
+==50804== LEAK SUMMARY:
+==50804==    definitely lost: 0 bytes in 0 blocks
+==50804==    indirectly lost: 0 bytes in 0 blocks
+==50804==      possibly lost: 0 bytes in 0 blocks
+==50804==    still reachable: 211,935 bytes in 462 blocks
+==50804==         suppressed: 0 bytes in 0 blocks
+==50804== Reachable blocks (those to which a pointer was found) are not shown.
+==50804== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50804== 
+==50804== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==50805== 
+==50805== HEAP SUMMARY:
+==50805==     in use at exit: 211,935 bytes in 462 blocks
+==50805==   total heap usage: 4,518 allocs, 4,056 frees, 779,738 bytes allocated
+==50805== 
+==50805== LEAK SUMMARY:
+==50805==    definitely lost: 0 bytes in 0 blocks
+==50805==    indirectly lost: 0 bytes in 0 blocks
+==50805==      possibly lost: 0 bytes in 0 blocks
+==50805==    still reachable: 211,935 bytes in 462 blocks
+==50805==         suppressed: 0 bytes in 0 blocks
+==50805== Reachable blocks (those to which a pointer was found) are not shown.
+==50805== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50805== 
+==50805== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ ls |  | cat
+bash: syntax error near unexpected token `|'
+minishell$ echo $?
+2
+minishell$ echo "Hello "|cat
+Hello 
+==50806== 
+==50806== HEAP SUMMARY:
+==50806==     in use at exit: 212,125 bytes in 474 blocks
+==50806==   total heap usage: 4,659 allocs, 4,185 frees, 808,730 bytes allocated
+==50806== 
+==50806== LEAK SUMMARY:
+==50806==    definitely lost: 0 bytes in 0 blocks
+==50806==    indirectly lost: 0 bytes in 0 blocks
+==50806==      possibly lost: 0 bytes in 0 blocks
+==50806==    still reachable: 212,125 bytes in 474 blocks
+==50806==         suppressed: 0 bytes in 0 blocks
+==50806== Reachable blocks (those to which a pointer was found) are not shown.
+==50806== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50806== 
+==50806== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+0
+minishell$ echo '"quoted | pipe"' | cat
+"quoted | pipe"
+==50808== 
+==50808== HEAP SUMMARY:
+==50808==     in use at exit: 212,234 bytes in 480 blocks
+==50808==   total heap usage: 4,746 allocs, 4,266 frees, 818,259 bytes allocated
+==50808== 
+==50808== LEAK SUMMARY:
+==50808==    definitely lost: 0 bytes in 0 blocks
+==50808==    indirectly lost: 0 bytes in 0 blocks
+==50808==      possibly lost: 0 bytes in 0 blocks
+==50808==    still reachable: 212,234 bytes in 480 blocks
+==50808==         suppressed: 0 bytes in 0 blocks
+==50808== Reachable blocks (those to which a pointer was found) are not shown.
+==50808== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50808== 
+==50808== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+0
+minishell$ "ls -l" | "cat" | "wc -l"
+bash: ls -l: command not found
+bash: wc -l: command not found
+==50810== 
+==50810== HEAP SUMMARY:
+==50810==     in use at exit: 212,340 bytes in 486 blocks
+==50810==   total heap usage: 4,859 allocs, 4,373 frees, 823,926 bytes allocated
+==50810== 
+==50810== LEAK SUMMARY:
+==50810==    definitely lost: 0 bytes in 0 blocks
+==50810==    indirectly lost: 0 bytes in 0 blocks
+==50810==      possibly lost: 0 bytes in 0 blocks
+==50810==    still reachable: 212,340 bytes in 486 blocks
+==50810==         suppressed: 0 bytes in 0 blocks
+==50810== Reachable blocks (those to which a pointer was found) are not shown.
+==50810== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50810== 
+==50810== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==50812== 
+==50812== HEAP SUMMARY:
+==50812==     in use at exit: 212,340 bytes in 486 blocks
+==50812==   total heap usage: 4,859 allocs, 4,373 frees, 823,926 bytes allocated
+==50812== 
+==50812== LEAK SUMMARY:
+==50812==    definitely lost: 0 bytes in 0 blocks
+==50812==    indirectly lost: 0 bytes in 0 blocks
+==50812==      possibly lost: 0 bytes in 0 blocks
+==50812==    still reachable: 212,340 bytes in 486 blocks
+==50812==         suppressed: 0 bytes in 0 blocks
+==50812== Reachable blocks (those to which a pointer was found) are not shown.
+==50812== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50812== 
+==50812== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ echo '| this is not a pipe' | cat
+| this is not a pipe
+==50813== 
+==50813== HEAP SUMMARY:
+==50813==     in use at exit: 212,454 bytes in 492 blocks
+==50813==   total heap usage: 4,926 allocs, 4,434 frees, 837,369 bytes allocated
+==50813== 
+==50813== LEAK SUMMARY:
+==50813==    definitely lost: 0 bytes in 0 blocks
+==50813==    indirectly lost: 0 bytes in 0 blocks
+==50813==      possibly lost: 0 bytes in 0 blocks
+==50813==    still reachable: 212,454 bytes in 492 blocks
+==50813==         suppressed: 0 bytes in 0 blocks
+==50813== Reachable blocks (those to which a pointer was found) are not shown.
+==50813== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50813== 
+==50813== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+0
+minishell$ echo hello | world | cat
+bash: world: command not found
+==50815== 
+==50815== HEAP SUMMARY:
+==50815==     in use at exit: 212,559 bytes in 498 blocks
+==50815==   total heap usage: 5,024 allocs, 4,526 frees, 846,968 bytes allocated
+==50815== 
+==50815== LEAK SUMMARY:
+==50815==    definitely lost: 0 bytes in 0 blocks
+==50815==    indirectly lost: 0 bytes in 0 blocks
+==50815==      possibly lost: 0 bytes in 0 blocks
+==50815==    still reachable: 212,559 bytes in 498 blocks
+==50815==         suppressed: 0 bytes in 0 blocks
+==50815== Reachable blocks (those to which a pointer was found) are not shown.
+==50815== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50815== 
+==50815== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==50816== 
+==50816== HEAP SUMMARY:
+==50816==     in use at exit: 212,559 bytes in 498 blocks
+==50816==   total heap usage: 5,044 allocs, 4,546 frees, 843,102 bytes allocated
+==50816== 
+==50816== LEAK SUMMARY:
+==50816==    definitely lost: 0 bytes in 0 blocks
+==50816==    indirectly lost: 0 bytes in 0 blocks
+==50816==      possibly lost: 0 bytes in 0 blocks
+==50816==    still reachable: 212,559 bytes in 498 blocks
+==50816==         suppressed: 0 bytes in 0 blocks
+==50816== Reachable blocks (those to which a pointer was found) are not shown.
+==50816== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50816== 
+==50816== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+0
+minishell$ echo 'escaped \| pipe' | tr -d '\'
+tr: warning: an unescaped backslash at end of string is not portable
+escaped | pipe
+==50818== 
+==50818== HEAP SUMMARY:
+==50818==     in use at exit: 212,674 bytes in 504 blocks
+==50818==   total heap usage: 5,127 allocs, 4,623 frees, 856,691 bytes allocated
+==50818== 
+==50818== LEAK SUMMARY:
+==50818==    definitely lost: 0 bytes in 0 blocks
+==50818==    indirectly lost: 0 bytes in 0 blocks
+==50818==      possibly lost: 0 bytes in 0 blocks
+==50818==    still reachable: 212,674 bytes in 504 blocks
+==50818==         suppressed: 0 bytes in 0 blocks
+==50818== Reachable blocks (those to which a pointer was found) are not shown.
+==50818== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50818== 
+==50818== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+0
+minishell$ echo "  hello   " | sed 's/ //g'
+hello
+==50820== 
+==50820== HEAP SUMMARY:
+==50820==     in use at exit: 212,787 bytes in 510 blocks
+==50820==   total heap usage: 5,223 allocs, 4,713 frees, 866,329 bytes allocated
+==50820== 
+==50820== LEAK SUMMARY:
+==50820==    definitely lost: 0 bytes in 0 blocks
+==50820==    indirectly lost: 0 bytes in 0 blocks
+==50820==      possibly lost: 0 bytes in 0 blocks
+==50820==    still reachable: 212,787 bytes in 510 blocks
+==50820==         suppressed: 0 bytes in 0 blocks
+==50820== Reachable blocks (those to which a pointer was found) are not shown.
+==50820== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50820== 
+==50820== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+0
+minishell$ cat   file.txt  |  grep "test"
+cat: file.txt: No such file or directory
+minishell$ echo $?
+1
+minishell$ echo "nested 'quotes' | are tricky" | cat
+nested 'quotes' | are tricky
+==50824== 
+==50824== HEAP SUMMARY:
+==50824==     in use at exit: 213,020 bytes in 522 blocks
+==50824==   total heap usage: 5,408 allocs, 4,886 frees, 885,629 bytes allocated
+==50824== 
+==50824== LEAK SUMMARY:
+==50824==    definitely lost: 0 bytes in 0 blocks
+==50824==    indirectly lost: 0 bytes in 0 blocks
+==50824==      possibly lost: 0 bytes in 0 blocks
+==50824==    still reachable: 213,020 bytes in 522 blocks
+==50824==         suppressed: 0 bytes in 0 blocks
+==50824== Reachable blocks (those to which a pointer was found) are not shown.
+==50824== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50824== 
+==50824== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+0
+minishell$ 
+minishell$ - パイプのシンタックスエラー
+bash: -: command not found
+==50826== 
+==50826== HEAP SUMMARY:
+==50826==     in use at exit: 213,179 bytes in 531 blocks
+==50826==   total heap usage: 5,525 allocs, 4,994 frees, 893,792 bytes allocated
+==50826== 
+==50826== LEAK SUMMARY:
+==50826==    definitely lost: 0 bytes in 0 blocks
+==50826==    indirectly lost: 0 bytes in 0 blocks
+==50826==      possibly lost: 0 bytes in 0 blocks
+==50826==    still reachable: 213,179 bytes in 531 blocks
+==50826==         suppressed: 0 bytes in 0 blocks
+==50826== Reachable blocks (those to which a pointer was found) are not shown.
+==50826== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50826== 
+==50826== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ |
+bash: syntax error near unexpected token `|'
+minishell$ echo $?
+2
+minishell$ |ls      "  "
+bash: syntax error near unexpected token `|'
+minishell$ echo $?
+2
+minishell$ "  "|"|  "
+bash:   : command not found
+bash: |  : command not found
+==50827== 
+==50827== HEAP SUMMARY:
+==50827==     in use at exit: 213,402 bytes in 546 blocks
+==50827==   total heap usage: 5,707 allocs, 5,161 frees, 927,615 bytes allocated
+==50827== 
+==50828== 
+==50828== HEAP SUMMARY:
+==50828==     in use at exit: 213,402 bytes in 546 blocks
+==50828==   total heap usage: 5,707 allocs, 5,161 frees, 927,627 bytes allocated
+==50828== 
+==50827== LEAK SUMMARY:
+==50827==    definitely lost: 0 bytes in 0 blocks
+==50827==    indirectly lost: 0 bytes in 0 blocks
+==50827==      possibly lost: 0 bytes in 0 blocks
+==50827==    still reachable: 213,402 bytes in 546 blocks
+==50827==         suppressed: 0 bytes in 0 blocks
+==50827== Reachable blocks (those to which a pointer was found) are not shown.
+==50827== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50827== 
+==50827== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==50828== LEAK SUMMARY:
+==50828==    definitely lost: 0 bytes in 0 blocks
+==50828==    indirectly lost: 0 bytes in 0 blocks
+==50828==      possibly lost: 0 bytes in 0 blocks
+==50828==    still reachable: 213,402 bytes in 546 blocks
+==50828==         suppressed: 0 bytes in 0 blocks
+==50828== Reachable blocks (those to which a pointer was found) are not shown.
+==50828== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50828== 
+==50828== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ | ls
+bash: syntax error near unexpected token `|'
+minishell$ echo $?
+2
+minishell$ ls |      | cat
+bash: syntax error near unexpected token `|'
+minishell$ echo $?
+2
+minishell$ ls |  "  "    | cat
+bash:   : command not found
+==50830== 
+==50830== HEAP SUMMARY:
+==50830==     in use at exit: 213,683 bytes in 564 blocks
+==50830==   total heap usage: 5,945 allocs, 5,381 frees, 968,441 bytes allocated
+==50830== 
+==50830== LEAK SUMMARY:
+==50830==    definitely lost: 0 bytes in 0 blocks
+==50830==    indirectly lost: 0 bytes in 0 blocks
+==50830==      possibly lost: 0 bytes in 0 blocks
+==50830==    still reachable: 213,683 bytes in 564 blocks
+==50830==         suppressed: 0 bytes in 0 blocks
+==50830== Reachable blocks (those to which a pointer was found) are not shown.
+==50830== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50830== 
+==50830== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+0
+minishell$ "|||||"|ls
+bash: |||||: command not found
+Makefile   ignore_readline.supp  leaks@76d7a17.tar  main     test-cases
+README.md  leaks@76d7a17	 libdebug.a	    scripts  test.sh
+==50832== 
+==50832== HEAP SUMMARY:
+==50832==     in use at exit: 213,774 bytes in 570 blocks
+==50832==   total heap usage: 6,024 allocs, 5,454 frees, 977,772 bytes allocated
+==50832== 
+==50832== LEAK SUMMARY:
+==50832==    definitely lost: 0 bytes in 0 blocks
+==50832==    indirectly lost: 0 bytes in 0 blocks
+==50832==      possibly lost: 0 bytes in 0 blocks
+==50832==    still reachable: 213,774 bytes in 570 blocks
+==50832==         suppressed: 0 bytes in 0 blocks
+==50832== Reachable blocks (those to which a pointer was found) are not shown.
+==50832== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50832== 
+==50832== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ l|l|l
+bash: l: command not found
+bash: l: command not found
+bash: l: command not found
+==50834== 
+==50834== HEAP SUMMARY:
+==50834==     in use at exit: 213,860 bytes in 576 blocks
+==50834==   total heap usage: 6,113 allocs, 5,537 frees, 987,091 bytes allocated
+==50834== 
+==50835== 
+==50835== HEAP SUMMARY:
+==50835==     in use at exit: 213,860 bytes in 576 blocks
+==50835==   total heap usage: 6,113 allocs, 5,537 frees, 987,091 bytes allocated
+==50835== 
+==50834== LEAK SUMMARY:
+==50834==    definitely lost: 0 bytes in 0 blocks
+==50834==    indirectly lost: 0 bytes in 0 blocks
+==50834==      possibly lost: 0 bytes in 0 blocks
+==50834==    still reachable: 213,860 bytes in 576 blocks
+==50834==         suppressed: 0 bytes in 0 blocks
+==50834== Reachable blocks (those to which a pointer was found) are not shown.
+==50834== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50834== 
+==50834== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==50836== 
+==50836== HEAP SUMMARY:
+==50836==     in use at exit: 213,860 bytes in 576 blocks
+==50836==   total heap usage: 6,113 allocs, 5,537 frees, 987,091 bytes allocated
+==50836== 
+==50835== LEAK SUMMARY:
+==50835==    definitely lost: 0 bytes in 0 blocks
+==50835==    indirectly lost: 0 bytes in 0 blocks
+==50835==      possibly lost: 0 bytes in 0 blocks
+==50835==    still reachable: 213,860 bytes in 576 blocks
+==50835==         suppressed: 0 bytes in 0 blocks
+==50835== Reachable blocks (those to which a pointer was found) are not shown.
+==50835== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50835== 
+==50835== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==50836== LEAK SUMMARY:
+==50836==    definitely lost: 0 bytes in 0 blocks
+==50836==    indirectly lost: 0 bytes in 0 blocks
+==50836==      possibly lost: 0 bytes in 0 blocks
+==50836==    still reachable: 213,860 bytes in 576 blocks
+==50836==         suppressed: 0 bytes in 0 blocks
+==50836== Reachable blocks (those to which a pointer was found) are not shown.
+==50836== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50836== 
+==50836== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ "         "
+bash:          : command not found
+==50837== 
+==50837== HEAP SUMMARY:
+==50837==     in use at exit: 213,952 bytes in 582 blocks
+==50837==   total heap usage: 6,181 allocs, 5,599 frees, 996,406 bytes allocated
+==50837== 
+==50837== LEAK SUMMARY:
+==50837==    definitely lost: 0 bytes in 0 blocks
+==50837==    indirectly lost: 0 bytes in 0 blocks
+==50837==      possibly lost: 0 bytes in 0 blocks
+==50837==    still reachable: 213,952 bytes in 582 blocks
+==50837==         suppressed: 0 bytes in 0 blocks
+==50837== Reachable blocks (those to which a pointer was found) are not shown.
+==50837== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50837== 
+==50837== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$           | ls
+bash: syntax error near unexpected token `|'
+minishell$ echo $?
+2
+minishell$ 
+minishell$ - クォートまわり
+bash: -: command not found
+==50838== 
+==50838== HEAP SUMMARY:
+==50838==     in use at exit: 214,188 bytes in 597 blocks
+==50838==   total heap usage: 6,346 allocs, 5,749 frees, 1,023,759 bytes allocated
+==50838== 
+==50838== LEAK SUMMARY:
+==50838==    definitely lost: 0 bytes in 0 blocks
+==50838==    indirectly lost: 0 bytes in 0 blocks
+==50838==      possibly lost: 0 bytes in 0 blocks
+==50838==    still reachable: 214,188 bytes in 597 blocks
+==50838==         suppressed: 0 bytes in 0 blocks
+==50838== Reachable blocks (those to which a pointer was found) are not shown.
+==50838== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50838== 
+==50838== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$  "   "  " "  " " ""
+bash:    : command not found
+==50839== 
+==50839== HEAP SUMMARY:
+==50839==     in use at exit: 214,244 bytes in 600 blocks
+==50839==   total heap usage: 6,393 allocs, 5,793 frees, 1,026,414 bytes allocated
+==50839== 
+==50839== LEAK SUMMARY:
+==50839==    definitely lost: 0 bytes in 0 blocks
+==50839==    indirectly lost: 0 bytes in 0 blocks
+==50839==      possibly lost: 0 bytes in 0 blocks
+==50839==    still reachable: 214,244 bytes in 600 blocks
+==50839==         suppressed: 0 bytes in 0 blocks
+==50839== Reachable blocks (those to which a pointer was found) are not shown.
+==50839== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50839== 
+==50839== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ |'
+bash: syntax error near unexpected token `|'
+minishell$ echo $?
+2
+minishell$ |"
+bash: syntax error near unexpected token `|'
+minishell$ echo $?
+2
+minishell$ |'   "
+bash: syntax error near unexpected token `|'
+minishell$ echo $?
+2
+minishell$ "Hello " | "|"Hello " | "
+bash: Hello : command not found
+bash: |Hello: command not found
+==50840== 
+==50840== HEAP SUMMARY:
+==50840==     in use at exit: 214,603 bytes in 624 blocks
+==50840==   total heap usage: 6,707 allocs, 6,083 frees, 1,083,003 bytes allocated
+==50840== 
+==50841== 
+==50841== HEAP SUMMARY:
+==50841==     in use at exit: 214,603 bytes in 624 blocks
+==50841==   total heap usage: 6,707 allocs, 6,083 frees, 1,083,003 bytes allocated
+==50841== 
+==50840== LEAK SUMMARY:
+==50840==    definitely lost: 0 bytes in 0 blocks
+==50840==    indirectly lost: 0 bytes in 0 blocks
+==50840==      possibly lost: 0 bytes in 0 blocks
+==50840==    still reachable: 214,603 bytes in 624 blocks
+==50840==         suppressed: 0 bytes in 0 blocks
+==50840== Reachable blocks (those to which a pointer was found) are not shown.
+==50840== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50840== 
+==50840== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==50841== LEAK SUMMARY:
+==50841==    definitely lost: 0 bytes in 0 blocks
+==50841==    indirectly lost: 0 bytes in 0 blocks
+==50841==      possibly lost: 0 bytes in 0 blocks
+==50841==    still reachable: 214,603 bytes in 624 blocks
+==50841==         suppressed: 0 bytes in 0 blocks
+==50841== Reachable blocks (those to which a pointer was found) are not shown.
+==50841== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50841== 
+==50841== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ 0""    \t""""           777'''''''       ''''""""""                 '''\0
+bash: 0: command not found
+==50842== 
+==50842== HEAP SUMMARY:
+==50842==     in use at exit: 214,757 bytes in 630 blocks
+==50842==   total heap usage: 6,812 allocs, 6,182 frees, 1,092,912 bytes allocated
+==50842== 
+==50842== LEAK SUMMARY:
+==50842==    definitely lost: 0 bytes in 0 blocks
+==50842==    indirectly lost: 0 bytes in 0 blocks
+==50842==      possibly lost: 0 bytes in 0 blocks
+==50842==    still reachable: 214,757 bytes in 630 blocks
+==50842==         suppressed: 0 bytes in 0 blocks
+==50842== Reachable blocks (those to which a pointer was found) are not shown.
+==50842== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50842== 
+==50842== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ exit
+==50784== 
+==50784== HEAP SUMMARY:
+==50784==     in use at exit: 214,801 bytes in 633 blocks
+==50784==   total heap usage: 6,849 allocs, 6,216 frees, 1,103,689 bytes allocated
+==50784== 
+==50784== LEAK SUMMARY:
+==50784==    definitely lost: 0 bytes in 0 blocks
+==50784==    indirectly lost: 0 bytes in 0 blocks
+==50784==      possibly lost: 0 bytes in 0 blocks
+==50784==    still reachable: 214,801 bytes in 633 blocks
+==50784==         suppressed: 0 bytes in 0 blocks
+==50784== Reachable blocks (those to which a pointer was found) are not shown.
+==50784== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50784== 
+==50784== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+make: 'test-cases/tokenizer.txt' is up to date.
+
+Script done on 2025-03-27 17:23:57+09:00 [COMMAND_EXIT_CODE="0"]

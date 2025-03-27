@@ -1,0 +1,28 @@
+Script started on 2025-03-27 17:23:50+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="123" LINES="35"]
+==50661== Memcheck, a memory error detector
+==50661== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==50661== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==50661== Command: ../minishell
+==50661== 
+minishell$ false
+minishell$ echo $?
+1
+minishell$ exit
+==50661== 
+==50661== HEAP SUMMARY:
+==50661==     in use at exit: 208,267 bytes in 228 blocks
+==50661==   total heap usage: 868 allocs, 640 frees, 259,046 bytes allocated
+==50661== 
+==50661== LEAK SUMMARY:
+==50661==    definitely lost: 0 bytes in 0 blocks
+==50661==    indirectly lost: 0 bytes in 0 blocks
+==50661==      possibly lost: 0 bytes in 0 blocks
+==50661==    still reachable: 208,267 bytes in 228 blocks
+==50661==         suppressed: 0 bytes in 0 blocks
+==50661== Reachable blocks (those to which a pointer was found) are not shown.
+==50661== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50661== 
+==50661== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+make: 'test-cases/false.txt' is up to date.
+
+Script done on 2025-03-27 17:23:50+09:00 [COMMAND_EXIT_CODE="0"]

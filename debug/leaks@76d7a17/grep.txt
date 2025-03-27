@@ -1,0 +1,33 @@
+Script started on 2025-03-27 17:23:50+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="123" LINES="35"]
+==50668== Memcheck, a memory error detector
+==50668== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==50668== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==50668== Command: ../minishell
+==50668== 
+minishell$ ls | grep sh
+test.sh
+minishell$ echo $?
+0
+minishell$ grep aiueo abcde
+grep: abcde: No such file or directory
+minishell$ echo $?
+2
+minishell$ exit
+==50668== 
+==50668== HEAP SUMMARY:
+==50668==     in use at exit: 208,371 bytes in 234 blocks
+==50668==   total heap usage: 970 allocs, 736 frees, 268,661 bytes allocated
+==50668== 
+==50668== LEAK SUMMARY:
+==50668==    definitely lost: 0 bytes in 0 blocks
+==50668==    indirectly lost: 0 bytes in 0 blocks
+==50668==      possibly lost: 0 bytes in 0 blocks
+==50668==    still reachable: 208,371 bytes in 234 blocks
+==50668==         suppressed: 0 bytes in 0 blocks
+==50668== Reachable blocks (those to which a pointer was found) are not shown.
+==50668== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50668== 
+==50668== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+make: 'test-cases/grep.txt' is up to date.
+
+Script done on 2025-03-27 17:23:51+09:00 [COMMAND_EXIT_CODE="0"]

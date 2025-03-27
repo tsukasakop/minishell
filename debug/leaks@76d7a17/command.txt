@@ -1,0 +1,1917 @@
+Script started on 2025-03-27 17:23:25+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="123" LINES="35"]
+==50108== Memcheck, a memory error detector
+==50108== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==50108== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==50108== Command: ../minishell
+==50108== 
+minishell$ ls
+Makefile   ignore_readline.supp  leaks@76d7a17.tar  main     test-cases
+README.md  leaks@76d7a17	 libdebug.a	    scripts  test.sh
+minishell$ echo $?
+0
+minishell$ ls -0
+ls: invalid option -- '0'
+Try 'ls --help' for more information.
+minishell$ echo $?
+2
+minishell$ 
+minishell$ aaaaa
+bash: aaaaa: command not found
+==50111== 
+==50111== HEAP SUMMARY:
+==50111==     in use at exit: 208,429 bytes in 240 blocks
+==50111==   total heap usage: 982 allocs, 742 frees, 268,833 bytes allocated
+==50111== 
+==50111== LEAK SUMMARY:
+==50111==    definitely lost: 0 bytes in 0 blocks
+==50111==    indirectly lost: 0 bytes in 0 blocks
+==50111==      possibly lost: 0 bytes in 0 blocks
+==50111==    still reachable: 208,429 bytes in 240 blocks
+==50111==         suppressed: 0 bytes in 0 blocks
+==50111== Reachable blocks (those to which a pointer was found) are not shown.
+==50111== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50111== 
+==50111== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ /aaaaa
+bash: /aaaaa: No such file or directory
+==50112== 
+==50112== HEAP SUMMARY:
+==50112==     in use at exit: 208,516 bytes in 246 blocks
+==50112==   total heap usage: 1,015 allocs, 769 frees, 277,425 bytes allocated
+==50112== 
+==50112== LEAK SUMMARY:
+==50112==    definitely lost: 0 bytes in 0 blocks
+==50112==    indirectly lost: 0 bytes in 0 blocks
+==50112==      possibly lost: 0 bytes in 0 blocks
+==50112==    still reachable: 208,516 bytes in 246 blocks
+==50112==         suppressed: 0 bytes in 0 blocks
+==50112== Reachable blocks (those to which a pointer was found) are not shown.
+==50112== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50112== 
+==50112== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ ./aa/aa
+bash: ./aa/aa: No such file or directory
+==50113== 
+==50113== HEAP SUMMARY:
+==50113==     in use at exit: 208,604 bytes in 252 blocks
+==50113==   total heap usage: 1,082 allocs, 830 frees, 286,609 bytes allocated
+==50113== 
+==50113== LEAK SUMMARY:
+==50113==    definitely lost: 0 bytes in 0 blocks
+==50113==    indirectly lost: 0 bytes in 0 blocks
+==50113==      possibly lost: 0 bytes in 0 blocks
+==50113==    still reachable: 208,604 bytes in 252 blocks
+==50113==         suppressed: 0 bytes in 0 blocks
+==50113== Reachable blocks (those to which a pointer was found) are not shown.
+==50113== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50113== 
+==50113== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ ./
+bash: ./: Is a directory
+==50114== 
+==50114== HEAP SUMMARY:
+==50114==     in use at exit: 208,687 bytes in 258 blocks
+==50114==   total heap usage: 1,168 allocs, 910 frees, 302,387 bytes allocated
+==50114== 
+==50114== LEAK SUMMARY:
+==50114==    definitely lost: 0 bytes in 0 blocks
+==50114==    indirectly lost: 0 bytes in 0 blocks
+==50114==      possibly lost: 0 bytes in 0 blocks
+==50114==    still reachable: 208,687 bytes in 258 blocks
+==50114==         suppressed: 0 bytes in 0 blocks
+==50114== Reachable blocks (those to which a pointer was found) are not shown.
+==50114== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50114== 
+==50114== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+126
+minishell$ ../
+bash: ../: Is a directory
+==50115== 
+==50115== HEAP SUMMARY:
+==50115==     in use at exit: 208,771 bytes in 264 blocks
+==50115==   total heap usage: 1,235 allocs, 971 frees, 311,539 bytes allocated
+==50115== 
+==50115== LEAK SUMMARY:
+==50115==    definitely lost: 0 bytes in 0 blocks
+==50115==    indirectly lost: 0 bytes in 0 blocks
+==50115==      possibly lost: 0 bytes in 0 blocks
+==50115==    still reachable: 208,771 bytes in 264 blocks
+==50115==         suppressed: 0 bytes in 0 blocks
+==50115== Reachable blocks (those to which a pointer was found) are not shown.
+==50115== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50115== 
+==50115== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+126
+minishell$ ./scripts
+bash: ./scripts: Is a directory
+==50116== 
+==50116== HEAP SUMMARY:
+==50116==     in use at exit: 208,861 bytes in 270 blocks
+==50116==   total heap usage: 1,302 allocs, 1,032 frees, 320,744 bytes allocated
+==50116== 
+==50116== LEAK SUMMARY:
+==50116==    definitely lost: 0 bytes in 0 blocks
+==50116==    indirectly lost: 0 bytes in 0 blocks
+==50116==      possibly lost: 0 bytes in 0 blocks
+==50116==    still reachable: 208,861 bytes in 270 blocks
+==50116==         suppressed: 0 bytes in 0 blocks
+==50116== Reachable blocks (those to which a pointer was found) are not shown.
+==50116== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50116== 
+==50116== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+126
+minishell$ $HOME
+bash: /home/mfunakos: Is a directory
+==50117== 
+==50117== HEAP SUMMARY:
+==50117==     in use at exit: 208,947 bytes in 276 blocks
+==50117==   total heap usage: 1,370 allocs, 1,094 frees, 329,948 bytes allocated
+==50117== 
+==50117== LEAK SUMMARY:
+==50117==    definitely lost: 0 bytes in 0 blocks
+==50117==    indirectly lost: 0 bytes in 0 blocks
+==50117==      possibly lost: 0 bytes in 0 blocks
+==50117==    still reachable: 208,947 bytes in 276 blocks
+==50117==         suppressed: 0 bytes in 0 blocks
+==50117== Reachable blocks (those to which a pointer was found) are not shown.
+==50117== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50117== 
+==50117== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+126
+minishell$ 
+minishell$ - 自作コマンドを作成
+bash: -: command not found
+==50118== 
+==50118== HEAP SUMMARY:
+==50118==     in use at exit: 209,094 bytes in 285 blocks
+==50118==   total heap usage: 1,478 allocs, 1,193 frees, 335,696 bytes allocated
+==50118== 
+==50118== LEAK SUMMARY:
+==50118==    definitely lost: 0 bytes in 0 blocks
+==50118==    indirectly lost: 0 bytes in 0 blocks
+==50118==      possibly lost: 0 bytes in 0 blocks
+==50118==    still reachable: 209,094 bytes in 285 blocks
+==50118==         suppressed: 0 bytes in 0 blocks
+==50118== Reachable blocks (those to which a pointer was found) are not shown.
+==50118== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50118== 
+==50118== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ mkdir /tmp/minishell_cmd
+mkdir: cannot create directory '/tmp/minishell_cmd': File exists
+minishell$ echo $?
+1
+minishell$ cp scripts/print_hello /tmp/minishell_cmd
+minishell$ echo $?
+0
+minishell$ export PATH=/tmp/minishell_cmd:$PATH
+minishell$ echo $?
+0
+minishell$ 
+minishell$ -- 実行権限あり
+bash: --: command not found
+==50123== 
+==50123== HEAP SUMMARY:
+==50123==     in use at exit: 209,533 bytes in 309 blocks
+==50123==   total heap usage: 1,769 allocs, 1,460 frees, 369,949 bytes allocated
+==50123== 
+==50123== LEAK SUMMARY:
+==50123==    definitely lost: 0 bytes in 0 blocks
+==50123==    indirectly lost: 0 bytes in 0 blocks
+==50123==      possibly lost: 0 bytes in 0 blocks
+==50123==    still reachable: 209,533 bytes in 309 blocks
+==50123==         suppressed: 0 bytes in 0 blocks
+==50123== Reachable blocks (those to which a pointer was found) are not shown.
+==50123== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50123== 
+==50123== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ chmod 755 /tmp/minishell_cmd/print_hello
+minishell$ echo $?
+0
+minishell$ print_hello
+Hello, World!
+minishell$ echo $?
+0
+minishell$ .print_hello
+bash: .print_hello: command not found
+==50128== 
+==50128== HEAP SUMMARY:
+==50128==     in use at exit: 209,795 bytes in 324 blocks
+==50128==   total heap usage: 1,941 allocs, 1,617 frees, 391,273 bytes allocated
+==50128== 
+==50128== LEAK SUMMARY:
+==50128==    definitely lost: 0 bytes in 0 blocks
+==50128==    indirectly lost: 0 bytes in 0 blocks
+==50128==      possibly lost: 0 bytes in 0 blocks
+==50128==    still reachable: 209,795 bytes in 324 blocks
+==50128==         suppressed: 0 bytes in 0 blocks
+==50128== Reachable blocks (those to which a pointer was found) are not shown.
+==50128== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50128== 
+==50128== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ ./print_hello
+bash: ./print_hello: No such file or directory
+==50129== 
+==50129== HEAP SUMMARY:
+==50129==     in use at exit: 209,889 bytes in 330 blocks
+==50129==   total heap usage: 1,971 allocs, 1,641 frees, 399,765 bytes allocated
+==50129== 
+==50129== LEAK SUMMARY:
+==50129==    definitely lost: 0 bytes in 0 blocks
+==50129==    indirectly lost: 0 bytes in 0 blocks
+==50129==      possibly lost: 0 bytes in 0 blocks
+==50129==    still reachable: 209,889 bytes in 330 blocks
+==50129==         suppressed: 0 bytes in 0 blocks
+==50129== Reachable blocks (those to which a pointer was found) are not shown.
+==50129== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50129== 
+==50129== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ /print_hello
+bash: /print_hello: No such file or directory
+==50130== 
+==50130== HEAP SUMMARY:
+==50130==     in use at exit: 209,982 bytes in 336 blocks
+==50130==   total heap usage: 2,038 allocs, 1,702 frees, 408,987 bytes allocated
+==50130== 
+==50130== LEAK SUMMARY:
+==50130==    definitely lost: 0 bytes in 0 blocks
+==50130==    indirectly lost: 0 bytes in 0 blocks
+==50130==      possibly lost: 0 bytes in 0 blocks
+==50130==    still reachable: 209,982 bytes in 336 blocks
+==50130==         suppressed: 0 bytes in 0 blocks
+==50130== Reachable blocks (those to which a pointer was found) are not shown.
+==50130== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50130== 
+==50130== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ tmp/minishell_cmd/print_hello
+bash: tmp/minishell_cmd/print_hello: No such file or directory
+==50131== 
+==50131== HEAP SUMMARY:
+==50131==     in use at exit: 210,092 bytes in 342 blocks
+==50131==   total heap usage: 2,106 allocs, 1,764 frees, 418,395 bytes allocated
+==50131== 
+==50131== LEAK SUMMARY:
+==50131==    definitely lost: 0 bytes in 0 blocks
+==50131==    indirectly lost: 0 bytes in 0 blocks
+==50131==      possibly lost: 0 bytes in 0 blocks
+==50131==    still reachable: 210,092 bytes in 342 blocks
+==50131==         suppressed: 0 bytes in 0 blocks
+==50131== Reachable blocks (those to which a pointer was found) are not shown.
+==50131== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50131== 
+==50131== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ /tmp/minishell_cmd/print_hello
+Hello, World!
+minishell$ echo $?
+0
+minishell$ ./tmp/minishell_cmd/print_hello
+bash: ./tmp/minishell_cmd/print_hello: No such file or directory
+==50133== 
+==50133== HEAP SUMMARY:
+==50133==     in use at exit: 210,315 bytes in 354 blocks
+==50133==   total heap usage: 2,242 allocs, 1,888 frees, 437,195 bytes allocated
+==50133== 
+==50133== LEAK SUMMARY:
+==50133==    definitely lost: 0 bytes in 0 blocks
+==50133==    indirectly lost: 0 bytes in 0 blocks
+==50133==      possibly lost: 0 bytes in 0 blocks
+==50133==    still reachable: 210,315 bytes in 354 blocks
+==50133==         suppressed: 0 bytes in 0 blocks
+==50133== Reachable blocks (those to which a pointer was found) are not shown.
+==50133== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50133== 
+==50133== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ 
+minishell$ 
+minishell$ -- 実行権限を削除
+bash: --: command not found
+==50134== 
+==50134== HEAP SUMMARY:
+==50134==     in use at exit: 210,494 bytes in 366 blocks
+==50134==   total heap usage: 2,379 allocs, 2,013 frees, 451,685 bytes allocated
+==50134== 
+==50134== LEAK SUMMARY:
+==50134==    definitely lost: 0 bytes in 0 blocks
+==50134==    indirectly lost: 0 bytes in 0 blocks
+==50134==      possibly lost: 0 bytes in 0 blocks
+==50134==    still reachable: 210,494 bytes in 366 blocks
+==50134==         suppressed: 0 bytes in 0 blocks
+==50134== Reachable blocks (those to which a pointer was found) are not shown.
+==50134== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50134== 
+==50134== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ chmod -x /tmp/minishell_cmd/print_hello
+minishell$ echo $?
+0
+minishell$ print_hello
+bash: print_hello: Permission denied
+==50136== 
+==50136== HEAP SUMMARY:
+==50136==     in use at exit: 210,662 bytes in 375 blocks
+==50136==   total heap usage: 2,494 allocs, 2,119 frees, 474,404 bytes allocated
+==50136== 
+==50136== LEAK SUMMARY:
+==50136==    definitely lost: 0 bytes in 0 blocks
+==50136==    indirectly lost: 0 bytes in 0 blocks
+==50136==      possibly lost: 0 bytes in 0 blocks
+==50136==    still reachable: 210,662 bytes in 375 blocks
+==50136==         suppressed: 0 bytes in 0 blocks
+==50136== Reachable blocks (those to which a pointer was found) are not shown.
+==50136== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50136== 
+==50136== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+126
+minishell$ .print_hello
+bash: .print_hello: command not found
+==50137== 
+==50137== HEAP SUMMARY:
+==50137==     in use at exit: 210,755 bytes in 381 blocks
+==50137==   total heap usage: 2,551 allocs, 2,170 frees, 473,009 bytes allocated
+==50137== 
+==50137== LEAK SUMMARY:
+==50137==    definitely lost: 0 bytes in 0 blocks
+==50137==    indirectly lost: 0 bytes in 0 blocks
+==50137==      possibly lost: 0 bytes in 0 blocks
+==50137==    still reachable: 210,755 bytes in 381 blocks
+==50137==         suppressed: 0 bytes in 0 blocks
+==50137== Reachable blocks (those to which a pointer was found) are not shown.
+==50137== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50137== 
+==50137== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ ./print_hello
+bash: ./print_hello: No such file or directory
+==50138== 
+==50138== HEAP SUMMARY:
+==50138==     in use at exit: 210,849 bytes in 387 blocks
+==50138==   total heap usage: 2,581 allocs, 2,194 frees, 481,501 bytes allocated
+==50138== 
+==50138== LEAK SUMMARY:
+==50138==    definitely lost: 0 bytes in 0 blocks
+==50138==    indirectly lost: 0 bytes in 0 blocks
+==50138==      possibly lost: 0 bytes in 0 blocks
+==50138==    still reachable: 210,849 bytes in 387 blocks
+==50138==         suppressed: 0 bytes in 0 blocks
+==50138== Reachable blocks (those to which a pointer was found) are not shown.
+==50138== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50138== 
+==50138== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ /print_hello
+bash: /print_hello: No such file or directory
+==50139== 
+==50139== HEAP SUMMARY:
+==50139==     in use at exit: 210,942 bytes in 393 blocks
+==50139==   total heap usage: 2,648 allocs, 2,255 frees, 490,723 bytes allocated
+==50139== 
+==50139== LEAK SUMMARY:
+==50139==    definitely lost: 0 bytes in 0 blocks
+==50139==    indirectly lost: 0 bytes in 0 blocks
+==50139==      possibly lost: 0 bytes in 0 blocks
+==50139==    still reachable: 210,942 bytes in 393 blocks
+==50139==         suppressed: 0 bytes in 0 blocks
+==50139== Reachable blocks (those to which a pointer was found) are not shown.
+==50139== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50139== 
+==50139== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ tmp/minishell_cmd/print_hello
+bash: tmp/minishell_cmd/print_hello: No such file or directory
+==50140== 
+==50140== HEAP SUMMARY:
+==50140==     in use at exit: 211,052 bytes in 399 blocks
+==50140==   total heap usage: 2,716 allocs, 2,317 frees, 500,131 bytes allocated
+==50140== 
+==50140== LEAK SUMMARY:
+==50140==    definitely lost: 0 bytes in 0 blocks
+==50140==    indirectly lost: 0 bytes in 0 blocks
+==50140==      possibly lost: 0 bytes in 0 blocks
+==50140==    still reachable: 211,052 bytes in 399 blocks
+==50140==         suppressed: 0 bytes in 0 blocks
+==50140== Reachable blocks (those to which a pointer was found) are not shown.
+==50140== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50140== 
+==50140== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ /tmp/minishell_cmd/print_hello
+bash: /tmp/minishell_cmd/print_hello: Permission denied
+==50141== 
+==50141== HEAP SUMMARY:
+==50141==     in use at exit: 211,163 bytes in 405 blocks
+==50141==   total heap usage: 2,816 allocs, 2,411 frees, 520,579 bytes allocated
+==50141== 
+==50141== LEAK SUMMARY:
+==50141==    definitely lost: 0 bytes in 0 blocks
+==50141==    indirectly lost: 0 bytes in 0 blocks
+==50141==      possibly lost: 0 bytes in 0 blocks
+==50141==    still reachable: 211,163 bytes in 405 blocks
+==50141==         suppressed: 0 bytes in 0 blocks
+==50141== Reachable blocks (those to which a pointer was found) are not shown.
+==50141== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50141== 
+==50141== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+126
+minishell$ ./tmp/minishell_cmd/print_hello
+bash: ./tmp/minishell_cmd/print_hello: No such file or directory
+==50142== 
+==50142== HEAP SUMMARY:
+==50142==     in use at exit: 211,275 bytes in 411 blocks
+==50142==   total heap usage: 2,852 allocs, 2,441 frees, 518,939 bytes allocated
+==50142== 
+==50142== LEAK SUMMARY:
+==50142==    definitely lost: 0 bytes in 0 blocks
+==50142==    indirectly lost: 0 bytes in 0 blocks
+==50142==      possibly lost: 0 bytes in 0 blocks
+==50142==    still reachable: 211,275 bytes in 411 blocks
+==50142==         suppressed: 0 bytes in 0 blocks
+==50142== Reachable blocks (those to which a pointer was found) are not shown.
+==50142== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50142== 
+==50142== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ 
+minishell$ 
+minishell$ no_exist
+bash: no_exist: command not found
+==50143== 
+==50143== HEAP SUMMARY:
+==50143==     in use at exit: 211,438 bytes in 423 blocks
+==50143==   total heap usage: 2,974 allocs, 2,551 frees, 533,083 bytes allocated
+==50143== 
+==50143== LEAK SUMMARY:
+==50143==    definitely lost: 0 bytes in 0 blocks
+==50143==    indirectly lost: 0 bytes in 0 blocks
+==50143==      possibly lost: 0 bytes in 0 blocks
+==50143==    still reachable: 211,438 bytes in 423 blocks
+==50143==         suppressed: 0 bytes in 0 blocks
+==50143== Reachable blocks (those to which a pointer was found) are not shown.
+==50143== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50143== 
+==50143== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ /tmp/minishell_cmd/no_exist
+bash: /tmp/minishell_cmd/no_exist: No such file or directory
+==50144== 
+==50144== HEAP SUMMARY:
+==50144==     in use at exit: 211,546 bytes in 429 blocks
+==50144==   total heap usage: 3,005 allocs, 2,576 frees, 541,785 bytes allocated
+==50144== 
+==50144== LEAK SUMMARY:
+==50144==    definitely lost: 0 bytes in 0 blocks
+==50144==    indirectly lost: 0 bytes in 0 blocks
+==50144==      possibly lost: 0 bytes in 0 blocks
+==50144==    still reachable: 211,546 bytes in 429 blocks
+==50144==         suppressed: 0 bytes in 0 blocks
+==50144== Reachable blocks (those to which a pointer was found) are not shown.
+==50144== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50144== 
+==50144== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ /print_hello
+bash: /print_hello: No such file or directory
+==50145== 
+==50145== HEAP SUMMARY:
+==50145==     in use at exit: 211,639 bytes in 435 blocks
+==50145==   total heap usage: 3,072 allocs, 2,637 frees, 550,993 bytes allocated
+==50145== 
+==50145== LEAK SUMMARY:
+==50145==    definitely lost: 0 bytes in 0 blocks
+==50145==    indirectly lost: 0 bytes in 0 blocks
+==50145==      possibly lost: 0 bytes in 0 blocks
+==50145==    still reachable: 211,639 bytes in 435 blocks
+==50145==         suppressed: 0 bytes in 0 blocks
+==50145== Reachable blocks (those to which a pointer was found) are not shown.
+==50145== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50145== 
+==50145== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ 
+minishell$ chmod +x /tmp/minishell_cmd/print_hello
+minishell$ echo $?
+0
+minishell$ 
+minishell$ -- 存在するディレクトリ
+bash: --: command not found
+==50147== 
+==50147== HEAP SUMMARY:
+==50147==     in use at exit: 211,947 bytes in 453 blocks
+==50147==   total heap usage: 3,296 allocs, 2,843 frees, 575,285 bytes allocated
+==50147== 
+==50147== LEAK SUMMARY:
+==50147==    definitely lost: 0 bytes in 0 blocks
+==50147==    indirectly lost: 0 bytes in 0 blocks
+==50147==      possibly lost: 0 bytes in 0 blocks
+==50147==    still reachable: 211,947 bytes in 453 blocks
+==50147==         suppressed: 0 bytes in 0 blocks
+==50147== Reachable blocks (those to which a pointer was found) are not shown.
+==50147== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50147== 
+==50147== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ mkdir /tmp/hoge
+minishell$ echo $?
+0
+minishell$ /tmp/hoge
+bash: /tmp/hoge: Is a directory
+==50149== 
+==50149== HEAP SUMMARY:
+==50149==     in use at exit: 212,089 bytes in 462 blocks
+==50149==   total heap usage: 3,374 allocs, 2,912 frees, 592,963 bytes allocated
+==50149== 
+==50149== LEAK SUMMARY:
+==50149==    definitely lost: 0 bytes in 0 blocks
+==50149==    indirectly lost: 0 bytes in 0 blocks
+==50149==      possibly lost: 0 bytes in 0 blocks
+==50149==    still reachable: 212,089 bytes in 462 blocks
+==50149==         suppressed: 0 bytes in 0 blocks
+==50149== Reachable blocks (those to which a pointer was found) are not shown.
+==50149== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50149== 
+==50149== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+126
+minishell$ ./tmp/hoge
+bash: ./tmp/hoge: No such file or directory
+==50150== 
+==50150== HEAP SUMMARY:
+==50150==     in use at exit: 212,180 bytes in 468 blocks
+==50150==   total heap usage: 3,422 allocs, 2,954 frees, 595,531 bytes allocated
+==50150== 
+==50150== LEAK SUMMARY:
+==50150==    definitely lost: 0 bytes in 0 blocks
+==50150==    indirectly lost: 0 bytes in 0 blocks
+==50150==      possibly lost: 0 bytes in 0 blocks
+==50150==    still reachable: 212,180 bytes in 468 blocks
+==50150==         suppressed: 0 bytes in 0 blocks
+==50150== Reachable blocks (those to which a pointer was found) are not shown.
+==50150== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50150== 
+==50150== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ /hoge
+bash: /hoge: No such file or directory
+==50151== 
+==50151== HEAP SUMMARY:
+==50151==     in use at exit: 212,266 bytes in 474 blocks
+==50151==   total heap usage: 3,489 allocs, 3,015 frees, 604,693 bytes allocated
+==50151== 
+==50151== LEAK SUMMARY:
+==50151==    definitely lost: 0 bytes in 0 blocks
+==50151==    indirectly lost: 0 bytes in 0 blocks
+==50151==      possibly lost: 0 bytes in 0 blocks
+==50151==    still reachable: 212,266 bytes in 474 blocks
+==50151==         suppressed: 0 bytes in 0 blocks
+==50151== Reachable blocks (those to which a pointer was found) are not shown.
+==50151== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50151== 
+==50151== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ ./hoge
+bash: ./hoge: No such file or directory
+==50152== 
+==50152== HEAP SUMMARY:
+==50152==     in use at exit: 212,353 bytes in 480 blocks
+==50152==   total heap usage: 3,556 allocs, 3,076 frees, 613,869 bytes allocated
+==50152== 
+==50152== LEAK SUMMARY:
+==50152==    definitely lost: 0 bytes in 0 blocks
+==50152==    indirectly lost: 0 bytes in 0 blocks
+==50152==      possibly lost: 0 bytes in 0 blocks
+==50152==    still reachable: 212,353 bytes in 480 blocks
+==50152==         suppressed: 0 bytes in 0 blocks
+==50152== Reachable blocks (those to which a pointer was found) are not shown.
+==50152== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50152== 
+==50152== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ 
+minishell$ -- ディレクトリの権限を削除
+bash: --: command not found
+==50153== 
+==50153== HEAP SUMMARY:
+==50153==     in use at exit: 212,510 bytes in 489 blocks
+==50153==   total heap usage: 3,689 allocs, 3,200 frees, 626,522 bytes allocated
+==50153== 
+==50153== LEAK SUMMARY:
+==50153==    definitely lost: 0 bytes in 0 blocks
+==50153==    indirectly lost: 0 bytes in 0 blocks
+==50153==      possibly lost: 0 bytes in 0 blocks
+==50153==    still reachable: 212,510 bytes in 489 blocks
+==50153==         suppressed: 0 bytes in 0 blocks
+==50153== Reachable blocks (those to which a pointer was found) are not shown.
+==50153== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50153== 
+==50153== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ chmod 000 /tmp/hoge
+minishell$ echo $?
+0
+minishell$ /tmp/hoge
+bash: /tmp/hoge: Is a directory
+==50155== 
+==50155== HEAP SUMMARY:
+==50155==     in use at exit: 212,656 bytes in 498 blocks
+==50155==   total heap usage: 3,775 allocs, 3,277 frees, 644,312 bytes allocated
+==50155== 
+==50155== LEAK SUMMARY:
+==50155==    definitely lost: 0 bytes in 0 blocks
+==50155==    indirectly lost: 0 bytes in 0 blocks
+==50155==      possibly lost: 0 bytes in 0 blocks
+==50155==    still reachable: 212,656 bytes in 498 blocks
+==50155==         suppressed: 0 bytes in 0 blocks
+==50155== Reachable blocks (those to which a pointer was found) are not shown.
+==50155== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50155== 
+==50155== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+126
+minishell$ ./tmp/hoge
+bash: ./tmp/hoge: No such file or directory
+==50156== 
+==50156== HEAP SUMMARY:
+==50156==     in use at exit: 212,747 bytes in 504 blocks
+==50156==   total heap usage: 3,823 allocs, 3,319 frees, 646,880 bytes allocated
+==50156== 
+==50156== LEAK SUMMARY:
+==50156==    definitely lost: 0 bytes in 0 blocks
+==50156==    indirectly lost: 0 bytes in 0 blocks
+==50156==      possibly lost: 0 bytes in 0 blocks
+==50156==    still reachable: 212,747 bytes in 504 blocks
+==50156==         suppressed: 0 bytes in 0 blocks
+==50156== Reachable blocks (those to which a pointer was found) are not shown.
+==50156== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50156== 
+==50156== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ /hoge
+bash: /hoge: No such file or directory
+==50157== 
+==50157== HEAP SUMMARY:
+==50157==     in use at exit: 212,833 bytes in 510 blocks
+==50157==   total heap usage: 3,890 allocs, 3,380 frees, 656,042 bytes allocated
+==50157== 
+==50157== LEAK SUMMARY:
+==50157==    definitely lost: 0 bytes in 0 blocks
+==50157==    indirectly lost: 0 bytes in 0 blocks
+==50157==      possibly lost: 0 bytes in 0 blocks
+==50157==    still reachable: 212,833 bytes in 510 blocks
+==50157==         suppressed: 0 bytes in 0 blocks
+==50157== Reachable blocks (those to which a pointer was found) are not shown.
+==50157== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50157== 
+==50157== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ ./hoge
+bash: ./hoge: No such file or directory
+==50158== 
+==50158== HEAP SUMMARY:
+==50158==     in use at exit: 212,920 bytes in 516 blocks
+==50158==   total heap usage: 3,957 allocs, 3,441 frees, 665,218 bytes allocated
+==50158== 
+==50158== LEAK SUMMARY:
+==50158==    definitely lost: 0 bytes in 0 blocks
+==50158==    indirectly lost: 0 bytes in 0 blocks
+==50158==      possibly lost: 0 bytes in 0 blocks
+==50158==    still reachable: 212,920 bytes in 516 blocks
+==50158==         suppressed: 0 bytes in 0 blocks
+==50158== Reachable blocks (those to which a pointer was found) are not shown.
+==50158== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50158== 
+==50158== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ 
+minishell$ chmod 777 /tmp/hoge
+minishell$ echo $?
+0
+minishell$ rm -r /tmp/hoge
+minishell$ echo $?
+0
+minishell$ 
+minishell$ -カレントディレクトリを移動した時
+bash: -カレントディレクトリを移動した時: command not found
+==50161== 
+==50161== HEAP SUMMARY:
+==50161==     in use at exit: 213,320 bytes in 540 blocks
+==50161==   total heap usage: 4,261 allocs, 3,721 frees, 699,574 bytes allocated
+==50161== 
+==50161== LEAK SUMMARY:
+==50161==    definitely lost: 0 bytes in 0 blocks
+==50161==    indirectly lost: 0 bytes in 0 blocks
+==50161==      possibly lost: 0 bytes in 0 blocks
+==50161==    still reachable: 213,320 bytes in 540 blocks
+==50161==         suppressed: 0 bytes in 0 blocks
+==50161== Reachable blocks (those to which a pointer was found) are not shown.
+==50161== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50161== 
+==50161== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ $HOME
+bash: /home/mfunakos: Is a directory
+==50162== 
+==50162== HEAP SUMMARY:
+==50162==     in use at exit: 213,362 bytes in 543 blocks
+==50162==   total heap usage: 4,265 allocs, 3,722 frees, 707,335 bytes allocated
+==50162== 
+==50162== LEAK SUMMARY:
+==50162==    definitely lost: 0 bytes in 0 blocks
+==50162==    indirectly lost: 0 bytes in 0 blocks
+==50162==      possibly lost: 0 bytes in 0 blocks
+==50162==    still reachable: 213,362 bytes in 543 blocks
+==50162==         suppressed: 0 bytes in 0 blocks
+==50162== Reachable blocks (those to which a pointer was found) are not shown.
+==50162== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50162== 
+==50162== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+126
+minishell$ ..//$HOME
+bash: ..///home/mfunakos: No such file or directory
+==50163== 
+==50163== HEAP SUMMARY:
+==50163==     in use at exit: 213,452 bytes in 549 blocks
+==50163==   total heap usage: 4,316 allocs, 3,767 frees, 709,936 bytes allocated
+==50163== 
+==50163== LEAK SUMMARY:
+==50163==    definitely lost: 0 bytes in 0 blocks
+==50163==    indirectly lost: 0 bytes in 0 blocks
+==50163==      possibly lost: 0 bytes in 0 blocks
+==50163==    still reachable: 213,452 bytes in 549 blocks
+==50163==         suppressed: 0 bytes in 0 blocks
+==50163== Reachable blocks (those to which a pointer was found) are not shown.
+==50163== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50163== 
+==50163== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ cd /
+minishell$ echo $?
+0
+minishell$ $HOME
+bash: /home/mfunakos: Is a directory
+==50164== 
+==50164== HEAP SUMMARY:
+==50164==     in use at exit: 213,681 bytes in 562 blocks
+==50164==   total heap usage: 4,481 allocs, 3,919 frees, 739,148 bytes allocated
+==50164== 
+==50164== LEAK SUMMARY:
+==50164==    definitely lost: 0 bytes in 0 blocks
+==50164==    indirectly lost: 0 bytes in 0 blocks
+==50164==      possibly lost: 0 bytes in 0 blocks
+==50164==    still reachable: 213,681 bytes in 562 blocks
+==50164==         suppressed: 0 bytes in 0 blocks
+==50164== Reachable blocks (those to which a pointer was found) are not shown.
+==50164== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50164== 
+==50164== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+126
+minishell$ ..//$HOME
+bash: ..///home/mfunakos: Is a directory
+==50165== 
+==50165== HEAP SUMMARY:
+==50165==     in use at exit: 213,771 bytes in 568 blocks
+==50165==   total heap usage: 4,551 allocs, 3,983 frees, 748,389 bytes allocated
+==50165== 
+==50165== LEAK SUMMARY:
+==50165==    definitely lost: 0 bytes in 0 blocks
+==50165==    indirectly lost: 0 bytes in 0 blocks
+==50165==      possibly lost: 0 bytes in 0 blocks
+==50165==    still reachable: 213,771 bytes in 568 blocks
+==50165==         suppressed: 0 bytes in 0 blocks
+==50165== Reachable blocks (those to which a pointer was found) are not shown.
+==50165== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50165== 
+==50165== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+126
+minishell$ 
+minishell$ -PATHを削除せずに、カレントディレクトリの権限を無くした時
+bash: -PATHを削除せずに、カレントディレクトリの権限を無くした時: command not found
+==50166== 
+==50166== HEAP SUMMARY:
+==50166==     in use at exit: 213,972 bytes in 577 blocks
+==50166==   total heap usage: 4,671 allocs, 4,094 frees, 756,171 bytes allocated
+==50166== 
+==50166== LEAK SUMMARY:
+==50166==    definitely lost: 0 bytes in 0 blocks
+==50166==    indirectly lost: 0 bytes in 0 blocks
+==50166==      possibly lost: 0 bytes in 0 blocks
+==50166==    still reachable: 213,972 bytes in 577 blocks
+==50166==         suppressed: 0 bytes in 0 blocks
+==50166== Reachable blocks (those to which a pointer was found) are not shown.
+==50166== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50166== 
+==50166== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ cd /tmp/minishell_cmd
+minishell$ echo $?
+0
+minishell$ ls
+print_hello
+minishell$ echo $?
+0
+minishell$ /bin/ls
+print_hello
+minishell$ echo $?
+0
+minishell$ chmod 000 /tmp/minishell_cmd
+minishell$ echo $?
+0
+minishell$ ls
+ls: cannot open directory '.': Permission denied
+minishell$ echo $?
+2
+minishell$ /bin/ls
+/bin/ls: cannot open directory '.': Permission denied
+minishell$ echo $?
+2
+minishell$ chmod 777 /tmp/minishell_cmd
+minishell$ echo $?
+0
+minishell$ 
+minishell$ -PATHを削除した場合
+bash: -PATHを削除した場合: command not found
+==50173== 
+==50173== HEAP SUMMARY:
+==50173==     in use at exit: 214,678 bytes in 625 blocks
+==50173==   total heap usage: 5,223 allocs, 4,598 frees, 829,435 bytes allocated
+==50173== 
+==50173== LEAK SUMMARY:
+==50173==    definitely lost: 0 bytes in 0 blocks
+==50173==    indirectly lost: 0 bytes in 0 blocks
+==50173==      possibly lost: 0 bytes in 0 blocks
+==50173==    still reachable: 214,678 bytes in 625 blocks
+==50173==         suppressed: 0 bytes in 0 blocks
+==50173== Reachable blocks (those to which a pointer was found) are not shown.
+==50173== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50173== 
+==50173== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ unset PATH
+minishell$ echo $?
+0
+minishell$ echo "42"
+42
+minishell$ echo $?
+0
+minishell$ ls
+bash: ls: No such file or directory
+==50174== 
+==50174== HEAP SUMMARY:
+==50174==     in use at exit: 214,898 bytes in 640 blocks
+==50174==   total heap usage: 5,379 allocs, 4,739 frees, 857,931 bytes allocated
+==50174== 
+==50174== LEAK SUMMARY:
+==50174==    definitely lost: 0 bytes in 0 blocks
+==50174==    indirectly lost: 0 bytes in 0 blocks
+==50174==      possibly lost: 0 bytes in 0 blocks
+==50174==    still reachable: 214,898 bytes in 640 blocks
+==50174==         suppressed: 0 bytes in 0 blocks
+==50174== Reachable blocks (those to which a pointer was found) are not shown.
+==50174== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50174== 
+==50174== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ /bin/ls
+print_hello
+minishell$ echo $?
+0
+minishell$ /bin/ls | /usr/bin/wc
+      1       1      12
+minishell$ echo $?
+0
+minishell$ cd /bin
+minishell$ echo $?
+0
+minishell$ pwd
+/usr/bin
+minishell$ echo $?
+0
+minishell$ ls
+ FileCheck-12			      ipcrm				 rdf2com
+ GET				      ipcs				 rdf2ihx
+ HEAD				      ippfind				 rdf2ith
+ POST				      ipptool				 rdf2srec
+ VBox				      iptables-xml			 rdfdump
+ VBoxAutostart			      irb				 rdflib
+ VBoxBalloonCtrl		      irb3.0				 rdma
+ VBoxBugReport			      irssi				 rdoc
+ VBoxDTrace			      ischroot				 rdoc3.0
+ VBoxHeadless			      iscsiadm				 rdx
+ VBoxManage			      isdv4-serial-debugger		 readelf
+ VBoxSDL			      isdv4-serial-inputattach		 readline-editor
+ VGAuthService			      ispell-wrapper			 readlink
+ VirtualBox			      join				 readtags
+ VirtualBoxVM			      journalctl			 realpath
+ X				      jq				 red
+ X11				      js				 redis-benchmark
+ Xdummy				      js-yaml				 redis-check-aof
+ Xephyr				      json-patch-jsondiff		 redis-check-rdb
+ Xorg				      json_pp				 redis-cli
+ Xwayland			      json_xs				 redis-server
+'['				      jsondiff				 remote-viewer
+ aa-enabled			      jsonpatch				 remotinator
+ aa-exec			      jsonpointer			 renice
+ aa-features-abi		      jsonschema			 replace
+ acpi_listen			      k5srvutil				 rescan-scsi-bus.sh
+ acpidbg			      k5start				 reset
+ add-apt-repository		      kadmin				 resize
+ addpart			      kbd_mode				 resizecons
+ addr2line			      kbdinfo				 resizepart
+ airscan-discover		      kbxutil				 resolve_stack_dump
+ apg				      kdestroy				 resolvectl
+ apgbfm				      keep-one-running			 resolveip
+ apport-bug			      kernel-install			 rev
+ apport-cli			      keyctl				 rfcomm
+ apport-collect			      keyring				 rgrep
+ apport-unpack			      kill				 ri
+ appres				      killall				 ri3.0
+ appstreamcli			      kinit				 rimraf
+ apropos			      klist				 rlogin
+ apt				      kmod				 rm
+ apt-add-repository		      kmodsign				 rmdir
+ apt-cache			      koi8rxterm			 rnano
+ apt-cdrom			      kpasswd				 rootlesskit
+ apt-config			      krenew				 rootlesskit-docker-proxy
+ apt-extracttemplates		      ksu				 routef
+ apt-ftparchive			      kswitch				 routel
+ apt-get			      ktutil				 rpcgen
+ apt-key			      kvm				 rpcinfo
+ apt-mark			      kvm-spice				 rr
+ apt-sortpkgs			      kvno				 rr-collect-symbols
+ aptdcon			      l2ping				 rrsync
+ ar				      l2test				 rsh
+ arborist			      landscape-sysinfo			 rsync
+ arch				      last				 rsync-ssl
+ aria_chk			      lastb				 rtstat
+ aria_dump_log			      lastlog				 ruby
+ aria_ftdump			      lcf				 ruby3.0
+ aria_pack			      ld				 run-clang-tidy-12
+ aria_read_log			      ld.bfd				 run-clang-tidy-12.py
+ as				      ld.gold				 run-mailcap
+ as31				      ldapadd				 run-one
+ asan_symbolize-12		      ldapcompare			 run-one-constantly
+ aspell				      ldapdelete			 run-one-until-failure
+ aspell-import			      ldapexop				 run-one-until-success
+ automat-visualize3		      ldapmodify			 run-parts
+ avahi-browse			      ldapmodrdn			 run-this-one
+ avahi-browse-domains		      ldappasswd			 run-with-aspell
+ avahi-publish			      ldapsearch			 runc
+ avahi-publish-address		      ldapurl				 runcon
+ avahi-publish-service		      ldapwhoami			 rview
+ avahi-resolve			      ldd				 rvim
+ avahi-resolve-address		      ldrdf				 rvlc
+ avahi-resolve-host-name	      ledit				 rygel
+ avahi-set-host-name		      less				 rzsh
+ avinfo				      lessecho				 sancov-12
+ awk				      lessfile				 sane-find-scanner
+ b2sum				      lesskey				 sanstats-12
+ baobab				      lesspipe				 savelog
+ base32				      lexgrog				 sbattach
+ base58				      libnetcfg				 sbkeysync
+ base64				      libpng-config			 sbsiglist
+ basename			      libpng16-config			 sbsign
+ basenc				      libwacom-list-devices		 sbvarsign
+ bash				      libwacom-list-local-devices	 sbverify
+ bashbug			      libwacom-show-stylus		 scan-build-12
+ bc				      libwacom-update-db		 scan-build-py-12
+ bdftopcf			      link				 scan-view-12
+ bdftruncate			      linux-boot-prober			 scandeps
+ bluemoon			      linux-check-removal		 scanimage
+ bluetooth-sendto		      linux-update-symlinks		 scp
+ bluetoothctl			      linux-version			 scp-dbus-service
+ boltctl			      linux32				 screen
+ bootctl			      linux64				 screendump
+ botti				      listres				 script
+ brave-browser			      llc-12				 scriptlive
+ brave-browser-stable		      lldb				 scriptreplay
+ broadwayd			      lldb-12				 scsi_logging_level
+ browse				      lldb-argdumper-12			 scsi_mandat
+ btattach			      lldb-instr-12			 scsi_readcap
+ btmgmt				      lldb-server-12			 scsi_ready
+ btmon				      lldb-vscode-12			 scsi_satl
+ btrfs				      lli-12				 scsi_start
+ btrfs-convert			      lli-child-target-12		 scsi_stop
+ btrfs-find-root		      llvm-PerfectShuffle-12		 scsi_temperature
+ btrfs-image			      llvm-addr2line-12			 sdiff
+ btrfs-map-logical		      llvm-ar-12			 sdl2-config
+ btrfs-select-super		      llvm-as-12			 sdptool
+ btrfsck			      llvm-bcanalyzer-12		 sed
+ btrfstune			      llvm-bitcode-strip-12		 see
+ bugpoint-12			      llvm-c-test-12			 select-default-iwrap
+ bundle				      llvm-cat-12			 select-editor
+ bundle3.0			      llvm-cfi-verify-12		 semver
+ bundler			      llvm-config-12			 sensible-browser
+ bundler3.0			      llvm-cov-12			 sensible-editor
+ bunzip2			      llvm-cvtres-12			 sensible-pager
+ busctl				      llvm-cxxdump-12			 seq
+ busybox			      llvm-cxxfilt-12			 session-migration
+ bwrap				      llvm-cxxmap-12			 sessreg
+ bzcat				      llvm-diff-12			 setarch
+ bzcmp				      llvm-dis-12			 setfacl
+ bzdiff				      llvm-dlltool-12			 setfont
+ bzegrep			      llvm-dwarfdump-12			 setkeycodes
+ bzexe				      llvm-dwp-12			 setleds
+ bzfgrep			      llvm-elfabi-12			 setlogcons
+ bzgrep				      llvm-exegesis-12			 setmetamode
+ bzip2				      llvm-extract-12			 setpci
+ bzip2recover			      llvm-gsymutil-12			 setpriv
+ bzless				      llvm-ifs-12			 setsid
+ bzmore				      llvm-install-name-tool-12		 setterm
+ c++				      llvm-jitlink-12			 setupcon
+ c++filt			      llvm-jitlink-executor-12		 setxkbmap
+ c-index-test-12		      llvm-lib-12			 sftp
+ c89				      llvm-libtool-darwin-12		 sg
+ c89-gcc			      llvm-link-12			 sg_bg_ctl
+ c99				      llvm-lipo-12			 sg_compare_and_write
+ c99-gcc			      llvm-lto-12			 sg_copy_results
+ c_rehash			      llvm-lto2-12			 sg_dd
+ callgrind_annotate		      llvm-mc-12			 sg_decode_sense
+ callgrind_control		      llvm-mca-12			 sg_emc_trespass
+ cancel				      llvm-ml-12			 sg_format
+ captoinfo			      llvm-modextract-12		 sg_get_config
+ caribou-preferences		      llvm-mt-12			 sg_get_elem_status
+ cat				      llvm-nm-12			 sg_get_lba_status
+ catman				      llvm-objcopy-12			 sg_ident
+ cautious-launcher		      llvm-objdump-12			 sg_inq
+ cc				      llvm-opt-report-12		 sg_logs
+ cd-create-profile		      llvm-pdbutil-12			 sg_luns
+ cd-fix-profile			      llvm-profdata-12			 sg_map
+ cd-iccdump			      llvm-profgen-12			 sg_map26
+ cd-it8				      llvm-ranlib-12			 sg_modes
+ cftp3				      llvm-rc-12			 sg_opcodes
+ cg_annotate			      llvm-readelf-12			 sg_persist
+ cg_diff			      llvm-readobj-12			 sg_prevent
+ cg_merge			      llvm-reduce-12			 sg_raw
+ cgi-fcgi			      llvm-rtdyld-12			 sg_rbuf
+ chacl				      llvm-size-12			 sg_rdac
+ chage				      llvm-split-12			 sg_read
+ chardet			      llvm-stress-12			 sg_read_attr
+ chardetect			      llvm-strings-12			 sg_read_block_limits
+ chattr				      llvm-strip-12			 sg_read_buffer
+ chcon				      llvm-symbolizer-12		 sg_read_long
+ check-language-support		      llvm-tblgen-12			 sg_readcap
+ check-regexp			      llvm-undname-12			 sg_reassign
+ chfn				      llvm-xray-12			 sg_referrals
+ chg				      ln				 sg_rep_pip
+ chgrp				      lnstat				 sg_rep_zones
+ chmod				      loadkeys				 sg_requests
+ choom				      loadunimap			 sg_reset
+ chown				      locale				 sg_reset_wp
+ chrome-gnome-shell		      locale-check			 sg_rmsn
+ chrt				      localectl				 sg_rtpg
+ chsh				      localedef				 sg_safte
+ chsh.ldap			      logger				 sg_sanitize
+ chvt				      login				 sg_sat_identify
+ ciptool			      loginctl				 sg_sat_phy_event
+ ckbcomp			      logname				 sg_sat_read_gplog
+ ckeygen3			      look				 sg_sat_set_features
+ cksum				      lowntfs-3g			 sg_scan
+ clang				      lp				 sg_seek
+ clang++			      lpoptions				 sg_senddiag
+ clang++-12			      lpstat				 sg_ses
+ clang-12			      ls				 sg_ses_microcode
+ clang-apply-replacements-12	      lsattr				 sg_start
+ clang-change-namespace-12	      lsb_release			 sg_stpg
+ clang-check-12			      lsblk				 sg_stream_ctl
+ clang-cl-12			      lscpu				 sg_sync
+ clang-cpp-12			      lshw				 sg_test_rwbuf
+ clang-doc-12			      lsinitramfs			 sg_timestamp
+ clang-extdef-mapping-12	      lsipc				 sg_turs
+ clang-include-fixer-12		      lslocks				 sg_unmap
+ clang-move-12			      lslogins				 sg_verify
+ clang-offload-bundler-12	      lsmem				 sg_vpd
+ clang-offload-wrapper-12	      lsmod				 sg_wr_mode
+ clang-query-12			      lsns				 sg_write_buffer
+ clang-refactor-12		      lsof				 sg_write_long
+ clang-rename-12		      lspci				 sg_write_same
+ clang-reorder-fields-12	      lspgpot				 sg_write_verify
+ clang-scan-deps-12		      lsusb				 sg_write_x
+ clang-tidy-12			      lsw				 sg_xcopy
+ clang-tidy-diff-12.py		      lto-dump-10			 sg_zone
+ clear				      lto-dump-11			 sginfo
+ clear_console			      lto-dump-12			 sgm_dd
+ cloud-id			      luit				 sgp_dd
+ cloud-init			      lwp-download			 sh
+ cloud-init-per			      lwp-dump				 sha1sum
+ cmake				      lwp-mirror			 sha224sum
+ cmp				      lwp-request			 sha256sum
+ code				      lxterm				 sha384sum
+ codepage			      lynx				 sha512sum
+ col				      lzcat				 shasum
+ colcrt				      lzcmp				 showconsolefont
+ colormgr			      lzdiff				 showkey
+ colrm				      lzegrep				 showrgb
+ column				      lzfgrep				 shred
+ comm				      lzgrep				 shuf
+ compose			      lzless				 signal-rr-recording
+ conch3				      lzma				 simplescreenrecorder
+ containerd			      lzmainfo				 size
+ containerd-shim		      lzmore				 skill
+ containerd-shim-runc-v1	      m17n-db				 slabtop
+ containerd-shim-runc-v2	      m4				 slack
+ corelist			      machinectl			 sleep
+ count-12			      mailmail3				 slirp4netns
+ cp				      make				 slock
+ cpack				      make-first-existing-target	 slogin
+ cpan				      makeconv				 snap
+ cpan5.34-x86_64-linux-gnu	      man				 snapctl
+ cpio				      man-recode			 snapfuse
+ cpp				      mandb				 snice
+ cpp-10				      manpath				 socat
+ cpp-11				      mapscrn				 soelim
+ cpp-12				      mariadb				 software-properties-gtk
+ cpupower			      mariadb-access			 sort
+ crc				      mariadb-admin			 sos
+ crontab			      mariadb-analyze			 sos-collector
+ csplit				      mariadb-binlog			 sosreport
+ ctags				      mariadb-check			 sotruss
+ ctags-universal		      mariadb-conv			 source-highlight
+ ctags.emacs			      mariadb-convert-table-format	 source-highlight-settings
+ ctest				      mariadb-dump			 spa-acp-tool
+ ctr				      mariadb-dumpslow			 spa-inspect
+ ctstat				      mariadb-find-rows			 spa-json-dump
+ cupstestppd			      mariadb-fix-extensions		 spa-monitor
+ curl				      mariadb-hotcopy			 spa-resample
+ cut				      mariadb-import			 speedtest
+ cvlc				      mariadb-install-db		 speedtest-cli
+ cvt				      mariadb-optimize			 splain
+ cvtsudoers			      mariadb-plugin			 split
+ cygdb3				      mariadb-repair			 split-file-12
+ cython3			      mariadb-report			 splitfont
+ darcs				      mariadb-secure-installation	 sprof
+ dash				      mariadb-service-convert		 sprop
+ date				      mariadb-setpermission		 sqfscat
+ dbilogstrip			      mariadb-show			 sqfstar
+ dbiprof			      mariadb-slap			 sqlite3
+ dbiproxy			      mariadb-tzinfo-to-sql		 ss
+ dbus-cleanup-sockets		      mariadb-upgrade			 sselp
+ dbus-daemon			      mariadb-waitpid			 ssh
+ dbus-monitor			      mariadbcheck			 ssh-add
+ dbus-run-session		      mariadbd-multi			 ssh-agent
+ dbus-send			      mariadbd-safe			 ssh-argv0
+ dbus-update-activation-environment   mariadbd-safe-helper		 ssh-copy-id
+ dbus-uuidgen			      mawk				 ssh-import-id
+ dbxtool			      mcookie				 ssh-import-id-gh
+ dconf				      md5sum				 ssh-import-id-lp
+ dd				      md5sum.textutils			 ssh-keygen
+ deallocvt			      mdig				 ssh-keyscan
+ deb-systemd-helper		      memusage				 ssid
+ deb-systemd-invoke		      memusagestat			 ssr-glinject
+ debconf			      mesa-overlay-control.py		 sss_ssh_authorizedkeys
+ debconf-apt-progress		      mesg				 sss_ssh_knownhostsproxy
+ debconf-communicate		      microsoft-edge			 start-pulseaudio-x11
+ debconf-copydb			      microsoft-edge-stable		 stat
+ debconf-escape			      migrate-pubring-from-classic-gpg	 static-sh
+ debconf-set-selections		      mimeopen				 stdbuf
+ debconf-show			      mimetype				 stest
+ debian-distro-info		      mk_modmap				 strace
+ delpart			      mkdir				 strace-log-merge
+ delv				      mkfifo				 streamzip
+ derb				      mkfontdir				 strings
+ desktop-file-edit		      mkfontscale			 strip
+ desktop-file-install		      mknod				 stty
+ desktop-file-validate		      mksquashfs			 su
+ dex				      mktemp				 sudo
+ df				      mmcli				 sudoedit
+ dfu-tool			      modularize-12			 sudoreplay
+ dh_bash-completion		      mokutil				 sum
+ dh_installxmlcatalogs		      monitor-sensor			 supervisorctl
+ dh_perl_dbi			      more				 supervisord
+ dh_perl_openssl		      mount				 sushi
+ dh_python3-ply			      mountpoint			 svlc
+ diagtool-12			      ms_print				 swarp
+ diff				      msql2mysql			 switcherooctl
+ diff3				      mt				 swtpm
+ dig				      mt-gnu				 swtpm_bios
+ dir				      mtr				 swtpm_cert
+ dircolors			      mtr-packet			 swtpm_ioctl
+ dirmngr			      mtrace				 swtpm_setup
+ dirmngr-client			      mv				 sync
+ dirname			      my_print_defaults			 system-config-printer
+ discord			      myisam_ftdump			 system-config-printer-applet
+ distro-info			      myisamchk				 systemctl
+ dm-tool			      myisamlog				 systemd
+ dmenu				      myisampack			 systemd-analyze
+ dmenu_path			      mysql				 systemd-ask-password
+ dmenu_run			      mysql_convert_table_format	 systemd-cat
+ dmesg				      mysql_find_rows			 systemd-cgls
+ dnsdomainname			      mysql_fix_extensions		 systemd-cgtop
+ do-release-upgrade		      mysql_install_db			 systemd-cryptenroll
+ docker				      mysql_plugin			 systemd-delta
+ docker-proxy			      mysql_secure_installation		 systemd-detect-virt
+ dockerd			      mysql_setpermission		 systemd-dissect
+ dockerd-rootless-setuptool.sh	      mysql_tzinfo_to_sql		 systemd-escape
+ dockerd-rootless.sh		      mysql_upgrade			 systemd-hwdb
+ domainname			      mysql_waitpid			 systemd-id128
+ dpkg				      mysqlaccess			 systemd-inhibit
+ dpkg-architecture		      mysqladmin			 systemd-machine-id-setup
+ dpkg-buildflags		      mysqlanalyze			 systemd-mount
+ dpkg-buildpackage		      mysqlbinlog			 systemd-notify
+ dpkg-checkbuilddeps		      mysqlcheck			 systemd-nspawn
+ dpkg-deb			      mysqld_multi			 systemd-path
+ dpkg-distaddfile		      mysqld_safe			 systemd-run
+ dpkg-divert			      mysqld_safe_helper		 systemd-socket-activate
+ dpkg-genbuildinfo		      mysqldump				 systemd-stdio-bridge
+ dpkg-genchanges		      mysqldumpslow			 systemd-sysext
+ dpkg-gencontrol		      mysqlhotcopy			 systemd-sysusers
+ dpkg-gensymbols		      mysqlimport			 systemd-tmpfiles
+ dpkg-maintscript-helper	      mysqloptimize			 systemd-tty-ask-password-agent
+ dpkg-mergechangelogs		      mysqlrepair			 systemd-umount
+ dpkg-name			      mysqlreport			 tabbed
+ dpkg-parsechangelog		      mysqlshow				 tabbed.default
+ dpkg-query			      mysqlslap				 tabbed.meta
+ dpkg-realpath			      mytop				 tabs
+ dpkg-scanpackages		      namei				 tac
+ dpkg-scansources		      nano				 tail
+ dpkg-shlibdeps			      nasm				 tap
+ dpkg-source			      nautilus				 tap-mocha-reporter
+ dpkg-split			      nautilus-autorun-software		 tap-parser
+ dpkg-statoverride		      nawk				 tar
+ dpkg-trigger			      nc				 taskset
+ dpkg-vendor			      nc.openbsd			 tbl
+ driverless			      ncdu				 tclsh
+ driverless-fax			      ncurses5-config			 tclsh8.6
+ dsymutil-12			      ncurses6-config			 tcpdump
+ du				      ncursesw5-config			 tee
+ dumpkeys			      ncursesw6-config			 telnet
+ dunst				      ndisasm				 telnet.netkit
+ dunstctl			      neqn				 tempfile
+ dunstify			      netcat				 terminator
+ dvipdf				      netstat				 test
+ dwp				      networkctl			 tic
+ eatmydata			      networkd-dispatcher		 tigervncconfig
+ ebrowse			      newgidmap				 tightvncpasswd
+ ebrowse.emacs			      newgrp				 time
+ ec2metadata			      newuidmap				 timedatectl
+ echo				      ngettext				 timeout
+ echo_supervisord_conf		      nice				 tkconch3
+ ed				      nisdomainname			 tload
+ edit				      nl				 tnftp
+ editor				      nm				 toe
+ editres			      nm-applet				 top
+ efibootdump			      nm-connection-editor		 totem
+ efibootmgr			      nm-online				 totem-video-thumbnailer
+ egrep				      nmcli				 touch
+ eject				      nmtui				 tput
+ elfedit			      nmtui-connect			 tqdm
+ emacs				      nmtui-edit			 tr
+ emacs-gtk			      nmtui-hostname			 tracepath
+ emacsclient			      node				 tracker3
+ emacsclient.emacs		      node-coveralls			 trial3
+ enc2xs				      node-gyp				 troff
+ encguess			      nodejs				 true
+ enchant-2			      nohup				 truncate
+ enchant-lsmod-2		      norminette			 trust
+ env				      not-12				 tset
+ envsubst			      notify-send			 tsort
+ eog				      npm				 tty
+ epiphany			      npm-arborist			 turbostat
+ epiphany-browser		      npm-packlist			 twist3
+ eps2eps			      nproc				 twistd3
+ eqn				      npx				 typeprof3.0
+ erb				      nroff				 tzselect
+ erb3.0				      nsenter				 ua
+ esparse			      nslookup				 ubuntu-advantage
+ esvalidate			      nstat				 ubuntu-bug
+ etags				      nsupdate				 ubuntu-core-launcher
+ etags.emacs			      ntfs-3g				 ubuntu-distro-info
+ evince				      ntfs-3g.probe			 ubuntu-drivers
+ evince-previewer		      ntfscat				 ubuntu-security-status
+ evince-thumbnailer		      ntfscluster			 ucf
+ ex				      ntfscmp				 ucfq
+ examshell			      ntfsdecrypt			 ucfr
+ expand				      ntfsfallocate			 uclampset
+ expiry				      ntfsfix				 uconv
+ expr				      ntfsinfo				 ucs2any
+ factor				      ntfsls				 udevadm
+ faillog			      ntfsmove				 udisksctl
+ faked-sysv			      ntfsrecover			 ul
+ faked-tcp			      ntfssecaudit			 umax_pp
+ fakeroot			      ntfstruncate			 umount
+ fakeroot-sysv			      ntfsusermap			 uname
+ fakeroot-tcp			      ntfswipe				 unattended-upgrade
+ fallocate			      numfmt				 unattended-upgrades
+ false				      numlockx				 uncompress
+ fc-cache			      nvidia-detector			 unexpand
+ fc-cat				      nvim				 unicode_start
+ fc-conflist			      nvlc				 unicode_stop
+ fc-list			      obexctl				 uniq
+ fc-match			      obj2yaml-12			 unity-scope-loader
+ fc-pattern			      objcopy				 unity-settings-daemon
+ fc-query			      objdump				 unityhub
+ fc-scan			      ocaml				 unlink
+ fc-validate			      ocamlc				 unlzma
+ fgconsole			      ocamlc.byte			 unmkinitramfs
+ fgrep				      ocamlc.opt			 unpigz
+ filan				      ocamlcmt				 unshare
+ file				      ocamlcp				 unsquashfs
+ file2brl			      ocamlcp.byte			 unxz
+ finalrd			      ocamlcp.opt			 unzip
+ fincore			      ocamldebug			 unzipsfx
+ find				      ocamldep				 unzstd
+ find-all-symbols-12		      ocamldep.byte			 update-alternatives
+ findmnt			      ocamldep.opt			 update-desktop-database
+ firefox			      ocamldoc				 update-mime-database
+ fish				      ocamldoc.opt			 update_rubygems
+ fish_indent			      ocamldumpobj			 upower
+ fish_key_reader		      ocamllex				 uptime
+ flock				      ocamllex.byte			 usb-devices
+ fmt				      ocamllex.opt			 usbhid-dump
+ fold				      ocamlmklib			 usbip
+ fonttosfnt			      ocamlmklib.byte			 usbipd
+ foomatic-rip			      ocamlmklib.opt			 usbreset
+ free				      ocamlmktop			 users
+ ftp				      ocamlmktop.byte			 utmpdump
+ funzip				      ocamlmktop.opt			 uuidgen
+ fuser				      ocamlobjinfo			 uuidparse
+ fusermount			      ocamlobjinfo.byte			 uxterm
+ fusermount3			      ocamlobjinfo.opt			 valgrind
+ fwupdagent			      ocamlopt				 valgrind-di-server
+ fwupdate			      ocamlopt.byte			 valgrind-listener
+ fwupdmgr			      ocamlopt.opt			 valgrind.bin
+ fwupdtool			      ocamloptp				 vbox-img
+ g++				      ocamloptp.byte			 vboxautostart
+ g++-10				      ocamloptp.opt			 vboxballoonctrl
+ g++-11				      ocamlprof				 vboxbugreport
+ g++-12				      ocamlprof.byte			 vboxheadless
+ galera_new_cluster		      ocamlprof.opt			 vboximg-mount
+ galera_recovery		      ocamlrun				 vboxmanage
+ gamma4scanimage		      ocamlrund				 vboxsdl
+ gapplication			      ocamlruni				 vboxwebsrv
+ gatttool			      ocamlyacc				 vcs-run
+ gawk				      od				 vdir
+ gcalccmd			      oem-getlogs			 verify-uselistorder-12
+ gcc				      on_ac_power			 vgdb
+ gcc-10				      opam				 vi
+ gcc-11				      opam-installer			 view
+ gcc-12				      open				 viewres
+ gcc-ar				      opener				 vim
+ gcc-ar-10			      openssl				 vim.basic
+ gcc-ar-11			      openvt				 vim.tiny
+ gcc-ar-12			      opt-12				 vimdiff
+ gcc-nm				      optscript				 vimtutor
+ gcc-nm-10			      os-prober				 virsh
+ gcc-nm-11			      osirrox				 virt-admin
+ gcc-nm-12			      osqueryd				 virt-clone
+ gcc-ranlib			      p11-kit				 virt-host-validate
+ gcc-ranlib-10			      pa-info				 virt-install
+ gcc-ranlib-11			      pacat				 virt-manager
+ gcc-ranlib-12			      pacmd				 virt-pki-query-dn
+ gcore				      pacote				 virt-pki-validate
+ gcov				      pactl				 virt-qemu-run
+ gcov-10			      padsp				 virt-ssh-helper
+ gcov-11			      pager				 virt-viewer
+ gcov-12			      pamon				 virt-xml
+ gcov-dump			      pango-list			 virt-xml-validate
+ gcov-dump-10			      pango-segmentation		 virtualbox
+ gcov-dump-11			      pango-view			 virtualboxvm
+ gcov-dump-12			      paperconf				 vkcube
+ gcov-tool			      paplay				 vkcubepp
+ gcov-tool-10			      parec				 vlc
+ gcov-tool-11			      parecord				 vlc-wrapper
+ gcov-tool-12			      partx				 vm-support
+ gcr-viewer			      passwd				 vmhgfs-fuse
+ gdb				      paste				 vmstat
+ gdb-add-index			      pastebinit			 vmtoolsd
+ gdbtui				      pasuspender			 vmware-alias-import
+ gdbus				      patch				 vmware-checkvm
+ gdbus-codegen			      pathchk				 vmware-hgfsclient
+ gdialog			      pax11publish			 vmware-namespace-cmd
+ gdk-pixbuf-csource		      pbget				 vmware-rpctool
+ gdk-pixbuf-pixdata		      pbput				 vmware-toolbox-cmd
+ gdk-pixbuf-thumbnailer		      pbputs				 vmware-vgauth-cmd
+ gdmflexiserver			      pcre-config			 vmware-vmblock-fuse
+ gedit				      pcre2-config			 vmware-xferlogs
+ gem				      pdb				 vmwarectrl
+ gem3.0				      pdb3				 vncconfig
+ genbrk				      pdb3.10				 vulkaninfo
+ gencat				      pdb3.7				 w
+ gencfu				      pdb3.8				 wall
+ gencnval			      pdf2dsc				 wamp
+ gendict			      pdf2ps				 watch
+ genrb				      pdfattach				 watchgnupg
+ geqn				      pdfdetach				 wayland-scanner
+ getconf			      pdffonts				 wc
+ getent				      pdfimages				 wdctl
+ getent.ldap			      pdfinfo				 wget
+ getfacl			      pdfseparate			 whatis
+ getkeycodes			      pdfsig				 whereis
+ getopt				      pdftocairo			 which
+ gettext			      pdftohtml				 which.debianutils
+ gettext.sh			      pdftoppm				 whiptail
+ ghostscript			      pdftops				 who
+ ginstall-info			      pdftotext				 whoami
+ gio				      pdfunite				 whoopsie
+ gio-querymodules		      peekfd				 whoopsie-preferences
+ git				      perf				 wish
+ git-receive-pack		      perl				 wish8.6
+ git-shell			      perl5.34-x86_64-linux-gnu		 wmname
+ git-upload-archive		      perl5.34.0			 word-list-compress
+ git-upload-pack		      perlbug				 wormhole
+ gjs				      perldoc				 wpa_passphrase
+ gjs-console			      perli11ndoc			 write
+ gkbd-keyboard-display		      perlivp				 write.ul
+ glib-compile-resources		      perlthanks			 wscat
+ glib-compile-schemas		      perror				 wsrep_sst_backup
+ glib-genmarshal		      pf2afm				 wsrep_sst_common
+ glib-gettextize		      pfbtopfa				 wsrep_sst_mariabackup
+ glib-mkenums			      pgrep				 wsrep_sst_mysqldump
+ glmark2			      phar				 wsrep_sst_rsync
+ gmake				      phar.default			 wsrep_sst_rsync_wan
+ gnome-calculator		      phar.phar				 www-browser
+ gnome-characters		      phar.phar.default			 x-session-manager
+ gnome-contacts			      phar.phar8.1			 x-terminal-emulator
+ gnome-control-center		      phar8.1				 x-window-manager
+ gnome-disk-image-mounter	      phar8.1.phar			 x-www-browser
+ gnome-disks			      php				 x11vnc
+ gnome-extensions		      php-cgi				 x86_64
+ gnome-extensions-app		      php-cgi.default			 x86_64-linux-gnu-addr2line
+ gnome-font-viewer		      php-cgi8.1			 x86_64-linux-gnu-ar
+ gnome-help			      php.default			 x86_64-linux-gnu-as
+ gnome-keyring			      php8.1				 x86_64-linux-gnu-c++filt
+ gnome-keyring-3		      pic				 x86_64-linux-gnu-cpp
+ gnome-keyring-daemon		      pico				 x86_64-linux-gnu-cpp-10
+ gnome-language-selector	      piconv				 x86_64-linux-gnu-cpp-11
+ gnome-logs			      pidof				 x86_64-linux-gnu-cpp-12
+ gnome-power-statistics		      pidproxy				 x86_64-linux-gnu-dwp
+ gnome-screensaver		      pidwait				 x86_64-linux-gnu-elfedit
+ gnome-screensaver-command	      pigz				 x86_64-linux-gnu-g++
+ gnome-session			      pinentry				 x86_64-linux-gnu-g++-10
+ gnome-session-classic		      pinentry-curses			 x86_64-linux-gnu-g++-11
+ gnome-session-custom-session	      pinentry-gnome3			 x86_64-linux-gnu-g++-12
+ gnome-session-inhibit		      pinentry-x11			 x86_64-linux-gnu-gcc
+ gnome-session-properties	      ping				 x86_64-linux-gnu-gcc-10
+ gnome-session-quit		      ping4				 x86_64-linux-gnu-gcc-11
+ gnome-shell			      ping6				 x86_64-linux-gnu-gcc-12
+ gnome-shell-extension-prefs	      pinky				 x86_64-linux-gnu-gcc-ar
+ gnome-shell-extension-tool	      pip				 x86_64-linux-gnu-gcc-ar-10
+ gnome-shell-perf-tool		      pip3				 x86_64-linux-gnu-gcc-ar-11
+ gnome-software			      pip3.10				 x86_64-linux-gnu-gcc-ar-12
+ gnome-system-monitor		      pipewire				 x86_64-linux-gnu-gcc-nm
+ gnome-terminal			      pipewire-media-session		 x86_64-linux-gnu-gcc-nm-10
+ gnome-terminal.real		      pkaction				 x86_64-linux-gnu-gcc-nm-11
+ gnome-terminal.wrapper		      pkcheck				 x86_64-linux-gnu-gcc-nm-12
+ gnome-text-editor		      pkcon				 x86_64-linux-gnu-gcc-ranlib
+ gnome-thumbnail-font		      pkexec				 x86_64-linux-gnu-gcc-ranlib-10
+ gnome-tweaks			      pkg-config			 x86_64-linux-gnu-gcc-ranlib-11
+ gnome-www-browser		      pkgdata				 x86_64-linux-gnu-gcc-ranlib-12
+ gnote				      pkill				 x86_64-linux-gnu-gcov
+ go				      pkmon				 x86_64-linux-gnu-gcov-10
+ gobject-query			      pkttyagent			 x86_64-linux-gnu-gcov-11
+ gofmt				      pl2pm				 x86_64-linux-gnu-gcov-12
+ gold				      pldd				 x86_64-linux-gnu-gcov-dump
+ google-chrome			      plog				 x86_64-linux-gnu-gcov-dump-10
+ google-chrome-stable		      plymouth				 x86_64-linux-gnu-gcov-dump-11
+ gpasswd			      pmap				 x86_64-linux-gnu-gcov-dump-12
+ gpg				      png-fix-itxt			 x86_64-linux-gnu-gcov-tool
+ gpg-agent			      pngfix				 x86_64-linux-gnu-gcov-tool-10
+ gpg-connect-agent		      pod2html				 x86_64-linux-gnu-gcov-tool-11
+ gpg-wks-server			      pod2man				 x86_64-linux-gnu-gcov-tool-12
+ gpg-zip			      pod2text				 x86_64-linux-gnu-gold
+ gpgcompose			      pod2usage				 x86_64-linux-gnu-gprof
+ gpgconf			      podchecker			 x86_64-linux-gnu-ld
+ gpgparsemail			      poff				 x86_64-linux-gnu-ld.bfd
+ gpgsm				      pollinate				 x86_64-linux-gnu-ld.gold
+ gpgsplit			      pon				 x86_64-linux-gnu-lto-dump-10
+ gpgtar				      portablectl			 x86_64-linux-gnu-lto-dump-11
+ gpgv				      powerprofilesctl			 x86_64-linux-gnu-lto-dump-12
+ gpic				      pp-trace-12			 x86_64-linux-gnu-nm
+ gprof				      ppdc				 x86_64-linux-gnu-objcopy
+ gpu-manager			      ppdhtml				 x86_64-linux-gnu-objdump
+ grdctl				      ppdi				 x86_64-linux-gnu-pkg-config
+ grep				      ppdmerge				 x86_64-linux-gnu-python3-config
+ gresource			      ppdpo				 x86_64-linux-gnu-python3.10-config
+ groff				      pphs				 x86_64-linux-gnu-python3.7-config
+ grog				      pr				 x86_64-linux-gnu-python3.7m-config
+ grops				      precat				 x86_64-linux-gnu-ranlib
+ grotty				      preconv				 x86_64-linux-gnu-readelf
+ groups				      preunzip				 x86_64-linux-gnu-size
+ growpart			      prezip				 x86_64-linux-gnu-strings
+ grub-editenv			      prezip-bin			 x86_64-linux-gnu-strip
+ grub-file			      print				 x86_64-pc-linux-gnu-pkg-config
+ grub-fstest			      printafm				 x86_energy_perf_policy
+ grub-glue-efi			      printenv				 xargs
+ grub-kbdcomp			      printf				 xauth
+ grub-menulst2cfg		      prlimit				 xbrnetwork
+ grub-mkfont			      pro				 xbrnetwork-ui
+ grub-mkimage			      procan				 xclip
+ grub-mklayout			      prove				 xclip-copyfile
+ grub-mknetdir			      proxy				 xclip-cutfile
+ grub-mkpasswd-pbkdf2		      prtstat				 xclip-pastefile
+ grub-mkrelpath			      ps				 xcmsdb
+ grub-mkrescue			      ps2ascii				 xdg-dbus-proxy
+ grub-mkstandalone		      ps2epsi				 xdg-desktop-icon
+ grub-mount			      ps2pdf				 xdg-desktop-menu
+ grub-render-label		      ps2pdf12				 xdg-email
+ grub-script-check		      ps2pdf13				 xdg-icon-resource
+ grub-syslinux2cfg		      ps2pdf14				 xdg-mime
+ gs				      ps2pdfwr				 xdg-open
+ gsbj				      ps2ps				 xdg-screensaver
+ gsdj				      ps2ps2				 xdg-settings
+ gsdj500			      ps2txt				 xdg-user-dir
+ gsettings			      psfaddtable			 xdg-user-dirs-update
+ gslj				      psfgettable			 xdpyinfo
+ gslp				      psfstriptable			 xdriinfo
+ gsnd				      psfxtable				 xev
+ gstreamer-codec-install	      pslog				 xfd
+ gtbl				      pstree				 xfontsel
+ gtester			      pstree.x11			 xgamma
+ gtester-report			      ptar				 xhost
+ gtf				      ptardiff				 xkbbell
+ gtk-builder-tool		      ptargrep				 xkbcomp
+ gtk-encode-symbolic-svg	      ptx				 xkbevd
+ gtk-launch			      pulseaudio			 xkbprint
+ gtk-query-settings		      pw-cat				 xkbvleds
+ gtk-update-icon-cache		      pw-cli				 xkbwatch
+ gtk4-builder-tool		      pw-dot				 xkeystone
+ gtk4-encode-symbolic-svg	      pw-dsdplay			 xkill
+ gtk4-launch			      pw-dump				 xlsatoms
+ gtk4-query-settings		      pw-link				 xlsclients
+ gtk4-update-icon-cache		      pw-loopback			 xlsfonts
+ gunzip				      pw-metadata			 xmessage
+ gyp				      pw-mididump			 xml2-config
+ gzexe				      pw-midiplay			 xmlcatalog
+ gzip				      pw-midirecord			 xmllint
+ h2ph				      pw-mon				 xmodmap
+ h2xs				      pw-play				 xorrecord
+ hardlink			      pw-profiler			 xorriso
+ hciattach			      pw-record				 xorrisofs
+ hciconfig			      pw-reserve			 xprop
+ hcitool			      pw-top				 xrandr
+ hd				      pw-v4l2				 xrdb
+ head				      pwd				 xrefresh
+ helpztags			      pwdx				 xsel
+ hex2hcd			      py3clean				 xset
+ hexdump			      py3compile			 xsetmode
+ hg				      py3versions			 xsetpointer
+ hg-ssh				      pybabel				 xsetroot
+ hmaptool-12			      pybabel-python3			 xsetwacom
+ host				      pydoc				 xssstate
+ hostid				      pydoc3				 xstdcmap
+ hostname			      pydoc3.10				 xsubpp
+ hostnamectl			      pydoc3.7				 xterm
+ htop				      pydoc3.8				 xvidtune
+ hwasan_symbolize-12		      pygettext3			 xvinfo
+ hwe-support-status		      pygettext3.10			 xwininfo
+ i3				      pygettext3.7			 xxd
+ i3-config-wizard		      pygettext3.8			 xz
+ i3-dmenu-desktop		      pygmentize			 xzcat
+ i3-dump-log			      pyhtmlizer3			 xzcmp
+ i3-input			      pyserial-miniterm			 xzdiff
+ i3-migrate-config-to-v4	      pyserial-ports			 xzegrep
+ i3-msg				      python				 xzfgrep
+ i3-nagbar			      python-config			 xzgrep
+ i3-save-tree			      python3				 xzless
+ i3-sensible-editor		      python3-config			 xzmore
+ i3-sensible-pager		      python3.10			 yaml-bench-12
+ i3-sensible-terminal		      python3.10-config			 yaml2obj-12
+ i3-with-shmlog			      python3.7				 yelp
+ i386				      python3.7-config			 yes
+ i3bar				      python3.7m			 ypdomainname
+ i3lock				      python3.7m-config			 zcat
+ i3status			      python3.8				 zcmp
+ ibus				      pyvenv-3.7			 zdiff
+ ibus-daemon			      pzstd				 zdump
+ ibus-setup			      qemu-img				 zegrep
+ ibus-setup-hangul		      qemu-io				 zenity
+ iceauth			      qemu-nbd				 zfgrep
+ iconv				      qemu-pr-helper			 zforce
+ icuexportdata			      qemu-storage-daemon		 zgrep
+ icuinfo			      qemu-system-i386			 zip
+ id				      qemu-system-x86_64		 zipcloak
+ im-config			      qemu-system-x86_64-microvm	 zipdetails
+ im-launch			      qemu-system-x86_64-spice		 zipgrep
+ info				      qrcode-terminal			 zipinfo
+ infobrowser			      quirks-handler			 zipnote
+ infocmp			      quota				 zipsplit
+ infotocap			      quotasync				 zless
+ innochecksum			      qvlc				 zmore
+ innotop			      racc3.0				 znew
+ install			      rake				 zsh
+ install-info			      rake3.0				 zsh5
+ install-printerdriver		      ranlib				 zstd
+ instmodsh			      rbash				 zstdcat
+ intel-virtual-output		      rbs3.0				 zstdgrep
+ ionice				      rcp				 zstdless
+ ip				      rctest				 zstdmt
+ ipcmk				      rdf2bin
+minishell$ echo $?
+0
+minishell$ 
+minishell$ -- PATHを削除し、カレントディレクトリの権限を無くした時
+bash: --: No such file or directory
+==50179== 
+==50179== HEAP SUMMARY:
+==50179==     in use at exit: 215,557 bytes in 679 blocks
+==50179==   total heap usage: 5,861 allocs, 5,182 frees, 929,392 bytes allocated
+==50179== 
+==50179== LEAK SUMMARY:
+==50179==    definitely lost: 0 bytes in 0 blocks
+==50179==    indirectly lost: 0 bytes in 0 blocks
+==50179==      possibly lost: 0 bytes in 0 blocks
+==50179==    still reachable: 215,557 bytes in 679 blocks
+==50179==         suppressed: 0 bytes in 0 blocks
+==50179== Reachable blocks (those to which a pointer was found) are not shown.
+==50179== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50179== 
+==50179== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ cd /tmp/minishell_cmd
+minishell$ echo $?
+0
+minishell$ print_hello
+Hello, World!
+minishell$ echo $?
+0
+minishell$ chmod 000 /tmp/minishell_cmd
+bash: chmod: No such file or directory
+==50181== 
+==50181== HEAP SUMMARY:
+==50181==     in use at exit: 215,806 bytes in 694 blocks
+==50181==   total heap usage: 6,045 allocs, 5,351 frees, 954,807 bytes allocated
+==50181== 
+==50181== LEAK SUMMARY:
+==50181==    definitely lost: 0 bytes in 0 blocks
+==50181==    indirectly lost: 0 bytes in 0 blocks
+==50181==      possibly lost: 0 bytes in 0 blocks
+==50181==    still reachable: 215,806 bytes in 694 blocks
+==50181==         suppressed: 0 bytes in 0 blocks
+==50181== Reachable blocks (those to which a pointer was found) are not shown.
+==50181== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50181== 
+==50181== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ ./
+bash: ./: Is a directory
+==50182== 
+==50182== HEAP SUMMARY:
+==50182==     in use at exit: 215,889 bytes in 700 blocks
+==50182==   total heap usage: 6,127 allocs, 5,427 frees, 966,427 bytes allocated
+==50182== 
+==50182== LEAK SUMMARY:
+==50182==    definitely lost: 0 bytes in 0 blocks
+==50182==    indirectly lost: 0 bytes in 0 blocks
+==50182==      possibly lost: 0 bytes in 0 blocks
+==50182==    still reachable: 215,889 bytes in 700 blocks
+==50182==         suppressed: 0 bytes in 0 blocks
+==50182== Reachable blocks (those to which a pointer was found) are not shown.
+==50182== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50182== 
+==50182== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+126
+minishell$ print_hello
+Hello, World!
+minishell$ echo $?
+0
+minishell$ /tmp/minishell_cmd/print_hello
+Hello, World!
+minishell$ echo $?
+0
+minishell$ ./tmp/minishell_cmd/print_hello
+bash: ./tmp/minishell_cmd/print_hello: No such file or directory
+==50185== 
+==50185== HEAP SUMMARY:
+==50185==     in use at exit: 216,204 bytes in 718 blocks
+==50185==   total heap usage: 6,311 allocs, 5,593 frees, 987,821 bytes allocated
+==50185== 
+==50185== LEAK SUMMARY:
+==50185==    definitely lost: 0 bytes in 0 blocks
+==50185==    indirectly lost: 0 bytes in 0 blocks
+==50185==      possibly lost: 0 bytes in 0 blocks
+==50185==    still reachable: 216,204 bytes in 718 blocks
+==50185==         suppressed: 0 bytes in 0 blocks
+==50185== Reachable blocks (those to which a pointer was found) are not shown.
+==50185== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50185== 
+==50185== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ 
+minishell$ -- PATHを削除し、自作コマンドを作成の権限を無くした時
+bash: --: No such file or directory
+==50186== 
+==50186== HEAP SUMMARY:
+==50186==     in use at exit: 216,398 bytes in 727 blocks
+==50186==   total heap usage: 6,422 allocs, 5,695 frees, 1,004,634 bytes allocated
+==50186== 
+==50186== LEAK SUMMARY:
+==50186==    definitely lost: 0 bytes in 0 blocks
+==50186==    indirectly lost: 0 bytes in 0 blocks
+==50186==      possibly lost: 0 bytes in 0 blocks
+==50186==    still reachable: 216,398 bytes in 727 blocks
+==50186==         suppressed: 0 bytes in 0 blocks
+==50186== Reachable blocks (those to which a pointer was found) are not shown.
+==50186== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50186== 
+==50186== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ chmod 777 /tmp/minishell_cmd
+bash: chmod: No such file or directory
+==50187== 
+==50187== HEAP SUMMARY:
+==50187==     in use at exit: 216,463 bytes in 730 blocks
+==50187==   total heap usage: 6,460 allocs, 5,730 frees, 1,007,316 bytes allocated
+==50187== 
+==50187== LEAK SUMMARY:
+==50187==    definitely lost: 0 bytes in 0 blocks
+==50187==    indirectly lost: 0 bytes in 0 blocks
+==50187==      possibly lost: 0 bytes in 0 blocks
+==50187==    still reachable: 216,463 bytes in 730 blocks
+==50187==         suppressed: 0 bytes in 0 blocks
+==50187== Reachable blocks (those to which a pointer was found) are not shown.
+==50187== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50187== 
+==50187== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ cd /tmp/minishell_cmd
+minishell$ echo $?
+0
+minishell$ print_hello
+Hello, World!
+minishell$ echo $?
+0
+minishell$ chmod -x /tmp/minishell_cmd/print_hello
+bash: chmod: No such file or directory
+==50189== 
+==50189== HEAP SUMMARY:
+==50189==     in use at exit: 216,787 bytes in 748 blocks
+==50189==   total heap usage: 6,690 allocs, 5,942 frees, 1,039,652 bytes allocated
+==50189== 
+==50189== LEAK SUMMARY:
+==50189==    definitely lost: 0 bytes in 0 blocks
+==50189==    indirectly lost: 0 bytes in 0 blocks
+==50189==      possibly lost: 0 bytes in 0 blocks
+==50189==    still reachable: 216,787 bytes in 748 blocks
+==50189==         suppressed: 0 bytes in 0 blocks
+==50189== Reachable blocks (those to which a pointer was found) are not shown.
+==50189== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50189== 
+==50189== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ print_hello
+Hello, World!
+minishell$ echo $?
+0
+minishell$ ./print_hello
+Hello, World!
+minishell$ echo $?
+0
+minishell$ /print_hello
+bash: /print_hello: No such file or directory
+==50192== 
+==50192== HEAP SUMMARY:
+==50192==     in use at exit: 217,066 bytes in 766 blocks
+==50192==   total heap usage: 6,887 allocs, 6,121 frees, 1,063,152 bytes allocated
+==50192== 
+==50192== LEAK SUMMARY:
+==50192==    definitely lost: 0 bytes in 0 blocks
+==50192==    indirectly lost: 0 bytes in 0 blocks
+==50192==      possibly lost: 0 bytes in 0 blocks
+==50192==    still reachable: 217,066 bytes in 766 blocks
+==50192==         suppressed: 0 bytes in 0 blocks
+==50192== Reachable blocks (those to which a pointer was found) are not shown.
+==50192== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50192== 
+==50192== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ .print_hello
+bash: .print_hello: No such file or directory
+==50193== 
+==50193== HEAP SUMMARY:
+==50193==     in use at exit: 217,159 bytes in 772 blocks
+==50193==   total heap usage: 6,958 allocs, 6,186 frees, 1,076,542 bytes allocated
+==50193== 
+==50193== LEAK SUMMARY:
+==50193==    definitely lost: 0 bytes in 0 blocks
+==50193==    indirectly lost: 0 bytes in 0 blocks
+==50193==      possibly lost: 0 bytes in 0 blocks
+==50193==    still reachable: 217,159 bytes in 772 blocks
+==50193==         suppressed: 0 bytes in 0 blocks
+==50193== Reachable blocks (those to which a pointer was found) are not shown.
+==50193== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50193== 
+==50193== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ /tmp/minishell_cmd/print_hello
+Hello, World!
+minishell$ echo $?
+0
+minishell$ ./tmp/minishell_cmd/print_hello
+bash: ./tmp/minishell_cmd/print_hello: No such file or directory
+==50195== 
+==50195== HEAP SUMMARY:
+==50195==     in use at exit: 217,382 bytes in 784 blocks
+==50195==   total heap usage: 7,090 allocs, 6,306 frees, 1,091,192 bytes allocated
+==50195== 
+==50195== LEAK SUMMARY:
+==50195==    definitely lost: 0 bytes in 0 blocks
+==50195==    indirectly lost: 0 bytes in 0 blocks
+==50195==      possibly lost: 0 bytes in 0 blocks
+==50195==    still reachable: 217,382 bytes in 784 blocks
+==50195==         suppressed: 0 bytes in 0 blocks
+==50195== Reachable blocks (those to which a pointer was found) are not shown.
+==50195== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50195== 
+==50195== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ 
+minishell$ ls
+bash: ls: No such file or directory
+==50196== 
+==50196== HEAP SUMMARY:
+==50196==     in use at exit: 217,502 bytes in 793 blocks
+==50196==   total heap usage: 7,170 allocs, 6,377 frees, 1,106,605 bytes allocated
+==50196== 
+==50196== LEAK SUMMARY:
+==50196==    definitely lost: 0 bytes in 0 blocks
+==50196==    indirectly lost: 0 bytes in 0 blocks
+==50196==      possibly lost: 0 bytes in 0 blocks
+==50196==    still reachable: 217,502 bytes in 793 blocks
+==50196==         suppressed: 0 bytes in 0 blocks
+==50196== Reachable blocks (those to which a pointer was found) are not shown.
+==50196== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50196== 
+==50196== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ date
+bash: date: No such file or directory
+==50197== 
+==50197== HEAP SUMMARY:
+==50197==     in use at exit: 217,587 bytes in 799 blocks
+==50197==   total heap usage: 7,237 allocs, 6,438 frees, 1,115,768 bytes allocated
+==50197== 
+==50197== LEAK SUMMARY:
+==50197==    definitely lost: 0 bytes in 0 blocks
+==50197==    indirectly lost: 0 bytes in 0 blocks
+==50197==      possibly lost: 0 bytes in 0 blocks
+==50197==    still reachable: 217,587 bytes in 799 blocks
+==50197==         suppressed: 0 bytes in 0 blocks
+==50197== Reachable blocks (those to which a pointer was found) are not shown.
+==50197== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50197== 
+==50197== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+127
+minishell$ /bin/ls | /usr/bin/wc
+      1       1      12
+minishell$ echo $?
+0
+minishell$ /bin/cat | /bin/ls
+print_hello
+minishell$ exit
+==50108== 
+==50108== HEAP SUMMARY:
+==50108==     in use at exit: 217,788 bytes in 811 blocks
+==50108==   total heap usage: 7,415 allocs, 6,604 frees, 1,134,830 bytes allocated
+==50108== 
+==50108== LEAK SUMMARY:
+==50108==    definitely lost: 0 bytes in 0 blocks
+==50108==    indirectly lost: 0 bytes in 0 blocks
+==50108==      possibly lost: 0 bytes in 0 blocks
+==50108==    still reachable: 217,788 bytes in 811 blocks
+==50108==         suppressed: 0 bytes in 0 blocks
+==50108== Reachable blocks (those to which a pointer was found) are not shown.
+==50108== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50108== 
+==50108== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+make: 'test-cases/command.txt' is up to date.
+
+Script done on 2025-03-27 17:23:28+09:00 [COMMAND_EXIT_CODE="0"]

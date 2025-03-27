@@ -1,0 +1,157 @@
+Script started on 2025-03-27 17:23:52+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="123" LINES="35"]
+==50713== Memcheck, a memory error detector
+==50713== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==50713== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==50713== Command: ../minishell
+==50713== 
+minishell$ pwd
+/home/mfunakos/Desktop/42cursus/minishell/miyushell/debug
+minishell$ echo $?
+0
+minishell$ cd -
+bash: cd: OLDPWD not set
+minishell$ echo $?
+1
+minishell$ pwd
+/home/mfunakos/Desktop/42cursus/minishell/miyushell/debug
+minishell$ echo $?
+0
+minishell$ cd .
+minishell$ echo $?
+0
+minishell$ pwd
+/home/mfunakos/Desktop/42cursus/minishell/miyushell/debug
+minishell$ echo $?
+0
+minishell$ cd -
+/home/mfunakos/Desktop/42cursus/minishell/miyushell/debug
+minishell$ echo $?
+0
+minishell$ pwd
+/home/mfunakos/Desktop/42cursus/minishell/miyushell/debug
+minishell$ echo $?
+0
+minishell$ cd ..
+minishell$ echo $?
+0
+minishell$ pwd
+/home/mfunakos/Desktop/42cursus/minishell/miyushell
+minishell$ echo $?
+0
+minishell$ cd -
+/home/mfunakos/Desktop/42cursus/minishell/miyushell/debug
+minishell$ echo $?
+0
+minishell$ pwd
+/home/mfunakos/Desktop/42cursus/minishell/miyushell/debug
+minishell$ echo $?
+0
+minishell$ cd -
+/home/mfunakos/Desktop/42cursus/minishell/miyushell
+minishell$ echo $?
+0
+minishell$ pwd
+/home/mfunakos/Desktop/42cursus/minishell/miyushell
+minishell$ echo $?
+0
+minishell$ cd /tmp
+minishell$ echo $?
+0
+minishell$ pwd
+/tmp
+minishell$ echo $?
+0
+minishell$ cd
+minishell$ echo $?
+0
+minishell$ pwd
+/home/mfunakos
+minishell$ echo $?
+0
+minishell$ cd /tmp
+minishell$ echo $?
+0
+minishell$ cd ~
+minishell$ echo $?
+0
+minishell$ pwd
+/home/mfunakos
+minishell$ echo $?
+0
+minishell$ cd /tmp
+minishell$ echo $?
+0
+minishell$ touch file
+minishell$ echo $?
+0
+minishell$ cd file
+bash: cd: file: Not a directory
+minishell$ echo $?
+1
+minishell$ cd /not/exit/path
+bash: cd: /not/exit/path: No such file or directory
+minishell$ echo $?
+1
+minishell$ cd
+minishell$ echo $?
+0
+minishell$ cd /
+minishell$ echo $?
+0
+minishell$ cd - | pwd
+/
+==50715== 
+==50715== HEAP SUMMARY:
+==50715==     in use at exit: 210,458 bytes in 382 blocks
+==50715==   total heap usage: 2,972 allocs, 2,590 frees, 667,683 bytes allocated
+==50715== 
+==50715== LEAK SUMMARY:
+==50715==    definitely lost: 0 bytes in 0 blocks
+==50715==    indirectly lost: 0 bytes in 0 blocks
+==50715==      possibly lost: 0 bytes in 0 blocks
+==50715==    still reachable: 210,458 bytes in 382 blocks
+==50715==         suppressed: 0 bytes in 0 blocks
+==50715== Reachable blocks (those to which a pointer was found) are not shown.
+==50715== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50715== 
+==50715== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==50716== 
+==50716== HEAP SUMMARY:
+==50716==     in use at exit: 210,471 bytes in 382 blocks
+==50716==   total heap usage: 2,972 allocs, 2,590 frees, 667,683 bytes allocated
+==50716== 
+==50716== LEAK SUMMARY:
+==50716==    definitely lost: 0 bytes in 0 blocks
+==50716==    indirectly lost: 0 bytes in 0 blocks
+==50716==      possibly lost: 0 bytes in 0 blocks
+==50716==    still reachable: 210,471 bytes in 382 blocks
+==50716==         suppressed: 0 bytes in 0 blocks
+==50716== Reachable blocks (those to which a pointer was found) are not shown.
+==50716== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50716== 
+==50716== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minishell$ echo $?
+0
+minishell$ pwd
+/
+minishell$ echo $?
+0
+minishell$ exit
+==50713== 
+==50713== HEAP SUMMARY:
+==50713==     in use at exit: 210,599 bytes in 391 blocks
+==50713==   total heap usage: 3,112 allocs, 2,721 frees, 688,137 bytes allocated
+==50713== 
+==50713== LEAK SUMMARY:
+==50713==    definitely lost: 0 bytes in 0 blocks
+==50713==    indirectly lost: 0 bytes in 0 blocks
+==50713==      possibly lost: 0 bytes in 0 blocks
+==50713==    still reachable: 210,599 bytes in 391 blocks
+==50713==         suppressed: 0 bytes in 0 blocks
+==50713== Reachable blocks (those to which a pointer was found) are not shown.
+==50713== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==50713== 
+==50713== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+make: 'test-cases/pwd_and_cd.txt' is up to date.
+
+Script done on 2025-03-27 17:23:53+09:00 [COMMAND_EXIT_CODE="0"]
