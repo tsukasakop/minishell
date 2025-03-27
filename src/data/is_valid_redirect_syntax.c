@@ -22,10 +22,11 @@ bool	is_valid_redirect_syntax(t_text_list *cur)
 {
 	if (cur->next == NULL || get_redirect_type(cur->next->text) != REDIR_NONE)
 	{
+		set_error_type(ERR_SYNTAX);
 		if (cur->next == NULL)
-			handle_each_err_type(ERR_SYNTAX, "newline");
+			syntax_error_handle("newline");
 		else
-			handle_each_err_type(ERR_SYNTAX, cur->next->text);
+			syntax_error_handle(cur->next->text);
 		return (false);
 	}
 	return (true);
