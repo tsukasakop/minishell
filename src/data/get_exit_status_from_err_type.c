@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exitstatus_each_err_type.c                         :+:      :+:    :+:   */
+/*   get_exit_status_from_err_type.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 14:37:32 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/27 17:34:14 by mfunakos         ###   ########.fr       */
+/*   Created: 2025/03/27 19:38:53 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/27 19:38:55 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:exitstatus_each_err_type
+ * Function:get_exit_status_from_err_type
  * ----------------------------
  * Returns the exit status for each err_type.
  */
-unsigned char	exitstatus_each_err_type(t_error_type	err_type)
+unsigned char	get_exit_status_from_err_type(t_error_type	err_type)
 {
 	if (err_type == NOERR)
 		return (0);

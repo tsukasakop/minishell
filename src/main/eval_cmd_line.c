@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:40 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/27 19:07:26 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/27 19:37:13 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ unsigned char	eval_cmd_line(char **envp)
 	set_error_type(NOERR);
 	input = get_input();
 	if (!input)
-		return (exitstatus_each_err_type(get_error_type()));
+		return (get_exit_status_from_err_type(get_error_type()));
 	status = eval_pipe(input, envp);
 	if (g_signal)
 		status = 128 + g_signal;

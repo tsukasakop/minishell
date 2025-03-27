@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/27 19:08:54 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/27 19:37:14 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ unsigned char	eval_pipe(const char *cmd_line, char **envp)
 	set_error_type(NOERR);
 	scmd_list = init_scmd_list(cmd_line);
 	if (!scmd_list)
-		return (exitstatus_each_err_type(get_error_type()));
+		return (get_exit_status_from_err_type(get_error_type()));
 	// TODO: session = init_session();
 	stdio_fd[0] = STDIN_FILENO;
 	stdio_fd[1] = STDOUT_FILENO;
