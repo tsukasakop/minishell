@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_redirects.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 03:46:43 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/27 17:34:14 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/03/27 19:51:45 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int	*handle_redirects(t_redirect *redir, int fd_count)
 	keep_fds = ft_g_mmmalloc(sizeof(int) * fd_count * 2);
 	if (!keep_fds)
 	{
-		handle_each_err_type(ERR_SYSCOLL, NULL);
+		set_error_type(ERR_SYSCOLL);
+		perror(NULL);
 		return (NULL);
 	}
 	i = 0;

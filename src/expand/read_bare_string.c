@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_bare_string.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:52:33 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/27 17:34:14 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/03/27 19:50:46 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ char	*read_bare_string(char **cur_p, char *ends, size_t ends_len)
 	buffer = ft_g_mmadd(ft_strndup(*cur_p, next_cur - *cur_p));
 	if (!buffer)
 	{
-		handle_each_err_type(ERR_SYSCOLL, NULL);
+		set_error_type(ERR_SYSCOLL);
+		perror(NULL);
 		return (NULL);
 	}
 	*cur_p = next_cur;

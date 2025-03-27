@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:49:32 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/27 18:56:57 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/27 19:51:31 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*get_input(void)
 	input = ft_g_mmadd(readline(PROMPT));
 	if (input == NULL && errno == ENOMEM)
 	{
-		handle_each_err_type(ERR_SYSCOLL, NULL);
+		set_error_type(ERR_SYSCOLL);
 		perror(NULL);
 		return (NULL);
 	}
@@ -41,7 +41,7 @@ char	*get_input(void)
 		input = ft_g_mmadd(ft_strdup("exit"));
 		if (!input)
 		{
-			handle_each_err_type(ERR_SYSCOLL, NULL);
+			set_error_type(ERR_SYSCOLL);
 			perror(NULL);
 			return (NULL);
 		}

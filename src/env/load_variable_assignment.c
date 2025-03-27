@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_variable_assignment.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:54:33 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/27 17:34:14 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/03/27 19:49:13 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	load_variable_assignment(char *string, char **name, char **value)
 	*name = ft_g_mmadd(ft_strndup(string, sep - string));
 	if (*name == NULL)
 	{
-		handle_each_err_type(ERR_SYSCOLL, NULL);
+		set_error_type(ERR_SYSCOLL);
+		perror(NULL);
 		return ;
 	}
 	if (!is_valid_identifier(*name))
@@ -40,7 +41,8 @@ void	load_variable_assignment(char *string, char **name, char **value)
 	*value = ft_g_mmadd(ft_strdup(sep + 1));
 	if (*value == NULL)
 	{
-		handle_each_err_type(ERR_SYSCOLL, NULL);
+		set_error_type(ERR_SYSCOLL);
+		perror(NULL);
 		*name = NULL;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   write_until_eof.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:18:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/27 17:34:14 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/03/27 19:51:37 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	write_until_eof(int fd, const char *raw_eof)
 		line = ft_g_mmadd(readline("> "));
 		if (line == NULL && errno == ENOMEM)
 		{
-			handle_each_err_type(ERR_SYSCOLL, NULL);
+			set_error_type(ERR_SYSCOLL);
+			perror(NULL);
 			return ;
 		}
 		if (line && ft_strcmp(line, hd_eof) == 0)

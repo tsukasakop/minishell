@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   append_str.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:14:53 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/27 17:34:14 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/03/27 19:49:23 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	append_str(char ***store, char *orig)
 	tmp = ft_g_mmmalloc(sizeof(char *) * (len + 2));
 	if (tmp == NULL)
 	{
-		handle_each_err_type(ERR_SYSCOLL, NULL);
+		set_error_type(ERR_SYSCOLL);
+		perror(NULL);
 		*store = NULL;
 		return ;
 	}
@@ -35,7 +36,8 @@ void	append_str(char ***store, char *orig)
 	dup = ft_g_mmadd(ft_strdup(orig));
 	if (dup == NULL)
 	{
-		handle_each_err_type(ERR_SYSCOLL, NULL);
+		set_error_type(ERR_SYSCOLL);
+		perror(NULL);
 		*store = NULL;
 		return ;
 	}
