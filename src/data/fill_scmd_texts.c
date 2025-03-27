@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_scmd_texts.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 19:39:29 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/26 03:59:21 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/27 17:34:14 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	**fill_scmd_texts(const char *cmd_line)
 	scmd_texts = ft_g_mmcalloc(sizeof(char *), 1);
 	if (!scmd_texts)
 	{
-		handle_each_err_type(ERR_PERROR, NULL);
+		handle_each_err_type(ERR_SYSCOLL, NULL);
 		return (NULL);
 	}
 	token_len = 0;

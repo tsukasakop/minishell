@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/26 15:19:19 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/27 17:34:36 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ enum e_execute_env
 enum e_error_type
 {
 	NOERR,
-	ERR_PERROR,
+	ERR_SYSCOLL,
 	ERR_AMBRDIR,
 	ERR_SYNTAX,
 };

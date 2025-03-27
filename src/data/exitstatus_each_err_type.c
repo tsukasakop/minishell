@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exitstatus_each_err_type.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 14:37:32 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/26 15:06:04 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/27 17:34:14 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ unsigned char	exitstatus_each_err_type(t_error_type	err_type)
 {
 	if (err_type == NOERR)
 		return (0);
-	else if (err_type == ERR_PERROR)
+	else if (err_type == ERR_SYSCOLL)
 		return (1);
 	else if (err_type == ERR_AMBRDIR)
 		return (1);

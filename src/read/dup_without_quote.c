@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dup_without_quote.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 14:00:50 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/26 04:03:11 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/27 17:34:14 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*dup_without_quote(const char *hd_eof)
 	copy = ft_g_mmmalloc(sizeof(char) * (ft_strlen(hd_eof) + 1));
 	if (copy == NULL)
 	{
-		handle_each_err_type(ERR_PERROR, NULL);
+		handle_each_err_type(ERR_SYSCOLL, NULL);
 		return (NULL);
 	}
 	copy_head = copy;

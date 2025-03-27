@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_variable_m.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:51:45 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/26 04:02:46 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/27 17:34:14 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*read_variable_m(char **cur_p, char **buf_p)
 		tmp = ft_g_mmadd(ft_itoa((int)get_exit_status()));
 		if (!tmp)
 		{
-			handle_each_err_type(ERR_PERROR, NULL);
+			handle_each_err_type(ERR_SYSCOLL, NULL);
 			return (NULL);
 		}
 		return (tmp);
@@ -42,7 +42,7 @@ char	*read_variable_m(char **cur_p, char **buf_p)
 		tmp = ft_strnjoin(*buf_p, "$", 1);
 		if (!tmp)
 		{
-			handle_each_err_type(ERR_PERROR, NULL);
+			handle_each_err_type(ERR_SYSCOLL, NULL);
 			return (NULL);
 		}
 		*buf_p = tmp;

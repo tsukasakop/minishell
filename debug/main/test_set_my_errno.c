@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_set_my_errno.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:52:53 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/26 15:22:58 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/27 17:34:14 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ const char	*get_error_name(t_error_type err)
 {
 	static const	char *error_names[] = {
 		"NOERR",
-		"ERR_PERROR",
+		"ERR_SYSCOLL",
 		"ERR_AMBRDIR",
 		"ERR_SYNTAX",
 	};

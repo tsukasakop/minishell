@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_struct_redirect.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:35:12 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/26 03:58:37 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/27 17:34:14 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_redirect	*add_struct_redirect(int type, int from_fd, char *path)
 	new = ft_g_mmmalloc(sizeof(t_redirect));
 	if (!new)
 	{
-		handle_each_err_type(ERR_PERROR, NULL);
+		handle_each_err_type(ERR_SYSCOLL, NULL);
 		return (NULL);
 	}
 	new->type = type;

@@ -6,7 +6,7 @@
 /*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:18:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/27 17:22:32 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/03/27 17:34:14 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	write_until_eof(int fd, const char *raw_eof)
 		line = ft_g_mmadd(readline("> "));
 		if (line == NULL && errno == ENOMEM)
 		{
-			handle_each_err_type(ERR_PERROR, NULL);
+			handle_each_err_type(ERR_SYSCOLL, NULL);
 			return ;
 		}
 		if (line && ft_strcmp(line, hd_eof) == 0)

@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/usr/bin/bash
 
 export PS1='minishell$ '
 MISH="${MISH-$(git -C "${0%/*}" rev-parse --show-toplevel)/minishell}"
@@ -58,12 +58,12 @@ test-string()
         echo "Failure: \"$STRING\"" >&2
     fi
     return "$STATUS"
-    
+
 }
 
 test-file()
 {
-    local FILE="${1:?}" 
+    local FILE="${1:?}"
 
     exec {BASH_FD}<"$FILE"
     exec {MISH_FD}<"$FILE"
