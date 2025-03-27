@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:49:32 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/26 02:15:37 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/27 18:56:57 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ char	*get_input(void)
 	errno = 0;
 	input = ft_g_mmadd(readline(PROMPT));
 	if (input == NULL && errno == ENOMEM)
-		return (perror_return_null(NULL));
+	{
+		handle_each_err_type(ERR_SYSCOLL, NULL);
+		perror(NULL);
+		return (NULL);
+	}
 	set_handlers_for_process();
 	if (input)
 		add_history(input);
@@ -36,7 +40,11 @@ char	*get_input(void)
 	{
 		input = ft_g_mmadd(ft_strdup("exit"));
 		if (!input)
-			return (perror_return_null(NULL));
+		{
+			handle_each_err_type(ERR_SYSCOLL, NULL);
+			perror(NULL);
+			return (NULL);
+		}
 	}
 	return (input);
 }

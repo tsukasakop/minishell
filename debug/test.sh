@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/local/bin/bash
 
 export PS1='minishell$ '
 MISH="${MISH-$(git -C "${0%/*}" rev-parse --show-toplevel)/minishell}"

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/27 17:34:36 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/03/27 18:58:05 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,7 +187,7 @@ char			*expand_heredoc_line(const char *raw_line);
 
 /* main function */
 unsigned char	eval_pipe(const char *cmd_line, char **envp);
-unsigned char	eval_cmd_line(const char *cmd_line, char **envp);
+unsigned char	eval_cmd_line(char **envp);
 bool			execute_simple_cmd(const t_simple_cmd *scmd_list, \
 				int stdio_fd[2], int next_in_fd, char **envp);
 bool			init(char **envp);
