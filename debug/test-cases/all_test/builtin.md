@@ -152,6 +152,8 @@
 	unset UID
 
 ## pwd
+### - 問題点
+	カレントディレクトリの実行権限がない時に、pwdが表示されない
 ### 正常
 #### - 引数あり | なし | 複数
 	pwd /tmp
@@ -169,6 +171,9 @@
 	cd /home
 	pwd
 
+#### - カレントディレクトリの権限削除 -r | -w | ※ -x
+	pwd
+
 #### - PWDを削除 直後 | 移動後
 ```bash
 	unset PWD
@@ -184,14 +189,20 @@
 	pwd
 ```
 
-#### - カレントディレクトリの権限削除 000 | -r |  -x | -w
-	pwd
 
 ## cd
+### - 問題点
+	カレントディレクトリの実行権限がない時に、`../`で移動ができない→`.`や絶対パスでの移動はできる
+	PWD, OLDPWDをunset後、これらを使った移動ができない→環境変数の更新を行なっていないため
+	親ディレクトリの実行権限がない場合のエラー出力や、パスの変化が起きない
 ### 正常
 #### - 引数あり | なし
 	cd
 	cd /tmp
+
+#### - 存在する | しない
+	cd /tmp
+	cd 111111
 
 #### - 引数が特殊
 	cd .
@@ -201,60 +212,64 @@
 	cd ~
 	cd /
 
-#### スラッシュあり | なし
+#### スラッシュあり | なし + 存在する
 	cd /tmp
 	cd tmp
 
-#### - 引数が変数 | HOME | PWD | OLDPWD
-	cd $HOME
-	cd $PWD
-	cd $OLDPWD
+#### スラッシュあり | なし + 存在しない
+	cd /aaa
+	cd aaa
 
 #### - 引数にクォート +  空白あり
 	cd "/tmp"
 	cd "/tmp    /home"
 	cd '/tmp    /home'
 
-#### - 引数2つ | ３つ以上の引数 | 引数の間に複数のスペースがある
+#### - 引数2つ | ３つ以上の引数 | 空白ありの正しい引数
 	cd /tmp /home
-	cd /tmp /home
+	cd /tmp /home ../
+	cd /    tmp
 
-#### 環境変数PWDの更新
-```
+#### - 引数に ダブルクォート | シングルクォート
+	cd "/tmp"
+	cd '/tmp'
+
+#### - 引数が既存の変数 | HOME | PWD | OLDPWD
+	cd $HOME
+	cd $PWD
+	cd $OLDPWD
+
+#### - 引数が存在 | する変数 | しない変数
+	cd $exist
+	cd $aaaaa
+
+#### - カレントディレクトリの権限削除 | -r | -w |  ※ -x
+	# cd /tmp/hoge
+	cd .
+	※ cd ..
+	cd /tmp/hoge
+	cd hogeinhoge
+	cd /tmp
+
+#### - ※ 親ディレクトリの実行権限削除 + ./ | ../ | ../../
+	mkdir /tmp/hoge/hogeinhoge/hogeinhoge2
+	cd /tmp/hoge/hogeinhoge/hogeinhoge2
+	chmod -x /tmp/hoge
+
+#### - PWDを削除 直後 | 移動後 | ※ PWDで移動
+```bash
 	unset PWD
-	echo $PWD
-	cd .
-	echo $PWD
+	cd $PWD
+	cd ../
+	cd $PWD
 ```
 
-### エラー
-- 存在しない系
-	cd 111111
+#### - OLDPWDを削除 直後 | 移動後 | ※ OLDPWDで移動
 ```bash
-	cd /
-	cd ..
-```
-- 実行権限なくしてからcd
-```bash
-	mkdir hoge
-	chmod 000 hoge/
-	cd hoge
-```
-- ディレクトリにいる状態で実行権限なくしてからcd
-```bash
-	mkdir hoge
-	chmod 777 hoge/
-	cd hoge
-	chmod 000 hoge/
-	cd .
-	cd ..
-```
-## pwd
-	pwd
-	pwd hogehoge
-```bash
-	cd /
-	pwd aaaa
+	unset OLDPWD
+	cd $OLDPWD
+	cd ../
+	cd $OLDPWD
 ```
 
 ## exit

@@ -44,7 +44,7 @@ export WITH_TEXT='$TEXT'
 echo $WITH_TEXT
 export | grep WITH_TEXT | wc -l
 
--- 出力がbashと異なるが、バグ export WITH_VAR=$VAR
+-- 出力がbashと異なり、修正が必要 export WITH_VAR=$VAR
 export WITH_VAR="$VAR"
 echo $WITH_TEXT
 export | grep WITH_TEXT | wc -l
