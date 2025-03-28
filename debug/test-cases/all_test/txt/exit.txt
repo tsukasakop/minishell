@@ -1,0 +1,134 @@
+../minishell
+exit
+echo $?
+
+--
+../minishell
+exit 0
+echo $?
+../minishell
+exit 1
+echo $?
+../minishell
+exit 255
+echo $?
+../minishell
+exit 256
+echo $?
+../minishell
+exit 001
+echo $?
+
+--
+../minishell
+exit -0
+echo $?
+../minishell
+exit +0
+echo $?
+../minishell
+exit -42
+echo $?
+../minishell
+exit +42
+echo $?
+../minishell
+exit --0
+echo $?
+../minishell
+exit ++0
+echo $?
+../minishell
+exit ---42
+echo $?
+../minishell
+exit +++42
+echo $?
+../minishell
+exit -+-+42
+echo $?
+../minishell
+exit +-+-42
+echo $?
+
+--
+../minishell
+exit 2147483648
+echo $?
+../minishell
+exit -2147483649
+echo $?
+../minishell
+exit 9223372036854775808
+echo $?
+../minishell
+exit -9223372036854775809
+echo $?
+
+--
+../minishell
+exit 0.00
+echo $?
+../minishell
+exit 4.20
+echo $?
+../minishell
+exit 0x2A
+echo $?
+../minishell
+exit 0b101010
+echo $?
+
+--
+../minishell
+exit w
+echo $?
+../minishell
+exit hello
+echo $?
+../minishell
+exit 42tokyo
+echo $?
+
+--
+../minishell
+exit 1 42
+echo $?
+../minishell
+exit 42 hello
+echo $?
+../minishell
+exit hello 42
+echo $?
+../minishell
+exit hello world
+echo $?
+
+--
+../minishell
+exit "0"
+echo $?
+../minishell
+exit '1'
+echo $?
+../minishell
+exit ""
+echo $?
+../minishell
+exit ''
+echo $?
+../minishell
+exit "   "
+echo $?
+../minishell
+exit '   '
+echo $?
+
+--
+../minishell
+exit $aaa
+echo $?
+export STA=1
+../minishell
+exit $STA
+echo $?

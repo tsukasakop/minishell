@@ -273,16 +273,147 @@
 ```
 
 ## exit
-### 正常
+#### - 引数なし
 	exit
-	exit 2
-	exit 000
+
+#### - 引数が整数 0 | 1 | 255 | 255以上 & 0 埋め数値
+	exit 0
+	exit 1
 	exit 255
 	exit 256
-	exit -1
+	exit 001
 
-### エラー
+#### - 引数が符号付き(- +) 符号1個 | 複数
+	exit -0
+	exit +0
+	exit -42
+	exit +42
+	exit ---42
+	exit +++42
+	exit -+-+42
+	exit +-+-42
+
+#### - 引数が大きい数字 INT_MAX + 1 | INT_MIN - 1 | LONG_MAX + 1 | LONG_MIN - 1
+	exit 2147483648
+	exit -2147483649
+	exit 9223372036854775808
+	exit -9223372036854775809
+
+#### - 引数が 小数点 | 16進数 | 2進数
+	exit 0.00
+	exit 4.20
+	exit 0x2A
+	exit 0b101010
+
+#### - 引数が数字以外 文字 | 文字列 | 数字+文字列
+	exit w
 	exit hello
 	exit 42tokyo
-	exit 1 1
-	exit 1 hello
+
+#### - 引数が複数 数字 + 数字 | 数字 + 文字列 | 文字列 + 数字 | 文字列 + 文字列
+	exit 1 42
+	exit 42 hello
+	exit hello 42
+	exit hello world
+
+#### - クォートで 数字 | 空 | 空白
+	exit "0"
+	exit '1'
+	exit ""
+	exit ''
+	exit "   "
+	exit '   '
+
+#### - 引数が変数 未定義 | 数字
+	exit $aaa
+	export STA=1
+	exit $STA
+
+
+
+- 問題点
+exit の前に他のコマンドが実行された場合の挙動
+終了ステータスの扱いが bash と異なる可能性
+引数の処理に関する挙動（数値・文字列・オーバーフローなど）
+正常
+- 引数なし（通常終了）
+
+exit
+- 整数の引数（0 〜 255 以内）
+
+exit 0
+exit 1
+exit 42
+exit 255
+- 256 以上の数値（オーバーフロー）
+
+exit 256
+exit 512
+exit 1024
+exit 99999999
+- 負の数（符号付き整数の扱い）
+
+exit -1
+exit -42
+exit -255
+exit -256
+exit -99999999
+- 0 埋めの数値（正常に解釈されるか）
+
+exit 000
+exit 042
+- 符号付き 0 埋め数値
+
+exit -000
+exit -042
+- INT_MAX + 1 / INT_MIN - 1 など（オーバーフロー）
+
+exit 2147483648
+exit -2147483649
+exit 9223372036854775808
+exit -9223372036854775809
+- 文字列（エラー処理）
+
+exit hello
+exit world
+exit 42tokyo
+- 数値 + 文字列（最初の引数のみ評価されるか）
+
+exit 1 hello
+exit 42 tokyo
+exit 123 test
+- 文字列 + 数値（エラー処理の確認）
+
+exit hello 1
+exit test 42
+- 数値として解釈できるが変な形式
+
+exit +42
+exit --42
+exit 1.5
+exit 3.14
+exit 42e2
+exit 0x2A
+exit 0b101010
+- 複数の数値（bash はエラー）
+
+exit 1 2
+exit 42 256
+exit 0 255
+- 環境変数を使う
+
+export EXIT_STATUS=42
+exit $EXIT_STATUS
+export EXIT_STATUS=hello
+exit $EXIT_STATUS
+- 変数が未設定の状態で exit
+
+exit $UNDEFINED_VAR
+- exit の前に他のコマンドを実行
+
+echo "Before exit"
+exit 42
+- exit のエラーメッセージを確認（無効な引数など）
+
+exit --
+exit --help
