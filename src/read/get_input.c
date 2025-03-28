@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_input.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:49:32 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/27 19:51:31 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/28 18:39:53 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*get_input(void)
 	if (input == NULL && errno == ENOMEM)
 	{
 		set_error_type(ERR_SYSCOLL);
-		perror(NULL);
+		perror_with_shellname(NULL);
 		return (NULL);
 	}
 	set_handlers_for_process();
@@ -42,7 +42,7 @@ char	*get_input(void)
 		if (!input)
 		{
 			set_error_type(ERR_SYSCOLL);
-			perror(NULL);
+			perror_with_shellname(NULL);
 			return (NULL);
 		}
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token2ecmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 20:36:46 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/27 19:48:55 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/28 18:39:14 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	**token2ecmds(t_text_list *tokens)
 		if (expanded == NULL)
 		{
 			set_error_type(ERR_SYSCOLL);
-			perror(NULL);
+			perror_with_shellname(NULL);
 			return (NULL);
 		}
 	}

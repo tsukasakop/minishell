@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_tmp_file.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:43:09 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/27 19:47:40 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/28 18:39:02 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ char	*create_tmp_file(void)
 		if (!num)
 		{
 			set_error_type(ERR_SYSCOLL);
-			perror(NULL);
+			perror_with_shellname(NULL);
 			return (NULL);
 		}
 		filename = ft_g_mmadd(ft_strjoin("/tmp/heredoc_", num));
 		if (!filename)
 		{
 			set_error_type(ERR_SYSCOLL);
-			perror(NULL);
+			perror_with_shellname(NULL);
 			return (NULL);
 		}
 		fd = open(filename, O_CREAT | O_EXCL, 0600);

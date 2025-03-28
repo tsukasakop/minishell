@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_single_token.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:15:39 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/27 19:50:23 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/28 18:39:35 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	**expand_single_token(char *orig)
 	if (!fixed)
 	{
 		set_error_type(ERR_SYSCOLL);
-		perror(NULL);
+		perror_with_shellname(NULL);
 		return (NULL);
 	}
 	cur = orig;

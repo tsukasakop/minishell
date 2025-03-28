@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   new_struct_text_list.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:56:50 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/27 19:48:47 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/28 18:39:10 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ t_text_list	*new_struct_text_list(char *str, size_t len)
 	if (!node)
 	{
 		set_error_type(ERR_SYSCOLL);
-		perror(NULL);
+		perror_with_shellname(NULL);
 		return (NULL);
 	}
 	node->text = ft_g_mmadd(ft_strndup(str, len));
 	if (!node->text)
 	{
 		set_error_type(ERR_SYSCOLL);
-		perror(NULL);
+		perror_with_shellname(NULL);
 		return (NULL);
 	}
 	node->prev = NULL;

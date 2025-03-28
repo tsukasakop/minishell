@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_scmd_texts.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 19:39:29 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/27 19:48:04 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/28 18:39:05 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	**fill_scmd_texts(const char *cmd_line)
 	if (!scmd_texts)
 	{
 		set_error_type(ERR_SYSCOLL);
-		perror(NULL);
+		perror_with_shellname(NULL);
 		return (NULL);
 	}
 	token_len = 0;

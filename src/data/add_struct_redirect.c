@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_struct_redirect.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:35:12 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/27 19:46:20 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/28 18:38:54 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_redirect	*add_struct_redirect(int type, int from_fd, char *path)
 	if (!new)
 	{
 		set_error_type(ERR_SYSCOLL);
-		perror(NULL);
+		perror_with_shellname(NULL);
 		return (NULL);
 	}
 	new->type = type;

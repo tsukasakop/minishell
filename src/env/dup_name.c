@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dup_name.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 02:02:28 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/27 19:49:05 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/28 18:39:19 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*dup_name(char *cur)
 	if (!str)
 	{
 		set_error_type(ERR_SYSCOLL);
-		perror(NULL);
+		perror_with_shellname(NULL);
 		return (NULL);
 	}
 	return (str);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_bare_string_m.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:52:13 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/27 19:50:35 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/28 18:39:37 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	read_bare_string_m(char **cur_p, char **buf_p, char *ends,
 	if (tmp == NULL)
 	{
 		set_error_type(ERR_SYSCOLL);
-		perror(NULL);
+		perror_with_shellname(NULL);
 		return ;
 	}
 	*buf_p = tmp;
