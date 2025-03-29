@@ -1,3 +1,4 @@
+-- 以下、出力がbashと異なり修正が必要 ほとんどすべてのecho $?、エラー出力がない
 ../minishell
 exit
 echo $?
@@ -53,10 +54,22 @@ echo $?
 
 --
 ../minishell
+exit 2147483647
+echo $?
+../minishell
+exit -2147483648
+echo $?
+../minishell
 exit 2147483648
 echo $?
 ../minishell
 exit -2147483649
+echo $?
+../minishell
+exit 9223372036854775807
+echo $?
+../minishell
+exit -9223372036854775808
 echo $?
 ../minishell
 exit 9223372036854775808
