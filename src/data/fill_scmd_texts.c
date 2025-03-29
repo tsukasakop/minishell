@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_scmd_texts.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 19:39:29 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/28 18:39:05 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/03/29 20:25:54 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	**fill_scmd_texts(const char *cmd_line)
 	scmd_texts = ft_g_mmcalloc(sizeof(char *), 1);
 	if (!scmd_texts)
 	{
-		set_error_type(ERR_SYSCOLL);
+		set_error_type(ERR_SYSCALL);
 		perror_with_shellname(NULL);
 		return (NULL);
 	}

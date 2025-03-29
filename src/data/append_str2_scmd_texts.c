@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   append_str2_scmd_texts.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 19:39:17 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/28 18:42:25 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/03/29 20:25:54 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	append_str2_scmd_texts(char ***scmd_texts, const char *text, \
 	sub = ft_g_mmadd(ft_substr(text, start, len));
 	if (!sub)
 	{
-		set_error_type(ERR_SYSCOLL);
+		set_error_type(ERR_SYSCALL);
 		perror_with_shellname(NULL);
 		*scmd_texts = NULL;
 		return ;

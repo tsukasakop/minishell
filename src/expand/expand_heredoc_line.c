@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_heredoc_line.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 14:50:41 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/28 18:39:33 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/03/29 20:25:54 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*expand_heredoc_line(const char *raw_line)
 	expanded = ft_g_mmadd(ft_strdup(""));
 	if (!expanded)
 	{
-		set_error_type(ERR_SYSCOLL);
+		set_error_type(ERR_SYSCALL);
 		perror_with_shellname(NULL);
 		return (NULL);
 	}
@@ -42,7 +42,7 @@ char	*expand_heredoc_line(const char *raw_line)
 			expanded = ft_strnjoin(expanded, var, ft_strlen(var));
 			if (!expanded)
 			{
-				set_error_type(ERR_SYSCOLL);
+				set_error_type(ERR_SYSCALL);
 				perror_with_shellname(NULL);
 				return (NULL);
 			}

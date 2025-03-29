@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/27 20:16:05 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/29 20:25:54 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ enum e_execute_env
 enum e_error_type
 {
 	NOERR,
-	ERR_SYSCOLL,
+	ERR_SYSCALL,
 	ERR_AMBRDIR,
 	ERR_SYNTAX,
 };

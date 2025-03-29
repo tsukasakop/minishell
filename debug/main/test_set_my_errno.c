@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:52:53 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/27 19:37:13 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/29 20:25:54 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ const char	*get_error_name(t_error_type err)
 {
 	static const	char *error_names[] = {
 		"NOERR",
-		"ERR_SYSCOLL",
+		"ERR_SYSCALL",
 		"ERR_AMBRDIR",
 		"ERR_SYNTAX",
 	};
