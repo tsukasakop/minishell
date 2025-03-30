@@ -5,8 +5,8 @@
 	ls | grep minishell
 
 #### - 処理順の確認　sleepコマンドが 先 | 後
-	sleep 2 | ls
-	ls | sleep 2
+	sleep 1 | ls
+	ls | sleep 1
 
 #### - fd管理の確認
 	cat | cat | ls
@@ -39,7 +39,7 @@ export
 	notexist | ls | wc
 	ls | wc | cat
 
-#### - シンタックスエラー
+#### - !!シンタックスエラー
 - `|`
 	→ bash: syntax error near unexpected token `|'にする
 - `||`
