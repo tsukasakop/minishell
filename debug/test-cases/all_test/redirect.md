@@ -1,155 +1,9 @@
 # リダイレクト
-## 構文
+#### - 構文 cmd > path | cmd >path | cmd> path | cmd>path
 	echo Hello > out
 	echo Hello >out
-	echo Hello >out
 	echo Hello>out
-
-- バイナリを読み込む
-	< minishell cat | xxd | tail
-	< infile cat | xxd | tail
-## > 出力
-	> out
-	echo 42tokyo > out
-	echo 42tokyo > 123
-```bash
-chmod -r out
-echo 42 > out
-```
-```bash
-chmod -x out
-echo 42 > out
-```
-### エラー
-```bash
-chmod -w out
-echo 42 > out
-```
-
-
-## < 入力
-	cat < in
-```bash
-	echo 42Tokyo > in
-	chmod -x in
-	cat < in
-	42
-```
-```bash
-	echo 42Tokyo > in
-	chmod -w in
-	cat < in
-	42
-```
-
-### エラー
-	< no_exist
-```bash
-	echo 42Tokyo > in
-	chmod -r in
-	cat < in
-	bash: in: Permission denied
-```
-
-## >> 追記
-	echo 42 >> out
-```bash
-chmod -r out
-echo 42 >> out
-```
-```bash
-chmod -x out
-echo 42 >> out
-```
-### エラー
-```bash
-chmod -w out
-echo 42 >> out
-```
-## << ヒアドク
-### 正常
-```bash
-	<<EOF
-	1
-	2
-	EOF
-```
-```bash
-	cat <<EOF
-	E
-	O
-	F
-	eof
-	EOF
-```
-```bash
-	cat <<EOF <<EOF2 <<EOF3
-	1
-	EOF
-	2
-	EOF2
-	3
-	EOF3
-```
-
-```bash
-	cat <<EOF <<EOF <<EOF
-	1
-	EOF
-	2
-	EOF
-	3
-	EOF
-```
-
-###  クォート(と変数展開)の正常
-```bash
-	cat <<"EOF"
-	"EOF"
-	EOF
-```
-```bash
-	cat <<'"$VAR"'
-	$VAR
-	"$VAR"
-```
-```bash
-	cat <<"'$VAR'"
-	$VAR
-	'$VAR'
-```
-```bash
-	export VAR=test
-	cat <<"$VAR"
-	test
-	"$VAR"
-	$VAR
-```
-
-## 数字あり
-	echo Hello 1>out
-	cat no_exist 2> out
-	cat 0< out
-	echo hello 0>out
-	sleep 3 0>out
-	0<out cat
-	echo 42 0002>out
-
-	echo 42 -1>out
-	ls -l> out
-	echo Hello1>out
-	echo 42Hello>out
-
-	sleep 3 0>out
-	echo 42tokyo 1>out 2>out 3>out
-	echo 42tokyo 3>out 2>out 1>out
-
-
-### エラー
-```bash
-echo 12345678>out
-ls | grep out
-```
+	echo Hello>out
 
 ## シンタックスエラー
 - `<`
@@ -165,15 +19,273 @@ ls | grep out
 - `>>>`
 	→ bash: syntax error near unexpected token `>'にする
 
-- echo test >| out
-	→ bash: syntax error near unexpected token `newline'にする
-- cat << <<EOF
 
+
+## > 出力
+### `<` `<<` `>` 共通のテスト項目
+#### - リダイレクトと pathのみ | クォートのみ | 空白
+	> out
+	"" > out
+	"   " > out
+
+#### - pathが 存在する | 存在しない
+	echo hello > noexist
+	echo hello > exist
+
+#### - pathが 文字列 | 数字 | リダイレクト記号 | パイプ
+	echo string > out
+	echo number > 123
+	echo redirect_symbol > ">"
+	echo pipe_symbol > "|"
+
+#### - コマンドが 正常 | オプションあり | オプションが不正 | 存在しないコマンド
+	echo 42tokyo > out
+	ls -l > out
+	ls -0 > out
+	aaaa > out
+
+#### - 複数のリダイレクトでcmdが 前 | 中間 | 後ろ
+	echo 42tokyo > out > out2
+	> out echo 42tokyo > out2
+	> out > out2 echo 42tokyo
+
+#### - 複数のリダイレクトでpathが 同じ | 異なる
+	echo 42tokyo > out > out
+	echo 42tokyo > out > out2
+
+#### - 正常なリダイレクトとエラー エラー→正常 | 正常→エラー
+	echo 42Tokyo > out >
+	echo 42Tokyo > > out
+
+#### - pathの権限 -r | -w | -x
 ```bash
-bash-5.1$ cat <<EOF <<
-1
-EOF
-#→ls /tmp | grep heredoc_ | wc -lで、tmpにヒアドクのファイルがないか確認
+chmod -r out
+echo 42 > out
+```
+```bash
+chmod -x out
+echo 42 > out
+```
+### エラー
+```bash
+chmod -w out
+echo 42 > out
+```
+
+
+
+## >> 追記
+### `<` `<<` `>` 共通のテスト項目
+#### - リダイレクトと pathのみ | クォートのみ | 空白
+	>> out
+	"" >> out
+	"   " >> out
+
+#### - pathが 存在する | 存在しない
+	cat >> noexist
+	cat >> exist
+
+#### - pathが 文字列 | 数字 | リダイレクト記号 | パイプ
+	cat >> out
+	cat >> 123
+	cat >> ">>"
+	cat >> "|"
+
+#### - コマンドが 正常 | オプションあり | オプションが不正 | 存在しないコマンド
+	echo 42tokyo >> out
+	ls -l >> out
+	ls -0 >> out
+	aaaa >> out
+
+#### - 複数のリダイレクトでcmdが 前 | 中間 | 後ろ
+	echo 42tokyo >> out >> out2
+	>> out echo 42tokyo >> out2
+	>> out >> out2 echo 42tokyo
+
+#### - 複数のリダイレクトでpathが 同じ | 異なる
+	echo 42tokyo >> out >> out
+	echo 42tokyo >> out >> out2
+
+#### - 正常なリダイレクトとエラー エラー→正常 | 正常→エラー
+	echo 42Tokyo >> out >>
+	echo 42Tokyo >> >> out
+
+#### - pathの権限 -r | -w | -x
+```bash
+	echo 42Tokyo > out
+	chmod -r out
+	echo hello >> out
+```
+```bash
+	echo 42Tokyo > out
+	chmod -w out
+	echo hello >> out
+```
+```bash
+	echo 42Tokyo > out
+	chmod -x out
+	echo hello >> out
+```
+#### - バイナリを書き込む
+	minishell cat | xxd | tail > out
+	infile cat | xxd | tail > out
+
+
+
+## < 入力
+	cat < in
+### `<` `<<` `>` 共通のテスト項目
+#### - リダイレクトと pathのみ | クォートのみ | 空白
+	< out
+	"" < out
+	"   " < out
+
+#### - pathが 存在する | 存在しない
+	cat < noexist
+	cat < exist
+
+#### - pathが 文字列 | 数字 | リダイレクト記号 | パイプ
+	cat < out
+	cat < 123
+	cat < "<"
+	cat < "|"
+
+#### - コマンドが 正常 | オプションあり | オプションが不正 | 存在しないコマンド
+	cat < out
+	grep "42" < out
+	grep --invalid-option  < out
+	aaaa < out
+
+#### - 複数のリダイレクトでcmdが 前 | 中間 | 後ろ
+	cat < out < out2
+	< out cat < out2
+	< out < out2 cat
+
+#### - 複数のリダイレクトでpathが 同じ | 異なる
+	cat < out < out
+	cat < out < out2
+
+#### - 正常なリダイレクトとエラー エラー→正常 | 正常→エラー
+	cat < out <
+	cat < < out
+
+#### - pathの権限 -r | -w | -x
+```bash
+	echo 42Tokyo > in
+	chmod -r in
+	cat < in
+```
+```bash
+	echo 42Tokyo > in
+	chmod -w in
+	cat < in
+```
+```bash
+	echo 42Tokyo > in
+	chmod -x in
+	cat < in
+```
+### リダイレクトタイプ別のテスト項目
+#### - バイナリを読み込む
+	< minishell cat | xxd | tail
+	< infile cat | xxd | tail
+
+
+## << ヒアドク
+#### - リダイレクトと eofのみ | クォートのみ | 空白
+	<< EOF
+	"" << EOF
+	"   " << EOF
+
+#### - eofが 文字列 | 数字 | リダイレクト記号 | パイプ
+	cat << EOF
+	cat << 123
+	cat << "<<"
+	cat << "|"
+
+#### - コマンドが 正常 | オプションあり | オプションが不正 | 存在しないコマンド
+	cat << EOF
+	grep "42" << EOF
+	grep --invalid-option  << EOF
+	aaaa << EOF
+
+#### - 正常なリダイレクトとエラー エラー→正常 | 正常→エラー
+	cat <<EOF <<
+	cat << <<EOF
+
+#### - eofの大文字小文字が 正しい | 逆
+```bash
+	<<EOF
+	EOF
+	eof
+```
+#### - 入力値が eofうち 1文字のみ | 1文字だけ正しい | 1文字違い
+```bash
+	cat <<EOF
+	E
+	eOf
+	EoF
+
+	EOF
+```
+#### - 複数のヒアドクで eofが全て異なる | 1つ以外異なる | 1つだけ異なる| 全て同じ
+```bash
+	cat <<EOF <<EOF2 <<EOF3
+	1
+	EOF
+	2
+	EOF2
+	3
+	EOF3
+```
+```bash
+	cat <<EOF <<EOF2 <<EOF3
+	1
+	EOF
+	2
+	EOF
+	3
+	EOF3
+```
+```bash
+	cat <<EOF <<EOF <<EOF2
+	1
+	EOF
+	2
+	EOF
+	3
+	EOF3
+```
+```bash
+	cat <<EOF <<EOF <<EOF
+	1
+	EOF
+	2
+	EOF
+	3
+	EOF
+```
+#### - ヒアドクの 前に | 中間に | 後ろに cat
+```bash
+	cat <<EOF <<EOF
+	1
+	EOF
+	2
+	EOF
+```
+```bash
+	<<EOF cat <<EOF
+	1
+	EOF
+	2
+	EOF
+```
+```bash
+	<<EOF <<EOF cat
+	1
+	EOF
+	2
+	EOF
 ```
 
 # 大きいやつ

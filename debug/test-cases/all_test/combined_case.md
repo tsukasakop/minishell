@@ -41,3 +41,27 @@ echo Hello >$VAR
 ```
 <<"EOF"
 <<'EOF'
+
+###  クォート(と変数展開)の正常
+```bash
+	cat <<"EOF"
+	"EOF"
+	EOF
+```
+```bash
+	cat <<'"$VAR"'
+	$VAR
+	"$VAR"
+```
+```bash
+	cat <<"'$VAR'"
+	$VAR
+	'$VAR'
+```
+```bash
+	export VAR=test
+	cat <<"$VAR"
+	test
+	"$VAR"
+	$VAR
+```
