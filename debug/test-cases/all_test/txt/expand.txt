@@ -1,0 +1,101 @@
+-expand
+--クォート展開
+---クォートのみ あり | 複数
+" "
+' '
+--以下4つ、出力がbashと異なり、議論が必要 commandテストケースでの挙動と同じ
+""""""
+''''''
+""''''""
+''''""""''''
+
+---展開するとコマンドになる ダブル |シングル
+"pwd"
+""pwd""
+'pwd'
+''pwd''
+
+---複数の空白含む 前 | 中間 | 後ろ | すべて | 1文字ごと
+echo "      aa"
+echo "bb    bb"
+echo "cc      "
+echo "    aa    bb     "
+echo "a b c d e f g"
+
+echo '      aa'
+echo 'bb    bb'
+echo 'cc      '
+echo '    aa    bb     '
+echo 'a b c d e f g'
+
+---コマンド全体を囲った場合
+'echo Hello'
+'echo Hello'
+
+---クォート + 文字列 空白なし | あり
+echo "Hello"World
+echo "Hello" World
+echo 'Hello'World
+echo 'Hello' World
+
+---パイプ | リダイレクト を含む
+echo "42 | ls -l"
+echo "42 > out"
+echo '42 | ls -l'
+echo '42 > out'
+
+---複数種類のクォート ダ→シ→シ | ダ→ダ→シ | ダ→シ→ダ   | 逆ver
+echo "''quart1''"
+echo ""'quart2'""
+echo "'"quart3"'"
+echo '""quart1""'
+echo ''"quart2"''
+echo '"'quart3'"'
+
+---クォートの中にクォート シングル | ダ + シ | シ + シ | ダ + ダ
+echo "Hello'in'quart1"
+echo "Hello"'in'"quart2"
+echo "Hello""in""quart4"
+echo 'Hello"in"quart1'
+echo 'Hello'"in"'quart2'
+echo 'Hello''in''quart3'
+
+---シンタックスエラー クォート1個 | クォート2個 + 1
+--出力がbashと異なるが、課題要件につき、正しい
+'-"-'
+"-'-"
+"-""'-"
+'-''"-'
+
+--環境変数展開
+---環境変数 + そのまま | ダブル | シングル
+echo "$HOME"
+echo '$HOME'
+
+---クォートを展開すると変数名になる場合 + ダブル | シングル
+echo $HOM"E"
+echo $HOM'E'
+
+---存在しない環境変数 + そのまま | ダブル | シングル
+echo "$NOEXIST"
+echo '$NOEXIST'
+
+'---$のみ  そのまま | ダブル | シングル'
+echo $
+echo "$"
+echo '$'
+
+---複数の空白を含む環境変数 + そのまま | ダブル | シングル
+export VAR="Hello      World"
+echo $VAR
+echo "$VAR"
+echo '$VAR'
+
+"---クォートで囲まれた文字列の中に環境変数 そのまま | ダブル | シングル"
+echo "Home is $HOME"
+echo "Home is "$HOME""
+echo "Home is '$HOME'"
+
+echo 'Home is $HOME'
+echo 'Home is '$HOME''
+echo 'Home is "$HOME"'
