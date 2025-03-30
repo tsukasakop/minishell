@@ -1,8 +1,13 @@
 # 基本
-#### - 空行  なし | ダブルクォート | シングルクォート
+### - 問題点
+	- クォートのみで実行した際、エラー文がなぜか"Permission denied"になる
+	- 実行権限がない状態でコマンドを実行した時、エラー文にpathが出ない→そこまで合わせる必要性がないので現状のままにする
+	- unset PATH後、クォートのみで実行した際、エラー文にbash: :の空白が出力されない→そこまで合わせる必要性がないので現状のままにする
+#### - 空行  なし | ※ダブルクォート | ※シングルクォート
 
 	""
 	''
+
 #### - 空白  なし | ダブルクォート | シングルクォート
 
 	"    "
@@ -26,7 +31,7 @@
 	/bin   /ls
 	l   s
 
-#### - 引数を標準入力とするコマンド 正常な引数 | 異常な引数
+#### - 引数を標準入力とするコマンド 正常な引数 | 不正な引数
 	cat test-cases/all_test/txt/env.txt
 	wc minishell
 	cat non_existent_file.txt
@@ -88,7 +93,7 @@ export PATH=/tmp/minishell_cmd:$PATH
 	/tmp/minishell_cmd/print_hello
 
 ## PATH設定後
-#### - コマンドの実行 絶対パス | 相対パス | コマンド名のみ
+#### - コマンドの実行 絶対パス | 相対パス | ※コマンド名のみ →　エラー出力が異なる。コマンドのpathが出力されない
 	/tmp/minishell_cmd/print_hello
 	scripts/print_hello
 	print_hello
@@ -101,3 +106,8 @@ export PATH=/tmp/minishell_cmd:$PATH
 # unset PATH
 #### - PATHを削除して、上記全てを検証
 	unset PATH
+
+
+# 終了ステータス
+#### - 上記すべての終了ステータスを確認
+	echo $?

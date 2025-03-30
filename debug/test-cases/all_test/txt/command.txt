@@ -1,0 +1,358 @@
+mkdir /tmp/minishell_cmd
+cp scripts/print_hello /tmp/minishell_cmd
+/bin/chmod +x /tmp/minishell_cmd/print_hello
+export MYDIR=$PWD
+
+-基本
+"---空行  なし | ダブルクォート | シングルクォート"
+-- 以下2つ、出力がbashと異なり、議論が必要
+""
+echo $?
+-- 以下、出力がbashと異なり、議論が必要 終了ステータス
+''
+echo $?
+
+"---空白  なし | ダブルクォート | シングルクォート"
+
+echo $?
+	"    "
+echo $?
+-- 以下、出力がbashと異なり、議論が必要 終了ステータス
+'    '
+echo $?
+
+-コマンド実行
+-存在するコマンド
+"---絶対パス | 相対パス"
+/bin/ls
+echo $?
+ls
+echo $?
+
+"---オプションあり 絶対パス | 相対パス"
+/bin/ls
+echo $? -l
+ls
+echo $? -l
+
+"---不正なオプション 絶対パス | 相対パス"
+/bin/ls
+echo $? -0
+ls
+echo $? -0
+
+"---途中で空白あり 絶対パス | 相対パス"
+/bin   /ls
+echo $?
+l   s
+echo $?
+
+"---引数を標準入力とするコマンド 正常な引数 | 不正な引数"
+cat test-cases/all_test/txt/env.txt
+echo $?
+wc minishell
+echo $?
+cat non_existent_file.txt
+echo $?
+wc minishelll
+echo $?
+
+"---カレントディレクトリでの実行 コマンド名のみ | 相対パス"
+cd /bin
+ls
+echo $?
+./ls
+echo $?
+
+cd $MYDIR
+"---複数 同一 | 異なるコマンド"
+ls ls ls ls
+echo $?
+ls date ps df
+echo $?
+
+-コマンド以外
+--存在しないコマンド
+"---スラッシュなし 存在するコマンドと1文字違い | 文字列 | 数字"
+lls
+echo $?
+aiueo
+echo $?
+123456789
+echo $?
+
+"'---スラッシュあり 存在するコマンドと1文字違い | 文字列 | 数字 & /が最初 | 中間 | 最後'"
+bin/ls
+echo $?
+aiueo/
+echo $?
+123456789/
+echo $?
+/aiueo
+echo $?
+/123456789
+echo $?
+ai/ueo
+echo $?
+123456/789
+echo $?
+
+
+"---ディレクトリ名 絶対パス | 相対パス"
+/tmp
+echo $?
+../
+echo $?
+
+---存在しないファイルの実行
+./non_existent_file
+echo $?
+/bin/non_existent_command
+echo $?
+
+
+-環境変数
+"---既存 | 自作で存在するコマンド→オプションあり　| なし"
+$USER
+echo $?
+export LS=ls
+echo $?
+$LS
+echo $?
+export LSL="ls -l"
+echo $?
+$LSL
+echo $?
+
+---環境変数 + 文字列
+$LS -l
+echo $?
+
+-自作コマンド
+--PATH設定前
+"---コマンドの実行 絶対パス | 相対パス"
+/tmp/minishell_cmd/print_hello
+echo $?
+scripts/print_hello
+echo $?
+print_hello
+echo $?
+
+
+-ディレクトリ権限を削除 -x
+/bin/chmod -x /tmp/minishell_cmd/print_hello
+echo $?
+/tmp/minishell_cmd/print_hello
+echo $?
+scripts/print_hello
+echo $?
+print_hello
+echo $?
+
+
+-PATH設定後
+/bin/chmod +x /tmp/minishell_cmd/print_hello
+export PATH=/tmp/minishell_cmd:$PATH
+"---コマンドの実行 絶対パス | 相対パス | コマンド名のみ"
+/tmp/minishell_cmd/print_hello
+echo $?
+scripts/print_hello
+echo $?
+print_hello
+echo $?
+
+-ディレクトリ権限を削除 -x
+/bin/chmod -x /tmp/minishell_cmd/print_hello
+/tmp/minishell_cmd/print_hello
+echo $?
+scripts/print_hello
+echo $?
+-- 以下、出力がbashと異なるが、課題要件につき、正しい
+print_hello
+echo $?
+
+
+/bin/chmod +x /tmp/minishell_cmd/print_hello
+
+
+
+
+
+
+
+
+-unset PATH
+---PATHを削除して、上記全てを検証
+unset PATH
+
+
+-基本
+"---空行  なし | ダブルクォート | シングルクォート"
+-- 以下2つ、出力がbashと異なるが、課題要件につき、正しい
+
+echo $?
+""
+echo $?
+''
+echo $?
+
+"---空白  なし | ダブルクォート | シングルクォート"
+
+echo $?
+"    "
+echo $?
+'    '
+echo $?
+
+-コマンド実行
+-存在するコマンド
+"---絶対パス | 相対パス"
+/bin/ls
+echo $?
+ls
+echo $?
+
+"---オプションあり 絶対パス | 相対パス"
+/bin/ls -l
+echo $?
+ls -l
+echo $?
+
+"---不正なオプション 絶対パス | 相対パス"
+/bin/ls -0
+echo $?
+ls -0
+echo $?
+
+"---途中で空白あり 絶対パス | 相対パス"
+/bin   /ls
+echo $?
+l   s
+echo $?
+
+
+"---引数を標準入力とするコマンド 正常な引数 | 不正な引数"
+cat test-cases/all_test/txt/env.txt
+echo $?
+wc minishell
+echo $?
+cat non_existent_file.txt
+echo $?
+wc minishelll
+echo $?
+
+"---カレントディレクトリでの実行 コマンド名のみ | 相対パス"
+cd /bin
+echo $?
+ls
+echo $?
+./ls
+echo $?
+
+cd $MYDIR
+"---複数 同一 | 異なるコマンド"
+ls ls ls ls
+echo $?
+ls date ps df
+echo $?
+
+
+-コマンド以外
+--存在しないコマンド
+"---スラッシュなし 存在するコマンドと1文字違い | 文字列 | 数字"
+lls
+echo $?
+aiueo
+echo $?
+123456789
+echo $?
+
+"'---スラッシュあり 存在するコマンドと1文字違い | 文字列 | 数字 & /が最初 | 中間 | 最後'"
+bin/ls
+echo $?
+aiueo/
+echo $?
+123456789/
+echo $?
+/aiueo
+echo $?
+/123456789
+echo $?
+ai/ueo
+echo $?
+123456/789
+echo $?
+
+"---ディレクトリ名 絶対パス | 相対パス"
+/tmp
+echo $?
+../
+echo $?
+
+---存在しないファイルの実行
+./non_existent_file
+echo $?
+/bin/non_existent_command
+echo $?
+
+
+-環境変数
+"---既存 | 自作で存在するコマンド→オプションあり　| なし"
+$USER
+echo $?
+export LS=ls
+echo $?
+$LS
+echo $?
+export LSL="ls -l"
+echo $?
+$LSL
+echo $?
+
+---環境変数 + 文字列
+$LS -l
+echo $?
+
+-自作コマンド
+--PATH設定前
+"---コマンドの実行 絶対パス | 相対パス"
+/tmp/minishell_cmd/print_hello
+echo $?
+scripts/print_hello
+echo $?
+print_hello
+echo $?
+
+-ディレクトリ権限を削除 -x
+/bin/chmod -x /tmp/minishell_cmd/print_hello
+/tmp/minishell_cmd/print_hello
+echo $?
+scripts/print_hello
+echo $?
+print_hello
+echo $?
+
+
+-PATH設定後
+/bin/chmod +x /tmp/minishell_cmd/print_hello
+export PATH=/tmp/minishell_cmd:$PATH
+"---コマンドの実行 絶対パス | 相対パス | コマンド名のみ"
+/tmp/minishell_cmd/print_hello
+echo $?
+scripts/print_hello
+echo $?
+print_hello
+echo $?
+
+-ディレクトリ権限を削除 -x
+/bin/chmod -x /tmp/minishell_cmd/print_hello
+/tmp/minishell_cmd/print_hello
+echo $?
+scripts/print_hello
+echo $?
+-- 以下、出力がbashと異なるが、課題要件につき、正しい
+print_hello
+echo $?
+
+/bin/chmod +x /tmp/minishell_cmd/print_hello
+/bin/rm -r /tmp/minishell_cmd
