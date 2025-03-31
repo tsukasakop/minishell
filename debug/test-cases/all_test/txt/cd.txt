@@ -73,7 +73,6 @@ pwd | sed -e 's|/private/tmp|/tmp|g' -e 's|/System/Volumes/Data|/|g'
 cd ..
 pwd | sed -e 's|/private/tmp|/tmp|g' -e 's|/System/Volumes/Data|/|g'
 cd /tmp
--- 以下、出力がbashと異なり、修正が必要
 pwd | sed -e 's|/private/tmp|/tmp|g' -e 's|/System/Volumes/Data|/|g'
 cd /tmp/hoge
 pwd | sed -e 's|/private/tmp|/tmp|g' -e 's|/System/Volumes/Data|/|g'
@@ -91,7 +90,6 @@ pwd | sed -e 's|/private/tmp|/tmp|g' -e 's|/System/Volumes/Data|/|g'
 cd ..
 pwd | sed -e 's|/private/tmp|/tmp|g' -e 's|/System/Volumes/Data|/|g'
 cd /tmp
--- 以下、出力がbashと異なり、修正が必要
 pwd | sed -e 's|/private/tmp|/tmp|g' -e 's|/System/Volumes/Data|/|g'
 cd /tmp/hoge
 pwd | sed -e 's|/private/tmp|/tmp|g' -e 's|/System/Volumes/Data|/|g'
@@ -104,15 +102,16 @@ cd /tmp/hoge
 -- 以下、出力がbashと異なり、修正が必要
 pwd | sed -e 's|/private/tmp|/tmp|g' -e 's|/System/Volumes/Data|/|g'
 cd .
+pwd | sed -e 's|/private/tmp|/tmp|g' -e 's|/System/Volumes/Data|/|g'
 cd hogeinhoge
+-- 以下、出力がbashと異なり、修正が必要 pwd側のバグ
 pwd | sed -e 's|/private/tmp|/tmp|g' -e 's|/System/Volumes/Data|/|g'
 -- 以下、出力がbashと異なり、修正が必要
-pwd | sed -e 's|/private/tmp|/tmp|g' -e 's|/System/Volumes/Data|/|g'
 cd ..
--- 以下、出力がbashと異なり、修正が必要
+-- 以下、出力がbashと異なり、修正が必要 pwd側のバグ
 pwd | sed -e 's|/private/tmp|/tmp|g' -e 's|/System/Volumes/Data|/|g'
 cd /tmp
--- 以下、出力がbashと異なり、修正が必要
+-- 以下、出力がbashと異なり、修正が必要 pwd側のバグ
 pwd | sed -e 's|/private/tmp|/tmp|g' -e 's|/System/Volumes/Data|/|g'
 cd /tmp/hoge
 pwd | sed -e 's|/private/tmp|/tmp|g' -e 's|/System/Volumes/Data|/|g'
@@ -122,6 +121,7 @@ chmod +x /tmp/hoge
 mkdir /tmp/hoge/hogeinhoge/hogeinhoge2
 cd /tmp/hoge/hogeinhoge/hogeinhoge2
 chmod -x /tmp/hoge
+-- 以下9つ、出力がbashと異なり、修正が必要 pwd側のバグもあり
 pwd | sed -e 's|/private/tmp|/tmp|g' -e 's|/System/Volumes/Data|/|g'
 cd .
 pwd | sed -e 's|/private/tmp|/tmp|g' -e 's|/System/Volumes/Data|/|g'
@@ -144,11 +144,11 @@ pwd
 echo $PWD
 cd ../
 pwd
--- 以下、出力がbashと異なり、議論が必要
+-- 以下、出力がbashと異なるが、課題要件につき正しい
 echo $PWD
 cd $PWD
 pwd
--- 以下、出力がbashと異なり、議論が必要
+-- 以下、出力がbashと異なるが、課題要件につき正しい
 echo $PWD
 
 
@@ -160,15 +160,15 @@ pwd | sed -e 's|/private/tmp|/tmp|g' -e 's|/System/Volumes/Data|/|g'
 echo $OLDPWD
 cd ../
 pwd | sed -e 's|/private/tmp|/tmp|g' -e 's|/System/Volumes/Data|/|g'
--- 以下、出力がbashと異なり、議論が必要
+-- 以下、出力がbashと異なるが、課題要件につき正しい
 echo $OLDPWD
 cd ../
 pwd | sed -e 's|/private/tmp|/tmp|g' -e 's|/System/Volumes/Data|/|g'
--- 以下、出力がbashと異なり、議論が必要
+-- 以下、出力がbashと異なるが、課題要件につき正しい
 echo $OLDPWD
 cd $OLDPWD
 pwd | sed -e 's|/private/tmp|/tmp|g' -e 's|/System/Volumes/Data|/|g'
--- 以下、出力がbashと異なり、議論が必要
+-- 以下、出力がbashと異なるが、課題要件につき正しい
 echo $OLDPWD
 
 rm -r /tmp/hoge
