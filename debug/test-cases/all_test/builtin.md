@@ -47,18 +47,20 @@
 #### !! -nnn と -n の混在 → `HELLO`
 	echo -nnnnnnnnn  -n HELLO
 
+
 ## env
 ### 正常
-#### ※ 引数なし → bashと順番が異なる
+#### !! 引数なし → bashと順番が異なる
 	env
 #### !! 引数あり → 課題要件につき、envの結果が出力されれば良い
 	env aaaaaa
 #### !! 引数あり(複数) → 課題要件につき、envの結果が出力されれば良い
 	env aaaaaa bbbbb cccc
 
+
 ## export
 ### 正常
-#### ※ 引数なし | 引数あり | 複数
+#### !! 引数なし | 引数あり | 複数
 	export  → 出力される順番が違う(本来はABC順)、`declare -x `とvalueに`""`がない
 	export VAR=val
 	export test1=hello test2=world test3=42tokyo
@@ -110,11 +112,12 @@
 	export =Hello
 	export Empty=
 
-#### ※ nameだけ設定 → 課題要件につき、bashを挙動を変えている
+#### !! nameだけ設定 → 課題要件につき、bashを挙動を変えている
 	export AAA
 
 #### - 途中でエラーが起きる場合 → `not a valid identifier`　、 exit status → 1、エラー対象以外の変数は設定される
 	export num=1234567 str=hello c=a 42=tokyo test=yes
+
 
 
 ## unset
@@ -148,8 +151,10 @@
 	export cc="aa bb"
 	unset $cc
 
-#### ※ 読み込み専用の変数 → ビルドインコマンドであるreadonlyでしか、設定・一覧の表示ができず、minishell内では実質扱えないので、bashと挙動を変える
+#### !! 読み込み専用の変数 → ビルドインコマンドであるreadonlyでしか、設定・一覧の表示ができず、minishell内では実質扱えないので、bashと挙動を変える
 	unset UID
+
+
 
 ## pwd
 ### - 問題点

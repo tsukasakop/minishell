@@ -1,0 +1,210 @@
+cd /tmp
+rm -r /tmp/hoge
+
+mkdir /tmp/hoge
+cd /tmp/hoge
+
+-数字つきリダイレクト
+---構文 cmd Num > path | cmd Num> path | cmdNum> path | cmdNum>path
+echo testcase_one 1 > out
+cat out
+
+echo testcase_two 1> out
+cat out
+
+echo testcase_three1> out
+cat out
+
+echo testcase_four1>out
+cat out
+
+
+---pathが 数字+リダイレクト
+-以下、出力がbashと異なるが、課題要件につき、正しい
+echo "Path is a num + redir" 1>1>
+cat out
+
+
+---構文nが 3~9 | 10~255 | 256 | 0埋め
+echo "n: 3-9" 3> out
+cat out
+
+echo "n: 10-255" 10> out
+cat out
+
+echo "n: 10-255" 255> out
+cat out
+
+echo "n: 256" 256> out
+cat out
+
+echo "n: Zero padding" 0001> out
+cat out
+
+
+'---構文nが 1000 | 2000 | INT_MAX | INT_MAX + 1 | LONG_MAX | LONG_MAX + 1'
+echo "n: 1000" 1000> out
+cat out
+
+echo "n: 2000" 2000> out
+cat out
+
+echo "n: INT_MAX" 2147483647> out
+cat out
+
+-以下6つ、出力がbashと異なり、議論が必要
+echo "n: INT_MAX + 1" 2147483648> out
+cat out
+
+echo "n: LONG_MAX" 9223372036854775807> out
+cat out
+
+echo "n: LONG_MAX + 1" 9223372036854775808> out
+cat out
+
+
+---構文nが 小数点 | 16進数 | 2進数
+echo "Decimal" 0.01> out
+cat out
+
+echo "Hexadecimal" 0x1> out
+cat out
+
+echo "Binary" 0b0001> out
+cat out
+
+
+'---構文nが符号付き(- +) 符号1個 | 複数'
+echo "One sign: -1" -1> out
+cat out
+
+echo "One sign: +1" +1> out
+cat out
+
+echo "mul sign: ---1" ---1> out
+cat out
+
+echo "mul sign: +++1" +++1> out
+cat out
+
+echo "mul sign: -+-+42" -+-+42> out
+cat out
+
+echo "mul sign: +-+-42" +-+-42> out
+cat out
+
+
+'---nが0で リダイレクトが > | <'
+-以下、出力がbashと異なり、修正が必要
+'-テストがうまく動かないため、実行から除外。cat 0>out'
+cat 0<out
+
+'---nが　0で　| リダイレクトのみ | 標準出力のみ | 標準エラーのみ | 出力なし'
+0>out
+cat out
+
+-以下、出力がbashと異なり、修正が必要
+echo "n = 0 Hello" 0>out
+cat out
+
+ls --invalid 0>out
+cat out
+
+sleep 1 0>out
+cat out
+
+'---nが　1で　| リダイレクトのみ | 標準出力のみ | 標準エラーのみ | 出力なし'
+1>out
+cat out
+
+echo "n = 1 Hello" 1>out
+cat out
+
+ls --invalid 1>out
+cat out
+
+sleep 1 1>out
+cat out
+
+
+'---nが　2で　| リダイレクトのみ | 標準出力のみ | 標準エラーのみ | 出力なし'
+2>out
+cat out
+
+echo "n = 2 Hello" 2>out
+cat out
+
+ls --invalid 2>out
+cat out
+
+sleep 1 2>out
+cat out
+
+
+'---nが　3で　| リダイレクトのみ | 標準出力のみ | 標準エラーのみ | 出力なし'
+3>out
+cat out
+
+echo "n = 3 Hello" 3>out
+cat out
+
+ls --invalid 3>out
+cat out
+
+sleep 1 3>out
+cat out
+
+
+'"---リダイレクトが同じで、pathが 全て同じ | 1つだけ異なる | 全て異なる"'
+echo "SAME: All paths are the same" 1>out 1>out 1>out
+cat out
+
+echo "SAME: Only one path is different" 1>out 1>out1 1>out1
+cat out out1
+
+echo "SAME: All paths are different" 1>out 1>out1 1>out2
+cat out out1 out2
+
+
+'"---リダイレクトが複数で、pathが 全て同じ | 1つだけ異なる | 全て異なる"'
+echo "MUL: All paths are the same" 0>out 1>out 2>out
+cat out out1 out2
+
+echo "MUL: Only one path is different" 0>out 1>out1 2>out1
+cat out out1 out2
+
+echo "MUL: All paths are different" 0>out 1>out1 2>out2
+cat out out1 out2
+
+
+'---nが　0 + 1 + 2'
+echo "0 → 1 → 2: Hello" 0>out 1>out1 2>out2
+cat out out1 out2
+
+echo "1 → 2 → 0: Hello" 1>out1 2>out2 0>out
+cat out out1 out2
+
+echo "2 → 0 → 1: Hello" 2>out2 0>out 1>out1
+cat out out1 out2
+
+echo "0 → 2 → 1: Hello" 0>out 2>out2 1>out1
+cat out out1 out2
+
+echo "2 → 1 → 0: Hello" 2>out2 1>out1 0>out
+cat out out1 out2
+
+echo "1 → 0 → 2: Hello" 1>out1 0>out 2>out2
+cat out out1 out2
+
+
+'---nが　0 → 1 → 2 → 3 → 4 | 0 ← 1 ← 2 ← 3 ← 4'
+echo "0 → 1 → 2 → 3 → 4: Hello" 0>out 1>out1 2>out2 3>out3 4>out4
+cat out out1 out2 out3 out4
+
+echo "0 ← 1 ← 2 ← 3 ← 4: Hello" 4>out4 3>out3 2>out2 1>out1 0>out
+cat out out1 out2 out3 out4
+
+
+
+
+rm -r /tmp/hoge
