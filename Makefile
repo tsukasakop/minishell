@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/03/23 15:00:24 by tkondo           ###   ########.fr        #
+#    Updated: 2025/03/27 20:15:56 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,6 +76,7 @@ TARGET =\
 	data/getnum_scmd_texts_token\
 	data/validate_cmd_line_syntax\
 	data/is_valid_quote_syntax\
+	data/get_exit_status_from_err_type\
 	env/is_valid_identifier\
 	env/load_variable_assignment\
 	env/register_env\
@@ -120,13 +121,18 @@ TARGET =\
 	utils/close_fds_no_stdio\
 	utils/perror_exit\
 	utils/ft_redirect_lstsize\
-	utils/perror_return\
+	utils/perror_return_num\
+	utils/perror_return_null\
 	utils/free_null_terminated_arrar\
 	utils/ft_strchr_mul\
 	utils/ft_strnjoin\
 	utils/null_terminatted_array_len\
 	utils/null_terminated_array_join\
 	utils/is_directory\
+	utils/set_error_type\
+	utils/get_error_type\
+	utils/get_error_type_p\
+	utils/perror_with_shellname\
 	signal/set_handlers_for_prompt\
 	signal/set_handlers_default\
 	signal/set_handlers_for_process\

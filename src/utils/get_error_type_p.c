@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_bare_string.c                                 :+:      :+:    :+:   */
+/*   get_error_type_p.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/14 01:52:33 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/29 20:25:54 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/26 15:13:07 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/26 15:14:20 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function: read_bare_string
+ * Function:
  * ----------------------------
- *  return string from cur_p, ends by any character on ends variable
+ *  Provide pointer where error_type.
  */
-char	*read_bare_string(char **cur_p, char *ends, size_t ends_len)
+t_error_type	*get_error_type_p(void)
 {
-	char	*next_cur;
-	char	*buffer;
+	static t_error_type	p;
 
-	next_cur = ft_strchr_mul(*cur_p, ends, ends_len);
-	buffer = ft_g_mmadd(ft_strndup(*cur_p, next_cur - *cur_p));
-	if (!buffer)
-	{
-		set_error_type(ERR_SYSCALL);
-		perror_with_shellname(NULL);
-		return (NULL);
-	}
-	*cur_p = next_cur;
-	return (buffer);
+	return (&p);
 }

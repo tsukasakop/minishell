@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_single_token.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:15:39 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/15 12:50:07 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/29 20:25:54 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,16 @@ char	**expand_single_token(char *orig)
 
 	buffer = NULL;
 	fixed = ft_g_mmcalloc(sizeof(char *), 1);
+	if (!fixed)
+	{
+		set_error_type(ERR_SYSCALL);
+		perror_with_shellname(NULL);
+		return (NULL);
+	}
 	cur = orig;
 	while (*cur)
 	{
+		errno = 0;
 		if (*cur == '\'')
 			expand_single_quote(&cur, &buffer);
 		else if (*cur == '\"')
@@ -46,8 +53,14 @@ char	**expand_single_token(char *orig)
 			expand_bare_variable(&cur, &buffer, &fixed);
 		else
 			expand_bare_string(&cur, &buffer);
+		if (errno == ENOMEM)
+			return (NULL);
 	}
 	if (buffer != NULL)
+	{
 		append_str(&fixed, buffer);
+		if (!fixed)
+			return (NULL);
+	}
 	return (fixed);
 }

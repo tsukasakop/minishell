@@ -1,12 +1,18 @@
 export V1=1
 unset V1
+echo $?
 env | grep V1
+echo $?
 
 export UNSET1=1 UNSET2= UNSET3=3
 unset UNSET1 UNSET2 UNSET3
+echo $?
 env | grep UNSET
+echo $?
 
 
 export V1=1
 echo | unset V1
+echo $?
 env | grep V1
+echo $?

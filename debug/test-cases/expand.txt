@@ -4,15 +4,23 @@
 ./scripts/show-argv.sh "$+"
 
 echo $%$+$,$.$/$:$=$^$~
+echo $?
 echo "$%$+$,$.$/$:$=$^$~"
+echo $?
 
 echo $WORD $WORD
+echo $?
 echo $WORD$WORD
+echo $?
 echo $WORD+$WORD
+echo $?
 export WORD=""
 echo $WORD $WORD
+echo $?
 echo $WORD$WORD
+echo $?
 echo $WORD+$WORD
+echo $?
 
 export WORD="aiueo"
 ./scripts/show-argv.sh "$WORD"

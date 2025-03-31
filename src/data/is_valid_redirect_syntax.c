@@ -22,13 +22,11 @@ bool	is_valid_redirect_syntax(t_text_list *cur)
 {
 	if (cur->next == NULL || get_redirect_type(cur->next->text) != REDIR_NONE)
 	{
+		set_error_type(ERR_SYNTAX);
 		if (cur->next == NULL)
 			syntax_error_handle("newline");
 		else
 			syntax_error_handle(cur->next->text);
-		//ToDO；終了ステータスどうする？exitできないから設定できない。
-		//いっそ子プロセスまで実行させて、pathがNULLだったらシンタックスにする？
-		//でも`ls -l > out>`みたいに、シンタックスエラーになるとき、outは作られないから子プロセス生成前にやるのか
 		return (false);
 	}
 	return (true);

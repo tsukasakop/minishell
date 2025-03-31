@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/23 14:58:56 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/29 20:25:54 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_redirect			t_redirect;
 typedef struct s_text_list			t_text_list;
 typedef enum e_redirect_type		t_redirect_type;
 typedef enum e_execute_env			t_execute_env;
+typedef enum e_error_type			t_error_type;
 
 enum e_redirect_type
 {
@@ -62,6 +63,14 @@ enum e_execute_env
 {
 	ENV_CURRENT,
 	ENV_INDEPENDENT
+};
+
+enum e_error_type
+{
+	NOERR,
+	ERR_SYSCALL,
+	ERR_AMBRDIR,
+	ERR_SYNTAX,
 };
 
 struct				s_execute_session
@@ -151,6 +160,7 @@ char			*token2path(char *token);
 size_t			getnum_scmd_texts_token(const char *cmd_line);
 char			*validate_cmd_line_syntax(const char *cmd_line);
 bool			is_valid_quote_syntax(const char *cmd_line, char target_quote);
+unsigned char	get_exit_status_from_err_type(t_error_type	err_type);
 
 /* env function */
 bool			is_valid_identifier(char *string);
@@ -177,7 +187,7 @@ char			*expand_heredoc_line(const char *raw_line);
 
 /* main function */
 unsigned char	eval_pipe(const char *cmd_line, char **envp);
-unsigned char	eval_cmd_line(const char *cmd_line, char **envp);
+unsigned char	eval_cmd_line(char **envp);
 bool			execute_simple_cmd(const t_simple_cmd *scmd_list, \
 				int stdio_fd[2], int next_in_fd, char **envp);
 bool			init(char **envp);
@@ -217,12 +227,18 @@ void			set_signal(int signal);
 void			close_fds_no_stdio(int *fds, size_t size);
 int				ft_redirect_lstsize(t_redirect *lst);
 void			perror_exit(char *msg);
-int				perror_return(char *msg, int status);
+int				perror_return_num(char *msg, int num);
+void			*perror_return_null(char *msg);
 void			free_null_terminated_array(void **arr);
 char			*ft_strchr_mul(const char *s, char *targets, size_t target_len);
 char			*ft_strnjoin(char *s1, char *s2, size_t s2_len);
 size_t			null_terminated_array_len(void **arr);
 void			**null_terminated_array_join(void **dst, void **src);
 int				is_directory(char *path);
+void			perror_with_shellname(char *msg);
+t_error_type	*get_error_type_p(void);
+void			set_error_type(t_error_type err_type);
+t_error_type	get_error_type(void);
+t_error_type	*get_error_type_p(void);
 
 #endif

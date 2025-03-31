@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 03:46:43 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/10 18:47:07 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/29 20:25:54 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int	*handle_redirects(t_redirect *redir, int fd_count)
 	keep_fds = ft_g_mmmalloc(sizeof(int) * fd_count * 2);
 	if (!keep_fds)
 	{
-		perror_return(NULL, -1);
+		set_error_type(ERR_SYSCALL);
+		perror_with_shellname(NULL);
 		return (NULL);
 	}
 	i = 0;

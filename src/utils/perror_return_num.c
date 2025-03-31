@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   perror_return.c                                    :+:      :+:    :+:   */
+/*   perror_return_num.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,14 +13,13 @@
 #include <minishell.h>
 
 /*
- * Function:perror_return
+ * Function:perror_return_num
  * ----------------------------
  * Prints an error message with the shell name.
  * But the shell does not exit.
  */
-int	perror_return(char *msg, int status)
+int	perror_return_num(char *msg, int num)
 {
-	write(2, SHELL_NAME, ft_strlen(SHELL_NAME));
-	perror(msg);
-	return (status);
+	perror_with_shellname(msg);
+	return (num);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   write_until_eof.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:18:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/23 14:51:33 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/29 20:25:54 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,26 @@ void	write_until_eof(int fd, const char *raw_eof)
 
 	file = ft_fd2file(fd);
 	has_quote = ft_strchr_mul(raw_eof, "\'\"", 2) != NULL;
-	hd_eof = ft_g_mmadd(dup_without_quote(raw_eof));
+	hd_eof = dup_without_quote(raw_eof);
+	if (hd_eof == NULL)
+		return ;
 	while (true)
 	{
 		line = ft_g_mmadd(readline("> "));
+		if (line == NULL && errno == ENOMEM)
+		{
+			set_error_type(ERR_SYSCALL);
+			perror_with_shellname(NULL);
+			return ;
+		}
 		if (line && ft_strcmp(line, hd_eof) == 0)
 			break ;
 		if (line && !has_quote)
-			line = ft_g_mmadd(expand_heredoc_line(line));
+		{
+			line = expand_heredoc_line(line);
+			if (line == NULL && errno == ENOMEM)
+				return ;
+		}
 		if (line == NULL)
 		{
 			ft_fprintf(ft_stderr(), ERR_HEREDOC, SHELL_NAME, hd_eof);

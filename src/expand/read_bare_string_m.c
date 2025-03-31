@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_bare_string_m.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:52:13 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/15 12:51:33 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/29 20:25:54 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,11 @@ void	read_bare_string_m(char **cur_p, char **buf_p, char *ends,
 
 	read = read_bare_string(cur_p, ends, ends_len);
 	tmp = ft_strnjoin(*buf_p, read, ft_strlen(read));
+	if (tmp == NULL)
+	{
+		set_error_type(ERR_SYSCALL);
+		perror_with_shellname(NULL);
+		return ;
+	}
 	*buf_p = tmp;
 }

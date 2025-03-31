@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dup_name.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 02:02:28 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/15 12:46:55 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/29 20:25:54 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,11 @@ char	*dup_name(char *cur)
 
 	len = namelen(cur);
 	str = ft_g_mmadd(ft_strndup(cur, len));
+	if (!str)
+	{
+		set_error_type(ERR_SYSCALL);
+		perror_with_shellname(NULL);
+		return (NULL);
+	}
 	return (str);
 }

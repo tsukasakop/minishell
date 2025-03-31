@@ -1,85 +1,115 @@
 pwd > /tmp/file1
+echo $?
 cat /tmp/file1
 
 export 42=FT 0>/tmp/file2
+echo $?
 cat /tmp/file2
 
 export 42=FT 1>/tmp/file2
+echo $?
 cat /tmp/file2
 
 export 42=FT 2>/tmp/file2
+echo $?
 cat /tmp/file2
 
 export 42=FT 2>/tmp/file2 1>/tmp/file2
+echo $?
 cat /tmp/file2
 
 export FT=42 2>/tmp/file3 1>/tmp/file3
+echo $?
 cat /tmp/file3
 
 unset FT 2>/tmp/file4 1>/tmp/file4
+echo $?
 cat /tmp/file4
 
 < /tmp/file1 cd
+echo $?
 pwd
 
 pwd 3>/tmp/file5 4>/tmp/file5 5>/tmp/file5
+echo $?
 cat /tmp/file5
 
 echo -n hello world > /tmp/file5
+echo $?
 cat /tmp/file5
 
 echo Hello 1>/tmp/file5
+echo $?
 cat /tmp/file5
 echo Hello 1>/tmp/file5 2>/tmp/file5 3>/tmp/file5
+echo $?
 cat /tmp/file5
 echo Hello 3>/tmp/file5 2>/tmp/file5 1>/tmp/file5
+echo $?
 cat /tmp/file5
 echo Hello 2>/tmp/file5 1>/tmp/file5 3>/tmp/file5
+echo $?
 cat /tmp/file5
 echo Hello 1>/tmp/file5 3>/tmp/file5 2>/tmp/file5
+echo $?
 cat /tmp/file5
 echo Hello --1>/tmp/file5 2>/tmp/file5 3>/tmp/file5 Word
+echo $?
 cat /tmp/file5
 
 rm /tmp/file1 /tmp/file2 /tmp/file3 /tmp/file4 /tmp/file5
 
 
 echo Hello 1>/tmp/file1
+echo $?
 cat /tmp/file1
 echo Hello 1>/tmp/file1 2>/tmp/file2 3>/tmp/file3
+echo $?
 cat /tmp/file1 /tmp/file2 /tmp/file3
 echo Hello 3>/tmp/file1 2>/tmp/file2 1>/tmp/file3
+echo $?
 cat /tmp/file1 /tmp/file2 /tmp/file3
 echo Hello 2>/tmp/file1 1>/tmp/file2 3>/tmp/file3
+echo $?
 cat /tmp/file1 /tmp/file2 /tmp/file3
 echo Hello 1>/tmp/file1 3>/tmp/file2 2>/tmp/file3
+echo $?
 cat /tmp/file1 /tmp/file2 /tmp/file3
 echo Hello --1>/tmp/file1 2>/tmp/file2 3>/tmp/file3 Word
+echo $?
 cat /tmp/file1 /tmp/file2 /tmp/file3
 
 echo Hello 0>/tmp/file5 1>/tmp/file5 2>/tmp/file5 3>/tmp/file5 4>/tmp/file5 5>/tmp/file5 6>/tmp/file5 7>/tmp/file5 8>/tmp/file5 9>/tmp/file5 10>/tmp/file5 11>/tmp/file5 12>/tmp/file5 13>/tmp/file5 14>/tmp/file5 15>/tmp/file5 16>/tmp/file5 17>/tmp/file5 18>/tmp/file5 19>/tmp/file5 20>/tmp/file5 21>/tmp/file5 22>/tmp/file5 23>/tmp/file5 24>/tmp/file5 25>/tmp/file5 26>/tmp/file5 27>/tmp/file5 28>/tmp/file5 29>/tmp/file5 30>/tmp/file5 31>/tmp/file5 32>/tmp/file5 33>/tmp/file5 34>/tmp/file5 35>/tmp/file5 36>/tmp/file5 37>/tmp/file5 38>/tmp/file5 39>/tmp/file5 40>/tmp/file5 41>/tmp/file5 42>/tmp/file5 43>/tmp/file5 44>/tmp/file5 45>/tmp/file5 46>/tmp/file5 47>/tmp/file5 48>/tmp/file5 49>/tmp/file5 50>/tmp/file5 51>/tmp/file5 52>/tmp/file5 53>/tmp/file5 54>/tmp/file5 55>/tmp/file5 56>/tmp/file5 57>/tmp/file5 58>/tmp/file5 59>/tmp/file5 60>/tmp/file5 61>/tmp/file5 62>/tmp/file5 63>/tmp/file5 64>/tmp/file5 65>/tmp/file5 66>/tmp/file5 67>/tmp/file5 68>/tmp/file5 69>/tmp/file5 70>/tmp/file5 71>/tmp/file5 72>/tmp/file5 73>/tmp/file5 74>/tmp/file5 75>/tmp/file5 76>/tmp/file5 77>/tmp/file5 78>/tmp/file5 79>/tmp/file5 80>/tmp/file5 81>/tmp/file5 82>/tmp/file5 83>/tmp/file5 84>/tmp/file5 85>/tmp/file5 86>/tmp/file5 87>/tmp/file5 88>/tmp/file5 89>/tmp/file5 90>/tmp/file5 91>/tmp/file5 92>/tmp/file5 93>/tmp/file5 94>/tmp/file5 95>/tmp/file5 96>/tmp/file5 97>/tmp/file5 98>/tmp/file5 99>/tmp/file5 100>/tmp/file5
+echo $?
 cat /tmp/file5
 
 echo Hello 100>/tmp/file6 99>/tmp/file6 98>/tmp/file6 97>/tmp/file6 96>/tmp/file6 95>/tmp/file6 94>/tmp/file6 93>/tmp/file6 92>/tmp/file6 91>/tmp/file6 90>/tmp/file6 89>/tmp/file6 88>/tmp/file6 87>/tmp/file6 86>/tmp/file6 85>/tmp/file6 84>/tmp/file6 83>/tmp/file6 82>/tmp/file6 81>/tmp/file6 80>/tmp/file6 79>/tmp/file6 78>/tmp/file6 77>/tmp/file6 76>/tmp/file6 75>/tmp/file6 74>/tmp/file6 73>/tmp/file6 72>/tmp/file6 71>/tmp/file6 70>/tmp/file6 69>/tmp/file6 68>/tmp/file6 67>/tmp/file6 66>/tmp/file6 65>/tmp/file6 64>/tmp/file6 63>/tmp/file6 62>/tmp/file6 61>/tmp/file6 60>/tmp/file6 59>/tmp/file6 58>/tmp/file6 57>/tmp/file6 56>/tmp/file6 55>/tmp/file6 54>/tmp/file6 53>/tmp/file6 52>/tmp/file6 51>/tmp/file6 50>/tmp/file6 49>/tmp/file6 48>/tmp/file6 47>/tmp/file6 46>/tmp/file6 45>/tmp/file6 44>/tmp/file6 43>/tmp/file6 42>/tmp/file6 41>/tmp/file6 40>/tmp/file6 39>/tmp/file6 38>/tmp/file6 37>/tmp/file6 36>/tmp/file6 35>/tmp/file6 34>/tmp/file6 33>/tmp/file6 32>/tmp/file6 31>/tmp/file6 30>/tmp/file6 29>/tmp/file6 28>/tmp/file6 27>/tmp/file6 26>/tmp/file6 25>/tmp/file6 24>/tmp/file6 23>/tmp/file6 22>/tmp/file6 21>/tmp/file6 20>/tmp/file6 19>/tmp/file6 18>/tmp/file6 17>/tmp/file6 16>/tmp/file6 15>/tmp/file6 14>/tmp/file6 13>/tmp/file6 12>/tmp/file6 11>/tmp/file6 10>/tmp/file6 9>/tmp/file6 8>/tmp/file6 7>/tmp/file6 6>/tmp/file6 5>/tmp/file6 4>/tmp/file6 3>/tmp/file6 2>/tmp/file6 1>/tmp/file6 0>/tmp/file6
+echo $?
 cat /tmp/file6
 
 
 - 以下、エラーのプロンプト部分がbashと異なる
 echo 10000>/tmp/file6
+echo $?
 cat /tmp/file6
 
 echo Hello 4000>file6
+echo $?
 cat /tmp/file6
 
 echo Hello 0>file6 5000>file6
+echo $?
 cat /tmp/file6
 
 echo Hello 0>file6 6000>file6 3>file6
+echo $?
 cat /tmp/file6
 
 echo 0>file6 7000>file6 3>file6 Hello
+echo $?
 cat /tmp/file6
 
 echo < /tmp/no_exist_file
+echo $?
 
 rm /tmp/file1 /tmp/file2 /tmp/file3 /tmp/file4 /tmp/file5 /tmp/file6

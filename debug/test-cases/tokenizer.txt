@@ -1,75 +1,137 @@
 echo Hello 1">"out
+echo $?
 cat out
+echo $?
 echo Hello 1 ">" out
+echo $?
 cat out
+echo $?
 echo Hello 1">" out
+echo $?
 cat out
+echo $?
 echo Hello 1 ">"out
+echo $?
 cat out
+echo $?
 
 echo Hello 1'>'out
+echo $?
 cat out
+echo $?
 echo Hello 1 '>' out
+echo $?
 cat out
+echo $?
 echo Hello 1'>' out
+echo $?
 cat out
+echo $?
 echo Hello 1 '>'out
+echo $?
 cat out
+echo $?
 
 echo 1">out"
+echo $?
 cat out
+echo $?
 echo ">out"
+echo $?
 cat out
+echo $?
 
 echo 1">     out"
+echo $?
 cat out
+echo $?
 echo ">     out"
+echo $?
 cat out
+echo $?
 
 echo Hello "1>out"
+echo $?
 cat out
+echo $?
 echo Hello "1>"out
+echo $?
 cat out
+echo $?
 echo Hello 1">out"
+echo $?
 cat out
+echo $?
 
 echo Hello 1"'>out'">>out
+echo $?
 echo Hello 1"'out>'">>out
+echo $?
 echo Hello 1"'out>'">>out
+echo $?
 
 rm out
 
 - パイプのトーカナイザー
 echo "Hello | ls"
+echo $?
 echo 'Hello | ls' | cat
+echo $?
 echo "Hello "|"    |"  cat
+echo $?
 ls |  | cat
+echo $?
 echo "Hello "|cat
+echo $?
 echo '"quoted | pipe"' | cat
+echo $?
 "ls -l" | "cat" | "wc -l"
+echo $?
 echo '| this is not a pipe' | cat
+echo $?
 echo hello | world | cat
+echo $?
 echo 'escaped \| pipe' | tr -d '\'
+echo $?
 echo "  hello   " | sed 's/ //g'
+echo $?
 cat   file.txt  |  grep "test"
+echo $?
 echo "nested 'quotes' | are tricky" | cat
+echo $?
 
 - パイプのシンタックスエラー
 |
+echo $?
 |ls      "  "
+echo $?
 "  "|"|  "
+echo $?
 | ls
+echo $?
 ls |      | cat
+echo $?
 ls |  "  "    | cat
+echo $?
 "|||||"|ls
+echo $?
 l|l|l
+echo $?
 "         "
+echo $?
           | ls
+echo $?
 
 - クォートまわり
  "   "  " "  " " ""
+echo $?
 |'
+echo $?
 |"
+echo $?
 |'   "
+echo $?
 "Hello " | "|"Hello " | "
+echo $?
 0""    \t""""           777'''''''       ''''""""""                 '''\0
+echo $?

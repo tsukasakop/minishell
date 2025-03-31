@@ -1,11 +1,11 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_bare_string.c                                 :+:      :+:    :+:   */
+/*   get_exit_status_from_err_type.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/14 01:52:33 by tkondo            #+#    #+#             */
+/*   Created: 2025/03/27 19:38:53 by miyuu             #+#    #+#             */
 /*   Updated: 2025/03/29 20:25:54 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -13,23 +13,19 @@
 #include <minishell.h>
 
 /*
- * Function: read_bare_string
+ * Function:get_exit_status_from_err_type
  * ----------------------------
- *  return string from cur_p, ends by any character on ends variable
+ * Returns the exit status for each err_type.
  */
-char	*read_bare_string(char **cur_p, char *ends, size_t ends_len)
+unsigned char	get_exit_status_from_err_type(t_error_type	err_type)
 {
-	char	*next_cur;
-	char	*buffer;
-
-	next_cur = ft_strchr_mul(*cur_p, ends, ends_len);
-	buffer = ft_g_mmadd(ft_strndup(*cur_p, next_cur - *cur_p));
-	if (!buffer)
-	{
-		set_error_type(ERR_SYSCALL);
-		perror_with_shellname(NULL);
-		return (NULL);
-	}
-	*cur_p = next_cur;
-	return (buffer);
+	if (err_type == NOERR)
+		return (0);
+	else if (err_type == ERR_SYSCALL)
+		return (1);
+	else if (err_type == ERR_AMBRDIR)
+		return (1);
+	else if (err_type == ERR_SYNTAX)
+		return (2);
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token2ecmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 20:36:46 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/17 20:48:41 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/29 20:25:54 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ char	**token2ecmds(t_text_list *tokens)
 		cur_token = cur_token->next;
 	}
 	if (expanded == NULL)
+	{
 		expanded = ft_g_mmcalloc(sizeof(char **), 1);
+		if (expanded == NULL)
+		{
+			set_error_type(ERR_SYSCALL);
+			perror_with_shellname(NULL);
+			return (NULL);
+		}
+	}
 	return (expanded);
 }

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 23:10:52 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/21 19:21:23 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/27 20:07:48 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char	**cmdline2_scmd_texts(const char *cmd_line)
 	error_msg = validate_cmd_line_syntax(cmd_line);
 	if (error_msg)
 	{
+		set_error_type(ERR_SYNTAX);
 		syntax_error_handle(error_msg);
 		return (NULL);
 	}

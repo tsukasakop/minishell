@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:56:50 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/04 01:35:20 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/03/29 20:25:54 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,18 @@ t_text_list	*new_struct_text_list(char *str, size_t len)
 
 	node = ft_g_mmmalloc(sizeof(t_text_list));
 	if (!node)
+	{
+		set_error_type(ERR_SYSCALL);
+		perror_with_shellname(NULL);
 		return (NULL);
+	}
 	node->text = ft_g_mmadd(ft_strndup(str, len));
+	if (!node->text)
+	{
+		set_error_type(ERR_SYSCALL);
+		perror_with_shellname(NULL);
+		return (NULL);
+	}
 	node->prev = NULL;
 	node->next = NULL;
 	return (node);

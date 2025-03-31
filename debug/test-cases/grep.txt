@@ -1,2 +1,4 @@
 ls | grep sh
+echo $?
 grep aiueo abcde
+echo $?

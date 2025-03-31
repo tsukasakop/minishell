@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   null_terminated_array_join.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 20:27:04 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/17 20:27:06 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/03/29 20:25:54 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,11 @@ void	**null_terminated_array_join(void **dst, void **src)
 	srclen = null_terminated_array_len(src);
 	ptr = ft_g_mmmalloc(sizeof(void *) * (dstlen + srclen + 1));
 	if (ptr == NULL)
+	{
+		set_error_type(ERR_SYSCALL);
+		perror_with_shellname(NULL);
 		return (NULL);
+	}
 	i = 0;
 	while (i < dstlen)
 	{

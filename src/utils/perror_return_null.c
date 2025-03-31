@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   perror_exit.c                                      :+:      :+:    :+:   */
+/*   perror_return_null.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/24 14:14:07 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/25 18:30:08 by mfunakos         ###   ########.fr       */
+/*   Created: 2025/03/24 01:41:16 by miyuu             #+#    #+#             */
+/*   Updated: 2025/03/25 18:30:35 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:perror_exit
+ * Function:perror_return_null
  * ----------------------------
- * Prints an error message with the shell name and exits with status 1.
+ * Prints an error message with the shell name.
+ * And return NULL.
+ * But the shell does not exit.
  */
-void	perror_exit(char *msg)
+void	*perror_return_null(char *msg)
 {
 	perror_with_shellname(msg);
-	ft_exit (1);
+	return (NULL);
 }

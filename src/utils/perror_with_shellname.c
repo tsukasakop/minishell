@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   perror_exit.c                                      :+:      :+:    :+:   */
+/*   shellname_perro.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/24 14:14:07 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/25 18:30:08 by mfunakos         ###   ########.fr       */
+/*   Created: 2025/03/25 18:19:37 by mfunakos          #+#    #+#             */
+/*   Updated: 2025/03/25 18:30:57 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:perror_exit
+ * Function:perror_with_shellname
  * ----------------------------
- * Prints an error message with the shell name and exits with status 1.
+ * Prints an error message with the shell name.
  */
-void	perror_exit(char *msg)
+void	perror_with_shellname(char *msg)
 {
-	perror_with_shellname(msg);
-	ft_exit (1);
+	write(2, SHELL_NAME, ft_strlen(SHELL_NAME));
+	perror(msg);
 }
