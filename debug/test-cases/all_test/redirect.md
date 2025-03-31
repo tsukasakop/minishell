@@ -1,4 +1,6 @@
 # リダイレクト
+### - 問題点
+	- クォートのみで実行した際、エラー文がなぜか"Permission denied"になる→commandのテストケース側での問題と同じ
 #### - 構文 cmd > path | cmd >path | cmd> path | cmd>path
 	echo Hello > out
 	echo Hello >out
@@ -14,7 +16,7 @@
 	→ bash: syntax error near unexpected token `newline'にする
 - `>>`
 	→ bash: syntax error near unexpected token `newline'にする
-- `<<<`
+- !! `<<<`
 	→ bash: syntax error near unexpected token `<'にする
 - `>>>`
 	→ bash: syntax error near unexpected token `>'にする
@@ -57,6 +59,10 @@
 	echo 42Tokyo > out >
 	echo 42Tokyo > > out
 
+#### - バイナリを書き込む
+	minishell cat | xxd | tail > out
+	infile cat | xxd | tail > out
+
 #### - pathの権限 -r | -w | -x
 ```bash
 chmod -r out
@@ -82,14 +88,14 @@ echo 42 > out
 	"   " >> out
 
 #### - pathが 存在する | 存在しない
-	cat >> noexist
-	cat >> exist
+	echo 42Tokyo >> noexist
+	echo 42Tokyo >> exist
 
 #### - pathが 文字列 | 数字 | リダイレクト記号 | パイプ
-	cat >> out
-	cat >> 123
-	cat >> ">>"
-	cat >> "|"
+	echo string >> str
+	echo number >> 123
+	echo redirect_symbol >> ">>"
+	echo pipe_symbol >> "|"
 
 #### - コマンドが 正常 | オプションあり | オプションが不正 | 存在しないコマンド
 	echo 42tokyo >> out
@@ -110,6 +116,10 @@ echo 42 > out
 	echo 42Tokyo >> out >>
 	echo 42Tokyo >> >> out
 
+#### - バイナリを書き込む
+	minishell cat | xxd | tail >> out
+	infile cat | xxd | tail >> out
+
 #### - pathの権限 -r | -w | -x
 ```bash
 	echo 42Tokyo > out
@@ -126,14 +136,10 @@ echo 42 > out
 	chmod -x out
 	echo hello >> out
 ```
-#### - バイナリを書き込む
-	minishell cat | xxd | tail > out
-	infile cat | xxd | tail > out
 
 
 
 ## < 入力
-	cat < in
 ### `<` `<<` `>` 共通のテスト項目
 #### - リダイレクトと pathのみ | クォートのみ | 空白
 	< out
@@ -169,6 +175,10 @@ echo 42 > out
 	cat < out <
 	cat < < out
 
+#### - バイナリを読み込む
+	< minishell cat | xxd | tail
+	< infile cat | xxd | tail
+
 #### - pathの権限 -r | -w | -x
 ```bash
 	echo 42Tokyo > in
@@ -185,10 +195,7 @@ echo 42 > out
 	chmod -x in
 	cat < in
 ```
-### リダイレクトタイプ別のテスト項目
-#### - バイナリを読み込む
-	< minishell cat | xxd | tail
-	< infile cat | xxd | tail
+
 
 
 ## << ヒアドク
@@ -228,7 +235,7 @@ echo 42 > out
 
 	EOF
 ```
-#### - 複数のヒアドクで eofが全て異なる | 1つ以外異なる | 1つだけ異なる| 全て同じ
+#### - 複数のヒアドクで eofが全て異なる | 1つだけ異なる| 全て同じ
 ```bash
 	cat <<EOF <<EOF2 <<EOF3
 	1
@@ -288,8 +295,7 @@ echo 42 > out
 	EOF
 ```
 
-# 大きいやつ
-
+# 大きいテストケース
 ## file name length MAX (255)
 <_000000010_000000020_000000030_000000040_000000050_000000060_000000070_000000080_000000090_000000100_000000110_000000120_000000130_000000140_000000150_000000160_000000170_000000180_000000190_000000200_000000210_000000220_000000230_000000240_000000250_0255
 

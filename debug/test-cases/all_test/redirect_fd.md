@@ -1,3 +1,12 @@
+# 数字つきリダイレクト
+### - 問題点
+
+#### - 構文 cmd Num > path | cmd Num> path | cmdNum> path | cmdNum>path
+	echo Hello > out
+	echo Hello >out
+	echo Hello>out
+	echo Hello>out
+
 ## 数字あり
 	echo Hello 1>out
 	cat no_exist 2> out

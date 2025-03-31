@@ -1,0 +1,436 @@
+cd /tmp
+rm -r /tmp/hoge
+
+mkdir /tmp/hoge
+cd /tmp/hoge
+echo Exist > exist
+echo "No permission to read" > no_per_r
+echo "No permission to write" > no_per_w
+echo "No permission to execute" > no_per_x
+
+
+-リダイレクト
+'---構文 cmd > path | cmd >path | cmd> path | cmd>path'
+echo Hello > out1
+cat out1
+
+echo Hello >out2
+cat out2
+
+echo Hello>out3
+cat out3
+
+echo Hello>out4
+cat out4
+
+
+--シンタックスエラー
+<
+>
+<<
+>>
+'--以下、出力がbashと異なるが、課題要件につき正しい'
+<<<
+>>>
+
+--出力
+'---`<` `<<` `>` 共通のテスト項目'
+---リダイレクトと pathのみ | クォートのみ | 空白
+> out5
+cat out5
+'--以下、出力がbashと異なり、議論が必要 commandテストケースでの挙動と同じ'
+"" > out6
+cat out6
+
+"   " > out7
+cat out7
+
+
+---pathが 存在する | 存在しない
+echo hello > noexist
+cat noexist
+
+echo hello > exist
+cat exist
+
+---pathが 文字列 | 数字 | リダイレクト記号 | パイプ
+echo string > strt
+cat str
+echo number > 123
+cat 123
+echo redirect_symbol > ">"
+cat ">"
+echo pipe_symbol > "|"
+cat "|"
+
+---コマンドが 正常 | オプションあり | オプションが不正 | 存在しないコマンド
+echo 42tokyo > out8
+cat out8
+
+ls -l > out9
+cat out9
+
+ls -0 > out10
+cat out10
+
+aaaa > out11
+cat out11
+
+
+---複数のリダイレクトでcmdが 前 | 中間 | 後ろ
+echo 42tokyo > out12 > out13
+cat out12 out13
+
+> out14 echo 42tokyo > out15
+cat out14 out15
+
+> out16 > out17 echo 42tokyo
+cat out16 out17
+
+
+---複数のリダイレクトでpathが 同じ | 異なる
+echo 42tokyo > out18 > out18
+cat out18
+
+echo 42tokyo > out19 > out20
+cat out19 out20
+
+
+---正常なリダイレクトとエラー エラー→正常 | 正常→エラー
+echo 42Tokyo > out21 >
+cat out21
+
+echo 42Tokyo > > out22
+cat out22
+
+---バイナリを書き込む
+minishell cat | xxd | tail > out23
+cat out23
+
+infile cat | xxd | tail > out24
+cat out24
+
+
+---pathの権限 -r | -w | -x
+chmod -r no_per_r
+echo 42Tokyo > no_per_r
+cat out
+chmod +r no_per_r
+
+chmod -w no_per_w
+echo 42Tokyo > no_per_w
+cat out
+chmod +w no_per_w
+
+chmod -x no_per_x
+echo 42Tokyo > no_per_x
+cat out
+chmod +x no_per_x
+
+
+
+cd /tmp
+rm -r /tmp/hoge
+
+mkdir /tmp/hoge
+cd /tmp/hoge
+echo Exist > exist
+echo "No permission to read" > no_per_r
+echo "No permission to write" > no_per_w
+echo "No permission to execute" > no_per_x
+
+
+--追記
+'---`<` `<<` `>` 共通のテスト項目'
+---リダイレクトと pathのみ | クォートのみ | 空白
+>> out1
+cat out1
+'--以下、出力がbashと異なり、議論が必要 commandテストケースでの挙動と同じ'
+"" >> out2
+cat out2
+
+"   " >> out3
+cat out3
+
+
+---pathが 存在する | 存在しない
+echo 42Tokyo >> noexist
+cat noexist
+
+echo 42Tokyo >> exist
+cat exist
+
+---pathが 文字列 | 数字 | リダイレクト記号 | パイプ
+echo string >> str
+cat str
+echo number >> 123
+cat 123
+echo redirect_symbol >> ">>"
+cat ">"
+echo pipe_symbol >> "|"
+cat "|"
+
+---コマンドが 正常 | オプションあり | オプションが不正 | 存在しないコマンド
+echo 42tokyo >> out4
+cat out4
+
+ls -l >> out5
+cat out5
+
+ls -0 >> out6
+cat out6
+
+aaaa >> out7
+cat out7
+
+
+---複数のリダイレクトでcmdが 前 | 中間 | 後ろ
+echo 42tokyo >> out8 >> out9
+cat out8 out9
+
+>> out10 echo 42tokyo >> out11
+cat out10 out11
+
+>> out12 >> out13 echo 42toky
+cat out12 out13
+
+
+---複数のリダイレクトでpathが 同じ | 異なる
+echo 42tokyo >> out14 >> out14
+cat out14
+
+echo 42tokyo >> out15 >> out16
+cat out15 out16
+
+---正常なリダイレクトとエラー エラー→正常 | 正常→エラー
+echo 42Tokyo >> out17 >>
+cat out17
+
+echo 42Tokyo >> >> out18
+cat out18
+
+---バイナリを書き込む
+minishell cat | xxd | tail >> out19
+cat out19
+
+infile cat | xxd | tail >> out20
+cat out20
+
+
+---pathの権限 -r | -w | -x
+chmod -r no_per_r
+echo 42Tokyo >> no_per_r
+cat out
+chmod +r no_per_r
+
+chmod -w no_per_w
+echo 42Tokyo >> no_per_w
+cat out
+chmod +w no_per_w
+
+chmod -x no_per_x
+echo 42Tokyo >> no_per_x
+cat out
+chmod +x no_per_x
+
+
+
+
+cd /tmp
+rm -r /tmp/hoge
+
+mkdir /tmp/hoge
+cd /tmp/hoge
+echo Exist > exist
+echo "No permission to read" > no_per_r
+echo "No permission to write" > no_per_w
+echo "No permission to execute" > no_per_x
+
+echo 42Tokyo > out
+echo Hello > out2
+echo "path is string" > str
+echo "Path is a number" > 123
+echo "Path is redirected" > "<"
+echo "Path is pipe" > "|"
+
+
+--入力
+'---`<` `<<` `>` 共通のテスト項目'
+---リダイレクトと pathのみ | クォートのみ | 空白
+< out
+'--以下、出力がbashと異なり、議論が必要 commandテストケースでの挙動と同じ'
+"" < out
+"   " < out
+
+---pathが 存在する | 存在しない
+cat < noexist
+cat < exist
+
+---pathが 文字列 | 数字 | リダイレクト記号 | パイプ
+cat < str
+cat < 123
+cat < "<"
+cat < "|"
+
+---コマンドが 正常 | オプションあり | オプションが不正 | 存在しないコマンド
+cat < out
+grep "42" < out
+grep --invalid-option < out
+aaaa < out
+
+---複数のリダイレクトでcmdが 前 | 中間 | 後ろ
+cat < out < out2
+< out cat < out2
+< out < out2 cat
+
+---複数のリダイレクトでpathが 同じ | 異なる
+cat < out < out
+cat < out < out2
+
+---正常なリダイレクトとエラー エラー→正常 | 正常→エラー
+cat < out <
+cat < < out
+
+---バイナリを読み込む
+< minishell cat | xxd | tail
+< infile cat | xxd | tail
+
+---pathの権限 -r | -w | -x
+chmod -r no_per_r
+cat < no_per_r
+
+chmod -w no_per_w
+cat < no_per_w
+
+chmod -x no_per_x
+cat < no_per_x
+
+
+--ヒアドク
+---リダイレクトと eofのみ | クォートのみ | 空白
+<< EOF
+EOF
+'--以下、出力がbashと異なり、議論が必要 commandテストケースでの挙動と同じ'
+"" << EOF
+EOF
+
+"   " << EOF
+EOF
+
+
+---eofが 文字列 | 数字 | リダイレクト記号 | パイプ
+cat << EOF
+EOF
+
+cat << 123
+123
+
+cat << "<<"
+<<
+
+cat << "|"
+|
+
+
+---コマンドが 正常 | オプションあり | オプションが不正 | 存在しないコマンド
+cat << EOF
+EOF
+
+grep "42" << EOF
+EOF
+
+grep --invalid-option  << EOF
+EOF
+
+aaaa << EOF
+EOF
+
+
+---正常なリダイレクトとエラー エラー→正常 | 正常→エラー
+cat <<EOF <<
+EOF
+
+cat << <<EOF
+EOF
+
+
+---eofの大文字小文字が 正しい | 逆
+<<EOF
+EOF
+
+<<EOF
+eof
+EOF
+
+
+---入力値が eofうち 1文字のみ | 1文字だけ正しい | 1文字違い
+cat <<EOF
+E
+eOf
+EoF
+
+EOF
+
+
+---複数のヒアドクで eofが全て異なる | 1つだけ異なる| 全て同じ
+cat <<EOF1 <<EOF2 <<EOF3
+1
+EOF1
+2
+EOF2
+3
+EOF3
+
+cat <<EOF <<EOF <<EOF3
+1
+EOF
+2
+EOF
+3
+EOF3
+
+cat <<EOF <<EOF <<EOF
+1
+EOF
+2
+EOF
+3
+EOF
+
+---ヒアドクの 前に | 中間に | 後ろに cat
+cat <<EOF <<EOF
+1
+EOF
+2
+EOF
+
+
+<<EOF cat <<EOF
+1
+EOF
+2
+EOF
+
+
+<<EOF <<EOF cat
+1
+EOF
+2
+EOF
+
+
+--大きいテストケース
+'---file name length MAX (255)'
+<_000000010_000000020_000000030_000000040_000000050_000000060_000000070_000000080_000000090_000000100_000000110_000000120_000000130_000000140_000000150_000000160_000000170_000000180_000000190_000000200_000000210_000000220_000000230_000000240_000000250_0255
+
+
+'---file name length MAX + 1 (256)'
+<_000000010_000000020_000000030_000000040_000000050_000000060_000000070_000000080_000000090_000000100_000000110_000000120_000000130_000000140_000000150_000000160_000000170_000000180_000000190_000000200_000000210_000000220_000000230_000000240_000000250_00256
+
+'---path name length MAX (1023)'
+</000000010/000000020/000000030/000000040/000000050/000000060/000000070/000000080/000000090/000000100/000000110/000000120/000000130/000000140/000000150/000000160/000000170/000000180/000000190/000000200/000000210/000000220/000000230/000000240/000000250/000000260/000000270/000000280/000000290/000000300/000000310/000000320/000000330/000000340/000000350/000000360/000000370/000000380/000000390/000000400/000000410/000000420/000000430/000000440/000000450/000000460/000000470/000000480/000000490/000000500/000000510/000000520/000000530/000000540/000000550/000000560/000000570/000000580/000000590/000000600/000000610/000000620/000000630/000000640/000000650/000000660/000000670/000000680/000000690/000000700/000000710/000000720/000000730/000000740/000000750/000000760/000000770/000000780/000000790/000000800/000000810/000000820/000000830/000000840/000000850/000000860/000000870/000000880/000000890/000000900/000000910/000000920/000000930/000000940/000000950/000000960/000000970/000000980/000000990/000001000/000001010/000001020/23
+
+'---path name length MAX + 1 (1024)'
+</000000010/000000020/000000030/000000040/000000050/000000060/000000070/000000080/000000090/000000100/000000110/000000120/000000130/000000140/000000150/000000160/000000170/000000180/000000190/000000200/000000210/000000220/000000230/000000240/000000250/000000260/000000270/000000280/000000290/000000300/000000310/000000320/000000330/000000340/000000350/000000360/000000370/000000380/000000390/000000400/000000410/000000420/000000430/000000440/000000450/000000460/000000470/000000480/000000490/000000500/000000510/000000520/000000530/000000540/000000550/000000560/000000570/000000580/000000590/000000600/000000610/000000620/000000630/000000640/000000650/000000660/000000670/000000680/000000690/000000700/000000710/000000720/000000730/000000740/000000750/000000760/000000770/000000780/000000790/000000800/000000810/000000820/000000830/000000840/000000850/000000860/000000870/000000880/000000890/000000900/000000910/000000920/000000930/000000940/000000950/000000960/000000970/000000980/000000990/000001000/000001010/000001020/024
+
+rm -r /tmp/hoge
