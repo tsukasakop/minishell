@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 15:19:38 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/21 16:49:59 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/04/02 03:07:59 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ int	ft_execvp(const char *path, char *const argv[])
 	const char	*abs_path;
 	int			ret;
 
+	if (path[0] == '\0')
+		return (127);
 	if (ft_strchr(path, '/') != NULL)
 		return (execve(path, argv, NULL));
 	abs_path = find_path(path);
