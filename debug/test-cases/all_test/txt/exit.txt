@@ -1,4 +1,4 @@
--- 以下、出力がbashと異なり修正が必要 ほとんどすべてのecho $?、エラー出力がない
+-- 以下、テストがうまく起動しない。
 ../minishell
 exit
 echo $?
@@ -33,6 +33,7 @@ echo $?
 ../minishell
 exit +42
 echo $?
+-- 以下6つのテストケース、出力がbashと異なり修正が必要
 ../minishell
 exit --0
 echo $?
@@ -71,6 +72,7 @@ echo $?
 ../minishell
 exit -9223372036854775808
 echo $?
+-- 以下2つのテストケース、出力がbashと異なり修正が必要
 ../minishell
 exit 9223372036854775808
 echo $?
@@ -78,7 +80,7 @@ echo $?
 exit -9223372036854775809
 echo $?
 
---
+-- 以下4つのテストケース、出力がbashと異なり修正が必要
 ../minishell
 exit 0.00
 echo $?
@@ -92,7 +94,7 @@ echo $?
 exit 0b101010
 echo $?
 
---
+-- 以下3つのテストケース、出力がbashと異なり修正が必要
 ../minishell
 exit w
 echo $?
@@ -103,7 +105,7 @@ echo $?
 exit 42tokyo
 echo $?
 
---
+-- 以下4つのテストケース、出力がbashと異なり修正が必要
 ../minishell
 exit 1 42
 echo $?
@@ -124,6 +126,7 @@ echo $?
 ../minishell
 exit '1'
 echo $?
+-- 以下4つのテストケース、出力がbashと異なり修正が必要
 ../minishell
 exit ""
 echo $?
