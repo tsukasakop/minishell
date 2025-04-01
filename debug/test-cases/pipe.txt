@@ -1,4 +1,9 @@
 ls . | wc -l
 echo $?
+"" | ''  | "   "
+echo $?
 cat | cat | ls
+
+
+
 echo $?
