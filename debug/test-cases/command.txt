@@ -114,7 +114,7 @@ echo $?
 
 chmod 777 /tmp/hoge
 echo $?
-rm -r /tmp/hoge
+/bin/rm -r /tmp/hoge
 echo $?
 
 -カレントディレクトリを移動した時
@@ -212,5 +212,5 @@ echo $?
 
 chmod 777 /tmp/minishell_cmd
 echo $?
-rm -r /tmp/minishell_cmd
+/bin/rm -r /tmp/minishell_cmd
 echo $?
