@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/05 21:59:56 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/04/05 22:23:14 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,17 @@
 /* macro */
 # define PROMPT "minishell$ "
 # define SHELL_NAME "bash: "
-# define ARG "{ARG}"
-# define EM_ISDIR "{ARG}: Is a directory"
-# define EM_CMDNFND "{ARG}: command not found"
-# define EM_SYNTAX "syntax error near unexpected token `{ARG}'"
-# define EM_AMBRDIR "{ARG}: ambiguous redirect"
-# define EM_EXPO_BADID "export: `{ARG}': not a valid identifier"
-# define ERR_HEREDOC "%s: warning: here-document delimited by end-of-file \
-(wanted `%s')"
-# define EM_CD_2MARG  "cd: too many arguments"
-# define EM_CD_OPWDNSET "cd: OLDPWD not set"
-# define EM_CD "cd: {ARG}"
+// # define ARG "{ARG}"
+// # define EM_ISDIR "{ARG}: Is a directory"
+// # define EM_CMDNFND "{ARG}: command not found"
+// # define EM_SYNTAX "syntax error near unexpected token `{ARG}'"
+// # define EM_AMBRDIR "{ARG}: ambiguous redirect"
+// # define EM_EXPO_BADID "export: `{ARG}': not a valid identifier"
+// # define ERR_HEREDOC "%s: warning: here-document delimited by end-of-file \
+// (wanted `%s')"
+// # define EM_CD_2MARG  "cd: too many arguments"
+// # define EM_CD_OPWDNSET "cd: OLDPWD not set"
+// # define EM_CD "cd: {ARG}"
 
 /* struct */
 typedef struct s_execute_session	t_execute_session;
@@ -59,6 +59,7 @@ typedef struct s_text_list			t_text_list;
 typedef enum e_redirect_type		t_redirect_type;
 typedef enum e_execute_env			t_execute_env;
 typedef enum e_error_type			t_error_type;
+typedef enum e_errmsg_type			t_errmsg_type;
 
 enum e_redirect_type
 {
@@ -81,13 +82,21 @@ enum e_error_type
 	ERR_SYSCALL,
 	ERR_AMBRDIR,
 	ERR_SYNTAX,
-	ERR_ISDIR,
-	ERR_CMDNFND,
-	ERR_EXPO_BADID,
-	ER_HEREDOC,
-	ERR_CD_2MARG,
-	ERR_CD_OPWDNSET,
-	ERR_CD,
+};
+
+enum e_errmsg_type
+{
+	NOEM,
+	EM_SYSCALL,
+	EM_AMBRDIR,
+	EM_SYNTAX,
+	EM_ISDIR,
+	EM_CMDNFND,
+	EM_EXPO_BADID,
+	EM_HEREDOC,
+	EM_CD_2MARG,
+	EM_CD_OPWDNSET,
+	EM_CD,
 };
 
 struct				s_execute_session
@@ -259,5 +268,8 @@ void			set_error_type(t_error_type err_type);
 t_error_type	get_error_type(void);
 t_error_type	*get_error_type_p(void);
 bool			is_numeric(const char *str);
+
+/* print errmsg function */
+void	perrmsg_with_arg(t_errmsg_type err_type, char *arg);
 
 #endif

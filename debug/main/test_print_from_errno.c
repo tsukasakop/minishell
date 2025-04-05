@@ -12,62 +12,58 @@
 
 #include <minishell.h>
 
-void	test_print_from_errno(t_error_type err_type, char *arg)
+void	perrmsg_with_arg(t_errmsg_type err_type, char *arg)
 {
-	char	*before;
-	char	*after;
-
 	ft_putstr_fd(SHELL_NAME, 2);
-	if (err_type == ERR_SYSCALL)
+	if (err_type == EM_SYSCALL)
 	{
 		perror(arg);
 		return ;
 	}
-	else if (err_type == ERR_AMBRDIR)
+	else if (err_type == EM_AMBRDIR)
 	{
 		ft_putstr_fd(arg, 2);
 		ft_putstr_fd(": ambiguous redirect", 2);
 	}
-	else if (err_type == ERR_SYNTAX)
+	else if (err_type == EM_SYNTAX)
 	{
 		ft_putstr_fd("syntax error near unexpected token `", 2);
 		ft_putstr_fd(arg, 2);
 		ft_putstr_fd("\'", 2);
 	}
-	else if (err_type == ERR_ISDIR)
+	else if (err_type == EM_ISDIR)
 	{
 		ft_putstr_fd(arg, 2);
 		ft_putstr_fd(": Is a directory", 2);
 	}
-	else if (err_type == ERR_CMDNFND)
+	else if (err_type == EM_CMDNFND)
 	{
 		ft_putstr_fd(arg, 2);
 		ft_putstr_fd(": command not found", 2);
 	}
-	else if (err_type == ERR_EXPO_BADID)
+	else if (err_type == EM_EXPO_BADID)
 	{
 		ft_putstr_fd("export: `", 2);
 		ft_putstr_fd(arg, 2);
 		ft_putstr_fd("\': not a valid identifier", 2);
 	}
-	else if (err_type == ER_HEREDOC)
+	else if (err_type == EM_HEREDOC)
 	{
-		ft_putstr_fd("warning: here-document delimited by end-of-file \
-(wanted `", 2);
+		ft_putstr_fd("warning: here-document delimited by end-of-file (wanted `", 2);
 		ft_putstr_fd(arg, 2);
 		ft_putstr_fd("\')", 2);
 	}
-	else if (err_type == ERR_CD_2MARG)
+	else if (err_type == EM_CD_2MARG)
 	{
 		ft_putstr_fd("cd: too many arguments", 2);
 	}
-	else if (err_type == ERR_CD_OPWDNSET)
+	else if (err_type == EM_CD_OPWDNSET)
 	{
 		ft_putstr_fd("cd: OLDPWD not set", 2);
 	}
-	else if (err_type == ERR_CD)
+	else if (err_type == EM_CD)
 	{
-		ft_putstr_fd("cd: ", arg);
+		ft_putstr_fd("cd: ", 2);
 		ft_putstr_fd(arg, 2);
 	}
 	ft_putstr_fd("\n", 2);
@@ -78,16 +74,17 @@ int	main(void)
 	char	*msg = "msg";
 	open(msg, O_WRONLY);
 	// 各エラータイプをテスト
-	test_print_from_errno(ERR_SYSCALL, "msg");          // perrorを使った出力
-	test_print_from_errno(ERR_AMBRDIR, "$aa");      // あいまいなリダイレクト
-	test_print_from_errno(ERR_SYNTAX, "|");             // シンタックスエラー
-	test_print_from_errno(ERR_ISDIR, "../");       // ディレクトリエラー
-	test_print_from_errno(ERR_CMDNFND, "cmd");    // コマンド見つからない
-	test_print_from_errno(ER_HEREDOC, "EOF");     // exportに使えない識別
-	test_print_from_errno(ERR_EXPO_BADID, "42=");     // exportに使えない識別子
-	test_print_from_errno(ERR_CD_2MARG, NULL);           // cdの引数多すぎ
-	test_print_from_errno(ERR_CD_OPWDNSET, NULL);        // OLDPWD未設定
-	test_print_from_errno(ERR_CD, "nonexistent_dir");    // cdの通常エラー
+	perrmsg_with_arg(EM_SYSCALL, "msg");          // perrorを使った出力
+	perrmsg_with_arg(EM_ISDIR, "../");       // ディレクトリエラー
+	perrmsg_with_arg(EM_SYSCALL, "../");       // ディレクトリエラー
+	perrmsg_with_arg(EM_CMDNFND, "cmd");    // コマンド見つからない
+	perrmsg_with_arg(EM_SYNTAX, "|");             // シンタックスエラー
+	perrmsg_with_arg(EM_AMBRDIR, "$aa");      // あいまいなリダイレクト
+	perrmsg_with_arg(EM_EXPO_BADID, "42=");     // exportに使えない識別子
+	perrmsg_with_arg(EM_CD_2MARG, NULL);           // cdの引数多すぎ
+	perrmsg_with_arg(EM_CD_OPWDNSET, NULL);        // OLDPWD未設定
+	perrmsg_with_arg(EM_CD, "/dir/in");    // cdの通常エラー
+	perrmsg_with_arg(EM_HEREDOC, "EOF");     // exportに使えない識別
 
 	return (0);
 }
