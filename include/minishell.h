@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/29 20:25:54 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/03 20:05:35 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,5 +240,6 @@ t_error_type	*get_error_type_p(void);
 void			set_error_type(t_error_type err_type);
 t_error_type	get_error_type(void);
 t_error_type	*get_error_type_p(void);
+bool			is_numeric(const char *str);
 
 #endif
