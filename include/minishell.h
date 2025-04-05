@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/06 04:01:16 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/06 04:22:44 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,6 @@ int				builtin_export(char **argv);
 int				builtin_unset(char **argv);
 
 /* command function */
-int				command_not_found_handle(char *cmd);
 int				exec_error_handling(char *path, int status, int err_num);
 const char		*get_path(const char *ecmds);
 int				exec_with_path(const char *path, char *const argv[]);
