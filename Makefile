@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/04/03 20:05:08 by miyuu            ###   ########.fr        #
+#    Updated: 2025/04/05 16:07:06 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ TARGET =\
 	command/get_path\
 	command/exec_error_handling\
 	command/command_not_found_handle\
+	command/exec_with_path\
 	data/free_redirects\
 	data/free_simple_cmds\
 	data/free_text_list\

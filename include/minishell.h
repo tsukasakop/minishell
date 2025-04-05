@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/03 20:05:35 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/05 16:06:29 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ int				builtin_unset(char **argv);
 int				command_not_found_handle(char *cmd);
 int				exec_error_handling(char *path, int status, int err_num);
 const char		*get_path(const char *ecmds);
+int				exec_with_path(const char *path, char *const argv[]);
 
 /* data function */
 t_redirect		*add_struct_redirect(int type, int from_fd, char *path);
