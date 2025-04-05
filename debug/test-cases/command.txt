@@ -18,6 +18,20 @@ echo $?
 $HOME
 echo $?
 
+""
+echo $?
+''
+echo $?
+'""'
+echo $?
+'"''"'
+echo $?
+"     "
+echo $?
+'     '
+echo $?
+
+
 - 自作コマンドを作成
 mkdir /tmp/minishell_cmd
 echo $?
@@ -193,7 +207,7 @@ date
 echo $?
 /bin/ls | /usr/bin/wc
 echo $?
-/bin/cat | /bin/ls
+/bin/ls | /bin/cat
 echo $?
 
 chmod 777 /tmp/minishell_cmd
