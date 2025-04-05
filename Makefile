@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/04/06 02:31:19 by miyuu            ###   ########.fr        #
+#    Updated: 2025/04/06 03:04:38 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,6 +81,7 @@ TARGET =\
 	env/load_variable_assignment\
 	env/register_env\
 	env/dup_name\
+	error/perrmsg_with_str\
 	expand/expand_bare_string\
 	expand/expand_bare_variable\
 	expand/expand_double_quote\
@@ -130,7 +131,6 @@ TARGET =\
 	utils/get_error_type\
 	utils/get_error_type_p\
 	utils/is_numeric\
-	utils/perrmsg_with_str\
 	signal/set_handlers_for_prompt\
 	signal/set_handlers_default\
 	signal/set_handlers_for_process\

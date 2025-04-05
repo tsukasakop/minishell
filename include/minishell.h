@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/06 02:31:14 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/06 03:18:56 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,6 @@
 /* macro */
 # define PROMPT "minishell$ "
 # define SHELL_NAME "bash: "
-// # define ARG "{ARG}"
-// # define EM_ISDIR "{ARG}: Is a directory"
-// # define EM_CMDNFND "{ARG}: command not found"
-// # define EM_SYNTAX "syntax error near unexpected token `{ARG}'"
-// # define EM_AMBRDIR "{ARG}: ambiguous redirect"
-// # define EM_EXPO_BADID "export: `{ARG}': not a valid identifier"
-// # define ERR_HEREDOC "%s: warning: here-document delimited by end-of-file \
-// (wanted `%s')"
-// # define EM_MANYARG  "cd: too many arguments"
-// # define EM_CD_OPWDNSET "cd: OLDPWD not set"
-// # define EM_CD "cd: {ARG}"
 
 /* struct */
 typedef struct s_execute_session	t_execute_session;
@@ -86,18 +75,17 @@ enum e_error_type
 
 enum e_errmsg_type
 {
-	NOEM,
 	EM_SYSCALL,
 	EM_AMBRDIR,
 	EM_SYNTAX,
 	EM_ISDIR,
 	EM_CMDNFND,
 	EM_HEREDOC,
-	EM_EXIT_NONUM,
 	EM_MANYARG,
+	EM_EXPO_BADID,
+	EM_EXIT_NONUM,
 	EM_CD_OPWDNSET,
 	EM_CD_SYSCALL,
-	EM_EXPO_BADID,
 };
 
 struct				s_execute_session
@@ -195,6 +183,9 @@ void			load_variable_assignment(char *string, char **name, char **value);
 bool			register_env(char *string);
 char			*dup_name(char *cur);
 
+/* print errmsg function */
+void			perrmsg_with_str(t_errmsg_type err_type, char *str);
+
 /* expand function */
 unsigned char	*get_exit_status_p(void);
 unsigned char	get_exit_status(void);
@@ -264,8 +255,5 @@ void			set_error_type(t_error_type err_type);
 t_error_type	get_error_type(void);
 t_error_type	*get_error_type_p(void);
 bool			is_numeric(const char *str);
-
-/* print errmsg function */
-void			perrmsg_with_str(t_errmsg_type err_type, char *arg);
 
 #endif
