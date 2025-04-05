@@ -1,0 +1,31 @@
+mkdir /tmp/minishell_cmd
+cp scripts/print_hello /tmp/minishell_cmd
+export PATH=/tmp/minishell_cmd:$PATH
+
+< msg
+
+../
+
+chmod -x /tmp/minishell_cmd/print_hello
+print_hello
+chmod +x /tmp/minishell_cmd/print_hello
+rm -r /tmp/minishell_cmd
+
+
+cmd
+
+
+|
+
+>$aa
+
+export 42=
+
+cd 1 2
+
+unset OLDPWD
+cd OLDPWD
+
+exit | exit
+exit
+
