@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_too_many_arg_error copy.c                    :+:      :+:    :+:   */
+/*   print_bad_identifier_error.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 03:14:23 by miyuu             #+#    #+#             */
-/*   Updated: 2025/04/06 03:27:14 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/06 03:54:54 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:aaaaaaaaaaaaaa
+ * Function:print_bad_identifier_error
  * ----------------------------
+ * When executing the export command,
+ * an error is output if the identifier is invalid.
  */
 void	print_bad_identifier_error(char *str)
 {

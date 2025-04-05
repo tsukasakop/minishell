@@ -6,15 +6,16 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 03:14:23 by miyuu             #+#    #+#             */
-/*   Updated: 2025/04/06 03:28:36 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/06 03:48:27 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:aaaaaaaaaaaaaa
+ * Function:print_no_numeric_error
  * ----------------------------
+ * numeric argument required error output.
  */
 void	print_no_numeric_error(char *str)
 {

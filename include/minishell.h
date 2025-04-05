@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/06 03:18:56 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/06 04:01:16 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,17 @@ bool			register_env(char *string);
 char			*dup_name(char *cur);
 
 /* print errmsg function */
-void			perrmsg_with_str(t_errmsg_type err_type, char *str);
+void			print_errmsg_with_str(t_errmsg_type err_type, char *str);
+void			print_amb_redir_error(char *str);
+void			print_bad_identifier_error(char *str);
+void			print_cd_syscall_error(char *str);
+void			print_command_not_found_error(char *str);
+void			print_heredoc_warning_error(char *str);
+void			print_is_directory_error(char *str);
+void			print_no_numeric_error(char *str);
+void			print_oldpwd_not_set_error(void);
+void			print_syntax_error(char *str);
+void			print_too_many_arg_error(char *str);
 
 /* expand function */
 unsigned char	*get_exit_status_p(void);

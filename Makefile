@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/04/06 03:04:38 by miyuu            ###   ########.fr        #
+#    Updated: 2025/04/06 04:01:16 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,17 @@ TARGET =\
 	env/load_variable_assignment\
 	env/register_env\
 	env/dup_name\
-	error/perrmsg_with_str\
+	error/print_errmsg_with_str\
+	error/print_amb_redir_error\
+	error/print_bad_identifier_error\
+	error/print_cd_syscall_error\
+	error/print_command_not_found_error\
+	error/print_heredoc_warning_error\
+	error/print_is_directory_error\
+	error/print_no_numeric_error\
+	error/print_oldpwd_not_set_error\
+	error/print_syntax_error\
+	error/print_too_many_arg_error\
 	expand/expand_bare_string\
 	expand/expand_bare_variable\
 	expand/expand_double_quote\

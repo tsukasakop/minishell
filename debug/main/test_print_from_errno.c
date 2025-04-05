@@ -12,7 +12,7 @@
 
 #include <minishell.h>
 
-void	perrmsg_with_str(t_errmsg_type err_type, char *str)
+void	print_errmsg_with_str(t_errmsg_type err_type, char *str)
 {
 	ft_putstr_fd(SHELL_NAME, 2);
 	if (err_type == EM_SYSCALL)
@@ -82,18 +82,18 @@ int	main(void)
 	char	*msg = "msg";
 	open(msg, O_WRONLY);
 	// 各エラータイプをテスト
-	perrmsg_with_str(EM_SYSCALL, NULL);
-	perrmsg_with_str(EM_SYSCALL, "msg");          // perrorを使った出力
-	perrmsg_with_str(EM_ISDIR, "../");       // ディレクトリエラー
-	perrmsg_with_str(EM_SYSCALL, "../");       // ディレクトリエラー
-	perrmsg_with_str(EM_CMDNFND, "cmd");    // コマンド見つからない
-	perrmsg_with_str(EM_SYNTAX, "|");             // シンタックスエラー
-	perrmsg_with_str(EM_AMBRDIR, "$aa");      // あいまいなリダイレクト
-	perrmsg_with_str(EM_EXPO_BADID, "42=");     // exportに使えない識別子
-	perrmsg_with_str(EM_MANYARG, "cd");           // cdの引数多すぎ
-	perrmsg_with_str(EM_CD_OPWDNSET, NULL);        // OLDPWD未設定
-	perrmsg_with_str(EM_CD_SYSCALL, "/dir/in");    // cdの通常エラー
-	perrmsg_with_str(EM_HEREDOC, "EOF");     // exportに使えない識別
+	print_errmsg_with_str(EM_SYSCALL, NULL);
+	print_errmsg_with_str(EM_SYSCALL, "msg");          // perrorを使った出力
+	print_errmsg_with_str(EM_ISDIR, "../");       // ディレクトリエラー
+	print_errmsg_with_str(EM_SYSCALL, "../");       // ディレクトリエラー
+	print_errmsg_with_str(EM_CMDNFND, "cmd");    // コマンド見つからない
+	print_errmsg_with_str(EM_SYNTAX, "|");             // シンタックスエラー
+	print_errmsg_with_str(EM_AMBRDIR, "$aa");      // あいまいなリダイレクト
+	print_errmsg_with_str(EM_EXPO_BADID, "42=");     // exportに使えない識別子
+	print_errmsg_with_str(EM_MANYARG, "cd");           // cdの引数多すぎ
+	print_errmsg_with_str(EM_CD_OPWDNSET, NULL);        // OLDPWD未設定
+	print_errmsg_with_str(EM_CD_SYSCALL, "/dir/in");    // cdの通常エラー
+	print_errmsg_with_str(EM_HEREDOC, "EOF");     // exportに使えない識別
 
 	return (0);
 }

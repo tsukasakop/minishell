@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:52:13 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/06 02:30:42 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/06 04:01:16 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	read_bare_string_m(char **cur_p, char **buf_p, char *ends,
 	if (tmp == NULL)
 	{
 		set_error_type(ERR_SYSCALL);
-		perrmsg_with_str(EM_SYSCALL, NULL);
+		print_errmsg_with_str(EM_SYSCALL, NULL);
 		return ;
 	}
 	*buf_p = tmp;

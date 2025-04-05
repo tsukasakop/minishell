@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_amb_redir_error.c                            :+:      :+:    :+:   */
+/*   print_cd_syscall_error.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/06 03:14:23 by miyuu             #+#    #+#             */
-/*   Updated: 2025/04/06 03:47:09 by miyuu            ###   ########.fr       */
+/*   Created: 2025/04/06 03:36:54 by miyuu             #+#    #+#             */
+/*   Updated: 2025/04/06 03:46:07 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:print_amb_redir_error
+ * Function:print_cd_syscall_error
  * ----------------------------
- * Ambiguous redirect error output.
+ * cd and errno error output.
  */
-void	print_amb_redir_error(char *str)
+void	print_cd_syscall_error(char *str)
 {
-	ft_putstr_fd(str, 2);
-	ft_putstr_fd(": ambiguous redirect", 2);
-	ft_putstr_fd("\n", 2);
+	ft_putstr_fd("cd: ", 2);
+	perror(str);
 }

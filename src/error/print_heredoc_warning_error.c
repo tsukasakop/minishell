@@ -6,15 +6,16 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 03:14:23 by miyuu             #+#    #+#             */
-/*   Updated: 2025/04/06 03:23:35 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/06 03:52:10 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:aaaaaaaaaaaaaa
+ * Function:print_heredoc_warning_error
  * ----------------------------
+ * Error output when EOF is not found when executing heredoc.
  */
 void	print_heredoc_warning_error(char *str)
 {

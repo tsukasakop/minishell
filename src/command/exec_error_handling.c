@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:35:11 by miyuu             #+#    #+#             */
-/*   Updated: 2025/04/06 02:27:52 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/06 04:01:16 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,18 @@ int	exec_error_handling(char *path, int status, int err_num)
 {
 	if (status == 127)
 	{
-		perrmsg_with_str(EM_CMDNFND, path);
+		print_errmsg_with_str(EM_CMDNFND, path);
 		return (127);
 		// return (command_not_found_handle(path));
 	}
 	else if ((ft_getenv("PATH") == NULL || !(ft_strchr (path, '/') == NULL)) \
 			&& access(path, F_OK) == -1)
 	{
-		perrmsg_with_str(EM_SYSCALL, path);
+		print_errmsg_with_str(EM_SYSCALL, path);
 		return (127);
 	}
 	if (is_directory(path))
-		perrmsg_with_str(EM_ISDIR, path);
+		print_errmsg_with_str(EM_ISDIR, path);
 	else
 	{
 		ft_fprintf(ft_stderr(), "bash: %s: ", path);

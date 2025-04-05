@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 03:50:49 by miyuu             #+#    #+#             */
-/*   Updated: 2025/04/06 02:27:30 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/06 04:01:16 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	redirect_with_oflags(t_redirect *redir, int o_flags)
 		oldfd = open(redir->path, o_flags);
 	if (oldfd == -1)
 	{
-		perrmsg_with_str(EM_SYSCALL, (char *)redir->path);
+		print_errmsg_with_str(EM_SYSCALL, (char *)redir->path);
 		return (-1);
 	}
 	if (oldfd == newfd)
@@ -38,7 +38,7 @@ int	redirect_with_oflags(t_redirect *redir, int o_flags)
 	if (dup2(oldfd, newfd) < 0)
 	{
 		close(oldfd);
-		perrmsg_with_str(EM_SYSCALL, ft_g_mmadd(ft_itoa(newfd)));
+		print_errmsg_with_str(EM_SYSCALL, ft_g_mmadd(ft_itoa(newfd)));
 		return (-1);
 	}
 	close(oldfd);

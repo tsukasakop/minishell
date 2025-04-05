@@ -24,9 +24,9 @@ bool	is_valid_redirect_syntax(t_text_list *cur)
 	{
 		set_error_type(ERR_SYNTAX);
 		if (cur->next == NULL)
-			perrmsg_with_str(EM_SYNTAX, "newline");
+			print_errmsg_with_str(EM_SYNTAX, "newline");
 		else
-			perrmsg_with_str(EM_SYNTAX, cur->next->text);
+			print_errmsg_with_str(EM_SYNTAX, cur->next->text);
 		return (false);
 	}
 	return (true);
