@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   perrmsg_with_arg.c                                 :+:      :+:    :+:   */
+/*   perrmsg_with_str.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 22:14:31 by miyuu             #+#    #+#             */
-/*   Updated: 2025/04/05 22:21:45 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/06 01:25:20 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	perrmsg_with_arg(t_errmsg_type err_type, char *arg)
+void	perrmsg_with_str(t_errmsg_type err_type, char *arg)
 {
 	ft_putstr_fd(SHELL_NAME, 2);
 	if (err_type == EM_SYSCALL)

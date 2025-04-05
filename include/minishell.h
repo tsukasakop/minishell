@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/05 22:23:14 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/06 01:26:46 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,11 @@ enum e_errmsg_type
 	EM_SYNTAX,
 	EM_ISDIR,
 	EM_CMDNFND,
-	EM_EXPO_BADID,
 	EM_HEREDOC,
 	EM_CD_2MARG,
 	EM_CD_OPWDNSET,
 	EM_CD,
+	EM_EXPO_BADID,
 };
 
 struct				s_execute_session
@@ -270,6 +270,6 @@ t_error_type	*get_error_type_p(void);
 bool			is_numeric(const char *str);
 
 /* print errmsg function */
-void	perrmsg_with_arg(t_errmsg_type err_type, char *arg);
+void			perrmsg_with_str(t_errmsg_type err_type, char *arg);
 
 #endif

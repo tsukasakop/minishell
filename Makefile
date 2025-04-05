@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/04/05 22:17:10 by miyuu            ###   ########.fr        #
+#    Updated: 2025/04/06 01:24:58 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -135,7 +135,7 @@ TARGET =\
 	utils/get_error_type_p\
 	utils/perror_with_shellname\
 	utils/is_numeric\
-	utils/perrmsg_with_arg\
+	utils/perrmsg_with_str\
 	signal/set_handlers_for_prompt\
 	signal/set_handlers_default\
 	signal/set_handlers_for_process\
