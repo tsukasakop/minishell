@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/03 20:05:35 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/05 21:22:41 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,18 @@
 /* macro */
 # define PROMPT "minishell$ "
 # define SHELL_NAME "bash: "
-# define ERR_HEREDOC "%swarning: here-document delimited by end-of-file (wanted `%s')\n"
+# define ARG "{ARG}"
+# define EM_ISDIR "{ARG}: Is a directory"
+# define EM_CMDNFND "{ARG}: command not found"
+# define EM_SYNTAX "syntax error near unexpected token `{ARG}'"
+# define EM_AMBRDIR "{ARG}: ambiguous redirect"
+# define EM_EXPO_BADID "export: `{ARG}': not a valid identifier"
+# define ERR_HEREDOC "warning: here-document delimited by end-of-file \
+(wanted `{ARG}')"
+# define EM_CD_2MARG  "cd: too many arguments"
+# define EM_CD_OPWDNSET "cd: OLDPWD not set"
+# define EM_CD "cd: {ARG}"
+# define EM_ERRNO "{ARG}: "
 
 /* struct */
 typedef struct s_execute_session	t_execute_session;
