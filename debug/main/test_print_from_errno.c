@@ -20,6 +20,12 @@ void	perrmsg_with_str(t_errmsg_type err_type, char *arg)
 		perror(arg);
 		return ;
 	}
+	else if (err_type == EM_CD_SYSCALL)
+	{
+		ft_putstr_fd("cd: ", 2);
+		perror(arg);
+		return ;
+	}
 	else if (err_type == EM_AMBRDIR)
 	{
 		ft_putstr_fd(arg, 2);
@@ -53,19 +59,16 @@ void	perrmsg_with_str(t_errmsg_type err_type, char *arg)
 		ft_putstr_fd(arg, 2);
 		ft_putstr_fd("\')", 2);
 	}
-	else if (err_type == EM_CD_2MARG)
+	else if (err_type == EM_MANYARG)
 	{
-		ft_putstr_fd("cd: too many arguments", 2);
+		ft_putstr_fd(arg, 2);
+		ft_putstr_fd(": too many arguments", 2);
 	}
 	else if (err_type == EM_CD_OPWDNSET)
 	{
 		ft_putstr_fd("cd: OLDPWD not set", 2);
 	}
-	else if (err_type == EM_CD)
-	{
-		ft_putstr_fd("cd: ", 2);
-		ft_putstr_fd(arg, 2);
-	}
+
 	ft_putstr_fd("\n", 2);
 }
 
@@ -74,6 +77,7 @@ int	main(void)
 	char	*msg = "msg";
 	open(msg, O_WRONLY);
 	// 各エラータイプをテスト
+	perrmsg_with_str(EM_SYSCALL, NULL);
 	perrmsg_with_str(EM_SYSCALL, "msg");          // perrorを使った出力
 	perrmsg_with_str(EM_ISDIR, "../");       // ディレクトリエラー
 	perrmsg_with_str(EM_SYSCALL, "../");       // ディレクトリエラー
@@ -81,9 +85,9 @@ int	main(void)
 	perrmsg_with_str(EM_SYNTAX, "|");             // シンタックスエラー
 	perrmsg_with_str(EM_AMBRDIR, "$aa");      // あいまいなリダイレクト
 	perrmsg_with_str(EM_EXPO_BADID, "42=");     // exportに使えない識別子
-	perrmsg_with_str(EM_CD_2MARG, NULL);           // cdの引数多すぎ
+	perrmsg_with_str(EM_MANYARG, "cd");           // cdの引数多すぎ
 	perrmsg_with_str(EM_CD_OPWDNSET, NULL);        // OLDPWD未設定
-	perrmsg_with_str(EM_CD, "/dir/in");    // cdの通常エラー
+	perrmsg_with_str(EM_CD_SYSCALL, "/dir/in");    // cdの通常エラー
 	perrmsg_with_str(EM_HEREDOC, "EOF");     // exportに使えない識別
 
 	return (0);

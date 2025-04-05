@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   register_env.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:55:35 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/03 17:55:39 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/04/06 02:23:33 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,19 @@ bool	register_env(char *string)
 	if (name == NULL)
 	{
 		if (errno)
-			perror_exit(NULL);
+		{
+			perrmsg_with_str(EM_SYSCALL, NULL);
+			ft_exit(1);
+		}
 		else
-			ft_fprintf(ft_stderr(),
-				"bash: export: `%s': not a valid identifier\n", string);
+			perrmsg_with_str(EM_EXPO_BADID, string);
 		return (false);
 	}
 	success = ft_setenv(name, value, true) != -1;
 	if (!success)
-		perror_exit(NULL);
+	{
+		perrmsg_with_str(EM_SYSCALL, NULL);
+		ft_exit(1);
+	}
 	return (success);
 }

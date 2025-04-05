@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/06 01:26:46 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/06 02:31:14 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 // # define EM_EXPO_BADID "export: `{ARG}': not a valid identifier"
 // # define ERR_HEREDOC "%s: warning: here-document delimited by end-of-file \
 // (wanted `%s')"
-// # define EM_CD_2MARG  "cd: too many arguments"
+// # define EM_MANYARG  "cd: too many arguments"
 // # define EM_CD_OPWDNSET "cd: OLDPWD not set"
 // # define EM_CD "cd: {ARG}"
 
@@ -93,9 +93,10 @@ enum e_errmsg_type
 	EM_ISDIR,
 	EM_CMDNFND,
 	EM_HEREDOC,
-	EM_CD_2MARG,
+	EM_EXIT_NONUM,
+	EM_MANYARG,
 	EM_CD_OPWDNSET,
-	EM_CD,
+	EM_CD_SYSCALL,
 	EM_EXPO_BADID,
 };
 
@@ -167,7 +168,6 @@ t_simple_cmd	*load_simple_cmd(t_text_list *text_list);
 t_text_list		*new_struct_text_list(char *str, size_t len);
 size_t			parse_general_token(char *scmd_text);
 size_t			parse_number_redir_token(char *scmd_text);
-void			syntax_error_handle(char *msg);
 size_t			outerlen_between_quote(char *scmd_text, char quote);
 void			add_redir_list_last(t_redirect **redir_list, t_redirect *new_redir);
 t_redirect		*token2redir(char *word, char *path);
@@ -253,16 +253,12 @@ void			set_signal(int signal);
 /* utils */
 void			close_fds_no_stdio(int *fds, size_t size);
 int				ft_redirect_lstsize(t_redirect *lst);
-void			perror_exit(char *msg);
-int				perror_return_num(char *msg, int num);
-void			*perror_return_null(char *msg);
 void			free_null_terminated_array(void **arr);
 char			*ft_strchr_mul(const char *s, char *targets, size_t target_len);
 char			*ft_strnjoin(char *s1, char *s2, size_t s2_len);
 size_t			null_terminated_array_len(void **arr);
 void			**null_terminated_array_join(void **dst, void **src);
 int				is_directory(char *path);
-void			perror_with_shellname(char *msg);
 t_error_type	*get_error_type_p(void);
 void			set_error_type(t_error_type err_type);
 t_error_type	get_error_type(void);

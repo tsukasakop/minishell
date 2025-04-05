@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/04/06 01:24:58 by miyuu            ###   ########.fr        #
+#    Updated: 2025/04/06 02:31:19 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,6 @@ TARGET =\
 	data/ft_isifs\
 	data/get_redir_length\
 	data/new_struct_text_list\
-	data/syntax_error_handle\
 	data/is_valid_redirect_syntax\
 	data/get_token_length\
 	data/parse_general_token\
@@ -120,10 +119,7 @@ TARGET =\
 	redirect/restore_from_fds\
 	signal/at_sigint\
 	utils/close_fds_no_stdio\
-	utils/perror_exit\
 	utils/ft_redirect_lstsize\
-	utils/perror_return_num\
-	utils/perror_return_null\
 	utils/free_null_terminated_arrar\
 	utils/ft_strchr_mul\
 	utils/ft_strnjoin\
@@ -133,7 +129,6 @@ TARGET =\
 	utils/set_error_type\
 	utils/get_error_type\
 	utils/get_error_type_p\
-	utils/perror_with_shellname\
 	utils/is_numeric\
 	utils/perrmsg_with_str\
 	signal/set_handlers_for_prompt\

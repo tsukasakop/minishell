@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 03:41:19 by miyuu             #+#    #+#             */
-/*   Updated: 2025/04/05 21:23:02 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/06 01:56:56 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	main(void)
 	char	*identifier = "42=";
 	print_errmsg_with_arg(EM_EXPO_BADID, identifier);
 
-	print_errmsg_with_arg(EM_CD_2MARG, NULL);
+	print_errmsg_with_arg(EM_MANYARG, NULL);
 	print_errmsg_with_arg(EM_CD_OPWDNSET, NULL);
 	char		*next_dir = "/dir/in";
 	print_errmsg_with_arg(EM_CD, next_dir);

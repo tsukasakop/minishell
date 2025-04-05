@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 22:14:31 by miyuu             #+#    #+#             */
-/*   Updated: 2025/04/06 01:25:20 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/06 02:09:17 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@ void	perrmsg_with_str(t_errmsg_type err_type, char *arg)
 	ft_putstr_fd(SHELL_NAME, 2);
 	if (err_type == EM_SYSCALL)
 	{
+		perror(arg);
+		return ;
+	}
+	else if (err_type == EM_CD_SYSCALL)
+	{
+		ft_putstr_fd("cd: ", 2);
 		perror(arg);
 		return ;
 	}
@@ -53,18 +59,20 @@ void	perrmsg_with_str(t_errmsg_type err_type, char *arg)
 		ft_putstr_fd(arg, 2);
 		ft_putstr_fd("\')", 2);
 	}
-	else if (err_type == EM_CD_2MARG)
+	else if (err_type == EM_EXIT_NONUM)
 	{
-		ft_putstr_fd("cd: too many arguments", 2);
+		ft_putstr_fd("exit: ", 2);
+		ft_putstr_fd(arg, 2);
+		ft_putstr_fd(": numeric argument required", 2);
+	}
+	else if (err_type == EM_MANYARG)
+	{
+		ft_putstr_fd(arg, 2);
+		ft_putstr_fd(": too many arguments", 2);
 	}
 	else if (err_type == EM_CD_OPWDNSET)
 	{
 		ft_putstr_fd("cd: OLDPWD not set", 2);
-	}
-	else if (err_type == EM_CD)
-	{
-		ft_putstr_fd("cd: ", 2);
-		ft_putstr_fd(arg, 2);
 	}
 	ft_putstr_fd("\n", 2);
 }
