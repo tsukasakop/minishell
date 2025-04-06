@@ -214,3 +214,17 @@ chmod 777 /tmp/minishell_cmd
 echo $?
 rm -r /tmp/minishell_cmd
 echo $?
+
+ls -0
+
+echo $?
+
+/tmp/minishell_cmd
+
+
+echo $?
+
+<no_exist
+
+
+echo $?
