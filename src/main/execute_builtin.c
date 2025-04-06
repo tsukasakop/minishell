@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_builtin.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 22:45:22 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/03 18:19:58 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/04/07 03:04:51 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * ----------------------------
  *  execute bultin command
  */
-unsigned char	execute_builtin(char **ecmds, char **envp)
+unsigned char	execute_builtin(char **ecmds)
 {
 	if (ft_strcmp(*ecmds, "exit") == 0)
 		return (builtin_exit(ecmds + 1));
@@ -33,6 +33,5 @@ unsigned char	execute_builtin(char **ecmds, char **envp)
 		return (builtin_pwd(ecmds + 1));
 	if (ft_strcmp(*ecmds, "cd") == 0)
 		return (builtin_cd(ecmds + 1));
-	(void)envp;
 	return (0);
 }
