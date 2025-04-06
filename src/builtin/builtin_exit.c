@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 18:33:01 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/06 04:01:16 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/06 19:04:42 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	builtin_exit(char **argv)
 {
 	int	status;
 
-	ft_putendl_fd("exit", 2);
+	ft_putendl_fd("exit", STDERR_FILENO);
 	if (is_numeric(argv[0]) && !(argv[1] == NULL))
 	{
 		print_errmsg_with_str(EM_MANYARG, "exit");

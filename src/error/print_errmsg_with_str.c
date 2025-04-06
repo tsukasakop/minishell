@@ -20,7 +20,7 @@
  */
 void	print_errmsg_with_str(t_errmsg_type err_type, char *str)
 {
-	ft_putstr_fd(SHELL_NAME, 2);
+	ft_putstr_fd(SHELL_NAME, STDERR_FILENO);
 	if (err_type == EM_SYSCALL)
 		perror(str);
 	else if (err_type == EM_CD_SYSCALL)

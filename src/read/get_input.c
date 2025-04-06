@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:49:32 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/06 04:01:16 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/06 19:03:36 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*get_input(void)
 	char	*input;
 
 	if (g_signal == SIGINT)
-		ft_putstr_fd("\n", 2);
+		ft_putstr_fd("\n", STDERR_FILENO);
 	set_signal(0);
 	set_handlers_for_prompt();
 	errno = 0;
