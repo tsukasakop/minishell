@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:18:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/06 04:01:16 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/06 18:54:05 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ void	write_until_eof(int fd, const char *raw_eof)
 	const char	*hd_eof;
 	char		*line;
 	bool		has_quote;
-	t_file		*file;
 
-	file = ft_fd2file(fd);
 	has_quote = ft_strchr_mul(raw_eof, "\'\"", 2) != NULL;
 	hd_eof = dup_without_quote(raw_eof);
 	if (hd_eof == NULL)
@@ -54,7 +52,6 @@ void	write_until_eof(int fd, const char *raw_eof)
 			print_errmsg_with_str(EM_HEREDOC, (char *)hd_eof);
 			break ;
 		}
-		ft_fprintf(file, "%s\n", line);
+		ft_putendl_fd(line, fd);
 	}
-	free(file);
 }
