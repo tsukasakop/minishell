@@ -12,88 +12,22 @@
 
 #include <minishell.h>
 
-void	print_errmsg_with_str(t_errmsg_type err_type, char *str)
-{
-	ft_putstr_fd(SHELL_NAME, 2);
-	if (err_type == EM_SYSCALL)
-	{
-		perror(str);
-		return ;
-	}
-	else if (err_type == EM_CD_SYSCALL)
-	{
-		ft_putstr_fd("cd: ", 2);
-		perror(str);
-		return ;
-	}
-	else if (err_type == EM_AMBRDIR)
-	{
-		ft_putstr_fd(str, 2);
-		ft_putstr_fd(": ambiguous redirect", 2);
-	}
-	else if (err_type == EM_SYNTAX)
-	{
-		ft_putstr_fd("syntax error near unexpected token `", 2);
-		ft_putstr_fd(str, 2);
-		ft_putstr_fd("\'", 2);
-	}
-	else if (err_type == EM_ISDIR)
-	{
-		ft_putstr_fd(str, 2);
-		ft_putstr_fd(": Is a directory", 2);
-	}
-	else if (err_type == EM_CMDNFND)
-	{
-		ft_putstr_fd(str, 2);
-		ft_putstr_fd(": command not found", 2);
-	}
-	else if (err_type == EM_HEREDOC)
-	{
-		ft_putstr_fd("warning: here-document delimited by end-of-file (wanted `", 2);
-		ft_putstr_fd(str, 2);
-		ft_putstr_fd("\')", 2);
-	}
-	else if (err_type == EM_MANYARG)
-	{
-		ft_putstr_fd(str, 2);
-		ft_putstr_fd(": too many arguments", 2);
-	}
-	else if (err_type == EM_EXPO_BADID)
-	{
-		ft_putstr_fd("export: `", 2);
-		ft_putstr_fd(str, 2);
-		ft_putstr_fd("\': not a valid identifier", 2);
-	}
-	else if (err_type == EM_EXIT_NONUM)
-	{
-		ft_putstr_fd("exit: ", 2);
-		ft_putstr_fd(str, 2);
-		ft_putstr_fd(": numeric argument required", 2);
-	}
-	else if (err_type == EM_CD_OPWDNSET)
-	{
-		ft_putstr_fd("cd: OLDPWD not set", 2);
-	}
-	ft_putstr_fd("\n", 2);
-}
-
 int	main(void)
 {
-	char	*msg = "msg";
-	open(msg, O_WRONLY);
-	// 各エラータイプをテスト
+	open("noexsit", O_WRONLY);
+
 	print_errmsg_with_str(EM_SYSCALL, NULL);
 	print_errmsg_with_str(EM_SYSCALL, "msg");          // perrorを使った出力
 	print_errmsg_with_str(EM_ISDIR, "../");       // ディレクトリエラー
-	print_errmsg_with_str(EM_SYSCALL, "../");       // ディレクトリエラー
 	print_errmsg_with_str(EM_CMDNFND, "cmd");    // コマンド見つからない
 	print_errmsg_with_str(EM_SYNTAX, "|");             // シンタックスエラー
 	print_errmsg_with_str(EM_AMBRDIR, "$aa");      // あいまいなリダイレクト
+	print_errmsg_with_str(EM_EXIT_NONUM, "hello");      // exitの引数が数値以外だった時
 	print_errmsg_with_str(EM_EXPO_BADID, "42=");     // exportに使えない識別子
 	print_errmsg_with_str(EM_MANYARG, "cd");           // cdの引数多すぎ
 	print_errmsg_with_str(EM_CD_OPWDNSET, NULL);        // OLDPWD未設定
 	print_errmsg_with_str(EM_CD_SYSCALL, "/dir/in");    // cdの通常エラー
-	print_errmsg_with_str(EM_HEREDOC, "EOF");     // exportに使えない識別
+	print_errmsg_with_str(EM_HEREDOC, "EOF");     // ヒアドク中のエラー
 
 	return (0);
 }
