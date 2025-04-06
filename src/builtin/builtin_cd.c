@@ -49,7 +49,7 @@ int	builtin_cd(char **argv)
 		return (1);
 	}
 	if (argv[0] && ft_strcmp(argv[0], "-") == 0)
-		ft_printf("%s\n", next_dir);
+		ft_putendl_fd(next_dir, STDOUT_FILENO);
 	free(old_dir);
 	old_dir = cur_dir;
 	return (0);

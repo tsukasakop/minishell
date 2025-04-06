@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:51:45 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/21 17:13:15 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/04/06 18:46:32 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	builtin_env(char **argv)
 	i = 0;
 	while (envp[i] != NULL)
 	{
-		ft_printf("%s\n", envp[i]);
+		ft_putendl_fd(envp[i], STDOUT_FILENO);
 		i++;
 	}
 	free_null_terminated_array((void **)envp);

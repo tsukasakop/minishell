@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 18:33:01 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/06 03:58:47 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/06 18:46:53 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ int	builtin_echo(char **argv)
 		argv++;
 	while (*argv)
 	{
-		ft_printf("%s", *argv);
+		ft_putstr_fd(*argv, STDOUT_FILENO);
 		if (*(argv + 1))
-			ft_printf(" ");
+			ft_putstr_fd(" ", STDOUT_FILENO);
 		argv++;
 	}
 	if (!opt_n)
-		ft_printf("\n");
+		ft_putendl_fd("", STDOUT_FILENO);
 	return (0);
 }
