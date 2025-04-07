@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/05 16:06:29 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/07 22:39:57 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,8 @@ size_t			parse_general_token(char *scmd_text);
 size_t			parse_number_redir_token(char *scmd_text);
 void			syntax_error_handle(char *msg);
 size_t			outerlen_between_quote(char *scmd_text, char quote);
-void			add_redir_list_last(t_redirect **redir_list, t_redirect *new_redir);
+void			add_redir_list_last(t_redirect **redir_list, \
+				t_redirect *new_redir);
 t_redirect		*token2redir(char *word, char *path);
 t_simple_cmd	*init_scmd_list(const char *cmd_line);
 t_text_list		*tokenizer_scmd_text(char *scmd_text);
@@ -165,7 +166,8 @@ unsigned char	get_exit_status_from_err_type(t_error_type	err_type);
 
 /* env function */
 bool			is_valid_identifier(char *string);
-void			load_variable_assignment(char *string, char **name, char **value);
+void			load_variable_assignment(char *string, char **name, \
+				char **value);
 bool			register_env(char *string);
 char			*dup_name(char *cur);
 
@@ -177,7 +179,8 @@ void			append_str(char ***store, char *orig);
 char			**expand_single_token(char *orig);
 size_t			namelen(char *str);
 void			expand_bare_string(char **cur_p, char **buf_p);
-void			expand_bare_variable(char **cur_p, char **buf_p, char ***fixed_p);
+void			expand_bare_variable(char **cur_p, char **buf_p, \
+				char ***fixed_p);
 void			expand_double_quote(char **cur_p, char **buf_p);
 void			expand_single_quote(char **cur_p, char **buf_p);
 char			*read_bare_string(char **cur_p, char *ends, size_t ends_len);
@@ -192,7 +195,8 @@ unsigned char	eval_cmd_line(char **envp);
 bool			execute_simple_cmd(const t_simple_cmd *scmd_list, \
 				int stdio_fd[2], int next_in_fd, char **envp);
 bool			init(char **envp);
-unsigned char	execute_on_current_env(char **ecmds, t_redirect *redir, char **envp);
+unsigned char	execute_on_current_env(char **ecmds, t_redirect *redir, \
+				char **envp);
 
 /* pipe function */
 bool			iterate_pipefd(bool is_first, bool is_last, int (*stdio)[2], \
