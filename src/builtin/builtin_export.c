@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:07:28 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/03 18:09:49 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/04/07 22:44:56 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
  * Function: builtin_export
  * ----------------------------
- *
+ * TODO: export用の表示に変更する
  */
 int	builtin_export(char **argv)
 {
@@ -23,7 +23,6 @@ int	builtin_export(char **argv)
 	bool	success;
 
 	i = 0;
-	// TODO: export用の表示に変更する
 	if (argv[i] == NULL)
 		return (builtin_env(NULL));
 	success = true;

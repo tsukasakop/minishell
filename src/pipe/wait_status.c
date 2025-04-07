@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wait_status.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:32:09 by tkondo            #+#    #+#             */
-/*   Updated: 2025/02/22 15:08:42 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/04/07 22:54:21 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
  * Function:
  * ----------------------------
  * wait for finshing child processes, and get exit status
+ * TODO: update g_signal when child processes catch signal
  */
 unsigned char	wait_status(void)
 {
@@ -23,7 +24,6 @@ unsigned char	wait_status(void)
 
 	while (wait(&status) != -1)
 		;
-	// TODO: update g_signal when child processes catch signal
 	if (WIFEXITED(status))
 		return (WEXITSTATUS(status));
 	if (WIFSIGNALED(status))

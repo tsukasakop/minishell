@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:30:10 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/07 22:36:04 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/07 22:48:41 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,8 @@ bool	execute_simple_cmd(const t_simple_cmd *scmd_list, int stdio_fd[2],
 		ft_exit(0);
 	if (is_builtin(scmd_list->ecmds[0]))
 		ft_exit(execute_builtin(scmd_list->ecmds, envp));
-	path = get_path(scmd_list->ecmds[0]);
-	if (!path)
-	{
-		set_error_type(ERR_SYSCALL);
-		perror_with_shellname(NULL);
-		return (false);
-	}
-	status = exec_with_path(path, scmd_list->ecmds);
-	ft_exit(exec_error_handling((char *)path, status, errno));
+	status = exec_with_path(scmd_list->ecmds[0], scmd_list->ecmds);
+	ft_exit(exec_error_handling((char *)scmd_list->ecmds[0], status, errno));
 	(void)envp;
 	return (false);
 }
