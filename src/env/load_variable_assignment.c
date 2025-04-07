@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:54:33 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/29 20:25:54 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/08 01:24:13 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,6 @@ void	load_variable_assignment(char *string, char **name, char **value)
 	{
 		set_error_type(ERR_SYSCALL);
 		perror_with_shellname(NULL);
-		return ;
-	}
-	if (!is_valid_identifier(*name))
-	{
-		*name = NULL;
 		return ;
 	}
 	*value = ft_g_mmadd(ft_strdup(sep + 1));
