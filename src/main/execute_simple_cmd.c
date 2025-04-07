@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:30:10 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/07 22:48:41 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/07 23:22:13 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 bool	execute_simple_cmd(const t_simple_cmd *scmd_list, int stdio_fd[2],
 		int next_in_fd, char **envp)
 {
-	const char	*path;
 	int			chpid;
 	int			status;
 
