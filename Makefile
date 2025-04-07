@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/04/07 22:48:16 by miyuu            ###   ########.fr        #
+#    Updated: 2025/04/08 00:57:12 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,6 +77,7 @@ TARGET =\
 	data/validate_cmd_line_syntax\
 	data/is_valid_quote_syntax\
 	data/get_exit_status_from_err_type\
+	data/expand_all_tokens\
 	env/is_valid_identifier\
 	env/load_variable_assignment\
 	env/register_env\
