@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 15:19:38 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/21 16:49:59 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/04/08 01:56:51 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	free_dirs(char **dirs)
 	size_t	i;
 
 	i = 0;
-	while(dirs && dirs[i])
+	while (dirs && dirs[i])
 	{
 		free(dirs[i]);
 		i++;

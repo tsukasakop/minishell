@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memory.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 14:08:39 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/21 12:41:21 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/04/08 01:57:21 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 t_memory_manager	*ft_mmnew(void)
 {
 	t_memory_manager	*(*_mmnew)(void);
+
 	_mmnew = ft_bnnew;
 	return ((t_memory_manager *)_mmnew());
 }
