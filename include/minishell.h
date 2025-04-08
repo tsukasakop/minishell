@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/08 22:43:42 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/09 00:43:29 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ int				builtin_cd(char **argv);
 int				builtin_env(char **argv);
 int				builtin_export(char **argv);
 int				builtin_unset(char **argv);
+char			*resolve_cd_next_directory(char **argv, char *old_dir);
 
 /* command function */
 int				command_not_found_handle(char *cmd);

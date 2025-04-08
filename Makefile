@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/04/08 22:45:58 by miyuu            ###   ########.fr        #
+#    Updated: 2025/04/09 00:43:41 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ TARGET =\
 	builtin/builtin_export\
 	builtin/builtin_unset\
 	builtin/is_builtin\
+	builtin/resolve_cd_next_directory\
 	command/exec_error_handling\
 	command/command_not_found_handle\
 	command/exec_with_path\
