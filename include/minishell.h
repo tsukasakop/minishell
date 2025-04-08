@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/08 16:49:06 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/08 17:59:28 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,5 +247,7 @@ void			set_error_type(t_error_type err_type);
 t_error_type	get_error_type(void);
 t_error_type	*get_error_type_p(void);
 bool			is_numeric(const char *str);
+void			**concatenate_null_terminated_array(void **dst, size_t	dstlen, \
+				void **src, size_t	srclen);
 
 #endif
