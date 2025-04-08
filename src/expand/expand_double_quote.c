@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:49:04 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/29 20:25:54 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/08 16:52:05 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
  */
 void	expand_double_quote(char **cur_p, char **buf_p)
 {
-	char	*var;
 	char	*tmp;
+	int		result;
 
 	(*cur_p)++;
 	while (**cur_p != '\"')
@@ -28,24 +28,18 @@ void	expand_double_quote(char **cur_p, char **buf_p)
 		errno = 0;
 		if (**cur_p == '$')
 		{
-			var = read_variable_m(cur_p, buf_p);
-			if (var == NULL && errno == ENOMEM)
+			result = expand_and_append_variable(cur_p, buf_p);
+			if (result == -1)
 				return ;
-			if (!var)
+			if (result == 1)
 				continue ;
-			tmp = ft_strnjoin(*buf_p, var, ft_strlen(var));
-			if (var == NULL)
-			{
-				set_error_type(ERR_SYSCALL);
-				perror_with_shellname(NULL);
-				return ;
-			}
-			*buf_p = tmp;
 		}
 		else
-			read_bare_string_m(cur_p, &*buf_p, "\"$", 2);
-		if (errno == ENOMEM)
-			return ;
+		{
+			read_bare_string_m(cur_p, buf_p, "\"$", 2);
+			if (errno == ENOMEM)
+				return ;
+		}
 	}
 	tmp = ft_strnjoin(*buf_p, "", 0);
 	*buf_p = tmp;

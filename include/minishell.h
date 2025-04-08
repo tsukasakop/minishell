@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/08 00:56:53 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/08 16:49:06 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,7 @@ void			read_bare_string_m(char **cur_p, char **buf_p, char *ends,
 					size_t ends_len);
 char			*read_variable_m(char **cur_p, char **buf_p);
 char			*expand_heredoc_line(const char *raw_line);
+int				expand_and_append_variable(char **src_p, char **dst_buf);
 
 /* main function */
 unsigned char	eval_pipe(const char *cmd_line, char **envp);

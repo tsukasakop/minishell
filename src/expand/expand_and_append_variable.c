@@ -1,47 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_heredoc_line.c                              :+:      :+:    :+:   */
+/*   expand_and_append_variable.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/23 14:50:41 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/08 16:52:00 by miyuu            ###   ########.fr       */
+/*   Created: 2025/04/08 16:48:27 by miyuu             #+#    #+#             */
+/*   Updated: 2025/04/08 16:51:51 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function: expand_heredoc_line
+ * Function: expand_and_append_variable
  * ----------------------------
- *  expand string for heredoc line
+ * Expands variables and concatenates the string to dst_buf.
  */
-char	*expand_heredoc_line(const char *raw_line)
+int	expand_and_append_variable(char **src_p, char **dst_buf)
 {
-	char	*expanded;
-	int		result;
+	char	*var;
+	char	*tmp;
 
-	expanded = ft_g_mmadd(ft_strdup(""));
-	if (!expanded)
+	var = read_variable_m(src_p, dst_buf);
+	if (var == NULL && errno == ENOMEM)
+		return (-1);
+	if (!var)
+		return (1);
+	tmp = ft_strnjoin(*dst_buf, var, ft_strlen(var));
+	if (!tmp)
 	{
 		set_error_type(ERR_SYSCALL);
 		perror_with_shellname(NULL);
-		return (NULL);
+		return (-1);
 	}
-	while (*raw_line)
-	{
-		if (*raw_line == '$')
-		{
-			errno = 0;
-			result = expand_and_append_variable((char **)&raw_line, &expanded);
-			if (result == -1)
-				return (NULL);
-			if (result == 1)
-				continue ;
-		}
-		else
-			read_bare_string_m((char **)&raw_line, &expanded, "$\0", 2);
-	}
-	return (expanded);
+	*dst_buf = tmp;
+	return (0);
 }
