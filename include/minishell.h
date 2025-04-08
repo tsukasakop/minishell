@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/08 17:59:28 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/08 22:43:42 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,6 +211,9 @@ void			write_until_eof(int fd, const char *hd_eof);
 bool			write_until_eof_on_chproc(int fd, const char *hd_eof);
 bool			write_heredoc(char *eof, char *path);
 char			*dup_without_quote(const char *hd_eof);
+void			read_and_write_heredoc_lines(t_file *file, const char *hd_eof, \
+				bool has_quote);
+char			*get_readline_safely(char *prompt);
 
 /* redirect function */
 int				apply_redirects(t_redirect *redir, int *keep_fds, int index);

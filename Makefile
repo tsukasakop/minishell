@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/04/08 18:00:19 by miyuu            ###   ########.fr        #
+#    Updated: 2025/04/08 22:45:58 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,6 +112,8 @@ TARGET =\
 	read/write_until_eof\
 	read/write_until_eof_on_chproc\
 	read/dup_without_quote\
+	read/read_and_write_heredoc_lines\
+	read/get_readline_safely\
 	redirect/resolve_redirects\
 	redirect/apply_redirects\
 	redirect/backup_from_fds\

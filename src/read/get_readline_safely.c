@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   write_until_eof.c                                  :+:      :+:    :+:   */
+/*   get_readline_safely.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 16:18:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/08 22:44:43 by miyuu            ###   ########.fr       */
+/*   Created: 2025/04/08 22:40:28 by miyuu             #+#    #+#             */
+/*   Updated: 2025/04/08 22:47:50 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:
+ * Function:get_readline_safely
  * ----------------------------
- *  Expand raw_eof and writes input to the specified fd file.
- *
- * fd: file descriptor to write
- * hd_eof: string represent end
+ *  It displays a prompt and accepts input from readline.
+ * If readline fails, it prints an error message and sets error_type.
  */
-void	write_until_eof(int fd, const char *raw_eof)
+char	*get_readline_safely(char *prompt)
 {
-	const char	*hd_eof;
-	bool		has_quote;
-	t_file		*file;
+	char	*input;
 
-	file = ft_fd2file(fd);
-	has_quote = ft_strchr_mul(raw_eof, "\'\"", 2) != NULL;
-	hd_eof = dup_without_quote(raw_eof);
-	if (hd_eof == NULL)
-		return ;
-	read_and_write_heredoc_lines(file, hd_eof, has_quote);
-	free(file);
+	input = ft_g_mmadd(readline(prompt));
+	if (input == NULL && errno == ENOMEM)
+	{
+		set_error_type(ERR_SYSCALL);
+		perror_with_shellname(NULL);
+		return (NULL);
+	}
+	return (input);
 }
