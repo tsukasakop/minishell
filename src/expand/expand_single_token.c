@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:15:39 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/29 20:25:54 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/09 01:46:00 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,7 @@ char	**expand_single_token(char *orig)
 	cur = orig;
 	while (*cur)
 	{
-		errno = 0;
-		if (*cur == '\'')
-			expand_single_quote(&cur, &buffer);
-		else if (*cur == '\"')
-			expand_double_quote(&cur, &buffer);
-		else if (*cur == '$')
-			expand_bare_variable(&cur, &buffer, &fixed);
-		else
-			expand_bare_string(&cur, &buffer);
-		if (errno == ENOMEM)
+		if (!expand_token_segment(&cur, &buffer, &fixed))
 			return (NULL);
 	}
 	if (buffer != NULL)
