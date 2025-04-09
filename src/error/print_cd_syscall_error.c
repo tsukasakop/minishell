@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   backup_from_fds.c                                  :+:      :+:    :+:   */
+/*   print_cd_syscall_error.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 18:27:58 by miyuu             #+#    #+#             */
-/*   Updated: 2025/04/06 04:01:16 by miyuu            ###   ########.fr       */
+/*   Created: 2025/04/06 03:36:54 by miyuu             #+#    #+#             */
+/*   Updated: 2025/04/06 19:02:00 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:backup_from_fds
+ * Function:print_cd_syscall_error
  * ----------------------------
- * Saves from_fd and their duplicates into an array.
+ * cd and errno error output.
  */
-int	backup_from_fds(t_redirect *redir, int *keep_fds, int i)
+void	print_cd_syscall_error(char *str)
 {
-	keep_fds[i * 2] = redir->from_fd;
-	keep_fds[i * 2 + 1] = dup(redir->from_fd);
-	if (keep_fds[i * 2 + 1] == -1)
-	{
-		if (errno == EBADF)
-			keep_fds[i * 2 + 1] = redir->from_fd;
-		else
-		{
-			print_errmsg_with_str(EM_SYSCALL, ft_g_mmadd(ft_itoa(redir->from_fd)));
-			return (-1);
-		}
-	}
-	return (0);
+	ft_putstr_fd("cd: ", STDERR_FILENO);
+	perror(str);
 }

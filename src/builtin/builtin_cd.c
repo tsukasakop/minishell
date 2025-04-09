@@ -27,12 +27,12 @@ int	builtin_cd(char **argv)
 
 	if (argv[0] && argv[1])
 	{
-		ft_fprintf(ft_stderr(), "bash: cd: too many arguments\n");
+		print_errmsg_with_str(EM_MANYARG, "cd");
 		return (1);
 	}
 	if (argv[0] && ft_strcmp(argv[0], "-") == 0 && old_dir == NULL)
 	{
-		ft_fprintf(ft_stderr(), "bash: cd: OLDPWD not set\n");
+		print_errmsg_with_str(EM_CD_OPWDNSET, NULL);
 		return (1);
 	}
 	if (argv[0] == NULL || ft_strcmp(argv[0], "~") == 0)
@@ -44,13 +44,12 @@ int	builtin_cd(char **argv)
 	cur_dir = getcwd(NULL, 0);
 	if (chdir(next_dir) == -1)
 	{
-		ft_fprintf(ft_stderr(), "bash: cd: %s: ", next_dir);
+		print_errmsg_with_str(EM_CD_SYSCALL, next_dir);
 		free(cur_dir);
-		perror(NULL);
 		return (1);
 	}
 	if (argv[0] && ft_strcmp(argv[0], "-") == 0)
-		ft_printf("%s\n", next_dir);
+		ft_putendl_fd(next_dir, STDOUT_FILENO);
 	free(old_dir);
 	old_dir = cur_dir;
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/07 03:08:03 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/10 01:24:40 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@
 /* macro */
 # define PROMPT "minishell$ "
 # define SHELL_NAME "bash: "
-# define ERR_HEREDOC "%swarning: here-document delimited by end-of-file (wanted `%s')\n"
 
 /* struct */
 typedef struct s_execute_session	t_execute_session;
@@ -49,6 +48,7 @@ typedef struct s_text_list			t_text_list;
 typedef enum e_redirect_type		t_redirect_type;
 typedef enum e_execute_env			t_execute_env;
 typedef enum e_error_type			t_error_type;
+typedef enum e_errmsg_type			t_errmsg_type;
 
 enum e_redirect_type
 {
@@ -71,6 +71,21 @@ enum e_error_type
 	ERR_SYSCALL,
 	ERR_AMBRDIR,
 	ERR_SYNTAX,
+};
+
+enum e_errmsg_type
+{
+	EM_SYSCALL,
+	EM_AMBRDIR,
+	EM_SYNTAX,
+	EM_ISDIR,
+	EM_CMDNFND,
+	EM_HEREDOC,
+	EM_MANYARG,
+	EM_EXPO_BADID,
+	EM_EXIT_NONUM,
+	EM_CD_OPWDNSET,
+	EM_CD_SYSCALL,
 };
 
 struct				s_execute_session
@@ -118,7 +133,6 @@ int				builtin_export(char **argv);
 int				builtin_unset(char **argv);
 
 /* command function */
-int				command_not_found_handle(char *cmd);
 int				exec_error_handling(char *path, int status, int err_num);
 const char		*get_path(const char *ecmds);
 int				exec_with_path(const char *path, char *const argv[]);
@@ -141,7 +155,6 @@ t_simple_cmd	*load_simple_cmd(t_text_list *text_list);
 t_text_list		*new_struct_text_list(char *str, size_t len);
 size_t			parse_general_token(char *scmd_text);
 size_t			parse_number_redir_token(char *scmd_text);
-void			syntax_error_handle(char *msg);
 size_t			outerlen_between_quote(char *scmd_text, char quote);
 void			add_redir_list_last(t_redirect **redir_list, t_redirect *new_redir);
 t_redirect		*token2redir(char *word, char *path);
@@ -168,6 +181,19 @@ bool			is_valid_identifier(char *string);
 void			load_variable_assignment(char *string, char **name, char **value);
 bool			register_env(char *string);
 char			*dup_name(char *cur);
+
+/* print errmsg function */
+void			print_errmsg_with_str(t_errmsg_type err_type, char *str);
+void			print_amb_redir_error(char *str);
+void			print_bad_identifier_error(char *str);
+void			print_cd_syscall_error(char *str);
+void			print_command_not_found_error(char *str);
+void			print_heredoc_warning_error(char *str);
+void			print_is_directory_error(char *str);
+void			print_no_numeric_error(char *str);
+void			print_oldpwd_not_set_error(void);
+void			print_syntax_error(char *str);
+void			print_too_many_arg_error(char *str);
 
 /* expand function */
 unsigned char	*get_exit_status_p(void);
@@ -227,16 +253,12 @@ void			set_signal(int signal);
 /* utils */
 void			close_fds_no_stdio(int *fds, size_t size);
 int				ft_redirect_lstsize(t_redirect *lst);
-void			perror_exit(char *msg);
-int				perror_return_num(char *msg, int num);
-void			*perror_return_null(char *msg);
 void			free_null_terminated_array(void **arr);
 char			*ft_strchr_mul(const char *s, char *targets, size_t target_len);
 char			*ft_strnjoin(char *s1, char *s2, size_t s2_len);
 size_t			null_terminated_array_len(void **arr);
 void			**null_terminated_array_join(void **dst, void **src);
 int				is_directory(char *path);
-void			perror_with_shellname(char *msg);
 t_error_type	*get_error_type_p(void);
 void			set_error_type(t_error_type err_type);
 t_error_type	get_error_type(void);

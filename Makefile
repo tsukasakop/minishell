@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/04/05 16:07:06 by miyuu            ###   ########.fr        #
+#    Updated: 2025/04/06 04:22:39 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,6 @@ TARGET =\
 	builtin/is_builtin\
 	command/get_path\
 	command/exec_error_handling\
-	command/command_not_found_handle\
 	command/exec_with_path\
 	data/free_redirects\
 	data/free_simple_cmds\
@@ -57,7 +56,6 @@ TARGET =\
 	data/ft_isifs\
 	data/get_redir_length\
 	data/new_struct_text_list\
-	data/syntax_error_handle\
 	data/is_valid_redirect_syntax\
 	data/get_token_length\
 	data/parse_general_token\
@@ -82,6 +80,17 @@ TARGET =\
 	env/load_variable_assignment\
 	env/register_env\
 	env/dup_name\
+	error/print_errmsg_with_str\
+	error/print_amb_redir_error\
+	error/print_bad_identifier_error\
+	error/print_cd_syscall_error\
+	error/print_command_not_found_error\
+	error/print_heredoc_warning_error\
+	error/print_is_directory_error\
+	error/print_no_numeric_error\
+	error/print_oldpwd_not_set_error\
+	error/print_syntax_error\
+	error/print_too_many_arg_error\
 	expand/expand_bare_string\
 	expand/expand_bare_variable\
 	expand/expand_double_quote\
@@ -120,10 +129,7 @@ TARGET =\
 	redirect/restore_from_fds\
 	signal/at_sigint\
 	utils/close_fds_no_stdio\
-	utils/perror_exit\
 	utils/ft_redirect_lstsize\
-	utils/perror_return_num\
-	utils/perror_return_null\
 	utils/free_null_terminated_arrar\
 	utils/ft_strchr_mul\
 	utils/ft_strnjoin\
@@ -133,7 +139,6 @@ TARGET =\
 	utils/set_error_type\
 	utils/get_error_type\
 	utils/get_error_type_p\
-	utils/perror_with_shellname\
 	utils/is_numeric\
 	signal/set_handlers_for_prompt\
 	signal/set_handlers_default\

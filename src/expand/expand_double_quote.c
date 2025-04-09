@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:49:04 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/29 20:25:54 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/06 04:01:16 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	expand_double_quote(char **cur_p, char **buf_p)
 			if (var == NULL)
 			{
 				set_error_type(ERR_SYSCALL);
-				perror_with_shellname(NULL);
+				print_errmsg_with_str(EM_SYSCALL, NULL);
 				return ;
 			}
 			*buf_p = tmp;

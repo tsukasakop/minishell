@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:35:12 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/29 20:25:54 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/06 04:01:16 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_redirect	*add_struct_redirect(int type, int from_fd, char *path)
 	if (!new)
 	{
 		set_error_type(ERR_SYSCALL);
-		perror_with_shellname(NULL);
+		print_errmsg_with_str(EM_SYSCALL, NULL);
 		return (NULL);
 	}
 	new->type = type;

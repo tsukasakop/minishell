@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shellname_perro.c                                  :+:      :+:    :+:   */
+/*   print_is_directory_error.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/25 18:19:37 by mfunakos          #+#    #+#             */
-/*   Updated: 2025/03/25 18:30:57 by mfunakos         ###   ########.fr       */
+/*   Created: 2025/04/06 03:14:23 by miyuu             #+#    #+#             */
+/*   Updated: 2025/04/06 19:02:19 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:perror_with_shellname
+ * Function:print_is_directory_error
  * ----------------------------
- * Prints an error message with the shell name.
+ * Error output when the command is a directory.
  */
-void	perror_with_shellname(char *msg)
+void	print_is_directory_error(char *str)
 {
-	write(2, SHELL_NAME, ft_strlen(SHELL_NAME));
-	perror(msg);
+	ft_putstr_fd(str, STDERR_FILENO);
+	ft_putstr_fd(": Is a directory", STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
 }

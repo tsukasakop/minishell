@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:30:10 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/07 03:07:31 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/10 01:24:52 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ bool	execute_simple_cmd(const t_simple_cmd *scmd_list, int stdio_fd[2],
 	if (!path)
 	{
 		set_error_type(ERR_SYSCALL);
-		perror_with_shellname(NULL);
+		print_errmsg_with_str(EM_SYSCALL, NULL);
 		return (false);
 	}
 	status = exec_with_path(path, scmd_list->ecmds);
