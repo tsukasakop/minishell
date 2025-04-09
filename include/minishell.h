@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/09 15:07:51 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/09 15:33:57 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,7 +194,7 @@ bool			expand_token_segment(char **cur, char **buffer, char ***fixed);
 char			*get_variable_value(char **cur_p, char **buf_p);
 
 /* main function */
-unsigned char	eval_pipe(const char *cmd_line, char **envp);
+unsigned char	eval_pipe(const t_simple_cmd *scmd_list, char **envp);
 unsigned char	eval_cmd_line(char **envp);
 bool			execute_simple_cmd(const t_simple_cmd *scmd_list, \
 				int stdio_fd[2], int next_in_fd, char **envp);
