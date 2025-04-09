@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/04/09 01:46:29 by miyuu            ###   ########.fr        #
+#    Updated: 2025/04/09 15:07:27 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,6 +99,7 @@ TARGET =\
 	expand/expand_heredoc_line\
 	expand/expand_and_append_variable\
 	expand/expand_token_segment\
+	expand/get_variable_value\
 	main/eval_pipe\
 	main/eval_cmd_line\
 	main/execute_simple_cmd\

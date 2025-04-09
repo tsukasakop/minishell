@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_variable_m.c                                  :+:      :+:    :+:   */
+/*   get_variable_value.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/14 01:51:45 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/09 15:06:55 by miyuu            ###   ########.fr       */
+/*   Created: 2025/04/09 15:06:40 by miyuu             #+#    #+#             */
+/*   Updated: 2025/04/09 15:06:52 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,28 @@
 /*
  * Function: read_variable_m
  * ----------------------------
- *  read variable from cur_p, and return vaiable value
- *  if no name. $ sign append on buf_p
+ *  Get the value of a variable from its name.
  */
-char	*read_variable_m(char **cur_p, char **buf_p)
+char	*get_variable_value(char **cur_p, char **buf_p)
 {
+	char	*value;
+	char	*name;
 	char	*tmp;
 
-	(*cur_p)++;
-	if (**cur_p == '?')
+	name = dup_name(*cur_p);
+	if (name == NULL || ft_strlen(name) == 0)
 	{
-		(*cur_p)++;
-		tmp = ft_g_mmadd(ft_itoa((int)get_exit_status()));
+		tmp = ft_strnjoin(*buf_p, "$", 1);
 		if (!tmp)
 		{
 			set_error_type(ERR_SYSCALL);
 			perror_with_shellname(NULL);
 			return (NULL);
 		}
-		return (tmp);
+		*buf_p = tmp;
+		return (NULL);
 	}
-	return (get_variable_value(cur_p, buf_p));
+	*cur_p += ft_strlen(name);
+	value = ft_getenv(name);
+	return (value);
 }
