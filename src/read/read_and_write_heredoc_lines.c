@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 22:40:59 by miyuu             #+#    #+#             */
-/*   Updated: 2025/04/08 22:41:35 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/10 16:57:37 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * ----------------------------
  * read input and write it on given fd until it is hd_eof or empty line
  */
-void	read_and_write_heredoc_lines(t_file *file, \
+void	read_and_write_heredoc_lines(int fd, \
 					const char *hd_eof, bool has_quote)
 {
 	char	*line;
@@ -37,9 +37,9 @@ void	read_and_write_heredoc_lines(t_file *file, \
 		}
 		if (line == NULL)
 		{
-			ft_fprintf(ft_stderr(), ERR_HEREDOC, SHELL_NAME, hd_eof);
+			print_errmsg_with_str(EM_HEREDOC, (char *)hd_eof);
 			break ;
 		}
-		ft_fprintf(file, "%s\n", line);
+		ft_putendl_fd(line, fd);
 	}
 }

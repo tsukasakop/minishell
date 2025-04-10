@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:43:09 by miyuu             #+#    #+#             */
-/*   Updated: 2025/04/07 23:45:05 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/10 16:22:16 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*create_tmp_file(void)
 		if (!filename)
 		{
 			set_error_type(ERR_SYSCALL);
-			perror_with_shellname(NULL);
+			print_errmsg_with_str(EM_SYSCALL, NULL);
 			return (NULL);
 		}
 		fd = open(filename, O_CREAT | O_EXCL, 0600);

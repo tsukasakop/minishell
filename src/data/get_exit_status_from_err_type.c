@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 19:38:53 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/29 20:25:54 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/07 03:25:26 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 unsigned char	get_exit_status_from_err_type(t_error_type	err_type)
 {
 	if (err_type == NOERR)
-		return (0);
+		return (get_exit_status());
 	else if (err_type == ERR_SYSCALL)
 		return (1);
 	else if (err_type == ERR_AMBRDIR)

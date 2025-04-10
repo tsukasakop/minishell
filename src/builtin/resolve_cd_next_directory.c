@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 00:43:48 by miyuu             #+#    #+#             */
-/*   Updated: 2025/04/09 00:47:58 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/10 17:00:51 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ char	*resolve_cd_next_directory(char **argv, char *old_dir)
 {
 	if (argv[0] && argv[1])
 	{
-		ft_fprintf(ft_stderr(), "bash: cd: too many arguments\n");
+		print_errmsg_with_str(EM_MANYARG, "cd");
 		return (NULL);
 	}
 	if (argv[0] && ft_strcmp(argv[0], "-") == 0 && old_dir == NULL)
 	{
-		ft_fprintf(ft_stderr(), "bash: cd: OLDPWD not set\n");
+		print_errmsg_with_str(EM_CD_OPWDNSET, NULL);
 		return (NULL);
 	}
 	if (argv[0] == NULL || ft_strcmp(argv[0], "~") == 0)

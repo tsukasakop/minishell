@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:52:33 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/29 20:25:54 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/06 04:01:16 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*read_bare_string(char **cur_p, char *ends, size_t ends_len)
 	if (!buffer)
 	{
 		set_error_type(ERR_SYSCALL);
-		perror_with_shellname(NULL);
+		print_errmsg_with_str(EM_SYSCALL, NULL);
 		return (NULL);
 	}
 	*cur_p = next_cur;

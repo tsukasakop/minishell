@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_readline_safely.c                              :+:      :+:    :+:   */
+/*   print_cd_syscall_error.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/08 22:40:28 by miyuu             #+#    #+#             */
-/*   Updated: 2025/04/10 16:56:34 by miyuu            ###   ########.fr       */
+/*   Created: 2025/04/06 03:36:54 by miyuu             #+#    #+#             */
+/*   Updated: 2025/04/06 19:02:00 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:get_readline_safely
+ * Function:print_cd_syscall_error
  * ----------------------------
- *  It displays a prompt and accepts input from readline.
- * If readline fails, it prints an error message and sets error_type.
+ * cd and errno error output.
  */
-char	*get_readline_safely(char *prompt)
+void	print_cd_syscall_error(char *str)
 {
-	char	*input;
-
-	input = ft_g_mmadd(readline(prompt));
-	if (input == NULL && errno == ENOMEM)
-	{
-		set_error_type(ERR_SYSCALL);
-		print_errmsg_with_str(EM_SYSCALL, NULL);
-		return (NULL);
-	}
-	return (input);
+	ft_putstr_fd("cd: ", STDERR_FILENO);
+	perror(str);
 }

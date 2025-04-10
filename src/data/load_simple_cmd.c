@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:28:21 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/29 20:25:54 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/06 04:01:16 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_simple_cmd	*load_simple_cmd(t_text_list *text_list)
 	if (!scmd_list)
 	{
 		set_error_type(ERR_SYSCALL);
-		perror_with_shellname(NULL);
+		print_errmsg_with_str(EM_SYSCALL, NULL);
 		return (NULL);
 	}
 	scmd_list->next = NULL;

@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   perror_return_null.c                               :+:      :+:    :+:   */
+/*   print_command_not_found_error.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/24 01:41:16 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/25 18:30:35 by mfunakos         ###   ########.fr       */
+/*   Created: 2025/04/06 03:14:23 by miyuu             #+#    #+#             */
+/*   Updated: 2025/04/06 19:02:04 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:perror_return_null
+ * Function:print_command_not_found_error
  * ----------------------------
- * Prints an error message with the shell name.
- * And return NULL.
- * But the shell does not exit.
+ * Command not found error output.
  */
-void	*perror_return_null(char *msg)
+void	print_command_not_found_error(char *str)
 {
-	perror_with_shellname(msg);
-	return (NULL);
+	ft_putstr_fd(str, STDERR_FILENO);
+	ft_putstr_fd(": command not found", STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
 }

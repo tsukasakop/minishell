@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   perror_return_num.c                                    :+:      :+:    :+:   */
+/*   print_too_many_arg_error.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/06 02:13:01 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/06 02:17:52 by miyuu            ###   ########.fr       */
+/*   Created: 2025/04/06 03:14:23 by miyuu             #+#    #+#             */
+/*   Updated: 2025/04/06 19:02:37 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:perror_return_num
+ * Function:print_too_many_arg_error
  * ----------------------------
- * Prints an error message with the shell name.
- * But the shell does not exit.
+ * Error output with too many arguments.
  */
-int	perror_return_num(char *msg, int num)
+void	print_too_many_arg_error(char *str)
 {
-	perror_with_shellname(msg);
-	return (num);
+	ft_putstr_fd(str, STDERR_FILENO);
+	ft_putstr_fd(": too many arguments", STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
 }

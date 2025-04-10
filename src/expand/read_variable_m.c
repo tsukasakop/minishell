@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:51:45 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/09 15:06:55 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/10 16:54:12 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*read_variable_m(char **cur_p, char **buf_p)
 		if (!tmp)
 		{
 			set_error_type(ERR_SYSCALL);
-			perror_with_shellname(NULL);
+			print_errmsg_with_str(EM_SYSCALL, NULL);
 			return (NULL);
 		}
 		return (tmp);

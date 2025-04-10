@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_readline_safely.c                              :+:      :+:    :+:   */
+/*   print_syntax_error.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/08 22:40:28 by miyuu             #+#    #+#             */
-/*   Updated: 2025/04/10 16:56:34 by miyuu            ###   ########.fr       */
+/*   Created: 2025/04/06 03:14:23 by miyuu             #+#    #+#             */
+/*   Updated: 2025/04/06 19:02:32 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:get_readline_safely
+ * Function:print_syntax_error
  * ----------------------------
- *  It displays a prompt and accepts input from readline.
- * If readline fails, it prints an error message and sets error_type.
+ * Syntax error output.
  */
-char	*get_readline_safely(char *prompt)
+void	print_syntax_error(char *str)
 {
-	char	*input;
-
-	input = ft_g_mmadd(readline(prompt));
-	if (input == NULL && errno == ENOMEM)
-	{
-		set_error_type(ERR_SYSCALL);
-		print_errmsg_with_str(EM_SYSCALL, NULL);
-		return (NULL);
-	}
-	return (input);
+	ft_putstr_fd("syntax error near unexpected token `", STDERR_FILENO);
+	ft_putstr_fd(str, STDERR_FILENO);
+	ft_putstr_fd("\'", STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
 }

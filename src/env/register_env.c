@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:55:35 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/08 01:36:21 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/10 16:28:58 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,20 @@ bool	register_env(char *string)
 
 	load_variable_assignment(string, &name, &value);
 	if (name == NULL)
-		perror_exit(NULL);
+	{
+		print_errmsg_with_str(EM_SYSCALL, NULL);
+		ft_exit(1);
+	}
 	if (!is_valid_identifier(name))
 	{
-		ft_fprintf(ft_stderr(),
-			"bash: export: `%s': not a valid identifier\n", string);
+		print_errmsg_with_str(EM_EXPO_BADID, string);
 		return (false);
 	}
 	success = ft_setenv(name, value, true) != -1;
 	if (!success)
-		perror_exit(NULL);
+	{
+		print_errmsg_with_str(EM_SYSCALL, NULL);
+		ft_exit(1);
+	}
 	return (success);
 }

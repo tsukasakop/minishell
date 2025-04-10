@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkondo <tkondo@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 14:22:54 by tkondo            #+#    #+#             */
-/*   Updated: 2025/03/21 17:51:25 by tkondo           ###   ########.fr       */
+/*   Updated: 2025/04/06 18:46:24 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	builtin_pwd(char **argv)
 	(void)argv;
 	cwd = getcwd(NULL, 0);
 	if (cwd)
-		ft_printf("%s\n", cwd);
+		ft_putendl_fd(cwd, STDOUT_FILENO);
 	ret = cwd == NULL;
 	free(cwd);
 	return (ret);

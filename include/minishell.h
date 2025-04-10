@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:15:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/09 15:33:57 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/10 16:59:56 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@
 /* macro */
 # define PROMPT "minishell$ "
 # define SHELL_NAME "bash: "
-# define ERR_HEREDOC "%swarning: here-document delimited by end-of-file (wanted `%s')\n"
 
 /* struct */
 typedef struct s_execute_session	t_execute_session;
@@ -49,6 +48,7 @@ typedef struct s_text_list			t_text_list;
 typedef enum e_redirect_type		t_redirect_type;
 typedef enum e_execute_env			t_execute_env;
 typedef enum e_error_type			t_error_type;
+typedef enum e_errmsg_type			t_errmsg_type;
 
 enum e_redirect_type
 {
@@ -71,6 +71,21 @@ enum e_error_type
 	ERR_SYSCALL,
 	ERR_AMBRDIR,
 	ERR_SYNTAX,
+};
+
+enum e_errmsg_type
+{
+	EM_SYSCALL,
+	EM_AMBRDIR,
+	EM_SYNTAX,
+	EM_ISDIR,
+	EM_CMDNFND,
+	EM_HEREDOC,
+	EM_MANYARG,
+	EM_EXPO_BADID,
+	EM_EXIT_NONUM,
+	EM_CD_OPWDNSET,
+	EM_CD_SYSCALL,
 };
 
 struct				s_execute_session
@@ -108,7 +123,7 @@ extern volatile unsigned char		g_signal;
 
 /* builtin function */
 bool			is_builtin(char *ecmd);
-unsigned char	execute_builtin(char **ecmds, char **envp);
+unsigned char	execute_builtin(char **ecmds);
 int				builtin_exit(char **argv);
 int				builtin_echo(char **argv);
 int				builtin_pwd(char **argv);
@@ -119,7 +134,6 @@ int				builtin_unset(char **argv);
 char			*resolve_cd_next_directory(char **argv, char *old_dir);
 
 /* command function */
-int				command_not_found_handle(char *cmd);
 int				exec_error_handling(char *path, int status, int err_num);
 int				exec_with_path(const char *path, char *const argv[]);
 
@@ -141,7 +155,6 @@ t_simple_cmd	*load_simple_cmd(t_text_list *text_list);
 t_text_list		*new_struct_text_list(char *str, size_t len);
 size_t			parse_general_token(char *scmd_text);
 size_t			parse_number_redir_token(char *scmd_text);
-void			syntax_error_handle(char *msg);
 size_t			outerlen_between_quote(char *scmd_text, char quote);
 void			add_redir_list_last(t_redirect **redir_list, \
 				t_redirect *new_redir);
@@ -172,6 +185,19 @@ void			load_variable_assignment(char *string, char **name, \
 bool			register_env(char *string);
 char			*dup_name(char *cur);
 
+/* print errmsg function */
+void			print_errmsg_with_str(t_errmsg_type err_type, char *str);
+void			print_amb_redir_error(char *str);
+void			print_bad_identifier_error(char *str);
+void			print_cd_syscall_error(char *str);
+void			print_command_not_found_error(char *str);
+void			print_heredoc_warning_error(char *str);
+void			print_is_directory_error(char *str);
+void			print_no_numeric_error(char *str);
+void			print_oldpwd_not_set_error(void);
+void			print_syntax_error(char *str);
+void			print_too_many_arg_error(char *str);
+
 /* expand function */
 unsigned char	*get_exit_status_p(void);
 unsigned char	get_exit_status(void);
@@ -194,13 +220,12 @@ bool			expand_token_segment(char **cur, char **buffer, char ***fixed);
 char			*get_variable_value(char **cur_p, char **buf_p);
 
 /* main function */
-unsigned char	eval_pipe(const t_simple_cmd *scmd_list, char **envp);
-unsigned char	eval_cmd_line(char **envp);
+unsigned char	eval_pipe(const t_simple_cmd *scmd_list);
+unsigned char	eval_cmd_line(void);
 bool			execute_simple_cmd(const t_simple_cmd *scmd_list, \
-				int stdio_fd[2], int next_in_fd, char **envp);
+				int stdio_fd[2], int next_in_fd);
 bool			init(char **envp);
-unsigned char	execute_on_current_env(char **ecmds, t_redirect *redir, \
-				char **envp);
+unsigned char	execute_on_current_env(char **ecmds, t_redirect *redir);
 
 /* pipe function */
 bool			iterate_pipefd(bool is_first, bool is_last, int (*stdio)[2], \
@@ -214,7 +239,7 @@ void			write_until_eof(int fd, const char *hd_eof);
 bool			write_until_eof_on_chproc(int fd, const char *hd_eof);
 bool			write_heredoc(char *eof, char *path);
 char			*dup_without_quote(const char *hd_eof);
-void			read_and_write_heredoc_lines(t_file *file, const char *hd_eof, \
+void			read_and_write_heredoc_lines(int fd, const char *hd_eof, \
 				bool has_quote);
 char			*get_readline_safely(char *prompt);
 
@@ -238,16 +263,12 @@ void			set_signal(int signal);
 /* utils */
 void			close_fds_no_stdio(int *fds, size_t size);
 int				ft_redirect_lstsize(t_redirect *lst);
-void			perror_exit(char *msg);
-int				perror_return_num(char *msg, int num);
-void			*perror_return_null(char *msg);
 void			free_null_terminated_array(void **arr);
 char			*ft_strchr_mul(const char *s, char *targets, size_t target_len);
 char			*ft_strnjoin(char *s1, char *s2, size_t s2_len);
 size_t			null_terminated_array_len(void **arr);
 void			**null_terminated_array_join(void **dst, void **src);
 int				is_directory(char *path);
-void			perror_with_shellname(char *msg);
 t_error_type	*get_error_type_p(void);
 void			set_error_type(t_error_type err_type);
 t_error_type	get_error_type(void);

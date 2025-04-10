@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:15:39 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/09 01:46:00 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/10 16:53:31 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	**expand_single_token(char *orig)
 	if (!fixed)
 	{
 		set_error_type(ERR_SYSCALL);
-		perror_with_shellname(NULL);
+		print_errmsg_with_str(EM_SYSCALL, NULL);
 		return (NULL);
 	}
 	cur = orig;

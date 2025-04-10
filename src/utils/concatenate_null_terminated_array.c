@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 17:59:46 by miyuu             #+#    #+#             */
-/*   Updated: 2025/04/08 18:01:14 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/10 16:58:34 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	**concatenate_null_terminated_array(void **dst, size_t	dstlen, \
 	if (ptr == NULL)
 	{
 		set_error_type(ERR_SYSCALL);
-		perror_with_shellname(NULL);
+		print_errmsg_with_str(EM_SYSCALL, NULL);
 		return (NULL);
 	}
 	i = 0;

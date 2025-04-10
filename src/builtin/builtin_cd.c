@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 16:50:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/09 00:44:19 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/10 17:01:22 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,12 @@ int	builtin_cd(char **argv)
 	cur_dir = getcwd(NULL, 0);
 	if (chdir(next_dir) == -1)
 	{
-		ft_fprintf(ft_stderr(), "bash: cd: %s: ", next_dir);
+		print_errmsg_with_str(EM_CD_SYSCALL, next_dir);
 		free(cur_dir);
-		perror(NULL);
 		return (1);
 	}
 	if (argv[0] && ft_strcmp(argv[0], "-") == 0)
-		ft_printf("%s\n", next_dir);
+		ft_putendl_fd(next_dir, STDOUT_FILENO);
 	free(old_dir);
 	old_dir = cur_dir;
 	return (0);

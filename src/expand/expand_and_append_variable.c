@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 16:48:27 by miyuu             #+#    #+#             */
-/*   Updated: 2025/04/08 16:51:51 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/10 16:33:41 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	expand_and_append_variable(char **src_p, char **dst_buf)
 	if (!tmp)
 	{
 		set_error_type(ERR_SYSCALL);
-		perror_with_shellname(NULL);
+		print_errmsg_with_str(EM_SYSCALL, NULL);
 		return (-1);
 	}
 	*dst_buf = tmp;

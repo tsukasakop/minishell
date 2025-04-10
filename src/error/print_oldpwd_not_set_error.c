@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   perror_exit.c                                      :+:      :+:    :+:   */
+/*   print_oldpwd_not_set_error.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/24 14:14:07 by miyuu             #+#    #+#             */
-/*   Updated: 2025/03/25 18:30:08 by mfunakos         ###   ########.fr       */
+/*   Created: 2025/04/06 03:14:23 by miyuu             #+#    #+#             */
+/*   Updated: 2025/04/06 19:02:27 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
- * Function:perror_exit
+ * Function:print_oldpwd_not_set_error
  * ----------------------------
- * Prints an error message with the shell name and exits with status 1.
+ * When executing the cd command,
+ * an error is output if OLDPWD is not set.
  */
-void	perror_exit(char *msg)
+void	print_oldpwd_not_set_error(void)
 {
-	perror_with_shellname(msg);
-	ft_exit (1);
+	ft_putstr_fd("cd: OLDPWD not set", STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
 }
