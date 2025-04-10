@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:33:15 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/10 16:55:09 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/10 21:26:17 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@
  * Execute pipeline
  *
  * const char *cmd_line: string to do as a command
+ * // TODO: session = init_session();
+ * // TODO: env = ENV_CHILD;
+ * // TODO: env = ENV_PARENT;
+ * // TODO: del_pipe(pipe);
+ * // TODO: ->free_simple_cmds((t_simple_cmd *)scmd_list);
  */
 unsigned char	eval_pipe(const t_simple_cmd *scmd_list)
 {
@@ -38,6 +43,7 @@ unsigned char	eval_pipe(const t_simple_cmd *scmd_list)
 		{
 			close_fds_no_stdio(stdio_fd, 2);
 			close_fds_no_stdio(&next_in_fd, 1);
+			break ;
 		}
 		execute_simple_cmd(cur, stdio_fd, next_in_fd);
 		cur = cur->next;
