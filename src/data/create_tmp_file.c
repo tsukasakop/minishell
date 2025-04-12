@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_tmp_file.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:43:09 by miyuu             #+#    #+#             */
-/*   Updated: 2025/04/12 18:01:33 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/12 18:07:33 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*create_random_filename(int fd_random)
 										!= sizeof(rand_bytes))
 			close(fd_random);
 		hex_str = bytes_to_hex(rand_bytes, 4);
-		filename = ft_strjoin("/tmp/heredoc_", hex_str);
+		filename = ft_g_mmadd(ft_strjoin("/tmp/heredoc_", hex_str));
 		if (!filename)
 			close(fd_random);
 		new_fd = open(filename, O_CREAT | O_EXCL, 0600);
