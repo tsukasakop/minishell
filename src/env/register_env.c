@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:55:35 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/12 18:40:48 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/12 22:26:03 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	register_env(char *string)
 	if (errno)
 	{
 		print_errmsg_with_str(EM_SYSCALL, NULL);
-		ft_exit(1);
+		return (false);
 	}
 	if (!is_valid_identifier(name))
 	{
@@ -39,7 +39,7 @@ bool	register_env(char *string)
 	if (!success)
 	{
 		print_errmsg_with_str(EM_SYSCALL, NULL);
-		ft_exit(1);
+		return (false);
 	}
 	return (success);
 }
