@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_tmp_file.c                                  :+:      :+:    :+:   */
+/*   test_heredoc_filename.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/04 14:43:09 by miyuu             #+#    #+#             */
-/*   Updated: 2025/04/12 17:34:50 by miyuu            ###   ########.fr       */
+/*   Created: 2025/02/26 12:39:47 by tkondo            #+#    #+#             */
+/*   Updated: 2025/04/12 17:33:16 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*bytes_to_hex(unsigned char *bytes, int len)
 	return (hex_out);
 }
 
-char	*create_random_filename(int fd_random)
+char	*new_create_random_filename(int fd_random)
 {
 	int				new_fd;
 	char			*filename;
@@ -47,16 +47,18 @@ char	*create_random_filename(int fd_random)
 										!= sizeof(rand_bytes))
 			close(fd_random);
 		hex_str = bytes_to_hex(rand_bytes, 4);
+		printf("bytes_to_hex : %s\n", hex_str);
 		filename = ft_strjoin("/tmp/heredoc_", hex_str);
 		if (!filename)
 			close(fd_random);
+
 		new_fd = open(filename, O_CREAT | O_EXCL, 0600);
 	}
 	close(new_fd);
 	return (filename);
 }
 
-char	*create_tmp_file(void)
+char	*new_create_tmp_file(void)
 {
 	int				fd_random;
 	char			*filename;
@@ -68,37 +70,19 @@ char	*create_tmp_file(void)
 		print_errmsg_with_str(EM_SYSCALL, NULL);
 		return (NULL);
 	}
-	filename = create_random_filename(fd_random);
+	filename = new_create_random_filename(fd_random);
 	close(fd_random);
 	return (filename);
 }
 
-/*
- * Function:create_tmp_file
- * ----------------------------
- * Creates a unique /tmp/heredoc_* file and returns its path.
- */
-// char	*create_tmp_file(void)
-// {
-// 	int		count;
-// 	char	*filename;
-// 	int		fd;
+// **📝 テスト実行**
+int	main(void)
+{
+	char	*filename;
 
-// 	count = 0;
-// 	filename = NULL;
-// 	fd = -1;
-// 	while (fd == -1)
-// 	{
-// 		filename = ft_g_mmadd(ft_strjoin("/tmp/heredoc_",
-// 					ft_g_mmadd(ft_itoa(count++))));
-// 		if (!filename)
-// 		{
-// 			set_error_type(ERR_SYSCALL);
-// 			print_errmsg_with_str(EM_SYSCALL, NULL);
-// 			return (NULL);
-// 		}
-// 		fd = open(filename, O_CREAT | O_EXCL, 0600);
-// 	}
-// 	close(fd);
-// 	return (filename);
-// }
+	filename = new_create_tmp_file();
+	printf("%s\n", filename);
+	free(filename);
+
+	return (0);
+}
