@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 00:35:59 by tkondo            #+#    #+#              #
-#    Updated: 2025/04/10 16:19:09 by miyuu            ###   ########.fr        #
+#    Updated: 2025/04/12 18:53:38 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ TARGET =\
 	data/parse_general_token\
 	data/parse_number_redir_token\
 	data/outerlen_between_quote\
-	data/create_tmp_file\
+	data/create_heredoc_file\
 	data/handle_heredoc\
 	data/add_redir_list_last\
 	data/token2ecmds\
