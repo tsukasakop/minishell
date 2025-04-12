@@ -26,3 +26,9 @@ export %=ft
 echo $?
 export === a=1
 echo $?
+
+export 42
+echo $?
+
+export 42+
+echo $?
