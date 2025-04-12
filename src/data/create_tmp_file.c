@@ -6,13 +6,13 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:43:09 by miyuu             #+#    #+#             */
-/*   Updated: 2025/04/12 17:34:50 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/12 18:01:33 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	*bytes_to_hex(unsigned char *bytes, int len)
+char	*bytes_to_hex(unsigned char *bytes, size_t len)
 {
 	const char	*hex_base;
 	char		*hex_out;
