@@ -6,18 +6,17 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 12:39:47 by tkondo            #+#    #+#             */
-/*   Updated: 2025/04/12 19:54:21 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/12 20:42:44 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-
-char	*bytes_to_hex(unsigned char *bytes, size_t len)
+char	*convert_bytes2hex(unsigned char *bytes, size_t len)
 {
-	const char	*hex_base;
-	char		*hex_out;
-	size_t		i;
+	char	*hex_base;
+	char	*hex_out;
+	size_t	i;
 
 	hex_base = "0123456789abcdef";
 	hex_out = ft_g_mmmalloc(len * 2 + 1);
@@ -38,7 +37,7 @@ char	*bytes_to_hex(unsigned char *bytes, size_t len)
 	return (hex_out);
 }
 
-char	*create_random_filename(int fd_random)
+char	*create_heredoc_randfile(int fd_random)
 {
 	int				new_fd;
 	char			*filename;
@@ -51,10 +50,10 @@ char	*create_random_filename(int fd_random)
 		if (read(fd_random, rand_bytes, sizeof(rand_bytes)) \
 										!= sizeof(rand_bytes))
 			close(fd_random);
-		hex_str = bytes_to_hex(rand_bytes, 4);
+		hex_str = convert_bytes2hex(rand_bytes, 4);
 		if (hex_str == NULL)
 			return (NULL);
-		filename = ft_g_mmadd(ft_strjoin("/tmp/heredoc_", hex_str));
+		filename = ft_g_mmadd(ft_strjoin(HEREDOC_TMP_PREFIX, hex_str));
 		if (!filename)
 		{
 			set_error_type(ERR_SYSCALL);
@@ -67,7 +66,7 @@ char	*create_random_filename(int fd_random)
 	return (filename);
 }
 
-char	*create_nbr_filename(void)
+char	*create_heredoc_seqfile(void)
 {
 	int		count;
 	char	*filename;
@@ -78,7 +77,7 @@ char	*create_nbr_filename(void)
 	fd = -1;
 	while (fd == -1)
 	{
-		filename = ft_g_mmadd(ft_strjoin("/tmp/heredoc_",
+		filename = ft_g_mmadd(ft_strjoin(HEREDOC_TMP_PREFIX,
 					ft_g_mmadd(ft_itoa(count++))));
 		if (!filename)
 		{
@@ -98,11 +97,13 @@ char	*new_create_heredoc_file(void)
 	char			*filename;
 
 	fd_random = open("/dev/urandom", O_RDONLY);
-	if (fd_random == -1)
-		filename = create_nbr_filename();
+	if (fd_random > 0)
+	{
+		filename = create_heredoc_randfile(fd_random);
+		close(fd_random);
+	}
 	else
-		filename = create_random_filename(fd_random);
-	close(fd_random);
+		filename = create_heredoc_seqfile();
 	return (filename);
 }
 
