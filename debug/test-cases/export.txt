@@ -32,3 +32,9 @@ echo $?
 
 export 42+
 echo $?
+
+export hello+
+echo $?
+
+export hello=world
+echo $?
