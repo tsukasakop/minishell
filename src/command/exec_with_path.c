@@ -12,6 +12,7 @@
 
 #include <_ft_unistd.h>
 #include <ft_stdlib.h>
+#include <minishell.h>
 
 static char	*create_path(char *dir, const char *name)
 {
@@ -78,16 +79,28 @@ static const char	*find_path(const char *name)
 int	exec_with_path(const char *path, char *const argv[])
 {
 	const char	*abs_path;
+	char		**envp;
 	int			ret;
 
 	if (path[0] == '\0')
 		return (127);
+	envp = ft_getenvp();
+	if (!envp)
+		return (127);
 	if (ft_strchr(path, '/') != NULL)
-		return (execve(path, argv, NULL));
+	{
+		ret = execve(path, argv, envp);
+		free_null_terminated_array((void **)envp);
+		return (ret);
+	}
 	abs_path = find_path(path);
 	if (abs_path == NULL)
+	{
+		free_null_terminated_array((void **)envp);
 		return (127);
-	ret = execve(abs_path, argv, NULL);
+	}
+	ret = execve(abs_path, argv, envp);
 	free((void *)abs_path);
+	free_null_terminated_array((void **)envp);
 	return (ret);
 }

@@ -10,3 +10,5 @@ export BBB="$BBB 789"
 echo $?
 echo "$BBB aaa"
 echo $?
+export TEST_VAR=hello_from_minishell
+/bin/sh -c "$TEST_VAR"
