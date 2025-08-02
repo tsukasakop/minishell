@@ -30,6 +30,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <errno.h>
+# include <sysexits.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <sys/types.h>

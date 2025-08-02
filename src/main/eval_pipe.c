@@ -39,13 +39,12 @@ unsigned char	eval_pipe(const t_simple_cmd *scmd_list)
 	while (cur)
 	{
 		if (!iterate_pipefd(cur == scmd_list, cur->next == NULL, &stdio_fd, \
-			&next_in_fd))
+			&next_in_fd) || !execute_simple_cmd(cur, stdio_fd, next_in_fd))
 		{
-			close_fds_no_stdio(stdio_fd, 2);
-			close_fds_no_stdio(&next_in_fd, 1);
-			break ;
+			close_fds_no_stdio((int [3]){stdio_fd[0], stdio_fd[1], next_in_fd}, 3);
+			print_errmsg_with_str(EM_SYSCALL, NULL);
+			return (EX_OSERR);
 		}
-		execute_simple_cmd(cur, stdio_fd, next_in_fd);
 		cur = cur->next;
 	}
 	close_fds_no_stdio((int [3]){stdio_fd[0], stdio_fd[1], next_in_fd}, 3);
